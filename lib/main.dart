@@ -1,0 +1,58 @@
+import 'package:export_nepal/provider/EmailValidProvider.dart';
+import 'package:export_nepal/ui/screens/SignupUI.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
+import 'ui/screens/LoginUI.dart';
+void main() {
+  // runApp(MainApp());
+  runApp(
+    MultiProvider(
+      providers: providers,
+      child: MainApp(),
+    ),
+  );
+}
+
+List<SingleChildWidget> providers = [
+  ChangeNotifierProvider<RegistrationProvider>(create: (_) => RegistrationProvider()),
+];
+
+class MainApp extends StatelessWidget {
+  const MainApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginUI(),
+        '/register': (context) => SignUpUI(),
+      },
+      theme: ThemeData(
+          primaryColor: Color(0xFF0A0E21),
+          scaffoldBackgroundColor: Color(0xFFE4EAFD),
+          accentColor: Color(0xFFE4EAFD),
+          inputDecorationTheme: InputDecorationTheme(
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding:
+            const EdgeInsets.only(left: 14.0, bottom: 8.0, top: 8.0),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+          ),
+          textTheme: TextTheme(
+              bodyText2: TextStyle(
+                color: Colors.white,
+              )
+          )
+      ),
+    );
+  }
+}
