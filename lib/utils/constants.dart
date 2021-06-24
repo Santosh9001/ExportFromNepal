@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 const kPrimaryTextColor = Color(0xFF171B27);
 const kSecondaryTextColor = Color(0xFFA8AFC0);
 const kColorPrimary = Color(0xFF1A2F7B);
+const kColorRed = Color.fromARGB(255, 220, 53, 69);
 
 const kTextStyleLarge = TextStyle(
     fontSize: 26.0,

@@ -1,9 +1,11 @@
+import 'package:export_nepal/ui/screens/ForgotPasswordUI.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:export_nepal/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../components/button.dart';
 
@@ -20,7 +22,8 @@ class _LoginUIState extends State<LoginUI> {
 
   late String _password;
   final _formKey = GlobalKey<FormState>();
-
+  late GoogleSignInAccount _userObj;
+  GoogleSignIn _googleSignIn = GoogleSignIn();
 
   // Toggles the password show status
   void _toggle() {
@@ -74,11 +77,11 @@ class _LoginUIState extends State<LoginUI> {
                           size: 20.0,
                         ),
                       ),
-                      validator: (value){
-                        if (value == null || value.isEmpty){
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
                           return 'Please enter your Email';
                         }
-                        if (!validateEmail(value)){
+                        if (!validateEmail(value)) {
                           return 'Please enter a valid Email';
                         }
                         return null;
@@ -103,8 +106,8 @@ class _LoginUIState extends State<LoginUI> {
                           ),
                         ),
                       ),
-                      validator: (value){
-                        if (value == null || value.isEmpty){
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
                           return 'Please enter your Password';
                         }
                         return null;
@@ -114,12 +117,20 @@ class _LoginUIState extends State<LoginUI> {
                   SizedBox(
                     height: 8.0,
                   ),
-                  Container(
-                    width: double.infinity,
-                    child: Text(
-                      "Forgot Password?",
-                      textAlign: TextAlign.end,
-                      style: TextStyle(color: kColorPrimary),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgotPasswordUI()));
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      child: Text(
+                        "Forgot Password?",
+                        textAlign: TextAlign.end,
+                        style: TextStyle(color: kColorPrimary),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -127,10 +138,10 @@ class _LoginUIState extends State<LoginUI> {
                   ),
                   Button(
                     text: "Log In",
-                    onPress: (){
-                      if(_formKey.currentState!.validate()){
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(SnackBar(content: Text('Handle Login')));
+                    onPress: () {
+                      if (_formKey.currentState!.validate()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Handle Login')));
                       }
                     },
                     color: kColorPrimary,
@@ -149,7 +160,16 @@ class _LoginUIState extends State<LoginUI> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          _googleSignIn.signIn().then((userData) {
+                            setState(() {
+                              _userObj = userData!;
+                              // Login User into the server after gmail login success
+                            });
+                          }).catchError((e) {
+                            print(e);
+                          });
+                        },
                         child: Container(
                           child: Center(
                             child: Padding(
@@ -157,8 +177,14 @@ class _LoginUIState extends State<LoginUI> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(AntDesign.google, size: 15.0, color: kColorPrimary,),
-                                  SizedBox(width: 10.0,),
+                                  Icon(
+                                    AntDesign.google,
+                                    size: 15.0,
+                                    color: kColorPrimary,
+                                  ),
+                                  SizedBox(
+                                    width: 10.0,
+                                  ),
                                   Text(
                                     "Login with Google",
                                     style: kButtonDarkStyle,
@@ -174,7 +200,9 @@ class _LoginUIState extends State<LoginUI> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 8.0,),
+                      SizedBox(
+                        width: 8.0,
+                      ),
                       GestureDetector(
                         onTap: () {},
                         child: Container(
@@ -184,8 +212,14 @@ class _LoginUIState extends State<LoginUI> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Entypo.facebook, size: 15.0, color: kColorPrimary,),
-                                  SizedBox(width: 10.0,),
+                                  Icon(
+                                    Entypo.facebook,
+                                    size: 15.0,
+                                    color: kColorPrimary,
+                                  ),
+                                  SizedBox(
+                                    width: 10.0,
+                                  ),
                                   Text(
                                     "Login with Facebook",
                                     style: kButtonDarkStyle,
@@ -201,7 +235,6 @@ class _LoginUIState extends State<LoginUI> {
                           ),
                         ),
                       ),
-
                     ],
                   ),
                   SizedBox(
@@ -218,7 +251,7 @@ class _LoginUIState extends State<LoginUI> {
                         width: 5.0,
                       ),
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Navigator.pushNamed(context, '/register');
                         },
                         child: Text(
