@@ -1,4 +1,5 @@
 import 'package:export_nepal/ui/components/button.dart';
+import 'package:export_nepal/ui/screens/PwdResetConfirmUI.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:export_nepal/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
@@ -117,10 +118,15 @@ class _ForgotPasswordState extends State<ForgotPasswordUI> {
                           width: 150,
                           child: ElevatedButton(
                             onPressed: () {
-                              if (_formKey.currentState!.validate()) {
+                              /*if (_formKey.currentState!.validate()) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text('Handle Login')));
-                              }
+                              }*/
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          PwdResetConfirmUI()));
                             },
                             child: Text(
                               "Submit",
