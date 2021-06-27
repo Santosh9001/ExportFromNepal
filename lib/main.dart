@@ -1,4 +1,5 @@
 import 'package:export_nepal/provider/EmailValidProvider.dart';
+import 'package:export_nepal/ui/screens/DashboardUI.dart';
 import 'package:export_nepal/ui/screens/SignupUI.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +27,8 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => LoginUI(),
+        // '/': (context) => LoginUI(),
+        '/': (context) => Dashboard(),
         '/register': (context) => SignUpUI(),
       },
       theme: ThemeData(
