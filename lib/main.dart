@@ -1,12 +1,16 @@
 import 'package:export_nepal/provider/EmailValidProvider.dart';
 import 'package:export_nepal/ui/screens/DashboardUI.dart';
 import 'package:export_nepal/ui/screens/SignupUI.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'ui/screens/LoginUI.dart';
-void main() {
+
+void main() async{
   // runApp(MainApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     MultiProvider(
       providers: providers,
@@ -16,7 +20,8 @@ void main() {
 }
 
 List<SingleChildWidget> providers = [
-  ChangeNotifierProvider<RegistrationProvider>(create: (_) => RegistrationProvider()),
+  ChangeNotifierProvider<RegistrationProvider>(
+      create: (_) => RegistrationProvider()),
 ];
 
 class MainApp extends StatelessWidget {
@@ -27,8 +32,8 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        // '/': (context) => LoginUI(),
-        '/': (context) => Dashboard(),
+        '/': (context) => LoginUI(),
+        //'/': (context) => Dashboard(),
         '/register': (context) => SignUpUI(),
       },
       theme: ThemeData(
@@ -39,7 +44,7 @@ class MainApp extends StatelessWidget {
             filled: true,
             fillColor: Colors.white,
             contentPadding:
-            const EdgeInsets.only(left: 14.0, bottom: 8.0, top: 8.0),
+                const EdgeInsets.only(left: 14.0, bottom: 8.0, top: 8.0),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white),
               borderRadius: BorderRadius.circular(8.0),
@@ -51,10 +56,8 @@ class MainApp extends StatelessWidget {
           ),
           textTheme: TextTheme(
               bodyText2: TextStyle(
-                color: Colors.white,
-              )
-          )
-      ),
+            color: Colors.white,
+          ))),
     );
   }
 }

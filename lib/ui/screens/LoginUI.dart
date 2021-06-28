@@ -2,9 +2,9 @@ import 'package:export_nepal/ui/screens/ForgotPasswordUI.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:export_nepal/utils/validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -21,7 +21,6 @@ class LoginUI extends StatefulWidget {
 class _LoginUIState extends State<LoginUI> {
 // Initially password is obscure
   bool _obscureText = true;
-
   late String _password;
   final _formKey = GlobalKey<FormState>();
 
@@ -160,9 +159,18 @@ class _LoginUIState extends State<LoginUI> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          var user = signInWithGoogle();
-                          print(user);
+                        onTap: () async {
+                          final GoogleSignInAccount googleUser =
+                              (await GoogleSignIn().signIn())!;
+                          final GoogleSignInAuthentication googleAuth =
+                              await googleUser.authentication;
+
+                          final OAuthCredential credential =
+                              GoogleAuthProvider.credential(
+                                  accessToken: googleAuth.accessToken,
+                                  idToken: googleAuth.idToken);
+                          await FirebaseAuth.instance
+                              .signInWithCredential(credential).then((value) => print(value.user!.displayName));
                         },
                         child: Container(
                           child: Center(
@@ -198,10 +206,7 @@ class _LoginUIState extends State<LoginUI> {
                         width: 8.0,
                       ),
                       GestureDetector(
-                        onTap: () {
-                          var user = signInWithFacebook();
-                          print(user.toString());
-                        },
+                        onTap: () {},
                         child: Container(
                           child: Center(
                             child: Padding(
@@ -265,31 +270,5 @@ class _LoginUIState extends State<LoginUI> {
         ),
       ),
     );
-  }
-
-  Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount googleUser = (await GoogleSignIn().signIn())!;
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
-  }
-
-  Future<UserCredential> signInWithFacebook() async {
-    // Trigger the sign-in flow
-    final AccessToken result = await FacebookAuth.instance.login();
-    // Create a credential from the access token
-    final facebookAuthCredential =
-        FacebookAuthProvider.credential(result.token);
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance
-        .signInWithCredential(facebookAuthCredential);
   }
 }

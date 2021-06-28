@@ -1,34 +1,49 @@
 {
   "project_info": {
-    "project_number": "739877768161",
-    "project_id": "export-from-nepal-dc782",
-    "storage_bucket": "export-from-nepal-dc782.appspot.com"
+    "project_number": "375787988892",
+    "project_id": "export-from-nepal-b2c34",
+    "storage_bucket": "export-from-nepal-b2c34.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:739877768161:android:a6ded0fc3b47e3b096a0a0",
+        "mobilesdk_app_id": "1:375787988892:android:1a831df28b138688b2ca59",
         "android_client_info": {
-          "package_name": "com.export_from_nepal.app"
+          "package_name": "com.efn.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "739877768161-sss8rmg9u0fdnve84j1f2ojril1khlbl.apps.googleusercontent.com",
+          "client_id": "375787988892-n0hrcqka8b9931kp0k85q4fk6o9cp9hj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.efn.app",
+            "certificate_hash": "0bdaaa43a83016c394373ea56da6e830d4d30844"
+          }
+        },
+        {
+          "client_id": "375787988892-1pcmhqtu4sri4904761qqhlncdg7ksj3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBR1KlVqGD1ZK8Y2jXiOzkcE3x31zjNZgc"
+          "current_key": "AIzaSyDw08CUKsdGNp8bIm-J8DbAk736Vu0R_7M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "739877768161-sss8rmg9u0fdnve84j1f2ojril1khlbl.apps.googleusercontent.com",
+              "client_id": "375787988892-1pcmhqtu4sri4904761qqhlncdg7ksj3.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "375787988892-5pj8236e43nclmgtrj9vpf942ksgn0fg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.efn.app"
+              }
             }
           ]
         }
