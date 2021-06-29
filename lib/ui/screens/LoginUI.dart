@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -170,7 +171,8 @@ class _LoginUIState extends State<LoginUI> {
                                   accessToken: googleAuth.accessToken,
                                   idToken: googleAuth.idToken);
                           await FirebaseAuth.instance
-                              .signInWithCredential(credential).then((value) => print(value.user!.displayName));
+                              .signInWithCredential(credential)
+                              .then((value) => print(value.user!.displayName));
                         },
                         child: Container(
                           child: Center(
@@ -206,7 +208,20 @@ class _LoginUIState extends State<LoginUI> {
                         width: 8.0,
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () async {
+                          FacebookAuth.instance.login(permissions: [
+                            "public_profile",
+                            "email"
+                          ]).then((value) {
+                            FacebookAuth.instance
+                                .getUserData()
+                                .then((userData) {
+                              setState(() {
+                                print(userData);
+                              });
+                            });
+                          });
+                        },
                         child: Container(
                           child: Center(
                             child: Padding(
