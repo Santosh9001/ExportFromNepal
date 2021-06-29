@@ -180,18 +180,7 @@ class _SignUpUIState extends State<SignUpUI> {
                               ),
                             ),
                             SizedBox(
-                              height: 8.0,
-                            ),
-                            Container(
-                              width: double.infinity,
-                              child: Text(
-                                "Forgot Password?",
-                                textAlign: TextAlign.end,
-                                style: TextStyle(color: kColorPrimary),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.0,
+                              height: 18.0,
                             ),
                             Button(
                               text: "Sign Up",

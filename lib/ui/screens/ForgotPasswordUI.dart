@@ -112,17 +112,38 @@ class _ForgotPasswordState extends State<ForgotPasswordUI> {
                           ),
                         ),
                       ),
-                      Button(
-                          color: kColorPrimary,
-                          text: "Reset My Password",
-                          onPress: () {
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PwdResetConfirmUI()),
-                              (Route<dynamic> route) => false,
-                            );
-                          })
+                      Container(
+                        margin: EdgeInsets.fromLTRB(5, 10, 0, 0),
+                        child: SizedBox(
+                          height: 50,
+                          width: 150,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              /*if (_formKey.currentState!.validate()) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Handle Login')));
+                              }*/
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          PasswordResetUI()));
+                            },
+                            child: Text(
+                              "Submit",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                                primary: kColorPrimary,
+                                side:
+                                BorderSide(width: 1, color: kColorPrimary),
+                                elevation: 1,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                padding: EdgeInsets.all(10)),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ],

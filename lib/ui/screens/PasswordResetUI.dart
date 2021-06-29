@@ -60,6 +60,45 @@ class _ResetPasswordState extends State<PasswordResetUI> {
                       style: kTextStyleLarge,
                     ),
                   ),
+                  SizedBox(height: 30.0),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(2, 0, 0, 2),
+                    child: Container(
+                      width: double.infinity,
+                      child: Text(
+                        "Enter the OTP code received in your email address",
+                        style: kTextStyleSmall,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 0),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(20.0),
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.only(right: 4.0),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your OTP Code';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 20.0),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(2, 0, 0, 2),
+                    child: Container(
+                      width: double.infinity,
+                      child: Text(
+                        "Your new password",
+                        style: kTextStyleSmall,
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 0),
                     child: TextFormField(
@@ -86,8 +125,16 @@ class _ResetPasswordState extends State<PasswordResetUI> {
                       },
                     ),
                   ),
-                  SizedBox(
-                    height: 8.0,
+                  SizedBox(height: 20.0),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(2, 0, 0, 2),
+                    child: Container(
+                      width: double.infinity,
+                      child: Text(
+                        "Confirm your new password",
+                        style: kTextStyleSmall,
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 0),
@@ -109,7 +156,7 @@ class _ResetPasswordState extends State<PasswordResetUI> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your Password';
+                          return 'Please confirm your Password';
                         }
                         return null;
                       },
@@ -118,66 +165,36 @@ class _ResetPasswordState extends State<PasswordResetUI> {
                   SizedBox(
                     height: 8.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 10, 5, 0),
-                        child: SizedBox(
-                          height: 50,
-                          width: 150,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              // Cancel the forgot password situation
-                            },
-                            child: Text(
-                              "Cancel",
-                              style: TextStyle(color: kColorRed),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                                primary: Colors.white,
-                                side: BorderSide(width: 1, color: kColorRed),
-                                elevation: 1,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                padding: EdgeInsets.all(10)),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(5, 10, 0, 0),
-                        child: SizedBox(
-                          height: 50,
-                          width: 150,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              /*if (_formKey.currentState!.validate()) {
+                  Container(
+                    margin: EdgeInsets.fromLTRB(5, 10, 0, 0),
+                    child: SizedBox(
+                      height: 50,
+                      width: 150,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          /*if (_formKey.currentState!.validate()) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text('Handle Login')));
                               }*/
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          PwdResetConfirmUI()));
-                            },
-                            child: Text(
-                              "Submit",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                                primary: kColorPrimary,
-                                side:
-                                    BorderSide(width: 1, color: kColorPrimary),
-                                elevation: 1,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                padding: EdgeInsets.all(10)),
-                          ),
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PwdResetConfirmUI()));
+                        },
+                        child: Text(
+                          "Submit",
+                          style: TextStyle(color: Colors.white),
                         ),
-                      )
-                    ],
-                  ),
+                        style: ElevatedButton.styleFrom(
+                            primary: kColorPrimary,
+                            side: BorderSide(width: 1, color: kColorPrimary),
+                            elevation: 1,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            padding: EdgeInsets.all(10)),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
