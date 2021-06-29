@@ -140,8 +140,7 @@ class _LoginUIState extends State<LoginUI> {
                     text: "Log In",
                     onPress: () {
                       if (_formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Handle Login')));
+
                       }
                     },
                     color: kColorPrimary,

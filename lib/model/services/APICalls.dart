@@ -63,7 +63,7 @@ class APICalls {
       String email, String password) async {
     Register? result;
     try {
-      final url = Uri.parse(baseUrl + "customers");
+      final url = Uri.parse(baseUrl + "integration/customer/token");
       Map<String, dynamic> data = {
         "customer": {
           "email": "$email",
@@ -76,6 +76,29 @@ class APICalls {
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Register.fromJson(response.body);
+        print(result.toString());
+      } else {
+        result = null;
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      result = null;
+    }
+    return result;
+  }
+
+  Future<String?> loginUser(context,String email, String pass) async{
+    String? result;
+    try {
+      final url = Uri.parse(baseUrl + "customers");
+      Map<String, dynamic> data = {
+          "username": "$email",
+          "password": "$pass",
+      };
+      var response = await http.post(url, body: jsonEncode(data));
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        result = response.body;
         print(result.toString());
       } else {
         result = null;
