@@ -63,7 +63,7 @@ class APICalls {
       String email, String password) async {
     Register? result;
     try {
-      final url = Uri.parse(baseUrl + "integration/customer/token");
+      final url = Uri.parse(baseUrl + "customers");
       Map<String, dynamic> data = {
         "customer": {
           "email": "$email",
@@ -90,7 +90,7 @@ class APICalls {
   Future<String?> loginUser(context,String email, String pass) async{
     String? result;
     try {
-      final url = Uri.parse(baseUrl + "customers");
+      final url = Uri.parse(baseUrl + "integration/customer/token");
       Map<String, dynamic> data = {
           "username": "$email",
           "password": "$pass",
@@ -104,6 +104,7 @@ class APICalls {
         result = null;
       }
     } on Exception catch (e) {
+      print("error");
       log(e.toString());
       result = null;
     }

@@ -7,11 +7,11 @@ class RegistrationProvider with ChangeNotifier {
   bool loading = false;
   Register? register;
 
-
   isValid(context, String email) async {
     var api = APICalls();
     loading = true;
     result = await api.isEmailValid(context, email);
+    print("email Available "+result.toString());
     loading = false;
 
     notifyListeners();
@@ -24,4 +24,5 @@ class RegistrationProvider with ChangeNotifier {
     register = await api.registerUser(context, fName, lName, email, password);
     loading = false;
   }
+
 }

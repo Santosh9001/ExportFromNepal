@@ -1,4 +1,5 @@
 import 'package:export_nepal/provider/EmailValidProvider.dart';
+import 'package:export_nepal/provider/LoginTokenProvider.dart';
 import 'package:export_nepal/ui/screens/DashboardUI.dart';
 import 'package:export_nepal/ui/screens/SignupUI.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'ui/screens/LoginUI.dart';
 
-void main() async{
+void main() async {
   // runApp(MainApp());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -22,6 +23,8 @@ void main() async{
 List<SingleChildWidget> providers = [
   ChangeNotifierProvider<RegistrationProvider>(
       create: (_) => RegistrationProvider()),
+  ChangeNotifierProvider<LoginTokenProvider>(
+      create: (_) => LoginTokenProvider()),
 ];
 
 class MainApp extends StatelessWidget {
