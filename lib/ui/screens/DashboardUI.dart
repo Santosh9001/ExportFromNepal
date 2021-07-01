@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
+import 'dashboard/category/CategoryUI.dart';
+
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
 
@@ -16,10 +18,7 @@ class _DashboardState extends State<Dashboard> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     HomeUI(),
-    Text(
-      'Category',
-      style: optionStyle,
-    ),
+    CategoryUI(),
     Text(
       'Messages',
       style: optionStyle,

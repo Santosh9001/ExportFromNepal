@@ -89,6 +89,7 @@ class _SignUpUIState extends State<SignUpUI> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 16, 0, 8.0),
                               child: TextFormField(
+                                textInputAction: TextInputAction.next,
                                 controller: _fNameController,
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.all(20.0),
@@ -109,6 +110,7 @@ class _SignUpUIState extends State<SignUpUI> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 0, 8.0),
                               child: TextFormField(
+                                textInputAction: TextInputAction.next,
                                 controller: _lNameController,
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.all(20.0),
@@ -129,6 +131,7 @@ class _SignUpUIState extends State<SignUpUI> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 0, 8.0),
                               child: TextFormField(
+                                textInputAction: TextInputAction.next,
                                 controller: _emailController,
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.all(20.0),

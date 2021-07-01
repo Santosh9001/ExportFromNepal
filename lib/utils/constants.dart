@@ -5,6 +5,7 @@ const kSecondaryTextColor = Color(0xFFA8AFC0);
 const kColorPrimary = Color(0xFF1A2F7B);
 const kColorBlack = Color(0xFF0A0A0A);
 const kColorRed = Color.fromARGB(255, 220, 53, 69);
+const kCategoryBlue = Color(0xFFEAEFFD);
 
 const kTextStyleLarge = TextStyle(
     fontSize: 26.0,
