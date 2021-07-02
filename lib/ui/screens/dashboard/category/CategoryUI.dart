@@ -28,7 +28,7 @@ class _CategoryUIState extends State<CategoryUI> {
               width: double.infinity,
               child: Text(
                 "Categories",
-                style: kTextStyleLarge,
+                style: kTextStyleLargeBlue,
               ),
             ),
           ),
