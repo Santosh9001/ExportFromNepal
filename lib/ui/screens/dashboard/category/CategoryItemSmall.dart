@@ -1,4 +1,5 @@
-import 'package:export_nepal/ui/screens/dashboard/subCategory/SubCategoryUI.dart';
+import 'package:export_nepal/ui/screens/dashboard/category/subCategory/SubCategoryUI.dart';
+import 'package:export_nepal/ui/screens/dashboard/category/subCategory/innerCategory/InnerCategoryUI.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class CategoryItemSmall extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SubCategoryUI()),
+                MaterialPageRoute(builder: (context) => SubCategoryUI(title: "Categories")),
               );
             },
             child: Container(

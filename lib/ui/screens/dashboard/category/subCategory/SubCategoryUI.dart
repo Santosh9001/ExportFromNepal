@@ -1,11 +1,14 @@
 import 'package:export_nepal/ui/screens/dashboard/category/CategoryItemSmall.dart';
-import 'package:export_nepal/ui/screens/dashboard/subCategory/SubCategoryItemSmall.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'SubCategoryItemSmall.dart';
+
 class SubCategoryUI extends StatefulWidget {
-  const SubCategoryUI({Key? key}) : super(key: key);
+  final String title;
+
+  const SubCategoryUI({Key? key, required this.title}) : super(key: key);
 
   @override
   _SubCategoryUIState createState() => _SubCategoryUIState();
@@ -16,11 +19,9 @@ class _SubCategoryUIState extends State<SubCategoryUI>
   // ignore: deprecated_member_use
   late List<Tab> _tabs = <Tab>[];
   List<Widget> _generalWidgets = <Widget>[];
-  late TabController _tabController;
 
   @override
   void dispose() {
-    _tabController.dispose();
     super.dispose();
   }
 
@@ -28,8 +29,7 @@ class _SubCategoryUIState extends State<SubCategoryUI>
   void initState() {
     super.initState();
     _tabs = getTabs(8);
-    _tabController =
-        TabController(length: _tabs.length, vsync: this, initialIndex: 0);
+    addItems();
   }
 
   List<Tab> getTabs(int count) {
@@ -55,7 +55,7 @@ class _SubCategoryUIState extends State<SubCategoryUI>
           backgroundColor: Colors.white,
           elevation: 0,
           title: new Text(
-            "Categories",
+            widget.title,
             style: kTextStyleLargeBlue,
           ),
           leading: IconButton(
@@ -63,6 +63,7 @@ class _SubCategoryUIState extends State<SubCategoryUI>
             icon: Icon(
               Icons.chevron_left,
               color: kColorPrimary,
+              size: 22,
             ),
           ),
           bottom: TabBar(
@@ -73,28 +74,30 @@ class _SubCategoryUIState extends State<SubCategoryUI>
             labelColor: kColorRed,
             unselectedLabelStyle: TextStyle(color: kColorPrimary),
             tabs: _tabs,
-            controller: _tabController,
           ),
         ),
         body: TabBarView(
-          controller: _tabController,
-          children: getWidgets()
+          children: _tabs
               .map(
                 (item) => Container(
                   color: Colors.white,
+                  padding: EdgeInsets.only(top: 10),
                   child: Padding(
                     padding: EdgeInsets.only(top: 10),
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
-                        childAspectRatio: 0.8,
+                    child: Container(
+                      color: Colors.white,
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          childAspectRatio: 0.8,
+                        ),
+                        itemCount: _tabs.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return SubCategoryItemSmall(title: item.text!);
+                        },
                       ),
-                      itemCount: 5,
-                      itemBuilder: (BuildContext context, int index) {
-                        return SubCategoryItemSmall();
-                      },
                     ),
                   ),
                 ),
@@ -105,27 +108,11 @@ class _SubCategoryUIState extends State<SubCategoryUI>
     );
   }
 
-  List<Widget> getWidgets() {
-    _generalWidgets.clear();
-    for (int i = 0; i < _tabs.length; i++) {
-      _generalWidgets.add(getWidget(i));
-    }
-    return _generalWidgets;
-  }
+  List<String> _items = <String>[];
 
-  Widget getWidget(int widgetNumber) {
-    return Expanded(
-      child: GridView.builder(
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-          childAspectRatio: 0.8,
-        ),
-        itemCount: 5,
-        itemBuilder: (BuildContext context, int index) {
-          return SubCategoryItemSmall();
-        },
-      ),
-    );
+  void addItems() {
+    for (int i = 0; i < 20; i++) {
+      _items.add("Value $i");
+    }
   }
 }

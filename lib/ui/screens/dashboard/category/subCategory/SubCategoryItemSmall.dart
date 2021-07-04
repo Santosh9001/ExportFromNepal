@@ -1,11 +1,13 @@
-import 'package:export_nepal/ui/screens/dashboard/subCategory/SubCategoryUI.dart';
+import 'package:export_nepal/ui/screens/dashboard/category/subCategory/innerCategory/InnerCategoryUI.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SubCategoryItemSmall extends StatelessWidget {
+  final String title;
+
   const SubCategoryItemSmall({
-    Key? key,
+    Key? key, required this.title,
   }) : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class SubCategoryItemSmall extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SubCategoryUI()),
+                MaterialPageRoute(builder: (context) => InnerCategoryUI()),
               );
             },
             child: Container(
@@ -39,7 +41,7 @@ class SubCategoryItemSmall extends StatelessWidget {
           height: 4,
         ),
         Text(
-          "Art and Craft",
+          title,
           style: TextStyle(
               fontSize: 10.0,
               color: kPrimaryTextColor,
