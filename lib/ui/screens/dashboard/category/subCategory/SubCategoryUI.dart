@@ -86,17 +86,10 @@ class _SubCategoryUIState extends State<SubCategoryUI>
                     padding: EdgeInsets.only(top: 10),
                     child: Container(
                       color: Colors.white,
-                      child: GridView.builder(
-                        shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
-                          childAspectRatio: 0.8,
-                        ),
-                        itemCount: _tabs.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return SubCategoryItemSmall(title: item.text!);
-                        },
+                      child: GridView.count(
+                        crossAxisCount: 4,
+                        children: List.generate(_items.length,
+                            (index) => SubCategoryItemSmall(title: "Title")),
                       ),
                     ),
                   ),
