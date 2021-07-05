@@ -216,7 +216,7 @@ class _HomeUIState extends State<HomeUI> {
               ),
               SliverGrid(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
+                  crossAxisCount: 3,
                   childAspectRatio: 0.70,
                 ),
                 delegate: SliverChildBuilderDelegate(

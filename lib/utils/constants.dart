@@ -20,13 +20,13 @@ const kTextStyleLargeBlue = TextStyle(
 );
 
 const kTextStyleSmall = TextStyle(
-    fontSize: 13.0,
+    fontSize: 12.0,
     color: kSecondaryTextColor,
     fontWeight: FontWeight.normal
 );
 
 const kTextStyleSmallPrimary = TextStyle(
-    fontSize: 13.0,
+    fontSize: 12.0,
     color: kPrimaryTextColor,
     fontWeight: FontWeight.normal
 );

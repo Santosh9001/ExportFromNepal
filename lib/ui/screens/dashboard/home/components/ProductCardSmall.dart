@@ -13,7 +13,7 @@ class ProductCardSmall extends StatelessWidget {
             children: [
               Container(
                 width: double.infinity,
-                height: 140,
+                height: 70,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.network(
@@ -33,7 +33,7 @@ class ProductCardSmall extends StatelessWidget {
                 height: 4,
               ),
               Text(
-                "Gorkha Exim Pvt Ltd",
+                "Gorkha Exim",
                 style: kTextStyleSmall,
               ),
               SizedBox(
@@ -42,7 +42,7 @@ class ProductCardSmall extends StatelessWidget {
               Text(
                 "\$ 59.99",
                 style:  TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 14.0,
                     color: kColorRed,
                     fontWeight: FontWeight.bold
                 ),
