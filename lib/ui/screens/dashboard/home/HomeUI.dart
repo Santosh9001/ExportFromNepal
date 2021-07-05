@@ -221,9 +221,14 @@ class _HomeUIState extends State<HomeUI> {
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: ProductCardSmall(),
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/details');
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: ProductCardSmall(),
+                      ),
                     );
                   },
                   childCount: 6,
