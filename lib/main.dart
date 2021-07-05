@@ -2,6 +2,7 @@ import 'package:export_nepal/provider/EmailValidProvider.dart';
 import 'package:export_nepal/provider/LoginTokenProvider.dart';
 import 'package:export_nepal/ui/screens/DashboardUI.dart';
 import 'package:export_nepal/ui/screens/SignupUI.dart';
+import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +38,7 @@ class MainApp extends StatelessWidget {
       routes: {
         //'/': (context) => LoginUI(),
         '/': (context) => Dashboard(),
-        '/details': (context) => Dashboard(),
+        '/details': (context) => ProductDetailsUI(),
         '/register': (context) => SignUpUI(),
       },
       theme: ThemeData(
