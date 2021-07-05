@@ -37,6 +37,7 @@ class MainApp extends StatelessWidget {
       routes: {
         //'/': (context) => LoginUI(),
         '/': (context) => Dashboard(),
+        '/details': (context) => Dashboard(),
         '/register': (context) => SignUpUI(),
       },
       theme: ThemeData(
