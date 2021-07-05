@@ -518,65 +518,77 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(height: 20),
-                                          const Divider(
-                                            color: Colors.red,
-                                            height: 10,
-                                            thickness: 5,
-                                          ),
-                                          SizedBox(height: 20),
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Text("Shipping term :",
-                                                      style: TextStyle(
-                                                          color:
-                                                              kPrimaryTextColor),),
-                                                  Text(
-                                                    "FOB",
-                                                    style: TextStyle(
-                                                        color: kColorPrimary),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Text("Unit of measure :",
-                                                    style: TextStyle(
-                                                        color:
-                                                        kPrimaryTextColor),),
-                                                  Text(
-                                                    "Pcs",
-                                                    style: TextStyle(
-                                                        color: kColorPrimary),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Text("Package weight :",
-                                                    style: TextStyle(
-                                                        color:
-                                                        kPrimaryTextColor),),
-                                                  Text(
-                                                    "0.05kg",
-                                                    style: TextStyle(
-                                                        color: kColorPrimary),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
                                         ],
                                       )
                                     ],
-                                  )
+                                  ),
+                                  SizedBox(height: 20),
+                                  const Divider(
+                                    color: kSecondaryTextColor,
+                                    height: 1,
+                                    thickness: 1,
+                                  ),
+                                  SizedBox(height: 20),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 10, right: 10,top:10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Shipping term :",
+                                          style: TextStyle(
+                                              color: kPrimaryTextColor),
+                                        ),
+                                        Text(
+                                          "FOB",
+                                          style:
+                                              TextStyle(color: kColorPrimary),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 10, right: 10,top:10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Unit of measure :",
+                                          style: TextStyle(
+                                              color: kPrimaryTextColor),
+                                        ),
+                                        Text(
+                                          "Pcs",
+                                          style:
+                                              TextStyle(color: kColorPrimary),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 10, right: 10,top:10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Package weight :",
+                                          style: TextStyle(
+                                              color: kPrimaryTextColor),
+                                        ),
+                                        Text(
+                                          "0.05kg",
+                                          style:
+                                              TextStyle(color: kColorPrimary),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -589,8 +601,6 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    width: double.infinity,
-                    height: 120,
                     color: Colors.white,
                     child: Padding(
                       padding: EdgeInsets.only(top: 5, left: 40, right: 10),
@@ -599,11 +609,14 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                         children: [
                           Column(
                             children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
-                                    'assets/images/iconly_light_bag.svg'),
-                                iconSize: 30,
+                              Padding(
+                                padding: EdgeInsets.only(top: 15),
+                                child: InkWell(
+                                    onTap: () {},
+                                    child: SvgPicture.asset(
+                                      "assets/images/iconly_light_bag.svg",
+                                      height: 25,
+                                    )),
                               ),
                               Text(
                                 "Cart (2)",
