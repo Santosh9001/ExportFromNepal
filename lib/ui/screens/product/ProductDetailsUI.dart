@@ -314,7 +314,7 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                 child: Container(
                                                   decoration: BoxDecoration(
                                                       shape: BoxShape.rectangle,
-                                                      color: Colors.blue),
+                                                      color: kColorPrimary),
                                                   child: Padding(
                                                     padding:
                                                         const EdgeInsets.all(
@@ -357,7 +357,7 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                 child: Container(
                                                   decoration: BoxDecoration(
                                                       shape: BoxShape.rectangle,
-                                                      color: Colors.blue),
+                                                      color: kColorPrimary),
                                                   child: Padding(
                                                     padding:
                                                         const EdgeInsets.all(
@@ -377,77 +377,27 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                     ],
                                   ),
                                   SizedBox(height: 10.0),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                  Container(
+                                    alignment: Alignment.topLeft,
+                                    child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Available Sizes",
-                                            style: kTextStyleSmall,
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(right: 10),
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        10, 5, 10, 5),
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: Colors.black)),
-                                                child: Text(
-                                                  'S',
-                                                  style: TextStyle(
-                                                      color: Colors.black),
-                                                ),
-                                              ),
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(right: 10),
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        10, 5, 10, 5),
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: Colors.black)),
-                                                child: Text(
-                                                  'M',
-                                                  style: TextStyle(
-                                                      color: Colors.black),
-                                                ),
-                                              ),
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(right: 10),
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        10, 5, 10, 5),
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: Colors.black)),
-                                                child: Text(
-                                                  '10cm',
-                                                  style: TextStyle(
-                                                      color: Colors.black),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      )
+                                      Text(
+                                        "Available Sizes",
+                                        style: kTextStyleSmall,
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Wrap(
+                                        runSpacing: 5,
+                                        children: _createSizes(),
+                                      ),
                                     ],
                                   ),
+                                  ),                                  
                                   SizedBox(height: 20),
                                   const Divider(
                                     color: kSecondaryTextColor,
@@ -984,7 +934,7 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
     );
   }
 
-  List<Color> someList = [Colors.blue,Colors.red,Colors.green,Colors.purple];
+  List<Color> someList = [Colors.blue, Colors.red, Colors.green, Colors.purple];
   List<Widget> _createColors() {
     return new List<Widget>.generate(someList.length, (int index) {
       return new InkWell(
@@ -995,7 +945,8 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
         },
         child: Container(
           margin: EdgeInsets.only(right: 5),
-          decoration: BoxDecoration(shape: BoxShape.circle, color: someList[index]),
+          decoration:
+              BoxDecoration(shape: BoxShape.circle, color: someList[index]),
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: _colorSelectedIndex == index
@@ -1009,6 +960,36 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                     size: 10.0,
                     color: someList[index],
                   ),
+          ),
+        ),
+      );
+    });
+  }
+
+  List<String> _sizeList = [
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "XXXL",
+    "10cm",
+    "40cm",
+    "120cm"
+  ];
+  List<Widget> _createSizes() {
+    return new List<Widget>.generate(_sizeList.length, (int index) {
+      return new InkWell(
+        onTap: () {
+          setState(() {});
+        },
+        child: Container(
+          margin: EdgeInsets.only(right: 10),
+          padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+          decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+          child: Text(
+            _sizeList[index],
+            style: TextStyle(color: Colors.black),
           ),
         ),
       );
