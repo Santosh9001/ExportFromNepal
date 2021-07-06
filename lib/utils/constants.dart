@@ -6,6 +6,7 @@ const kColorPrimary = Color(0xFF1A2F7B);
 const kColorBlack = Color(0xFF0A0A0A);
 const kColorRed = Color.fromARGB(255, 220, 53, 69);
 const kCategoryBlue = Color(0xFFEAEFFD);
+const kColorPink = Color(0xFFFDEAFA);
 
 const kTextStyleLarge = TextStyle(
     fontSize: 26.0,
@@ -30,6 +31,16 @@ const kTextStyleSmallPrimary = TextStyle(
     color: kPrimaryTextColor,
     fontWeight: FontWeight.normal
 );
+const kTextStyleRegularPrimary = TextStyle(
+    fontSize: 16.0,
+    color: kPrimaryTextColor,
+    fontWeight: FontWeight.normal
+);
+const kTextStyleMediumPrimary = TextStyle(
+    fontSize: 16.0,
+    color: kPrimaryTextColor,
+    fontWeight: FontWeight.w500
+);
 
 const kTextStyleBlueBold = TextStyle(
     fontSize: 13.0,
@@ -41,6 +52,12 @@ const kTextStyleRedBoldMedium = TextStyle(
     fontSize: 14.0,
     color: kColorRed,
     fontWeight: FontWeight.normal
+);
+
+const kTextStyleRedBold= TextStyle(
+    fontSize: 14.0,
+    color: kColorRed,
+    fontWeight: FontWeight.bold
 );
 
 const kTextStyleRedBoldLarge = TextStyle(
@@ -76,3 +93,4 @@ const kButtonDarkStyle = TextStyle(
 
 const kDummyNotice = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel elit venenatis, sagittis diam eget, aliquam magna. Sed pretium dignissim mollis. Fusce id lacus non neque accumsan posuere eu vel nisi. Vivamus a quam lectus. Ut egestas condimentum libero nec mattis. Nunc ut tortor nec metus dapibus molestie eget ut massa.";
 const kDummyImage = "https://i0.wp.com/himalayahandicrafts.com/wp-content/uploads/2019/11/beautiful-chengrisi-thanka-hand-painted-in-nepal-24k-gold-5dc786df.jpg?fit=2250%2C3000&ssl=1";
+const kDummyAvatarImage = "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80";

@@ -120,10 +120,16 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                               ),
                             ),
                             Container(
-                              color: Colors.white,
                               margin: EdgeInsets.only(left: 5.0, right: 5.0),
                               padding: EdgeInsets.only(
-                                  left: 5.0, right: 5.0, top: 5),
+                                  left: 5.0, right: 5.0, top: 5,bottom: 10),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(
+                                  color: Colors.white,
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(10),),
+                              ),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -530,8 +536,8 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                   ),
                                   SizedBox(height: 20),
                                   Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 10, right: 10,top:10),
+                                    padding: EdgeInsets.only(
+                                        left: 10, right: 10, top: 10),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -550,8 +556,8 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                     ),
                                   ),
                                   Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 10, right: 10,top:10),
+                                    padding: EdgeInsets.only(
+                                        left: 10, right: 10, top: 10),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -570,8 +576,8 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                     ),
                                   ),
                                   Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 10, right: 10,top:10),
+                                    padding: EdgeInsets.only(
+                                        left: 10, right: 10, top: 10),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -589,6 +595,126 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                       ],
                                     ),
                                   ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 10, right: 10, top: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Package Volume (LxBxH) :",
+                                          style: TextStyle(
+                                              color: kPrimaryTextColor),
+                                        ),
+                                        Text(
+                                          "25x20x5",
+                                          style:
+                                              TextStyle(color: kColorPrimary),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 10, right: 10, top: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Min Order Quantity :",
+                                          style: TextStyle(
+                                              color: kPrimaryTextColor),
+                                        ),
+                                        Text(
+                                          "2",
+                                          style:
+                                              TextStyle(color: kColorPrimary),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 10, right: 10, top: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Max Order Qunatity :",
+                                          style: TextStyle(
+                                              color: kPrimaryTextColor),
+                                        ),
+                                        Text(
+                                          "100",
+                                          style:
+                                              TextStyle(color: kColorPrimary),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 10, right: 10, top: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Available Stock :",
+                                          style: TextStyle(
+                                              color: kPrimaryTextColor),
+                                        ),
+                                        Text(
+                                          "100",
+                                          style:
+                                              TextStyle(color: kColorPrimary),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 10, right: 10, top: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Supply Ability :",
+                                          style: TextStyle(
+                                              color: kPrimaryTextColor),
+                                        ),
+                                        Text(
+                                          "100",
+                                          style:
+                                              TextStyle(color: kColorPrimary),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left:8.0,right:8.0),
+                              decoration: BoxDecoration(
+                                color: kColorPink,
+                                  border: Border.all(
+                                    color: kColorPink,
+                                  ),
+                                  borderRadius: BorderRadius.all(Radius.circular(10),),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+
                                 ],
                               ),
                             ),

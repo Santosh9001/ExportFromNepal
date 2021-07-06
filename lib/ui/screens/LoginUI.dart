@@ -154,12 +154,14 @@ class _LoginUIState extends State<LoginUI> {
                             Button(
                               text: "Log In",
                               onPress: () {
-                                if (_formKey.currentState!.validate()) {
-                                  _loginProvider.fetchUserToken(
-                                      context,
-                                      _emailController.text,
-                                      _passwordController.text)!;
-                                }
+                                // if (_formKey.currentState!.validate()) {
+                                  Navigator.pushNamed(context, '/dashboard');
+
+                                  // _loginProvider.fetchUserToken(
+                                  //     context,
+                                  //     _emailController.text,
+                                  //     _passwordController.text)!;
+                                // }
                               },
                               color: kColorPrimary,
                             ),
