@@ -53,6 +53,12 @@ const kTextStyleRedBoldMedium = TextStyle(
     fontWeight: FontWeight.normal
 );
 
+const kTextStyleRedBold= TextStyle(
+    fontSize: 14.0,
+    color: kColorRed,
+    fontWeight: FontWeight.bold
+);
+
 const kTextStyleRedBoldLarge = TextStyle(
     fontSize: 18.0,
     color: kColorRed,

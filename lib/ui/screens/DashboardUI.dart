@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import 'dashboard/account/MyAccount.dart';
+import 'dashboard/cart/Cart.dart';
 import 'dashboard/category/CategoryUI.dart';
 
 class Dashboard extends StatefulWidget {
@@ -24,10 +25,7 @@ class _DashboardState extends State<Dashboard> {
       'Messages',
       style: optionStyle,
     ),
-    Text(
-      'Cart',
-      style: optionStyle,
-    ),
+    Cart(),
     MyAccount(),
   ];
 
