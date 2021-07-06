@@ -78,6 +78,12 @@ const kTextStyleBlackBold = TextStyle(
     fontWeight: FontWeight.bold
 );
 
+const kTextStyleBlackBoldMedium = TextStyle(
+    fontSize: 16.0,
+    color: kColorBlack,
+    fontWeight: FontWeight.bold
+);
+
 
 const kButtonStyle = TextStyle(
     fontSize: 16.0,

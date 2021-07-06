@@ -1,3 +1,4 @@
+import 'package:export_nepal/ui/components/button.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -122,13 +123,15 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                             Container(
                               margin: EdgeInsets.only(left: 5.0, right: 5.0),
                               padding: EdgeInsets.only(
-                                  left: 5.0, right: 5.0, top: 5,bottom: 10),
+                                  left: 5.0, right: 5.0, top: 5, bottom: 10),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 border: Border.all(
                                   color: Colors.white,
                                 ),
-                                borderRadius: BorderRadius.all(Radius.circular(10),),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
                               ),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -702,22 +705,186 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                               height: 20,
                             ),
                             Container(
-                              margin: EdgeInsets.only(left:8.0,right:8.0),
+                              padding: EdgeInsets.fromLTRB(10, 20, 10, 30),
+                              margin: EdgeInsets.only(left: 8.0, right: 8.0),
                               decoration: BoxDecoration(
                                 color: kColorPink,
-                                  border: Border.all(
-                                    color: kColorPink,
-                                  ),
-                                  borderRadius: BorderRadius.all(Radius.circular(10),),
+                                border: Border.all(
+                                  color: kColorPink,
+                                ),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
                               ),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Lakhey Trade Suppliers",
+                                        style: TextStyle(
+                                            color: kColorPrimary,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 10),
+                                        child: Icon(
+                                          Icons.verified,
+                                          size: 20,
+                                          color: kColorPrimary,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    "Lalitpur,Bagmati,Nepal,44600",
+                                    style: kTextStyleRegularPrimary,
+                                  ),
+                                  SizedBox(height: 20),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.black,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 30, vertical: 15),
+                                        textStyle: TextStyle(
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold)),
+                                    onPressed: () {},
+                                    child: Text(
+                                      'Message The Supplier',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                              margin: EdgeInsets.only(left: 8.0, right: 8.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(
+                                  color: Colors.white,
+                                ),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Description",
+                                    style: kTextStyleBlackBoldMedium,
+                                  ),
+                                  SizedBox(
+                                    height: 8.0,
+                                  ),
+                                  Text(
+                                    "Loreium Ipsium",
+                                    style: kTextStyleSmallPrimary,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                              child: Text(
+                                "Reviews",
+                                style: kTextStyleLargeBlue,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Container(
+                              padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                              margin: EdgeInsets.only(left: 8.0, right: 8.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(
+                                  color: Colors.white,
+                                ),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Container(
+                                            margin: EdgeInsets.only(right: 10),
+                                            width: 25,
+                                            height: 25,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      'https://googleflutter.com/sample_image.jpg'),
+                                                  fit: BoxFit.fill),
+                                            ),
+                                          ),
+                                          Text(
+                                            "Andre Young",
+                                            style: kTextStyleBlackBoldMedium,
+                                          )
+                                        ],
+                                      ),
+                                      RatingBar.builder(
+                                        wrapAlignment: WrapAlignment.start,
+                                        initialRating: 3,
+                                        minRating: 1,
+                                        direction: Axis.horizontal,
+                                        allowHalfRating: true,
+                                        itemCount: 5,
+                                        itemSize: 15,
+                                        itemPadding: EdgeInsets.symmetric(
+                                            horizontal: 1.0),
+                                        itemBuilder: (context, _) => Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
+                                        ),
+                                        onRatingUpdate: (rating) {
+                                          print(rating);
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      "Description about the rating goes here",
+                                      style: kTextStyleSmallPrimary,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 10,),
                           ],
                         ),
                       ),
