@@ -36,8 +36,8 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        //'/': (context) => LoginUI(),
-        '/': (context) => Dashboard(),
+        '/': (context) => LoginUI(),
+        '/dashboard': (context) => Dashboard(),
         '/details': (context) => ProductDetailsUI(),
         '/register': (context) => SignUpUI(),
       },
