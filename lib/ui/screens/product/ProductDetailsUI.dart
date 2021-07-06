@@ -18,6 +18,7 @@ class ProductDetailsUI extends StatefulWidget {
 class _ProductDetailsUIState extends State<ProductDetailsUI> {
   bool _value = true;
   var _quantity = 1;
+  var _colorSelectedIndex = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -283,97 +284,7 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                 MainAxisAlignment.spaceEvenly,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
-                                            children: [
-                                              InkWell(
-                                                onTap: () {
-                                                  setState(() {
-                                                    _value = _value;
-                                                  });
-                                                },
-                                                child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(right: 5),
-                                                  decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      color: Colors.blue),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            10.0),
-                                                    child: !_value
-                                                        ? Icon(
-                                                            Icons.check,
-                                                            size: 10.0,
-                                                            color: Colors.white,
-                                                          )
-                                                        : Icon(
-                                                            Icons
-                                                                .check_box_outline_blank,
-                                                            size: 10.0,
-                                                            color: Colors.blue,
-                                                          ),
-                                                  ),
-                                                ),
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  setState(() {});
-                                                },
-                                                child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(right: 5),
-                                                  decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      color: Colors.red),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            10.0),
-                                                    child: !_value
-                                                        ? Icon(
-                                                            Icons.check,
-                                                            size: 10.0,
-                                                            color: Colors.white,
-                                                          )
-                                                        : Icon(
-                                                            Icons
-                                                                .check_box_outline_blank,
-                                                            size: 10.0,
-                                                            color: Colors.red,
-                                                          ),
-                                                  ),
-                                                ),
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  setState(() {});
-                                                },
-                                                child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(right: 5),
-                                                  decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      color: Colors.green),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            10.0),
-                                                    child: _value
-                                                        ? Icon(
-                                                            Icons.check,
-                                                            size: 10.0,
-                                                            color: Colors.white,
-                                                          )
-                                                        : Icon(
-                                                            Icons
-                                                                .check_box_outline_blank,
-                                                            size: 10.0,
-                                                            color: Colors.green,
-                                                          ),
-                                                  ),
-                                                ),
-                                              )
-                                            ],
+                                            children: _createColors(),
                                           ),
                                         ],
                                       ),
@@ -1071,5 +982,36 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
         ),
       ),
     );
+  }
+
+  List<Color> someList = [Colors.blue,Colors.red,Colors.green,Colors.purple];
+  List<Widget> _createColors() {
+    return new List<Widget>.generate(someList.length, (int index) {
+      return new InkWell(
+        onTap: () {
+          setState(() {
+            _colorSelectedIndex = index;
+          });
+        },
+        child: Container(
+          margin: EdgeInsets.only(right: 5),
+          decoration: BoxDecoration(shape: BoxShape.circle, color: someList[index]),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: _colorSelectedIndex == index
+                ? Icon(
+                    Icons.check,
+                    size: 10.0,
+                    color: Colors.white,
+                  )
+                : Icon(
+                    Icons.check_box_outline_blank,
+                    size: 10.0,
+                    color: someList[index],
+                  ),
+          ),
+        ),
+      );
+    });
   }
 }
