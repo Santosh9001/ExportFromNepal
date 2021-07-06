@@ -1,4 +1,5 @@
 import 'package:export_nepal/ui/components/button.dart';
+import 'package:export_nepal/ui/screens/dashboard/home/components/ProductCard.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class ProductDetailsUI extends StatefulWidget {
 
 class _ProductDetailsUIState extends State<ProductDetailsUI> {
   bool _value = true;
-
+  var _quantity = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -395,7 +396,9 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                             children: [
                                               InkWell(
                                                 onTap: () {
-                                                  setState(() {});
+                                                  setState(() {
+                                                    _quantity += 1;
+                                                  });
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(
@@ -425,7 +428,7 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                     padding: const EdgeInsets
                                                         .fromLTRB(15, 8, 15, 8),
                                                     child: Text(
-                                                      "1",
+                                                      '$_quantity',
                                                       style: TextStyle(
                                                           color: Colors.black,
                                                           fontSize: 12),
@@ -435,7 +438,10 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                               ),
                                               InkWell(
                                                 onTap: () {
-                                                  setState(() {});
+                                                  setState(() {
+                                                    if (_quantity >= 2)
+                                                      _quantity -= 1;
+                                                  });
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(
@@ -884,7 +890,104 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                 ],
                               ),
                             ),
-                            SizedBox(height: 10,),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(right: 10),
+                              child: Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () {},
+                                    child: Text(
+                                      "See All Reviews ",
+                                      style: kTextStyleRedBoldMedium,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.chevron_right,
+                                    color: kColorRed,
+                                  )
+                                ],
+                                mainAxisAlignment: MainAxisAlignment.end,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(right: 10),
+                              child: Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () {},
+                                    child: Text(
+                                      "Like this product ?",
+                                      style: TextStyle(
+                                          color: kPrimaryTextColor,
+                                          fontSize: 16),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {},
+                                    child: Text(
+                                      " Write your own review here.",
+                                      style: TextStyle(
+                                          color: kColorPrimary, fontSize: 16),
+                                    ),
+                                  ),
+                                ],
+                                mainAxisAlignment: MainAxisAlignment.end,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 10, right: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "You may also like",
+                                    style: TextStyle(
+                                      color: kColorPrimary,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Text(
+                                          "Shop More ",
+                                          style: kTextStyleRedBoldMedium,
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.chevron_right,
+                                        color: kColorRed,
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 15),
+                            Container(
+                              height: 280,
+                              child: ListView.builder(
+                                  itemCount: 4,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) {
+                                    return ProductCard(180.0, 180.0);
+                                  }),
+                            ),
+                            SizedBox(
+                              height: 50,
+                            ),
                           ],
                         ),
                       ),
