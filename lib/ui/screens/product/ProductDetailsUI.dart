@@ -19,6 +19,7 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
   bool _value = true;
   var _quantity = 1;
   var _colorSelectedIndex = 1;
+  var _selectedSizeIndex = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -380,24 +381,25 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                   Container(
                                     alignment: Alignment.topLeft,
                                     child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Available Sizes",
-                                        style: kTextStyleSmall,
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      Wrap(
-                                        runSpacing: 5,
-                                        children: _createSizes(),
-                                      ),
-                                    ],
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Available Sizes",
+                                          style: kTextStyleSmall,
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Wrap(
+                                          runSpacing: 5,
+                                          children: _createSizes(),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  ),                                  
                                   SizedBox(height: 20),
                                   const Divider(
                                     color: kSecondaryTextColor,
@@ -981,15 +983,22 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
     return new List<Widget>.generate(_sizeList.length, (int index) {
       return new InkWell(
         onTap: () {
-          setState(() {});
+          setState(() {
+            _selectedSizeIndex = index;
+          });
         },
         child: Container(
           margin: EdgeInsets.only(right: 10),
           padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-          decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.black),
+              color:
+                  _selectedSizeIndex == index ? kColorPrimary : Colors.white),
           child: Text(
             _sizeList[index],
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(
+                color:
+                    _selectedSizeIndex == index ? Colors.white : Colors.black),
           ),
         ),
       );
