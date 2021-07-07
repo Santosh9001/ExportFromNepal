@@ -87,7 +87,7 @@ class HomeDialogItems extends StatelessWidget {
             padding: EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 10),
             child: Consumer<HomeDataProvider>(
               builder: (context, provider, child) {
-                return GestureDetector(
+                return InkWell(
                   onTap: (){
                     provider.fetchDataAndNavigate(title);
                   },
