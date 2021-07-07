@@ -112,7 +112,7 @@ class APICalls {
   }
 
 // Fetch cms page by id
-  Future<Aboutus?> aboutUs(context) async {
+  Future<Aboutus?> aboutUs() async {
     Aboutus? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/5");

@@ -51,7 +51,8 @@ class HomeMenuDialog extends StatelessWidget {
                           child: ListView.separated(
                             itemCount: provider.menuList.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return HomeDialogItems(title: provider.menuList[index]);
+                              return HomeDialogItems(
+                                  title: provider.menuList[index]);
                             },
                             separatorBuilder:
                                 (BuildContext context, int index) =>
@@ -77,30 +78,39 @@ class HomeDialogItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => ProductDetailsUI()),
-        // );
-      },
-      child: Container(
-          color: Colors.white,
-          padding: EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: TextStyle(color: kColorPrimary, fontSize: 18),
-              ),
-              Icon(
-                Icons.chevron_right_outlined,
-                size: 30,
-                color: kColorPrimary,
-              ),
-            ],
-          )),
+    return ChangeNotifierProvider<HomeDataProvider>(
+      create: (context) => HomeDataProvider(),
+      child: Builder(
+        builder: (context) {
+          return Container(
+            color: Colors.white,
+            padding: EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 10),
+            child: Consumer<HomeDataProvider>(
+              builder: (context, provider, child) {
+                return GestureDetector(
+                  onTap: (){
+                    provider.fetchDataAndNavigate(title);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(color: kColorPrimary, fontSize: 18),
+                      ),
+                      Icon(
+                        Icons.chevron_right_outlined,
+                        size: 30,
+                        color: kColorPrimary,
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }
