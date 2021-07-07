@@ -8,6 +8,7 @@ class HomeMenuDialog extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
+          color: Colors.white,
           margin: EdgeInsets.only(left: 100),
           child: Column(
             children: [
@@ -39,12 +40,12 @@ class HomeMenuDialog extends StatelessWidget {
               ),
               Expanded(
                 child: ListView.separated(
-                  itemCount: 9,
+                  itemCount: 5,
                   itemBuilder: (BuildContext context, int index) {
                     return HomeDialogItems(title: "name");
                   },
                   separatorBuilder: (BuildContext context, int index) =>
-                      new Divider(color: kSecondaryTextColor, height: 2),
+                      new Divider(color: kColorBlack, height: 2),
                 ),
               ),
             ],

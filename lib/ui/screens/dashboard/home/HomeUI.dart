@@ -46,9 +46,10 @@ class _HomeUIState extends State<HomeUI> {
                           padding: const EdgeInsets.all(8.0),
                           child: InkWell(
                             onTap: () {
-                              showDialog(
-                                context: context,
-                                builder: (_) => HomeMenuDialog(),
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeMenuDialog()),
                               );
                             },
                             child: Icon(Icons.menu),
