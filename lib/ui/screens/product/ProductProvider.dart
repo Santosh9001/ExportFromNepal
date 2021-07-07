@@ -3,8 +3,15 @@ import 'package:flutter/material.dart';
 
 class ProductProvider extends ChangeNotifier {
   var _selectedSizeIndex = 0;
+  var _selectedColorIndex = 0;
 
+  int get colorIndex => _selectedColorIndex;
   int get sizeIndex => _selectedSizeIndex;
+
+  void setCurrentColorFromIndex(index) {
+    _selectedColorIndex = index;
+    notifyListeners();
+  }
 
   void setCurrentSizeFromIndex(index) {
     _selectedSizeIndex = index;
@@ -34,17 +41,44 @@ class ProductProvider extends ChangeNotifier {
           padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
           decoration: BoxDecoration(
               border: Border.all(color: Colors.black),
-              color:
-                  sizeIndex == index ? kColorPrimary : Colors.white),
+              color: sizeIndex == index ? kColorPrimary : Colors.white),
           child: Text(
             sizeList[index],
             style: TextStyle(
-                color:
-                    sizeIndex== index ? Colors.white : Colors.black),
+                color: sizeIndex == index ? Colors.white : Colors.black),
           ),
         ),
       );
     });
   }
-  
+
+  List<Color> someList = [Colors.blue, Colors.red, Colors.green, Colors.purple];
+  List<Widget> createColors() {
+    return new List<Widget>.generate(someList.length, (int index) {
+      return new InkWell(
+        onTap: () {
+          setCurrentColorFromIndex(index);
+        },
+        child: Container(
+          margin: EdgeInsets.only(right: 5),
+          decoration:
+              BoxDecoration(shape: BoxShape.circle, color: someList[index]),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: colorIndex == index
+                ? Icon(
+                    Icons.check,
+                    size: 10.0,
+                    color: Colors.white,
+                  )
+                : Icon(
+                    Icons.check_box_outline_blank,
+                    size: 10.0,
+                    color: someList[index],
+                  ),
+          ),
+        ),
+      );
+    });
+  }
 }
