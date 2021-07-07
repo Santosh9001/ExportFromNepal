@@ -86,7 +86,10 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               IconButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Navigator.of(context)
+                                                      .pop(true);
+                                                },
                                                 icon: Icon(Icons.arrow_back),
                                                 iconSize: 25,
                                                 color: Colors.white,
@@ -362,7 +365,8 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                                     .fromLTRB(
                                                                 15, 8, 15, 8),
                                                         child: Text(
-                                                          provider.quantity.toString(),
+                                                          provider.quantity
+                                                              .toString(),
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.black,

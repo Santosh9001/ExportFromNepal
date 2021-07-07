@@ -1,3 +1,4 @@
+import 'package:export_nepal/ui/screens/dashboard/home/components/HomeMenuDialog.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,8 +44,15 @@ class _HomeUIState extends State<HomeUI> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: SvgPicture.asset(
-                              "assets/images/iconly_light_outline_filter.svg"),
+                          child: InkWell(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (_) => HomeMenuDialog(),
+                              );
+                            },
+                            child: Icon(Icons.menu),
+                          ),
                         ),
                       ],
                     ),
@@ -241,4 +249,3 @@ class _HomeUIState extends State<HomeUI> {
     );
   }
 }
-
