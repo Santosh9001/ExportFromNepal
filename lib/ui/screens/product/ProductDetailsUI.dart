@@ -19,10 +19,6 @@ class ProductDetailsUI extends StatefulWidget {
 }
 
 class _ProductDetailsUIState extends State<ProductDetailsUI> {
-  bool _value = true;
-  var _quantity = 1;
-  var _colorSelectedIndex = 1;
-  var _selectedSizeIndex = 1;
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ProductProvider>(
@@ -307,7 +303,8 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                         .spaceEvenly,
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                children: provider.createColors(),
+                                                children:
+                                                    provider.createColors(),
                                               ),
                                             ],
                                           ),
@@ -331,9 +328,7 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                 children: [
                                                   InkWell(
                                                     onTap: () {
-                                                      setState(() {
-                                                        _quantity += 1;
-                                                      });
+                                                      provider.setQuantity(1);
                                                     },
                                                     child: Container(
                                                       decoration: BoxDecoration(
@@ -367,7 +362,7 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                                     .fromLTRB(
                                                                 15, 8, 15, 8),
                                                         child: Text(
-                                                          '$_quantity',
+                                                          provider.quantity.toString(),
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.black,
@@ -379,8 +374,10 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                   InkWell(
                                                     onTap: () {
                                                       setState(() {
-                                                        if (_quantity >= 2)
-                                                          _quantity -= 1;
+                                                        if (provider.quantity >=
+                                                            2)
+                                                          provider
+                                                              .setQuantity(-1);
                                                       });
                                                     },
                                                     child: Container(
@@ -977,6 +974,5 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
         );
       }),
     );
-  }  
-  
+  }
 }

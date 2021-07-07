@@ -4,9 +4,17 @@ import 'package:flutter/material.dart';
 class ProductProvider extends ChangeNotifier {
   var _selectedSizeIndex = 0;
   var _selectedColorIndex = 0;
+  var _itemQty = 1;
+
+  int get quantity => _itemQty;
 
   int get colorIndex => _selectedColorIndex;
   int get sizeIndex => _selectedSizeIndex;
+
+  void setQuantity(int qty) {
+    _itemQty += qty;
+    notifyListeners();
+  }
 
   void setCurrentColorFromIndex(index) {
     _selectedColorIndex = index;
