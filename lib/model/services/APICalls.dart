@@ -207,7 +207,7 @@ class APICalls {
     return result;
   }
 
-  Future<Terms_of_use?> termsOfUse(context) async {
+  Future<Terms_of_use?> termsOfUse() async {
     Terms_of_use? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/47");
