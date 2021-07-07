@@ -169,7 +169,7 @@ class APICalls {
     return result;
   }
 
-  Future<Shipping_policy?> shippingPolicy(context) async {
+  Future<Shipping_policy?> shippingPolicy() async {
     Shipping_policy? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/49");
@@ -226,7 +226,7 @@ class APICalls {
     return result;
   }
 
-  Future<Return_policy?> returnPolicy(context) async {
+  Future<Return_policy?> returnPolicy() async {
     Return_policy? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/52");

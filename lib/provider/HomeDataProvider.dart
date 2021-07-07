@@ -1,4 +1,6 @@
 import 'package:export_nepal/model/core/aboutus.dart';
+import 'package:export_nepal/model/core/return_policy.dart';
+import 'package:export_nepal/model/core/shipping_policy.dart';
 import 'package:export_nepal/model/core/terms_of_use.dart';
 import 'package:export_nepal/model/services/APICalls.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +9,9 @@ class HomeDataProvider extends ChangeNotifier {
   bool loading = false;
   Aboutus? aboutUs;
   Terms_of_use? termsOfUse;
+  Shipping_policy? shippingPolicy;
+  Return_policy? returnPolicy;
+
   List<String> menuList = [
     "About Us",
     "Contact Us",
@@ -54,11 +59,30 @@ class HomeDataProvider extends ChangeNotifier {
   }
 
   void invokeTermsOfUse() async {
-    print("Terms of Use");
     var api = APICalls();
     loading = true;
     termsOfUse = await api.termsOfUse();
     print(termsOfUse.toString());
+    loading = false;
+
+    notifyListeners();
+  }
+
+  void invokeShippingPolicy() async {
+    var api = APICalls();
+    loading = true;
+    shippingPolicy = await api.shippingPolicy();
+    print(shippingPolicy.toString());
+    loading = false;
+
+    notifyListeners();
+  }
+
+  void invokeReturnPolicy() async {
+    var api = APICalls();
+    loading = true;
+    returnPolicy = await api.returnPolicy();
+    print(returnPolicy.toString());
     loading = false;
 
     notifyListeners();
