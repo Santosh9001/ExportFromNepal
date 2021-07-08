@@ -69,6 +69,7 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   "Handmade Energy Healing Metal Yoga Meditation Singing Bowl | Singing "
@@ -79,6 +80,8 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                 SizedBox(
                                                   height: 5,
                                                 ),
+                                                Text("SKU : C926", style: kTextStyleRegularPrimary,),
+                                                SizedBox(height: 5.0,),
                                                 Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
