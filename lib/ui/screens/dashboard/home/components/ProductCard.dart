@@ -9,12 +9,13 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return 
+    Container(
       child: Stack(
         children: [
           Positioned(
             child: Container(
-              margin: EdgeInsets.only(top: this.height - 80),
+              margin: EdgeInsets.only(top: this.height - 80, bottom: 10),
               width: this.width,
               height: this.height,
               child: Card(
