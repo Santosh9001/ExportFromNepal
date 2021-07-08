@@ -49,7 +49,9 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                         children: [
                                           Container(
                                             margin: EdgeInsets.only(
-                                                left: 5.0, right: 5.0,top: 230),
+                                                left: 5.0,
+                                                right: 5.0,
+                                                top: 230),
                                             padding: EdgeInsets.only(
                                                 left: 5.0,
                                                 right: 5.0,
