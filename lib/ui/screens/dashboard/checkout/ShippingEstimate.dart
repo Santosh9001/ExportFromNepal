@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:export_nepal/provider/ShippingProvider.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,8 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
   String dropdownValue = 'One';
   String statedropDown = 'One';
   int radioGroupValue = 0;
+  final PageController pageController = PageController(initialPage: 0);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ShippingProvider>(
@@ -27,6 +30,7 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
           body: SafeArea(
             child: Consumer<ShippingProvider>(
               builder: (context, provider, child) {
+                provider.setUpIndicator(context);
                 return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -39,7 +43,9 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                               children: [
                                 SizedBox(height: 10),
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.of(context).pop(true);
+                                  },
                                   child: Icon(
                                     Icons.chevron_left,
                                     color: Colors.black,
@@ -59,15 +65,19 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                         ),
                       ),
                       Padding(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: provider.setUpIndicator(context, 0)),
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: provider.myStepProgressView,
+                      ),
                       Expanded(
                         flex: 8,
-                        child: CustomScrollView(
-                          slivers: [
-                            SliverList(
-                              delegate: SliverChildListDelegate(
-                                [
+                        child: PageView(
+                          scrollDirection: Axis.horizontal,
+                          controller: pageController,
+                          children: [
+                            CustomScrollView(
+                              slivers: [
+                                SliverList(
+                                    delegate: SliverChildListDelegate([
                                   Padding(
                                     padding: EdgeInsets.only(
                                         top: 10,
@@ -227,7 +237,8 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: List<Widget>.generate(
-                                              provider.shippings.length, (index) {
+                                              provider.shippings.length,
+                                              (index) {
                                             return new Row(
                                               children: [
                                                 Radio(
@@ -253,7 +264,8 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                           }),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(left: 30,right: 10),
+                                          padding: EdgeInsets.only(
+                                              left: 30, right: 10),
                                           child: Text(
                                             "(I will buy the shipping service separately / My logistic" +
                                                 "partner will pick up the goods from the seller.",
@@ -267,9 +279,95 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                       ],
                                     ),
                                   ),
-                                ],
-                              ),
+                                ]))
+                              ],
                             ),
+                            CustomScrollView(
+                              slivers: [
+                                SliverList(
+                                  delegate: SliverChildListDelegate([
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          top: 10,
+                                          left: 10,
+                                          right: 10,
+                                          bottom: 30),
+                                      child: !provider.isAddressSaved
+                                          ? Column(
+                                              children: [
+                                                Container(
+                                                  height: 150,
+                                                  alignment: Alignment.center,
+                                                  margin: EdgeInsets.fromLTRB(
+                                                      0, 20, 0, 20),
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      25, 20, 20, 20),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10)),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.location_on,
+                                                        color: kColorRed,
+                                                      ),
+                                                      Text(
+                                                        "You have not added any address",
+                                                        style:
+                                                            kTextStyleRedRegularPrimary,
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 50,
+                                                ),
+                                                DottedBorder(
+                                                  borderType: BorderType.RRect,
+                                                  radius: Radius.circular(10),
+                                                  dashPattern: [6, 6, 6, 6],
+                                                  padding: EdgeInsets.all(6),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10)),
+                                                    child: Container(
+                                                      height: 80,
+                                                      width: double.infinity,
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(
+                                                        Icons.add,
+                                                        color: kColorBlack,
+                                                      ),
+                                                      Text(
+                                                        "Add New Address",
+                                                        style:
+                                                            kTextStyleRegularPrimary,
+                                                      )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                          : Container(),
+                                    ),
+                                  ]),
+                                )
+                              ],
+                            ),
+                            Text("text 1"),
                           ],
                         ),
                       ),
@@ -376,9 +474,7 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       InkWell(
-                                        onTap: () {
-                                          setState(() {});
-                                        },
+                                        onTap: () {},
                                         child: Text(
                                           "Continue",
                                           style: TextStyle(

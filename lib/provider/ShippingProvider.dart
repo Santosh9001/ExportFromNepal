@@ -11,13 +11,29 @@ class ShippingProvider extends ChangeNotifier {
 
   int _currentPos = 0;
 
-  int get currentPosition => _currentPos;
-
-  setUpIndicator(context, step) {
-    return StepProgressView(
+  StepProgressView? _stepProgressView;
+  void setUpIndicator(context) {
+    _stepProgressView = StepProgressView(
         width: MediaQuery.of(context).size.width,
-        curStep: step,
+        curStep: _currentPos + 1,
         color: kColorPrimary,
         titles: titles);
   }
+
+  StepProgressView? get myStepProgressView => _stepProgressView;
+
+  int _viewPosition = 1;
+
+  int get myViewPosition => _viewPosition;
+
+  bool _checkAddresses = false;
+
+  bool get isAddressSaved => _checkAddresses;
+
+  void setSavedAddressCheck(value) {
+    this._checkAddresses = value;
+  }
+
+  
+
 }
