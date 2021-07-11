@@ -9,49 +9,67 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        margin: EdgeInsets.only(right: 8),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: this.width,
-                height: this.height,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(4.0),
-                  child: Image.network(
-                    kDummyImage,
-                    fit: BoxFit.cover,
+    return 
+    Container(
+      child: Stack(
+        children: [
+          Positioned(
+            child: Container(
+              margin: EdgeInsets.only(top: this.height - 80, bottom: 10),
+              width: this.width,
+              height: this.height,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        "Lorem ipsum dolor sit amet,",
+                        style: kTextStyleSmallPrimary,
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Container(
+                        child: Text(
+                          "Gorkha Exim Pvt Ltd",
+                          style: kTextStyleSmall,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        "\$ 59.99",
+                        style: kTextStyleRedBoldLarge,
+                      ),
+                    ],
                   ),
                 ),
               ),
-              SizedBox(
-                height: 8,
-              ),
-              Text(
-                "Lorem ipsum dolor sit amet,",
-                style: kTextStyleSmallPrimary,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Container(
-                child: Text(
-                  "Gorkha Exim Pvt Ltd",
-                  style: kTextStyleSmall,
+            ),
+          ),
+          Positioned(
+            child: Container(
+              padding: EdgeInsets.only(left: 10, right: 10),
+              width: this.width,
+              height: this.height,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  kDummyImage,
+                  fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(
-                height: 4,
-              ),
-              Text(
-                "\$ 59.99",
-                style: kTextStyleRedBoldLarge,
-              ),
-            ],
+            ),
           ),
-        ));
+        ],
+      ),
+    );
   }
 }
