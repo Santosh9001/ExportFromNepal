@@ -18,7 +18,6 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
   String dropdownValue = 'One';
   String statedropDown = 'One';
   int radioGroupValue = 0;
-  final PageController pageController = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +43,10 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                 SizedBox(height: 10),
                                 InkWell(
                                   onTap: () {
-                                    Navigator.of(context).pop(true);
+                                    provider.pageController.page ==
+                                            provider.pageController.initialPage
+                                        ? Navigator.of(context).pop(true)
+                                        : provider.switchPage(false);
                                   },
                                   child: Icon(
                                     Icons.chevron_left,
@@ -71,8 +73,9 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                       Expanded(
                         flex: 8,
                         child: PageView(
+                          physics: new NeverScrollableScrollPhysics(),
                           scrollDirection: Axis.horizontal,
-                          controller: pageController,
+                          controller: provider.pageController,
                           children: [
                             CustomScrollView(
                               slivers: [
@@ -285,168 +288,396 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                             CustomScrollView(
                               slivers: [
                                 SliverList(
-                                  delegate: SliverChildListDelegate([
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: 10,
-                                          left: 10,
-                                          right: 10,
-                                          bottom: 30),
-                                      child: provider.isAddressSaved
-                                          ? Column(
-                                              children: [
-                                                Container(
-                                                  height: 150,
-                                                  alignment: Alignment.center,
-                                                  margin: EdgeInsets.fromLTRB(
-                                                      0, 20, 0, 20),
-                                                  padding: EdgeInsets.fromLTRB(
-                                                      25, 20, 20, 20),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                10)),
+                                  delegate: SliverChildListDelegate(
+                                    [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 10,
+                                            left: 10,
+                                            right: 10,
+                                            bottom: 30),
+                                        child: provider.isAddressSaved
+                                            ? Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    provider.getBillText,
+                                                    style:
+                                                        kTextStyleSmallPrimary,
                                                   ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      Icon(
-                                                        Icons.location_on,
-                                                        color: kColorRed,
-                                                      ),
-                                                      Text(
-                                                        "You have not added any address",
-                                                        style:
-                                                            kTextStyleRedRegularPrimary,
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: 50,
-                                                ),
-                                                DottedBorder(
-                                                  borderType: BorderType.RRect,
-                                                  radius: Radius.circular(10),
-                                                  dashPattern: [6, 6, 6, 6],
-                                                  padding: EdgeInsets.all(6),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                10)),
-                                                    child: Container(
-                                                      height: 80,
-                                                      width: double.infinity,
-                                                      child: InkWell(
-                                                        onTap: () {},
-                                                        child: Row(
+                                                  SizedBox(height: 10),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.fromLTRB(
+                                                            10, 10, 20, 10),
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10)),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Column(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
-                                                                  .center,
+                                                                  .start,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                           children: [
-                                                            Icon(
-                                                              Icons.add,
-                                                              color:
-                                                                  kColorBlack,
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .location_on,
+                                                                  color:
+                                                                      kColorBlack,
+                                                                  size: 14,
+                                                                ),
+                                                                Text(
+                                                                  "Customer Name",
+                                                                  style:
+                                                                      kTextStyleSmallPrimary,
+                                                                ),
+                                                              ],
                                                             ),
+                                                            SizedBox(height: 8),
                                                             Text(
-                                                              "Add New Address",
+                                                              "abc@gmail.com",
                                                               style:
-                                                                  kTextStyleRegularPrimary,
-                                                            )
+                                                                  kTextStyleSmall,
+                                                            ),
+                                                            SizedBox(height: 8),
+                                                            Text(
+                                                              "440-390-3390",
+                                                              style:
+                                                                  kTextStyleSmall,
+                                                            ),
+                                                            SizedBox(height: 8),
+                                                            Text(
+                                                              "Address of the user goes here.",
+                                                              style:
+                                                                  kTextStyleSmall,
+                                                            ),
                                                           ],
                                                         ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            )
-                                          : Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Bill and Ship to : ",
-                                                  style: kTextStyleSmallPrimary,
-                                                ),
-                                                SizedBox(height: 10),
-                                                Container(
-                                                  padding: EdgeInsets.fromLTRB(10, 10, 20, 10),
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                10)),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Column(
-                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        children: [
-                                                          Row(
-                                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                        InkWell(
+                                                          onTap: () {},
+                                                          child: Row(
                                                             children: [
                                                               Icon(
-                                                                Icons
-                                                                    .location_on,
-                                                                color:
-                                                                    kColorBlack,
-                                                                    size: 14,
-                                                              ),
-                                                              Text(
-                                                                "Customer Name",
-                                                                style:
-                                                                    kTextStyleSmallPrimary,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          SizedBox(height:8),
-                                                          Text("abc@gmail.com",style: kTextStyleSmall,),
-                                                          SizedBox(height:8),
-                                                          Text("440-390-3390",style: kTextStyleSmall,),
-                                                          SizedBox(height:8),
-                                                          Text("Address of the user goes here.",style: kTextStyleSmall,),
-                                                        ],
-                                                      ),
-                                                      InkWell(
-                                                        onTap: (){},
-                                                        child: Row(children: [
-                                                          Icon(
-                                                                Icons
-                                                                    .edit,
+                                                                Icons.edit,
                                                                 color:
                                                                     kSecondaryTextColor,
-                                                                    size: 14,
+                                                                size: 14,
                                                               ),
                                                               Text(
                                                                 " Change",
                                                                 style:
                                                                     kTextStyleSmall,
                                                               )
-                                                        ],),
-                                                      )
-                                                    ],
+                                                            ],
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                    ),
-                                  ]),
+                                                  SizedBox(height: 10),
+                                                  !provider.isShipToSameAddress
+                                                      ? Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              provider
+                                                                  .getShipText,
+                                                              style:
+                                                                  kTextStyleSmallPrimary,
+                                                            ),
+                                                            SizedBox(
+                                                                height: 10),
+                                                            Container(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .fromLTRB(
+                                                                          10,
+                                                                          10,
+                                                                          20,
+                                                                          10),
+                                                              width: double
+                                                                  .infinity,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: Colors
+                                                                    .white,
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            10)),
+                                                              ),
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Column(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .start,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceEvenly,
+                                                                        children: [
+                                                                          Icon(
+                                                                            Icons.location_on,
+                                                                            color:
+                                                                                kColorBlack,
+                                                                            size:
+                                                                                14,
+                                                                          ),
+                                                                          Text(
+                                                                            "Customer Name",
+                                                                            style:
+                                                                                kTextStyleSmallPrimary,
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                      SizedBox(
+                                                                          height:
+                                                                              8),
+                                                                      Text(
+                                                                        "abc@gmail.com",
+                                                                        style:
+                                                                            kTextStyleSmall,
+                                                                      ),
+                                                                      SizedBox(
+                                                                          height:
+                                                                              8),
+                                                                      Text(
+                                                                        "440-390-3390",
+                                                                        style:
+                                                                            kTextStyleSmall,
+                                                                      ),
+                                                                      SizedBox(
+                                                                          height:
+                                                                              8),
+                                                                      Text(
+                                                                        "Address of the user goes here.",
+                                                                        style:
+                                                                            kTextStyleSmall,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  InkWell(
+                                                                    onTap:
+                                                                        () {},
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Icon(
+                                                                          Icons
+                                                                              .edit,
+                                                                          color:
+                                                                              kSecondaryTextColor,
+                                                                          size:
+                                                                              14,
+                                                                        ),
+                                                                        Text(
+                                                                          " Change",
+                                                                          style:
+                                                                              kTextStyleSmall,
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      : Container(),
+                                                  SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10, top: 10),
+                                                    child: Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        SizedBox(
+                                                          width: 10,
+                                                          height: 10,
+                                                          child: Checkbox(
+                                                            value: provider
+                                                                .isShipToSameAddress,
+                                                            onChanged: (value) {
+                                                              provider
+                                                                  .setShipToSaveAddressCheck();
+                                                            },
+                                                            activeColor:
+                                                                kColorPrimary,
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 20,
+                                                                  bottom: 10),
+                                                          child: Text(
+                                                            "Billing Address is Same as Shipping Address.",
+                                                            style: TextStyle(
+                                                                color:
+                                                                    kColorBlack,
+                                                                fontSize: 13),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 50,
+                                                  ),
+                                                  DottedBorder(
+                                                    borderType:
+                                                        BorderType.RRect,
+                                                    radius: Radius.circular(10),
+                                                    dashPattern: [6, 6, 6, 6],
+                                                    padding: EdgeInsets.all(6),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10)),
+                                                      child: Container(
+                                                        height: 80,
+                                                        width: double.infinity,
+                                                        child: InkWell(
+                                                          onTap: () {},
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Icon(
+                                                                Icons.add,
+                                                                color:
+                                                                    kColorBlack,
+                                                              ),
+                                                              Text(
+                                                                "Add New Address",
+                                                                style:
+                                                                    kTextStyleRegularPrimary,
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              )
+                                            : Column(
+                                                children: [
+                                                  Container(
+                                                    height: 150,
+                                                    alignment: Alignment.center,
+                                                    margin: EdgeInsets.fromLTRB(
+                                                        0, 20, 0, 20),
+                                                    padding:
+                                                        EdgeInsets.fromLTRB(
+                                                            25, 20, 20, 20),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10)),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      children: [
+                                                        Icon(
+                                                          Icons.location_on,
+                                                          color: kColorRed,
+                                                        ),
+                                                        Text(
+                                                          "You have not added any address",
+                                                          style:
+                                                              kTextStyleRedRegularPrimary,
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 50,
+                                                  ),
+                                                  DottedBorder(
+                                                    borderType:
+                                                        BorderType.RRect,
+                                                    radius: Radius.circular(10),
+                                                    dashPattern: [6, 6, 6, 6],
+                                                    padding: EdgeInsets.all(6),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10)),
+                                                      child: Container(
+                                                        height: 80,
+                                                        width: double.infinity,
+                                                        child: InkWell(
+                                                          onTap: () {},
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Icon(
+                                                                Icons.add,
+                                                                color:
+                                                                    kColorBlack,
+                                                              ),
+                                                              Text(
+                                                                "Add New Address",
+                                                                style:
+                                                                    kTextStyleRegularPrimary,
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                      ),
+                                    ],
+                                  ),
                                 )
                               ],
                             ),
@@ -557,7 +788,9 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          provider.switchPage(true);
+                                        },
                                         child: Text(
                                           "Continue",
                                           style: TextStyle(

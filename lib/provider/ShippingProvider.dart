@@ -20,20 +20,53 @@ class ShippingProvider extends ChangeNotifier {
         titles: titles);
   }
 
+  final PageController pageController = PageController(initialPage: 0);
+
+  void switchPage(check) {
+    if (check) {
+      pageController.nextPage(
+          duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+    } else {
+      pageController.previousPage(
+          duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+      
+    }
+    notifyListeners();
+  }
+
   StepProgressView? get myStepProgressView => _stepProgressView;
 
   int _viewPosition = 1;
 
   int get myViewPosition => _viewPosition;
 
-  bool _checkAddresses = false;
+  bool _checkAddresses = true;
+  bool _checkShipping = false;
+  bool _shipToSame = true;
 
   bool get isAddressSaved => _checkAddresses;
 
+  bool get isShippingSaved => _checkShipping;
+
+  bool get isShipToSameAddress => _shipToSame;
+
   void setSavedAddressCheck(value) {
     this._checkAddresses = value;
+    notifyListeners();
   }
 
-  
+  void setSaveShippingCheck(value) {
+    this._checkShipping = value;
+    notifyListeners();
+  }
 
+  void setShipToSaveAddressCheck() {
+    this._shipToSame = !_shipToSame;
+    notifyListeners();
+  }
+
+  String get getBillText =>
+      this._shipToSame ? "Billed & Shipped To : " : "Billed To :";
+
+  String get getShipText => "Shipped To : ";
 }
