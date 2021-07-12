@@ -681,7 +681,30 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                 )
                               ],
                             ),
-                            Text("text 1"),
+                            CustomScrollView(
+                              slivers: [
+                                SliverList(
+                                  delegate: SliverChildListDelegate([
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          top: 20,
+                                          left: 10,
+                                          right: 10,
+                                          bottom: 30),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text("Select Your Payment Method",
+                                              style: kTextStyleSmallPrimary),
+                                          SizedBox(height:10),
+
+                                        ],
+                                      ),
+                                    ),
+                                  ]),
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ),
