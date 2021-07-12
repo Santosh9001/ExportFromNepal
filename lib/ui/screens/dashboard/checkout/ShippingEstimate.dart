@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:export_nepal/provider/ShippingProvider.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:provider/provider.dart';
 
@@ -692,12 +693,57 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                           right: 10,
                                           bottom: 30),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text("Select Your Payment Method",
                                               style: kTextStyleSmallPrimary),
-                                          SizedBox(height:10),
-
+                                          SizedBox(height: 10),
+                                          Container(
+                                            width: double.infinity,
+                                            height: 80,
+                                            padding: EdgeInsets.fromLTRB(
+                                                10, 5, 10, 5),
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.rectangle,
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10))),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Column(
+                                                  children: [
+                                                    SvgPicture.asset(
+                                                      "assets/images/paypal.svg",
+                                                      height: 40,
+                                                      width: 120,
+                                                      allowDrawingOutsideViewBox:
+                                                          true,
+                                                    ),
+                                                    Text(
+                                                      "You will be redirected to PayPay website.",
+                                                      style:
+                                                          kTextStyleSmallPrimary,
+                                                    )
+                                                  ],
+                                                ),
+                                                Checkbox(
+                                                  value: provider
+                                                      .isShipToSameAddress,
+                                                  onChanged: (value) {
+                                                    provider
+                                                        .setShipToSaveAddressCheck();
+                                                  },
+                                                  activeColor: kColorPrimary,                                                
+                                                ),
+                                              ],
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),

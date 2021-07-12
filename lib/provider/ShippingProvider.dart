@@ -29,7 +29,6 @@ class ShippingProvider extends ChangeNotifier {
     } else {
       pageController.previousPage(
           duration: Duration(milliseconds: 500), curve: Curves.easeIn);
-      
     }
     notifyListeners();
   }
@@ -69,4 +68,5 @@ class ShippingProvider extends ChangeNotifier {
       this._shipToSame ? "Billed & Shipped To : " : "Billed To :";
 
   String get getShipText => "Shipped To : ";
+
 }
