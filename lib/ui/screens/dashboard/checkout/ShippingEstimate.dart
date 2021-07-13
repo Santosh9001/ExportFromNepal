@@ -688,10 +688,10 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                   delegate: SliverChildListDelegate([
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          top: 20,
+                                          top: 10,
                                           left: 10,
                                           right: 10,
-                                          bottom: 30),
+                                          bottom: 10),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -699,49 +699,147 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                           Text("Select Your Payment Method",
                                               style: kTextStyleSmallPrimary),
                                           SizedBox(height: 10),
-                                          Container(
-                                            width: double.infinity,
-                                            height: 80,
-                                            padding: EdgeInsets.fromLTRB(
-                                                10, 5, 10, 5),
-                                            decoration: BoxDecoration(
-                                                shape: BoxShape.rectangle,
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(10))),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Column(
-                                                  children: [
-                                                    SvgPicture.asset(
-                                                      "assets/images/paypal.svg",
-                                                      height: 40,
-                                                      width: 120,
-                                                      allowDrawingOutsideViewBox:
-                                                          true,
+                                          InkWell(
+                                            onTap: () {
+                                              provider.selectPaymentType(1);
+                                            },
+                                            child: Container(
+                                              width: double.infinity,
+                                              height: 80,
+                                              padding: EdgeInsets.fromLTRB(
+                                                  15, 5, 15, 5),
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.rectangle,
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(10))),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      new SvgPicture.asset(
+                                                        "assets/images/paypal.svg",
+                                                        height: 40,
+                                                        fit: BoxFit.fitWidth,
+                                                        allowDrawingOutsideViewBox:
+                                                            true,
+                                                        matchTextDirection:
+                                                            true,
+                                                      ),
+                                                      provider.myPaymentType ==
+                                                              1
+                                                          ? Text(
+                                                              "You will be redirected to PayPay website.",
+                                                              style:
+                                                                  kTextStyleSmallPrimary,
+                                                            )
+                                                          : Text(""),
+                                                    ],
+                                                  ),
+                                                  Theme(
+                                                    data: ThemeData(
+                                                        unselectedWidgetColor:
+                                                            Colors.white),
+                                                    child: Checkbox(
+                                                      value:
+                                                          provider.myPaymentType ==
+                                                                  1
+                                                              ? true
+                                                              : false,
+                                                      onChanged: (value) {},
+                                                      activeColor: kColorGreen,
                                                     ),
-                                                    Text(
-                                                      "You will be redirected to PayPay website.",
-                                                      style:
-                                                          kTextStyleSmallPrimary,
-                                                    )
-                                                  ],
-                                                ),
-                                                Checkbox(
-                                                  value: provider
-                                                      .isShipToSameAddress,
-                                                  onChanged: (value) {
-                                                    provider
-                                                        .setShipToSaveAddressCheck();
-                                                  },
-                                                  activeColor: kColorPrimary,                                                
-                                                ),
-                                              ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              provider.selectPaymentType(2);
+                                            },
+                                            child: Container(
+                                              width: double.infinity,
+                                              padding: EdgeInsets.fromLTRB(
+                                                  15, 5, 15, 10),
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.rectangle,
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(10))),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          new SvgPicture.asset(
+                                                            "assets/images/bank.svg",
+                                                            height: 25,
+                                                            width: 25,
+                                                            fit:
+                                                                BoxFit.fitWidth,
+                                                            allowDrawingOutsideViewBox:
+                                                                true,
+                                                            matchTextDirection:
+                                                                true,
+                                                          ),
+                                                          Text(
+                                                              "  Direct Bank Transfer",
+                                                              style:
+                                                                  kTextStyleBlueBold),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      provider.myPaymentType ==
+                                                              2
+                                                          ? Text(
+                                                              "You will be redirected to PayPay website.",
+                                                              style:
+                                                                  kTextStyleSmallPrimary,
+                                                            )
+                                                          : Text(""),
+                                                    ],
+                                                  ),
+                                                  Theme(
+                                                    data: ThemeData(
+                                                        unselectedWidgetColor:
+                                                            Colors.white),
+                                                    child: Checkbox(
+                                                      value:
+                                                          provider.myPaymentType ==
+                                                                  2
+                                                              ? true
+                                                              : false,
+                                                      onChanged: (value) {},
+                                                      activeColor: kColorGreen,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -848,6 +946,7 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                 ],
                               ),
                               Container(
+                                margin: EdgeInsets.only(right: 15, bottom: 25),
                                 decoration: BoxDecoration(
                                   color: kColorPrimary,
                                 ),

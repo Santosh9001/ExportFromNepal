@@ -43,11 +43,20 @@ class ShippingProvider extends ChangeNotifier {
   bool _checkShipping = false;
   bool _shipToSame = true;
 
+  int _paymentType = 0;
+
   bool get isAddressSaved => _checkAddresses;
 
   bool get isShippingSaved => _checkShipping;
 
   bool get isShipToSameAddress => _shipToSame;
+
+  int get myPaymentType => _paymentType;
+
+  void selectPaymentType(value) {
+    _paymentType = value;
+    notifyListeners();
+  }
 
   void setSavedAddressCheck(value) {
     this._checkAddresses = value;
@@ -68,5 +77,4 @@ class ShippingProvider extends ChangeNotifier {
       this._shipToSame ? "Billed & Shipped To : " : "Billed To :";
 
   String get getShipText => "Shipped To : ";
-
 }
