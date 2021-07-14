@@ -28,17 +28,18 @@ class _HomeUIState extends State<HomeUI> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SvgPicture.asset(
-                "assets/images/splash.svg",
-                width: 50,
+              new Image.asset(
+                "assets/images/efn_logo.png",
+                height: 30,
+                width: 100,
               ),
               InkWell(
                 onTap: () {},
-                child: Icon(
-                  Icons.search,
-                  color: kColorPrimary,
-                  size: 30,
-                ),
+                child: SvgPicture.asset(
+                "assets/images/iconly_light_outline_search.svg",
+                allowDrawingOutsideViewBox: true,
+                height: 20,
+              ),
               )
             ],
           ),
