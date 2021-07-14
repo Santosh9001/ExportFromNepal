@@ -243,7 +243,8 @@ class _CartState extends State<Cart> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 16, top: 8, right: 16, bottom: 8),
+                padding: const EdgeInsets.only(
+                    left: 16, top: 8, right: 16, bottom: 8),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -287,15 +288,38 @@ class _CartState extends State<Cart> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Subtotal: USD 255", style: kTextStyleBlueBold,),
-                                SizedBox(height: 4,),
-                                Text("Tax: USD 0", style: kTextStyleBlueBold,),
-                                SizedBox(height: 4,),
-                                Text("Total weight package: 4.5 kgs", style: kTextStyleBlueBold,),
-                                SizedBox(height: 4,),
-                                Text("Discount: USD 0", style: kTextStyleBlueBold,),
-                                SizedBox(height: 4,),
-                                Text("Order Total: USD 255", style: kTextStyleBlueBold,),
+                                Text(
+                                  "Subtotal: USD 255",
+                                  style: kTextStyleBlueBold,
+                                ),
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  "Tax: USD 0",
+                                  style: kTextStyleBlueBold,
+                                ),
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  "Total weight package: 4.5 kgs",
+                                  style: kTextStyleBlueBold,
+                                ),
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  "Discount: USD 0",
+                                  style: kTextStyleBlueBold,
+                                ),
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  "Order Total: USD 255",
+                                  style: kTextStyleBlueBold,
+                                ),
                               ],
                             ),
                           ),
@@ -309,40 +333,67 @@ class _CartState extends State<Cart> {
                                 Container(
                                   decoration: BoxDecoration(
                                     color: kColorRed,
-                                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8)),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
-                                        Icon(MaterialIcons.delete, color: Colors.white, size: 20,),
-                                        SizedBox(width: 4,),
-                                        Text("Delete Item", style: TextStyle(
-                                          fontSize: 14,
+                                        Icon(
+                                          MaterialIcons.delete,
                                           color: Colors.white,
-                                        ),)
+                                          size: 20,
+                                        ),
+                                        SizedBox(
+                                          width: 4,
+                                        ),
+                                        Text(
+                                          "Delete Item",
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.white,
+                                          ),
+                                        )
                                       ],
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 8,),
+                                SizedBox(
+                                  height: 8,
+                                ),
                                 Container(
                                   decoration: BoxDecoration(
                                     color: kColorPrimary,
-                                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8)),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
-                                        Text("Checkout", style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.white,
-                                        ),),
-                                        SizedBox(width: 4,),
-                                        Icon(AntDesign.arrowright, color: Colors.white, size: 20),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pushNamed(
+                                                context, '/shippingEstimate');
+                                          },
+                                          child: Text(
+                                            "Checkout",
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 4,
+                                        ),
+                                        Icon(AntDesign.arrowright,
+                                            color: Colors.white, size: 20),
                                       ],
                                     ),
                                   ),

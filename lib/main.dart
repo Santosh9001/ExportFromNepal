@@ -3,6 +3,7 @@ import 'package:export_nepal/provider/LoginTokenProvider.dart';
 import 'package:export_nepal/ui/screens/DashboardUI.dart';
 import 'package:export_nepal/ui/screens/SignupUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyOrderUI.dart';
+import 'package:export_nepal/ui/screens/dashboard/checkout/ShippingEstimate.dart';
 import 'package:export_nepal/ui/screens/dashboard/home/components/HomeMenuDialog.dart';
 import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -44,6 +45,7 @@ class MainApp extends StatelessWidget {
         '/register': (context) => SignUpUI(),
         '/homeDialog': (context) => HomeMenuDialog(),
         '/myOrder': (context) => MyOrderUI("My Orders"),
+        '/shippingEstimate': (context) => ShippingEstimate(),
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),
