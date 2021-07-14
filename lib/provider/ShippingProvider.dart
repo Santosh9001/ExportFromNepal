@@ -26,9 +26,11 @@ class ShippingProvider extends ChangeNotifier {
     if (check) {
       pageController.nextPage(
           duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+      _viewPosition++;
     } else {
       pageController.previousPage(
           duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+          _viewPosition--;
     }
     notifyListeners();
   }
@@ -77,4 +79,11 @@ class ShippingProvider extends ChangeNotifier {
       this._shipToSame ? "Billed & Shipped To : " : "Billed To :";
 
   String get getShipText => "Shipped To : ";
+
+  String get getBtnText =>
+      myViewPosition == 3 ? "Place Order" : "Continue";
+
+  void submitCheckout(context) {
+    Navigator.pushNamed(context, '/orderConfirm');
+  }
 }

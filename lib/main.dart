@@ -4,6 +4,7 @@ import 'package:export_nepal/ui/screens/DashboardUI.dart';
 import 'package:export_nepal/ui/screens/SignupUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressBookUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressDetailsUI.dart';
+import 'package:export_nepal/ui/screens/dashboard/checkout/OrerConfirmUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyOrderUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyWishListUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/checkout/ShippingEstimate.dart';
@@ -50,6 +51,7 @@ class MainApp extends StatelessWidget {
         '/homeDialog': (context) => HomeMenuDialog(),
         '/myOrder': (context) => MyOrderUI(),
         '/shippingEstimate': (context) => ShippingEstimate(),
+        '/orderConfirm': (context) => OrderConfirmUI(),
         '/wishList': (context) => MyWishListUI(),
         '/addressBook': (context) => AddressBook(),
         '/addressDetails': (context) => AddressDetailUI(),
