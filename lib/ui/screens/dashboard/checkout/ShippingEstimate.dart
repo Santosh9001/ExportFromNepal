@@ -705,58 +705,62 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                             child: Container(
                                               width: double.infinity,
                                               padding: EdgeInsets.fromLTRB(
-                                                  15, 5, 15, 10),
+                                                  15, 5, 15, 0),
                                               decoration: BoxDecoration(
                                                   shape: BoxShape.rectangle,
                                                   color: Colors.white,
                                                   borderRadius:
                                                       BorderRadius.all(
                                                           Radius.circular(10))),
-                                              child: Row(
+                                              child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                    MainAxisAlignment.start,
                                                 children: [
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: [
                                                       new SvgPicture.asset(
                                                         "assets/images/paypal.svg",
-                                                        height: 40,
+                                                        height: 25,
                                                         fit: BoxFit.fitWidth,
                                                         allowDrawingOutsideViewBox:
                                                             true,
                                                         matchTextDirection:
                                                             true,
                                                       ),
-                                                      provider.myPaymentType ==
-                                                              1
-                                                          ? Text(
-                                                              "You will be redirected to PayPay website.",
-                                                              style:
-                                                                  kTextStyleSmallPrimary,
-                                                            )
-                                                          : Text(""),
+                                                      Theme(
+                                                        data: ThemeData(
+                                                            unselectedWidgetColor:
+                                                                Colors.white),
+                                                        child: Checkbox(
+                                                          value:
+                                                              provider.myPaymentType ==
+                                                                      1
+                                                                  ? true
+                                                                  : false,
+                                                          onChanged: (value) {},
+                                                          activeColor:
+                                                              kColorGreen,
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
-                                                  Theme(
-                                                    data: ThemeData(
-                                                        unselectedWidgetColor:
-                                                            Colors.white),
-                                                    child: Checkbox(
-                                                      value:
-                                                          provider.myPaymentType ==
-                                                                  1
-                                                              ? true
-                                                              : false,
-                                                      onChanged: (value) {},
-                                                      activeColor: kColorGreen,
-                                                    ),
-                                                  ),
+                                                  provider.myPaymentType == 1
+                                                      ? Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  bottom: 10),
+                                                          child: Text(
+                                                            "You will be redirected to PayPay website.",
+                                                            style:
+                                                                kTextStyleSmallPrimary,
+                                                          ),
+                                                        )
+                                                      : Text(""),
                                                 ],
                                               ),
                                             ),
@@ -1256,22 +1260,28 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                                                   height: 10,
                                                                 ),
                                                                 Text(
-                                                                  "We Accept",
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          9,
-                                                                      color:
-                                                                          kPrimaryTextColor,
-                                                                      fontStyle:
-                                                                          FontStyle
-                                                                              .italic),
+                                                                  "We Accept : ",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontSize: 9,
+                                                                    color:
+                                                                        kPrimaryTextColor,
+                                                                  ),
                                                                 ),
                                                                 SizedBox(
                                                                   height: 8,
                                                                 ),
-                                                                Row(children: [
-                                                                  
-                                                                ],)
+                                                                new SvgPicture
+                                                                    .asset(
+                                                                  "assets/images/cards.svg",
+                                                                  height: 20,
+                                                                  fit: BoxFit
+                                                                      .fitWidth,
+                                                                  allowDrawingOutsideViewBox:
+                                                                      true,
+                                                                  matchTextDirection:
+                                                                      true,
+                                                                ),
                                                               ]
                                                             : [],
                                                   )
@@ -1279,7 +1289,99 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                               ),
                                             ),
                                           ),
-                                        ],
+                                          SizedBox(height: 10,),
+                                          InkWell(
+                                            onTap: () {
+                                              provider.selectPaymentType(5);
+                                            },
+                                            child: Container(
+                                              width: double.infinity,
+                                              padding: EdgeInsets.fromLTRB(
+                                                  15, 5, 15, 5),
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.rectangle,
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(10))),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          new SvgPicture.asset(
+                                                            "assets/images/khalti.svg",
+                                                            height: 30,
+                                                            width: 30,
+                                                            fit:
+                                                                BoxFit.fitWidth,
+                                                            allowDrawingOutsideViewBox:
+                                                                true,
+                                                            matchTextDirection:
+                                                                true,
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: 5),
+                                                            child: Text(
+                                                                "  Pay with Khalti",
+                                                                style:
+                                                                    kTextStyleBlueBoldMedium),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Theme(
+                                                        data: ThemeData(
+                                                            unselectedWidgetColor:
+                                                                Colors.white),
+                                                        child: Checkbox(
+                                                          value:
+                                                              provider.myPaymentType ==
+                                                                      5
+                                                                  ? true
+                                                                  : false,
+                                                          onChanged: (value) {},
+                                                          activeColor:
+                                                              kColorGreen,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children:
+                                                        provider.myPaymentType ==
+                                                                5
+                                                            ? [
+                                                                Text(
+                                                                  "You will be redirected to Khalti Payment page.",
+                                                                  style:
+                                                                      kTextStyleSmallPrimary,
+                                                                ),]
+                                                            : [],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ), ],
                                       ),
                                     ),
                                   ]),
