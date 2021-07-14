@@ -7,6 +7,7 @@ const kColorBlack = Color(0xFF0A0A0A);
 const kColorRed = Color.fromARGB(255, 220, 53, 69);
 const kCategoryBlue = Color(0xFFEAEFFD);
 const kColorPink = Color(0xFFFDEAFA);
+const kColorOrange = Color(0xFFFDA607);
 const kColorGreen = Color(0xFFD0E3C4);
 const kColorLightGrey = Color(0xFFEDEDEA);
 
