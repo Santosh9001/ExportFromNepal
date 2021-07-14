@@ -16,7 +16,7 @@ class _MyWishListUIState extends State<MyWishListUI> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: kColorBackground,
           elevation: 0,
           title: new Text(
             "My Wish List",

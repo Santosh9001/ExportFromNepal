@@ -14,7 +14,6 @@ class _MyOrderUIState extends State<MyOrderUI>
     with SingleTickerProviderStateMixin {
   // ignore: deprecated_member_use
   late List<Tab> _tabs = <Tab>[];
-  List<Widget> _generalWidgets = <Widget>[];
 
   @override
   void dispose() {
