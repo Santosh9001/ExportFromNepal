@@ -8,6 +8,7 @@ const kColorRed = Color.fromARGB(255, 220, 53, 69);
 const kCategoryBlue = Color(0xFFEAEFFD);
 const kColorPink = Color(0xFFFDEAFA);
 const kColorGreen = Color(0xFFD0E3C4);
+const kColorLightGrey = Color(0xFFEDEDEA);
 
 const kTextStyleLarge = TextStyle(
     fontSize: 26.0, color: kPrimaryTextColor, fontWeight: FontWeight.bold);

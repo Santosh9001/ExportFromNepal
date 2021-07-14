@@ -522,11 +522,11 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                                   ),
                                                   Padding(
                                                     padding: EdgeInsets.only(
-                                                        left: 10, top: 10),
+                                                        left: 10),
                                                     child: Row(
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
-                                                              .start,
+                                                              .center,
                                                       children: [
                                                         SizedBox(
                                                           width: 10,
@@ -545,8 +545,7 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                                         Padding(
                                                           padding:
                                                               EdgeInsets.only(
-                                                                  left: 20,
-                                                                  bottom: 10),
+                                                                  left: 20),
                                                           child: Text(
                                                             "Billing Address is Same as Shipping Address.",
                                                             style: TextStyle(
@@ -705,9 +704,8 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                             },
                                             child: Container(
                                               width: double.infinity,
-                                              height: 80,
                                               padding: EdgeInsets.fromLTRB(
-                                                  15, 5, 15, 5),
+                                                  15, 5, 15, 10),
                                               decoration: BoxDecoration(
                                                   shape: BoxShape.rectangle,
                                                   color: Colors.white,
@@ -771,33 +769,298 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                               provider.selectPaymentType(2);
                                             },
                                             child: Container(
+                                                width: double.infinity,
+                                                padding: EdgeInsets.fromLTRB(
+                                                    15, 5, 15, 5),
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.rectangle,
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10))),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            new SvgPicture
+                                                                .asset(
+                                                              "assets/images/bank.svg",
+                                                              height: 30,
+                                                              width: 30,
+                                                              fit: BoxFit
+                                                                  .fitWidth,
+                                                              allowDrawingOutsideViewBox:
+                                                                  true,
+                                                              matchTextDirection:
+                                                                  true,
+                                                            ),
+                                                            Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(top: 5),
+                                                              child: Text(
+                                                                  "  Direct Bank Transfer",
+                                                                  style:
+                                                                      kTextStyleBlueBoldMedium),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        Theme(
+                                                          data: ThemeData(
+                                                              unselectedWidgetColor:
+                                                                  Colors.white),
+                                                          child: Checkbox(
+                                                            value:
+                                                                provider.myPaymentType ==
+                                                                        2
+                                                                    ? true
+                                                                    : false,
+                                                            onChanged:
+                                                                (value) {},
+                                                            activeColor:
+                                                                kColorGreen,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children:
+                                                          provider.myPaymentType ==
+                                                                  2
+                                                              ? [
+                                                                  Text(
+                                                                    "Beneficiary Name : HIM Tech Inc. ",
+                                                                    style:
+                                                                        kTextStyleSmallPrimary,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 8.0,
+                                                                  ),
+                                                                  Text(
+                                                                    "Account Number : 876543219053 ",
+                                                                    style:
+                                                                        kTextStyleSmallPrimary,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 8.0,
+                                                                  ),
+                                                                  Text(
+                                                                    "Routing Number : 11122290 ",
+                                                                    style:
+                                                                        kTextStyleSmallPrimary,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 8.0,
+                                                                  ),
+                                                                  Text(
+                                                                    "Wire Transfer : 0267543892 ",
+                                                                    style:
+                                                                        kTextStyleSmallPrimary,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 8.0,
+                                                                  ),
+                                                                  Text(
+                                                                    "Bank : Bank of America ",
+                                                                    style:
+                                                                        kTextStyleSmallPrimary,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 8.0,
+                                                                  ),
+                                                                  Text(
+                                                                    "Address : 7 High Meadow, Loreium Ipsium ",
+                                                                    style:
+                                                                        kTextStyleSmallPrimary,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 8.0,
+                                                                  ),
+                                                                ]
+                                                              : [],
+                                                    )
+                                                  ],
+                                                )),
+                                          ),
+                                          SizedBox(height: 10),
+                                          InkWell(
+                                            onTap: () {
+                                              provider.selectPaymentType(3);
+                                            },
+                                            child: Container(
+                                                width: double.infinity,
+                                                padding: EdgeInsets.fromLTRB(
+                                                    15, 5, 15, 5),
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.rectangle,
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10))),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            new SvgPicture
+                                                                .asset(
+                                                              "assets/images/lc.svg",
+                                                              height: 30,
+                                                              width: 30,
+                                                              fit: BoxFit
+                                                                  .fitWidth,
+                                                              allowDrawingOutsideViewBox:
+                                                                  true,
+                                                              matchTextDirection:
+                                                                  true,
+                                                            ),
+                                                            Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(top: 5),
+                                                              child: Text(
+                                                                  "  Pay By L/C",
+                                                                  style:
+                                                                      kTextStyleBlueBoldMedium),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        Theme(
+                                                          data: ThemeData(
+                                                              unselectedWidgetColor:
+                                                                  Colors.white),
+                                                          child: Checkbox(
+                                                            value:
+                                                                provider.myPaymentType ==
+                                                                        3
+                                                                    ? true
+                                                                    : false,
+                                                            onChanged:
+                                                                (value) {},
+                                                            activeColor:
+                                                                kColorGreen,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children:
+                                                          provider.myPaymentType ==
+                                                                  3
+                                                              ? [
+                                                                  Text(
+                                                                    "Purchase Order Number",
+                                                                    style:
+                                                                        kTextStyleSmallPrimary,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsets
+                                                                        .fromLTRB(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            8.0),
+                                                                    child:
+                                                                        TextField(
+                                                                      textInputAction:
+                                                                          TextInputAction
+                                                                              .done,
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                        fillColor:
+                                                                            kColorLightGrey,
+                                                                        contentPadding: EdgeInsets.fromLTRB(
+                                                                            25,
+                                                                            0,
+                                                                            25,
+                                                                            0),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ]
+                                                              : [],
+                                                    )
+                                                  ],
+                                                )),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              provider.selectPaymentType(4);
+                                            },
+                                            child: Container(
                                               width: double.infinity,
                                               padding: EdgeInsets.fromLTRB(
-                                                  15, 5, 15, 10),
+                                                  15, 5, 15, 5),
                                               decoration: BoxDecoration(
                                                   shape: BoxShape.rectangle,
                                                   color: Colors.white,
                                                   borderRadius:
                                                       BorderRadius.all(
                                                           Radius.circular(10))),
-                                              child: Row(
+                                              child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: [
                                                       Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
                                                         children: [
                                                           new SvgPicture.asset(
-                                                            "assets/images/bank.svg",
-                                                            height: 25,
-                                                            width: 25,
+                                                            "assets/images/credit-card.svg",
+                                                            height: 30,
+                                                            width: 30,
                                                             fit:
                                                                 BoxFit.fitWidth,
                                                             allowDrawingOutsideViewBox:
@@ -805,39 +1068,213 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                                             matchTextDirection:
                                                                 true,
                                                           ),
-                                                          Text(
-                                                              "  Direct Bank Transfer",
-                                                              style:
-                                                                  kTextStyleBlueBold),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: 5),
+                                                            child: Text(
+                                                                "  Pay with card (Stripe)",
+                                                                style:
+                                                                    kTextStyleBlueBoldMedium),
+                                                          ),
                                                         ],
                                                       ),
                                                       SizedBox(
                                                         height: 10,
                                                       ),
-                                                      provider.myPaymentType ==
-                                                              2
-                                                          ? Text(
-                                                              "You will be redirected to PayPay website.",
-                                                              style:
-                                                                  kTextStyleSmallPrimary,
-                                                            )
-                                                          : Text(""),
+                                                      Theme(
+                                                        data: ThemeData(
+                                                            unselectedWidgetColor:
+                                                                Colors.white),
+                                                        child: Checkbox(
+                                                          value:
+                                                              provider.myPaymentType ==
+                                                                      4
+                                                                  ? true
+                                                                  : false,
+                                                          onChanged: (value) {},
+                                                          activeColor:
+                                                              kColorGreen,
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
-                                                  Theme(
-                                                    data: ThemeData(
-                                                        unselectedWidgetColor:
-                                                            Colors.white),
-                                                    child: Checkbox(
-                                                      value:
-                                                          provider.myPaymentType ==
-                                                                  2
-                                                              ? true
-                                                              : false,
-                                                      onChanged: (value) {},
-                                                      activeColor: kColorGreen,
-                                                    ),
-                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children:
+                                                        provider.myPaymentType ==
+                                                                4
+                                                            ? [
+                                                                Text(
+                                                                  "Enter your credit card details.",
+                                                                  style:
+                                                                      kTextStyleSmallPrimary,
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 10,
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsets
+                                                                      .fromLTRB(
+                                                                          0,
+                                                                          0,
+                                                                          0,
+                                                                          8.0),
+                                                                  child:
+                                                                      TextField(
+                                                                    textInputAction:
+                                                                        TextInputAction
+                                                                            .next,
+                                                                    decoration:
+                                                                        InputDecoration(
+                                                                      suffixIcon:
+                                                                          Icon(
+                                                                        Feather
+                                                                            .credit_card,
+                                                                      ),
+                                                                      fillColor:
+                                                                          kColorLightGrey,
+                                                                      contentPadding:
+                                                                          EdgeInsets.fromLTRB(
+                                                                              25,
+                                                                              15,
+                                                                              25,
+                                                                              0),
+                                                                      hintText:
+                                                                          "1234 - 1234 - 1234 - 1234",
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Row(
+                                                                  children: [
+                                                                    IntrinsicWidth(
+                                                                      child:
+                                                                          TextField(
+                                                                        textInputAction:
+                                                                            TextInputAction.next,
+                                                                        decoration:
+                                                                            InputDecoration(
+                                                                          fillColor:
+                                                                              kColorLightGrey,
+                                                                          contentPadding: EdgeInsets.fromLTRB(
+                                                                              25,
+                                                                              0,
+                                                                              25,
+                                                                              0),
+                                                                          hintText:
+                                                                              "MM / YY",
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        width:
+                                                                            10),
+                                                                    IntrinsicWidth(
+                                                                      child:
+                                                                          TextField(
+                                                                        textInputAction:
+                                                                            TextInputAction.done,
+                                                                        decoration:
+                                                                            InputDecoration(
+                                                                          fillColor:
+                                                                              kColorLightGrey,
+                                                                          contentPadding: EdgeInsets.fromLTRB(
+                                                                              25,
+                                                                              0,
+                                                                              25,
+                                                                              0),
+                                                                          hintText:
+                                                                              "CVC",
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                SizedBox(
+                                                                    height: 8),
+                                                                Text(
+                                                                  "Your card details is protected using PCI DSS v3.2 security standards",
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          9,
+                                                                      color:
+                                                                          kPrimaryTextColor,
+                                                                      fontStyle:
+                                                                          FontStyle
+                                                                              .italic),
+                                                                ),
+                                                                SizedBox(
+                                                                    height: 10),
+                                                                Padding(
+                                                                  padding: EdgeInsets
+                                                                      .only(
+                                                                          left:
+                                                                              10),
+                                                                  child: Row(
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .center,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      SizedBox(
+                                                                        width:
+                                                                            10,
+                                                                        height:
+                                                                            10,
+                                                                        child:
+                                                                            Checkbox(
+                                                                          value:
+                                                                              provider.isShipToSameAddress,
+                                                                          onChanged:
+                                                                              (value) {},
+                                                                          activeColor:
+                                                                              kColorPrimary,
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding:
+                                                                            EdgeInsets.only(
+                                                                          left:
+                                                                              20,
+                                                                        ),
+                                                                        child:
+                                                                            Text(
+                                                                          "Save Card information to my account.",
+                                                                          style: TextStyle(
+                                                                              color: kColorBlack,
+                                                                              fontSize: 13),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 10,
+                                                                ),
+                                                                Text(
+                                                                  "We Accept",
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          9,
+                                                                      color:
+                                                                          kPrimaryTextColor,
+                                                                      fontStyle:
+                                                                          FontStyle
+                                                                              .italic),
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 8,
+                                                                ),
+                                                                Row(children: [
+                                                                  
+                                                                ],)
+                                                              ]
+                                                            : [],
+                                                  )
                                                 ],
                                               ),
                                             ),
