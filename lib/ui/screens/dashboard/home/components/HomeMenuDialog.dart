@@ -17,7 +17,6 @@ class HomeMenuDialog extends StatelessWidget {
                 builder: (context, provider, child) {
                   return Container(
                     color: Colors.white,
-                    margin: EdgeInsets.only(left: 100),
                     child: Column(
                       children: [
                         GestureDetector(
