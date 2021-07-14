@@ -50,14 +50,21 @@ class _MyAccountState extends State<MyAccount> {
                   padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   itemCount: entries.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(entries[index], style: kTextStyleRegularPrimary,),
-                          index == entries.length - 1 ? Icon(MaterialIcons.logout, color: kSecondaryTextColor, size: 16,) : Icon(AntDesign.right, color: kSecondaryTextColor, size: 16,),
-                        ],
+                    return GestureDetector(
+                      onTap: (){
+                        if (index == 0){
+                          Navigator.pushNamed(context, '/myOrder');
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(entries[index], style: kTextStyleRegularPrimary,),
+                            index == entries.length - 1 ? Icon(MaterialIcons.logout, color: kSecondaryTextColor, size: 16,) : Icon(AntDesign.right, color: kSecondaryTextColor, size: 16,),
+                          ],
+                        ),
                       ),
                     );
                   },
