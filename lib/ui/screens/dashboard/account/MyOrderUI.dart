@@ -5,9 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class MyOrderUI extends StatefulWidget {
-  final String title;
-
-  MyOrderUI(this.title);
 
   @override
   _MyOrderUIState createState() => _MyOrderUIState();
@@ -54,7 +51,7 @@ class _MyOrderUIState extends State<MyOrderUI>
           backgroundColor: Colors.white,
           elevation: 0,
           title: new Text(
-            widget.title,
+            "My Orders",
             style: kTextStyleLargeBlue,
           ),
           leading: IconButton(

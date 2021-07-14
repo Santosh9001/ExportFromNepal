@@ -54,6 +54,11 @@ class _MyAccountState extends State<MyAccount> {
                       onTap: (){
                         if (index == 0){
                           Navigator.pushNamed(context, '/myOrder');
+                        }else if (index == 1){
+
+                        }else if (index == 2){
+                          Navigator.pushNamed(context, '/wishList');
+
                         }
                       },
                       child: Padding(
