@@ -1289,7 +1289,9 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                               ),
                                             ),
                                           ),
-                                          SizedBox(height: 10,),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
                                           InkWell(
                                             onTap: () {
                                               provider.selectPaymentType(5);
@@ -1375,13 +1377,15 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                                                   "You will be redirected to Khalti Payment page.",
                                                                   style:
                                                                       kTextStyleSmallPrimary,
-                                                                ),]
+                                                                ),
+                                                              ]
                                                             : [],
                                                   )
                                                 ],
                                               ),
                                             ),
-                                          ), ],
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ]),
@@ -1497,9 +1501,11 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                       InkWell(
                                         onTap: () {
                                           provider.switchPage(true);
+                                          if (provider.pageController.page == 2)
+                                            provider.submitCheckout(context);
                                         },
                                         child: Text(
-                                          "Continue",
+                                          provider.getBtnText,
                                           style: TextStyle(
                                             fontSize: 14,
                                             color: Colors.white,

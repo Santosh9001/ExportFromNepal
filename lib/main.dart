@@ -44,6 +44,7 @@ class MainApp extends StatelessWidget {
         '/register': (context) => SignUpUI(),
         '/homeDialog': (context) => HomeMenuDialog(),
         '/shippingEstimate': (context) => ShippingEstimate(),
+        //'/orderConfirm': (context) => OrderConfirmUI();
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),
