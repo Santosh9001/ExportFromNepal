@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-
 import 'components/CollectionGrid.dart';
 import 'components/HorizontalProductsList.dart';
 import 'components/ProductCard.dart';
@@ -22,49 +21,36 @@ class _HomeUIState extends State<HomeUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: kColorPrimary),
+        title: Padding(
+          padding: EdgeInsets.only(left: 30),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SvgPicture.asset(
+                "assets/images/splash.svg",
+                width: 50,
+              ),
+              InkWell(
+                onTap: () {},
+                child: Icon(
+                  Icons.search,
+                  color: kColorPrimary,
+                  size: 30,
+                ),
+              )
+            ],
+          ),
+        ),
+        backgroundColor: Color(0xFFE4EAFD),
+      ),
       drawer: Drawer(
         child: HomeMenuDialog(),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Flexible(
-                    flex: 1, child: Image.asset("assets/images/efnlogo.png")),
-                SizedBox(width: 8),
-                Flexible(
-                    flex: 8,
-                    child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SvgPicture.asset(
-                                "assets/images/iconly_light_outline_search.svg"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/homeDialog');
-                              },
-                              child: Icon(Icons.menu),
-                            ),
-                          ),
-                        ],
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                      ),
-                    ))
-              ],
-            ),
-          ),
           SizedBox(
             height: 16,
           ),

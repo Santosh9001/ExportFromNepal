@@ -2,12 +2,9 @@ import 'package:export_nepal/provider/EmailValidProvider.dart';
 import 'package:export_nepal/provider/LoginTokenProvider.dart';
 import 'package:export_nepal/ui/screens/DashboardUI.dart';
 import 'package:export_nepal/ui/screens/SignupUI.dart';
-<<<<<<< HEAD
 import 'package:export_nepal/ui/screens/dashboard/checkout/OrerConfirmUI.dart';
-=======
 import 'package:export_nepal/ui/screens/dashboard/account/MyOrderUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyWishListUI.dart';
->>>>>>> 60c073e83be64bbfd86cfd9f796d40b95b17b837
 import 'package:export_nepal/ui/screens/dashboard/checkout/ShippingEstimate.dart';
 import 'package:export_nepal/ui/screens/dashboard/home/components/HomeMenuDialog.dart';
 import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
