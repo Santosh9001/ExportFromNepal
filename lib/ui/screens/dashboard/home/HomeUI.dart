@@ -29,14 +29,14 @@ class _HomeUIState extends State<HomeUI> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                flex: 8,
+                flex: 9,
                 child: new Image.asset(
                 "assets/images/efn_logo.png",
                 height: 30,
                 width: 100,
               ),),
               Expanded(
-                flex: 2,
+                flex: 1,
                 child: 
               InkWell(
                 onTap: () {},
