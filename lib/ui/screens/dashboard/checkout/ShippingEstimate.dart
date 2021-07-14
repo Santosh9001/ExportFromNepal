@@ -1500,9 +1500,10 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                                     children: [
                                       InkWell(
                                         onTap: () {
-                                          provider.switchPage(true);
-                                          if (provider.pageController.page == 2)
+                                          if (provider.myViewPosition == 3)
                                             provider.submitCheckout(context);
+                                          else
+                                            provider.switchPage(true);
                                         },
                                         child: Text(
                                           provider.getBtnText,
