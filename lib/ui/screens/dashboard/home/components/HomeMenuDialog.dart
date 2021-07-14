@@ -26,7 +26,7 @@ class HomeMenuDialog extends StatelessWidget {
                           child: Container(
                               color: Colors.grey.shade400,
                               padding: EdgeInsets.only(
-                                  top: 20, bottom: 20, left: 20, right: 10),
+                                  top: 15, bottom: 15, left: 20, right: 10),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -40,7 +40,7 @@ class HomeMenuDialog extends StatelessWidget {
                                   ),
                                   Icon(
                                     Icons.close,
-                                    size: 30,
+                                    size: 20,
                                     color: Colors.black,
                                   ),
                                 ],
@@ -83,7 +83,7 @@ class HomeDialogItems extends StatelessWidget {
         builder: (context) {
           return Container(
             color: Colors.white,
-            padding: EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 10),
+            padding: EdgeInsets.only(top: 15, bottom: 15, left: 20, right: 10),
             child: Consumer<HomeDataProvider>(
               builder: (context, provider, child) {
                 return InkWell(
@@ -99,7 +99,7 @@ class HomeDialogItems extends StatelessWidget {
                       ),
                       Icon(
                         Icons.chevron_right_outlined,
-                        size: 30,
+                        size: 20,
                         color: kColorPrimary,
                       ),
                     ],
