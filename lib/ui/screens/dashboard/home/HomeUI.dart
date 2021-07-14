@@ -24,15 +24,20 @@ class _HomeUIState extends State<HomeUI> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: kColorPrimary),
         title: Padding(
-          padding: EdgeInsets.only(left: 30),
+          padding : EdgeInsets.all(0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              new Image.asset(
+              Expanded(
+                flex: 8,
+                child: new Image.asset(
                 "assets/images/efn_logo.png",
                 height: 30,
                 width: 100,
-              ),
+              ),),
+              Expanded(
+                flex: 2,
+                child: 
               InkWell(
                 onTap: () {},
                 child: SvgPicture.asset(
@@ -40,7 +45,7 @@ class _HomeUIState extends State<HomeUI> {
                 allowDrawingOutsideViewBox: true,
                 height: 20,
               ),
-              )
+              ),)
             ],
           ),
         ),
