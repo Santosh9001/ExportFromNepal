@@ -58,6 +58,8 @@ class _MyAccountState extends State<MyAccount> {
 
                         }else if (index == 2){
                           Navigator.pushNamed(context, '/wishList');
+                        }else if (index == 3){
+                          Navigator.pushNamed(context, '/addressBook');
 
                         }
                       },

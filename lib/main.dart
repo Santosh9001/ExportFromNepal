@@ -2,6 +2,8 @@ import 'package:export_nepal/provider/EmailValidProvider.dart';
 import 'package:export_nepal/provider/LoginTokenProvider.dart';
 import 'package:export_nepal/ui/screens/DashboardUI.dart';
 import 'package:export_nepal/ui/screens/SignupUI.dart';
+import 'package:export_nepal/ui/screens/dashboard/account/AddressBookUI.dart';
+import 'package:export_nepal/ui/screens/dashboard/account/AddressDetailsUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/checkout/OrerConfirmUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyOrderUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyWishListUI.dart';
@@ -12,6 +14,7 @@ import 'package:export_nepal/ui/screens/general/ReturnPolicy.dart';
 import 'package:export_nepal/ui/screens/general/ShippingPolicy.dart';
 import 'package:export_nepal/ui/screens/general/TermsOfUse.dart';
 import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
+import 'package:export_nepal/utils/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -58,10 +61,12 @@ class MainApp extends StatelessWidget {
         '/returnPolicy': (context) => ReturnPolicy(),
         '/shippingPolicy': (context) => ShippingPolicy(),
         '/aboutUs': (context) => AboutUs(),
+        '/addressBook': (context) => AddressBook(),
+        '/addressDetails': (context) => AddressDetailUI(),
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),
-          scaffoldBackgroundColor: Color(0xFFE4EAFD),
+          scaffoldBackgroundColor: kColorBackground,
           accentColor: Color(0xFFE4EAFD),
           inputDecorationTheme: InputDecorationTheme(
             filled: true,
