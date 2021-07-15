@@ -30,7 +30,6 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
           body: SafeArea(
             child: Consumer<ShippingProvider>(
               builder: (context, provider, child) {
-                provider.setUpIndicator(context);
                 return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -69,7 +68,25 @@ class _ShippingEstimateState extends State<ShippingEstimate> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 10, right: 10),
-                        child: provider.myStepProgressView,
+                        child: Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          width: MediaQuery.of(context).size.width,
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                children: provider.iconViews(),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: provider.titleViews(),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                       Expanded(
                         flex: 8,

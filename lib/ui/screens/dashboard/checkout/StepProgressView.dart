@@ -63,7 +63,7 @@ class _StepProgressState extends State<StepProgressView> {
               children: _titleViews(),
             ),
           ],
-        ));
+        ),);
   }
 
   List<Widget> _iconViews() {
