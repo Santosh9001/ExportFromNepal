@@ -7,6 +7,10 @@ import 'package:export_nepal/ui/screens/dashboard/account/MyOrderUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyWishListUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/checkout/ShippingEstimate.dart';
 import 'package:export_nepal/ui/screens/dashboard/home/components/HomeMenuDialog.dart';
+import 'package:export_nepal/ui/screens/general/AboutUs.dart';
+import 'package:export_nepal/ui/screens/general/ReturnPolicy.dart';
+import 'package:export_nepal/ui/screens/general/ShippingPolicy.dart';
+import 'package:export_nepal/ui/screens/general/TermsOfUse.dart';
 import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +54,10 @@ class MainApp extends StatelessWidget {
         '/shippingEstimate': (context) => ShippingEstimate(),
         '/orderConfirm': (context) => OrderConfirmUI(),
         '/wishList': (context) => MyWishListUI(),
+        '/termsOfUse': (context) => TermsOfUse(),
+        '/returnPolicy': (context) => ReturnPolicy(),
+        '/shippingPolicy': (context) => ShippingPolicy(),
+        '/aboutUs': (context) => AboutUs(),
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),
