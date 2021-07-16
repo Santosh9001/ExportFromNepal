@@ -41,6 +41,7 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   share: ^2.0.4
   dotted_border: ^2.0.0
+  webview_flutter: ^2.0.10
 dev_dependencies:
   flutter_native_splash: ^1.2.0
   flutter_test:

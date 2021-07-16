@@ -1,4 +1,5 @@
 import 'package:export_nepal/provider/GeneralProvider.dart';
+import 'package:export_nepal/ui/screens/general/BlogsItem.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -71,7 +72,16 @@ class _BlogsUIState extends State<Blogs> {
                         SizedBox(
                           height: 20,
                         ),
-                        
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.all(10),
+                            child: ListView.builder(
+                                itemCount: 1,
+                                itemBuilder: (BuildContext context, int index) {
+                              return BlogsItem();
+                            }),
+                          ),
+                        ),
                       ],
                     ),
                   );
