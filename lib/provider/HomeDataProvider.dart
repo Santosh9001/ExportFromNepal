@@ -18,7 +18,7 @@ class HomeDataProvider extends ChangeNotifier {
   void fetchDataAndNavigate(title, context) {
     switch (title) {
       case "About Us":
-      Navigator.pushNamed(context, '/aboutUs');
+        Navigator.pushNamed(context, '/aboutUs');
         break;
       case "Contact Us":
         break;
@@ -28,14 +28,17 @@ class HomeDataProvider extends ChangeNotifier {
         Navigator.pushNamed(context, '/termsOfUse');
         break;
       case "Shipping Policy":
-      Navigator.pushNamed(context, '/shippingPolicy');
+        Navigator.pushNamed(context, '/shippingPolicy');
         break;
       case "Return Policy":
-      Navigator.pushNamed(context, '/returnPolicy');
+        Navigator.pushNamed(context, '/returnPolicy');
         break;
       case "FAQs":
         break;
       case "Manual":
+        break;
+      case "Blog":
+        Navigator.pushNamed(context, '/blogs');
         break;
     }
   }
