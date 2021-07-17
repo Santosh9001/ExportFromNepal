@@ -12,6 +12,7 @@ class JoinAffiliate extends StatefulWidget {
 }
 
 class _JoinAffiliateState extends State<JoinAffiliate> {
+  int radioGroupValue = 0;
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AffiliateProvider>(
@@ -138,7 +139,91 @@ class _JoinAffiliateState extends State<JoinAffiliate> {
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(10))),
                                         child: InkWell(
-                                          onTap: () {},
+                                          onTap: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return StatefulBuilder(
+                                                  builder: (context,
+                                                      StateSetter setState) {
+                                                    return AlertDialog(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                      ),
+                                                      elevation: 0,
+                                                      backgroundColor:
+                                                          Colors.white,
+                                                      content: Container(
+                                                        height: 120,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                            Radius.circular(10),
+                                                          ),
+                                                        ),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: List<
+                                                                  Widget>.generate(
+                                                              provider.options
+                                                                  .length,
+                                                              (index) {
+                                                            return new Column(
+                                                              children: [
+                                                                Row(
+                                                                  children: [
+                                                                    Radio(
+                                                                      value:
+                                                                          index,
+                                                                      groupValue:
+                                                                          radioGroupValue,
+                                                                      onChanged:
+                                                                          (value) {
+                                                                        setState(
+                                                                            () {
+                                                                          radioGroupValue =
+                                                                              (value) as int;
+                                                                          Navigator.of(context)
+                                                                              .pop(true);
+                                                                          provider
+                                                                              .setAffiliateSelected(value);
+                                                                        });
+                                                                      },
+                                                                      activeColor:
+                                                                          kColorPrimary,
+                                                                    ),
+                                                                    Expanded(
+                                                                      child:
+                                                                          Text(
+                                                                        provider
+                                                                            .options[index],
+                                                                        style:
+                                                                            kTextStyleMediumPrimary,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Divider(
+                                                                    height: 1,
+                                                                    color: Colors
+                                                                        .black),
+                                                              ],
+                                                            );
+                                                          }),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            );
+                                          },
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -182,8 +267,10 @@ class _JoinAffiliateState extends State<JoinAffiliate> {
                                         color: Colors.white,
                                       ),
                                     )),
-                                    SizedBox(width: 10,),
-                                    ElevatedButton(
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         primary: kColorPrimary),
                                     onPressed: () {},
