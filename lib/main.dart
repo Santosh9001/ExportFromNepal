@@ -2,6 +2,7 @@ import 'package:export_nepal/provider/EmailValidProvider.dart';
 import 'package:export_nepal/provider/LoginTokenProvider.dart';
 import 'package:export_nepal/ui/screens/DashboardUI.dart';
 import 'package:export_nepal/ui/screens/SignupUI.dart';
+import 'package:export_nepal/ui/screens/affiliate/AffiliateDashBoard.dart';
 import 'package:export_nepal/ui/screens/affiliate/AffiliateUI.dart';
 import 'package:export_nepal/ui/screens/affiliate/JoinAffiliate.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressBookUI.dart';
@@ -71,6 +72,7 @@ class MainApp extends StatelessWidget {
         '/manuals': (context) => Manuals(),
         '/affiliateProgram': (context) => AffiliateUI(),
         '/joinAffiliate': (context) => JoinAffiliate(),
+        '/affiliateDashboard': (context) => AffiliateDashBoard(),
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),

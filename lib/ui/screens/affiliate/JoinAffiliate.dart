@@ -260,7 +260,9 @@ class _JoinAffiliateState extends State<JoinAffiliate> {
                                 ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         primary: kColorRed),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.of(context).pop(true);
+                                    },
                                     child: Text(
                                       "Cancel",
                                       style: TextStyle(
@@ -273,7 +275,10 @@ class _JoinAffiliateState extends State<JoinAffiliate> {
                                 ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         primary: kColorPrimary),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/affiliateDashboard');
+                                    },
                                     child: Text(
                                       "Save",
                                       style: TextStyle(
