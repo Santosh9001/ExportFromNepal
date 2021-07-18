@@ -18,6 +18,7 @@ import 'package:export_nepal/ui/screens/dashboard/checkout/ShippingEstimate.dart
 import 'package:export_nepal/ui/screens/dashboard/home/components/HomeMenuDialog.dart';
 import 'package:export_nepal/ui/screens/general/AboutUs.dart';
 import 'package:export_nepal/ui/screens/general/Blogs.dart';
+import 'package:export_nepal/ui/screens/general/ContactUs.dart';
 import 'package:export_nepal/ui/screens/general/Manuals.dart';
 import 'package:export_nepal/ui/screens/general/ReturnPolicy.dart';
 import 'package:export_nepal/ui/screens/general/ShippingPolicy.dart';
@@ -81,6 +82,7 @@ class MainApp extends StatelessWidget {
         '/affiliateTransactions': (context) => AffiliateTransactions(),
         '/affiliateWithdrawls': (context) => AffiliateWithdrawls(),
         '/affiliationSettings': (context) => AffiliateSettings(),
+        '/contactUs': (context) => ContactUs(),
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),

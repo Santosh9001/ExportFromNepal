@@ -21,6 +21,7 @@ class HomeDataProvider extends ChangeNotifier {
         Navigator.pushNamed(context, '/aboutUs');
         break;
       case "Contact Us":
+        Navigator.pushNamed(context, '/contactUs');
         break;
       case "Affiliate Program":
         Navigator.pushNamed(context, '/affiliateProgram');
