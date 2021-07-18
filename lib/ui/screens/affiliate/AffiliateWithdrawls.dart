@@ -55,12 +55,12 @@ class _AffiliateWithdrawlsState extends State<AffiliateWithdrawls> {
                             ),
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 20,
                           ),
                           Container(
                             alignment: Alignment.center,
                             child: SvgPicture.asset(
-                              "assets/images/affiliate-links.svg",
+                              "assets/images/affiliate-withdrawl.svg",
                               height: 100,
                             ),
                           ),

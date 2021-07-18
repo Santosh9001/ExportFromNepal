@@ -59,7 +59,7 @@ class _AffiliateTransactionState extends State<AffiliateTransactions> {
                           Container(
                             alignment: Alignment.center,
                             child: SvgPicture.asset(
-                              "assets/images/affiliate-links.svg",
+                              "assets/images/aff-trans.svg",
                               height: 160,
                             ),
                           ),

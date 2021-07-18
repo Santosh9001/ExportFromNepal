@@ -60,7 +60,7 @@ class _AffiliateLinksState extends State<AffiliateLinks> {
                             alignment: Alignment.center,
                             child: SvgPicture.asset(
                               "assets/images/affiliate-links.svg",
-                              height: 160,
+                              height: 150,
                             ),
                           ),
                           SizedBox(

@@ -67,8 +67,13 @@ class AffiliateDashBoard extends StatelessWidget {
                               "Affiliate Group",
                               style: kTextStyleSmallPrimary,
                             ),
-                            SizedBox(height: 5,),
-                            SvgPicture.asset("assets/images/promotions.svg",height: 45,),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            SvgPicture.asset(
+                              "assets/images/promotions.svg",
+                              height: 45,
+                            ),
                             Text(
                               "Promotion",
                               style: kTextStyleLargeBlue,
@@ -91,8 +96,13 @@ class AffiliateDashBoard extends StatelessWidget {
                             "Commission",
                             style: kTextStyleSmallPrimary,
                           ),
-                          SizedBox(height: 5,),
-                          SvgPicture.asset("assets/images/commission.svg",height: 45,),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          SvgPicture.asset(
+                            "assets/images/commission.svg",
+                            height: 45,
+                          ),
                           Text(
                             "15%",
                             style: kTextStyleLargeBlue,
@@ -124,7 +134,10 @@ class AffiliateDashBoard extends StatelessWidget {
                         padding: EdgeInsets.all(10),
                         child: Column(
                           children: [
-                           SvgPicture.asset("assets/images/links.svg",height: 45,),
+                            SvgPicture.asset(
+                              "assets/images/links.svg",
+                              height: 45,
+                            ),
                           ],
                         ),
                       ),
@@ -152,7 +165,10 @@ class AffiliateDashBoard extends StatelessWidget {
                         padding: EdgeInsets.all(10),
                         child: Column(
                           children: [
-                            SvgPicture.asset("assets/images/transactions.svg",height: 45,),
+                            SvgPicture.asset(
+                              "assets/images/transactions.svg",
+                              height: 45,
+                            ),
                           ],
                         ),
                       ),
@@ -180,7 +196,10 @@ class AffiliateDashBoard extends StatelessWidget {
                         padding: EdgeInsets.all(10),
                         child: Column(
                           children: [
-                            SvgPicture.asset("assets/images/withdrawl.svg",height: 45,),
+                            SvgPicture.asset(
+                              "assets/images/withdrawl.svg",
+                              height: 45,
+                            ),
                           ],
                         ),
                       ),
@@ -198,7 +217,9 @@ class AffiliateDashBoard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/affiliationSettings');
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -206,7 +227,10 @@ class AffiliateDashBoard extends StatelessWidget {
                         padding: EdgeInsets.all(10),
                         child: Column(
                           children: [
-                            SvgPicture.asset("assets/images/settings.svg",height: 45,),
+                            SvgPicture.asset(
+                              "assets/images/settings.svg",
+                              height: 45,
+                            ),
                           ],
                         ),
                       ),
