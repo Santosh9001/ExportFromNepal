@@ -40,8 +40,8 @@ class AffiliateDashBoard extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 10),
+            Container(
+              alignment: Alignment.center,
               child: SvgPicture.asset(
                 "assets/images/affiliation.svg",
                 height: 200,
@@ -67,11 +67,8 @@ class AffiliateDashBoard extends StatelessWidget {
                               "Affiliate Group",
                               style: kTextStyleSmallPrimary,
                             ),
-                            Icon(
-                              Icons.campaign_rounded,
-                              size: 50,
-                              color: kColorPrimary,
-                            ),
+                            SizedBox(height: 5,),
+                            SvgPicture.asset("assets/images/promotions.svg",height: 45,),
                             Text(
                               "Promotion",
                               style: kTextStyleLargeBlue,
@@ -94,11 +91,8 @@ class AffiliateDashBoard extends StatelessWidget {
                             "Commission",
                             style: kTextStyleSmallPrimary,
                           ),
-                          Icon(
-                            Icons.money,
-                            size: 50,
-                            color: kColorPrimary,
-                          ),
+                          SizedBox(height: 5,),
+                          SvgPicture.asset("assets/images/commission.svg",height: 45,),
                           Text(
                             "15%",
                             style: kTextStyleLargeBlue,
@@ -130,11 +124,7 @@ class AffiliateDashBoard extends StatelessWidget {
                         padding: EdgeInsets.all(10),
                         child: Column(
                           children: [
-                            Icon(
-                              Icons.money,
-                              size: 50,
-                              color: kColorPrimary,
-                            ),
+                           SvgPicture.asset("assets/images/links.svg",height: 45,),
                           ],
                         ),
                       ),
@@ -162,11 +152,7 @@ class AffiliateDashBoard extends StatelessWidget {
                         padding: EdgeInsets.all(10),
                         child: Column(
                           children: [
-                            Icon(
-                              Icons.money,
-                              size: 50,
-                              color: kColorPrimary,
-                            ),
+                            SvgPicture.asset("assets/images/transactions.svg",height: 45,),
                           ],
                         ),
                       ),
@@ -194,11 +180,7 @@ class AffiliateDashBoard extends StatelessWidget {
                         padding: EdgeInsets.all(10),
                         child: Column(
                           children: [
-                            Icon(
-                              Icons.money,
-                              size: 50,
-                              color: kColorPrimary,
-                            ),
+                            SvgPicture.asset("assets/images/withdrawl.svg",height: 45,),
                           ],
                         ),
                       ),
@@ -224,11 +206,7 @@ class AffiliateDashBoard extends StatelessWidget {
                         padding: EdgeInsets.all(10),
                         child: Column(
                           children: [
-                            Icon(
-                              Icons.money,
-                              size: 50,
-                              color: kColorPrimary,
-                            ),
+                            SvgPicture.asset("assets/images/settings.svg",height: 45,),
                           ],
                         ),
                       ),
