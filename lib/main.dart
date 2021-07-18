@@ -3,7 +3,10 @@ import 'package:export_nepal/provider/LoginTokenProvider.dart';
 import 'package:export_nepal/ui/screens/DashboardUI.dart';
 import 'package:export_nepal/ui/screens/SignupUI.dart';
 import 'package:export_nepal/ui/screens/affiliate/AffiliateDashBoard.dart';
+import 'package:export_nepal/ui/screens/affiliate/AffiliateLinks.dart';
+import 'package:export_nepal/ui/screens/affiliate/AffiliateTransactions.dart';
 import 'package:export_nepal/ui/screens/affiliate/AffiliateUI.dart';
+import 'package:export_nepal/ui/screens/affiliate/AffiliateWithdrawls.dart';
 import 'package:export_nepal/ui/screens/affiliate/JoinAffiliate.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressBookUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressDetailsUI.dart';
@@ -73,6 +76,9 @@ class MainApp extends StatelessWidget {
         '/affiliateProgram': (context) => AffiliateUI(),
         '/joinAffiliate': (context) => JoinAffiliate(),
         '/affiliateDashboard': (context) => AffiliateDashBoard(),
+        '/affiliateLinks': (context) => AffiliateLinks(),
+        '/affiliateTransactions': (context) => AffiliateTransactions(),
+        '/affiliateWithdrawls': (context) => AffiliateWithdrawls(),
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),

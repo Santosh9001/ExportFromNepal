@@ -120,7 +120,9 @@ class AffiliateDashBoard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/affiliateLinks');
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -137,7 +139,9 @@ class AffiliateDashBoard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 5,),
+                    SizedBox(
+                      height: 5,
+                    ),
                     Text(
                       "Links",
                       style: kTextStyleSmallPrimary,
@@ -148,7 +152,9 @@ class AffiliateDashBoard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/affiliateTransactions');
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -165,7 +171,9 @@ class AffiliateDashBoard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 5,),
+                    SizedBox(
+                      height: 5,
+                    ),
                     Text(
                       "Transactions",
                       style: kTextStyleSmallPrimary,
@@ -176,7 +184,9 @@ class AffiliateDashBoard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/affiliateWithdrawls');
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -193,7 +203,9 @@ class AffiliateDashBoard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 5,),
+                    SizedBox(
+                      height: 5,
+                    ),
                     Text(
                       "Withdrawl",
                       style: kTextStyleSmallPrimary,
@@ -221,7 +233,9 @@ class AffiliateDashBoard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 5,),
+                    SizedBox(
+                      height: 5,
+                    ),
                     Text(
                       "Settings",
                       style: kTextStyleSmallPrimary,

@@ -273,18 +273,19 @@ class _JoinAffiliateState extends State<JoinAffiliate> {
                                   width: 10,
                                 ),
                                 ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: kColorPrimary),
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, '/affiliateDashboard');
-                                    },
-                                    child: Text(
-                                      "Save",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    )),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: kColorPrimary),
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, '/affiliateDashboard');
+                                  },
+                                  child: Text(
+                                    "Save",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
