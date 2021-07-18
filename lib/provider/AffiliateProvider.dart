@@ -42,13 +42,11 @@ class AffiliateProvider extends ChangeNotifier {
 
   void setChangeEmail() {
     this._changeEmail = !_changeEmail;
-    if (this._changeEmail) this._changePass = false;
     notifyListeners();
   }
 
   void setChangePass() {
     this._changePass = !_changePass;
-    if (this._changePass) this._changeEmail = false;
     notifyListeners();
   }
 
@@ -57,61 +55,39 @@ class AffiliateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  getEmailChangeWidget() {
+  getChangeEmailPassword() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Change Email *",
-          style: kTextStyleSmall,
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        TextField(
-          decoration: new InputDecoration(
-            isDense: true,
-            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            focusedBorder: OutlineInputBorder(),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: kSecondaryTextColor, width: 1.0),
+        isChangeEmail?  Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Change Email *",
+              style: kTextStyleSmall,
             ),
-          ),
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        Text(
-          "Change Password *",
-          style: kTextStyleSmall,
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        TextField(
-          obscureText: _obscureText,
-          decoration: new InputDecoration(
-            isDense: true,
-            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            focusedBorder: OutlineInputBorder(),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: kSecondaryTextColor, width: 1.0),
+            SizedBox(
+              height: 5,
             ),
-          ),
-        ),
-        SizedBox(
-          height: 15,
-        ),
-      ],
-    );
-  }
-
-  getChangePassword() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+            TextField(
+              decoration: new InputDecoration(
+                isDense: true,
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                focusedBorder: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide:
+                      BorderSide(color: kSecondaryTextColor, width: 1.0),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            )
+          ],
+        ) : SizedBox(height: 0,),
         Text(
           "Current Password *",
           style: kTextStyleSmall,
@@ -131,9 +107,13 @@ class AffiliateProvider extends ChangeNotifier {
           ),
         ),
         SizedBox(
-          height: 5,
+          height: 10,
         ),
-        Text(
+        isChangePass ? Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+          Text(
           "New Password *",
           style: kTextStyleSmall,
         ),
@@ -151,7 +131,8 @@ class AffiliateProvider extends ChangeNotifier {
             ),
           ),
         ),
-        SizedBox(height: 15),
+        SizedBox(height: 15)
+        ],) : SizedBox(height: 0,),
       ],
     );
   }
@@ -171,7 +152,7 @@ class AffiliateProvider extends ChangeNotifier {
             style: kTextStyleSmallPrimary,
           ),
           SizedBox(height: 10),
-          checkEmailOrPwd ? getEmailChangeWidget() : getChangePassword(),
+          getChangeEmailPassword(),
         ],
       );
     else
