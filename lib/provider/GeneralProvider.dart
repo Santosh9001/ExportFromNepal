@@ -113,8 +113,8 @@ class GeneralProvider extends ChangeNotifier {
               },
               child: Container(
                 padding: EdgeInsets.all(5),
-                width: 50,
-                height: 50,
+                width: 40,
+                height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                   color:
