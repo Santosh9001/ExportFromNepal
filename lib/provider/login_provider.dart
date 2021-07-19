@@ -1,11 +1,11 @@
 import 'package:export_nepal/model/services/APICalls.dart';
 import 'package:flutter/cupertino.dart';
 
-class LoginTokenProvider extends ChangeNotifier{
+class LoginProvider extends ChangeNotifier {
   bool loading = false;
   String? loginToken;
 
-  fetchUserToken(context,String username,String password) async {
+  fetchUserToken(context, String username, String password) async {
     var api = APICalls();
     loading = true;
     print(username);

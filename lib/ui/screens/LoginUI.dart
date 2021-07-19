@@ -1,4 +1,4 @@
-import 'package:export_nepal/provider/LoginTokenProvider.dart';
+import 'package:export_nepal/provider/login_provider.dart';
 import 'package:export_nepal/ui/screens/ForgotPasswordUI.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:export_nepal/utils/validator.dart';
@@ -39,7 +39,7 @@ class _LoginUIState extends State<LoginUI> {
 
   @override
   Widget build(BuildContext context) {
-    final _loginProvider = Provider.of<LoginTokenProvider>(context);
+    final _loginProvider = Provider.of<LoginProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -155,12 +155,12 @@ class _LoginUIState extends State<LoginUI> {
                               text: "Log In",
                               onPress: () {
                                 // if (_formKey.currentState!.validate()) {
-                                  Navigator.pushNamed(context, '/dashboard');
+                                Navigator.pushNamed(context, '/dashboard');
 
-                                  // _loginProvider.fetchUserToken(
-                                  //     context,
-                                  //     _emailController.text,
-                                  //     _passwordController.text)!;
+                                // _loginProvider.fetchUserToken(
+                                //     context,
+                                //     _emailController.text,
+                                //     _passwordController.text)!;
                                 // }
                               },
                               color: kColorPrimary,

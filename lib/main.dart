@@ -1,5 +1,5 @@
-import 'package:export_nepal/provider/EmailValidProvider.dart';
-import 'package:export_nepal/provider/LoginTokenProvider.dart';
+import 'package:export_nepal/provider/registration_provider.dart';
+import 'package:export_nepal/provider/login_provider.dart';
 import 'package:export_nepal/ui/screens/DashboardUI.dart';
 import 'package:export_nepal/ui/screens/SignupUI.dart';
 import 'package:export_nepal/ui/screens/affiliate/AffiliateDashBoard.dart';
@@ -47,8 +47,7 @@ void main() async {
 List<SingleChildWidget> providers = [
   ChangeNotifierProvider<RegistrationProvider>(
       create: (_) => RegistrationProvider()),
-  ChangeNotifierProvider<LoginTokenProvider>(
-      create: (_) => LoginTokenProvider()),
+  ChangeNotifierProvider<LoginProvider>(create: (_) => LoginProvider()),
 ];
 
 class MainApp extends StatelessWidget {
