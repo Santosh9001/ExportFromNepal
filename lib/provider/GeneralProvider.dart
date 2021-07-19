@@ -93,12 +93,68 @@ class GeneralProvider extends ChangeNotifier {
   }
 
   int _selectedIndex = 0;
+  String _categoryName = 'General';
+  int _selectedItem = 0;
 
   int get getSelectedIndex => _selectedIndex;
+  String get getSelectedCategory => _categoryName;
+  int get getSelectedItem => _selectedItem;
+
+  void setSelectedItemIndex(index) {
+    _selectedItem = index;
+    notifyListeners();
+  }
 
   void setSelectedIndex(index) {
     _selectedIndex = index;
     notifyListeners();
+  }
+
+  void setSelectedCategoryname(name) {
+    _categoryName = name;
+    notifyListeners();
+  }
+
+  faqCategoryItems() {
+    return new List<Widget>.generate(5, (int index) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          InkWell(
+            onTap: () {
+              setSelectedItemIndex(index);
+            },
+            child: Text(
+              "This is just a loreium ipsium",
+              style: kTextStyleBlackBold,
+            ),
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          getSelectedItem == index
+              ? Text(
+                  "This is just a loreium ipsium description",
+                  style: kTextStyleSmallPrimary,
+                )
+              : Container(),
+          getSelectedItem == index
+              ? SizedBox(
+                  height: 8,
+                )
+              : Container(),
+          Container(
+            height: 2,
+            color: kColorPrimary,
+            width: 50,
+          ),
+          SizedBox(
+            height: 8,
+          ),
+        ],
+      );
+    });
   }
 
   faqCategories() {
@@ -109,7 +165,9 @@ class GeneralProvider extends ChangeNotifier {
             margin: EdgeInsets.zero,
             child: InkWell(
               onTap: () {
+                setSelectedItemIndex(0);
                 setSelectedIndex(index);
+                setSelectedCategoryname(faqLists[index].name);
               },
               child: Container(
                 padding: EdgeInsets.all(5),

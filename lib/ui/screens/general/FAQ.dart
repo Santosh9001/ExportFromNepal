@@ -57,8 +57,14 @@ class _FaqState extends State<FAQ> {
                           children: provider.faqCategories(),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
+                        Padding(padding: EdgeInsets.only(left: 10),
+                        child: Text(
+                          provider.getSelectedCategory,
+                          style: kTextStyleBlueBoldMedium,
+                        ),),
+                        SizedBox(height: 15),
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(left: 10, right: 10),
@@ -68,10 +74,9 @@ class _FaqState extends State<FAQ> {
                               color: Colors.white,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10))),
-                          child: Text(
-                            provider.getAboutUs,
-                            style: kTextStyleMediumPrimary,
-                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: provider.faqCategoryItems(),),
                         ),
                       ],
                     ),
