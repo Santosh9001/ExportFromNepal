@@ -2,6 +2,13 @@ import 'package:export_nepal/provider/registration_provider.dart';
 import 'package:export_nepal/provider/login_provider.dart';
 import 'package:export_nepal/ui/screens/DashboardUI.dart';
 import 'package:export_nepal/ui/screens/SignupUI.dart';
+import 'package:export_nepal/ui/screens/affiliate/AffiliateDashBoard.dart';
+import 'package:export_nepal/ui/screens/affiliate/AffiliateLinks.dart';
+import 'package:export_nepal/ui/screens/affiliate/AffiliateSettings.dart';
+import 'package:export_nepal/ui/screens/affiliate/AffiliateTransactions.dart';
+import 'package:export_nepal/ui/screens/affiliate/AffiliateUI.dart';
+import 'package:export_nepal/ui/screens/affiliate/AffiliateWithdrawls.dart';
+import 'package:export_nepal/ui/screens/affiliate/JoinAffiliate.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressBookUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressDetailsUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/checkout/OrerConfirmUI.dart';
@@ -9,6 +16,14 @@ import 'package:export_nepal/ui/screens/dashboard/account/MyOrderUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyWishListUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/checkout/ShippingEstimate.dart';
 import 'package:export_nepal/ui/screens/dashboard/home/components/HomeMenuDialog.dart';
+import 'package:export_nepal/ui/screens/general/AboutUs.dart';
+import 'package:export_nepal/ui/screens/general/Blogs.dart';
+import 'package:export_nepal/ui/screens/general/ContactUs.dart';
+import 'package:export_nepal/ui/screens/general/FAQ.dart';
+import 'package:export_nepal/ui/screens/general/Manuals.dart';
+import 'package:export_nepal/ui/screens/general/ReturnPolicy.dart';
+import 'package:export_nepal/ui/screens/general/ShippingPolicy.dart';
+import 'package:export_nepal/ui/screens/general/TermsOfUse.dart';
 import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -52,8 +67,23 @@ class MainApp extends StatelessWidget {
         '/shippingEstimate': (context) => ShippingEstimate(),
         '/orderConfirm': (context) => OrderConfirmUI(),
         '/wishList': (context) => MyWishListUI(),
+        '/termsOfUse': (context) => TermsOfUse(),
+        '/returnPolicy': (context) => ReturnPolicy(),
+        '/shippingPolicy': (context) => ShippingPolicy(),
+        '/aboutUs': (context) => AboutUs(),
         '/addressBook': (context) => AddressBook(),
         '/addressDetails': (context) => AddressDetailUI(),
+        '/blogs': (context) => Blogs(),
+        '/manuals': (context) => Manuals(),
+        '/affiliateProgram': (context) => AffiliateUI(),
+        '/joinAffiliate': (context) => JoinAffiliate(),
+        '/affiliateDashboard': (context) => AffiliateDashBoard(),
+        '/affiliateLinks': (context) => AffiliateLinks(),
+        '/affiliateTransactions': (context) => AffiliateTransactions(),
+        '/affiliateWithdrawls': (context) => AffiliateWithdrawls(),
+        '/affiliationSettings': (context) => AffiliateSettings(),
+        '/contactUs': (context) => ContactUs(),
+        '/faq': (context) => FAQ(),
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),

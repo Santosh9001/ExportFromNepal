@@ -1,16 +1,7 @@
-import 'package:export_nepal/model/core/aboutus.dart';
-import 'package:export_nepal/model/core/return_policy.dart';
-import 'package:export_nepal/model/core/shipping_policy.dart';
-import 'package:export_nepal/model/core/terms_of_use.dart';
-import 'package:export_nepal/model/services/APICalls.dart';
 import 'package:flutter/cupertino.dart';
 
 class HomeDataProvider extends ChangeNotifier {
   bool loading = false;
-  Aboutus? aboutUs;
-  Terms_of_use? termsOfUse;
-  Shipping_policy? shippingPolicy;
-  Return_policy? returnPolicy;
 
   List<String> menuList = [
     "About Us",
@@ -24,67 +15,35 @@ class HomeDataProvider extends ChangeNotifier {
     "Manual"
   ];
 
-  void fetchDataAndNavigate(title) {
+  void fetchDataAndNavigate(title, context) {
     switch (title) {
       case "About Us":
-        invokeAboutUs();
+        Navigator.pushNamed(context, '/aboutUs');
         break;
       case "Contact Us":
+        Navigator.pushNamed(context, '/contactUs');
         break;
       case "Affiliate Program":
+        Navigator.pushNamed(context, '/affiliateProgram');
         break;
       case "Terms of Use":
-        invokeTermsOfUse();
+        Navigator.pushNamed(context, '/termsOfUse');
         break;
       case "Shipping Policy":
+        Navigator.pushNamed(context, '/shippingPolicy');
         break;
       case "Return Policy":
+        Navigator.pushNamed(context, '/returnPolicy');
         break;
       case "FAQs":
+        Navigator.pushNamed(context, '/faq');
         break;
       case "Manual":
+        Navigator.pushNamed(context, '/manuals');
+        break;
+      case "Blog":
+        Navigator.pushNamed(context, '/blogs');
         break;
     }
-  }
-
-  void invokeAboutUs() async {
-    print("about us");
-    var api = APICalls();
-    loading = true;
-    aboutUs = await api.aboutUs();
-    print(aboutUs.toString());
-    loading = false;
-
-    notifyListeners();
-  }
-
-  void invokeTermsOfUse() async {
-    var api = APICalls();
-    loading = true;
-    termsOfUse = await api.termsOfUse();
-    print(termsOfUse.toString());
-    loading = false;
-
-    notifyListeners();
-  }
-
-  void invokeShippingPolicy() async {
-    var api = APICalls();
-    loading = true;
-    shippingPolicy = await api.shippingPolicy();
-    print(shippingPolicy.toString());
-    loading = false;
-
-    notifyListeners();
-  }
-
-  void invokeReturnPolicy() async {
-    var api = APICalls();
-    loading = true;
-    returnPolicy = await api.returnPolicy();
-    print(returnPolicy.toString());
-    loading = false;
-
-    notifyListeners();
   }
 }

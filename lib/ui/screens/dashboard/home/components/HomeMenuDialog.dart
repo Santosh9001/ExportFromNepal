@@ -88,7 +88,7 @@ class HomeDialogItems extends StatelessWidget {
               builder: (context, provider, child) {
                 return InkWell(
                   onTap: (){
-                    provider.fetchDataAndNavigate(title);
+                    provider.fetchDataAndNavigate(title,context);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
