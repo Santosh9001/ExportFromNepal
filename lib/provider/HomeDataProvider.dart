@@ -36,6 +36,7 @@ class HomeDataProvider extends ChangeNotifier {
         Navigator.pushNamed(context, '/returnPolicy');
         break;
       case "FAQs":
+        Navigator.pushNamed(context, '/faq');
         break;
       case "Manual":
         Navigator.pushNamed(context, '/manuals');

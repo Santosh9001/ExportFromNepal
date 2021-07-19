@@ -1,9 +1,12 @@
 import 'package:export_nepal/model/core/aboutus.dart';
+import 'package:export_nepal/model/core/faq.dart';
 import 'package:export_nepal/model/core/return_policy.dart';
 import 'package:export_nepal/model/core/shipping_policy.dart';
 import 'package:export_nepal/model/core/terms_of_use.dart';
 import 'package:export_nepal/model/services/APICalls.dart';
+import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class GeneralProvider extends ChangeNotifier {
   bool loading = false;
@@ -61,5 +64,82 @@ class GeneralProvider extends ChangeNotifier {
     loading = false;
 
     notifyListeners();
+  }
+
+  List<String> icons = [
+    'assets/images/faq-general.svg',
+    'assets/images/faq-supplier.svg',
+    'assets/images/faq-account.svg',
+    'assets/images/faq-product.svg',
+    'assets/images/faq-order.svg',
+    'assets/images/faq-contact.svg'
+  ];
+
+  List<String> names = [
+    'General',
+    'Supplier',
+    'Account',
+    'Product',
+    'Order',
+    'Contact'
+  ];
+  late List<Faq> faqLists;
+  void getFaqCategories() {
+    faqLists = [];
+    for (int i = 0; i < names.length; i++) {
+      var faq = Faq(icons[i], names[i]);
+      faqLists.add(faq);
+    }
+  }
+
+  int _selectedIndex = 0;
+
+  int get getSelectedIndex => _selectedIndex;
+
+  void setSelectedIndex(index) {
+    _selectedIndex = index;
+    notifyListeners();
+  }
+
+  faqCategories() {
+    return new List<Widget>.generate(faqLists.length, (int index) {
+      return Column(
+        children: [
+          Card(
+            margin: EdgeInsets.zero,
+            child: InkWell(
+              onTap: () {
+                setSelectedIndex(index);
+              },
+              child: Container(
+                padding: EdgeInsets.all(5),
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  color:
+                      getSelectedIndex == index ? kColorPrimary : Colors.white,
+                ),
+                child: SvgPicture.asset(
+                  faqLists[index].icon!,
+                  color:
+                      getSelectedIndex == index ? Colors.white : kColorPrimary,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 4,
+          ),
+          Text(
+            faqLists[index].name!,
+            style: TextStyle(
+                fontSize: 10.0,
+                color: kPrimaryTextColor,
+                fontWeight: FontWeight.normal),
+          ),
+        ],
+      );
+    });
   }
 }

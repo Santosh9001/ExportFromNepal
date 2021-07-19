@@ -19,6 +19,7 @@ import 'package:export_nepal/ui/screens/dashboard/home/components/HomeMenuDialog
 import 'package:export_nepal/ui/screens/general/AboutUs.dart';
 import 'package:export_nepal/ui/screens/general/Blogs.dart';
 import 'package:export_nepal/ui/screens/general/ContactUs.dart';
+import 'package:export_nepal/ui/screens/general/FAQ.dart';
 import 'package:export_nepal/ui/screens/general/Manuals.dart';
 import 'package:export_nepal/ui/screens/general/ReturnPolicy.dart';
 import 'package:export_nepal/ui/screens/general/ShippingPolicy.dart';
@@ -83,6 +84,7 @@ class MainApp extends StatelessWidget {
         '/affiliateWithdrawls': (context) => AffiliateWithdrawls(),
         '/affiliationSettings': (context) => AffiliateSettings(),
         '/contactUs': (context) => ContactUs(),
+        '/faq': (context) => FAQ(),
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),
