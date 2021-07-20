@@ -43,7 +43,7 @@ class _LoginUIState extends State<LoginUI> {
     String? token = await _loginProvider.loginUser(
         _emailController.text, _passwordController.text);
     if (token != null) {
-      PreferenceUtils.setString(PreferenceUtils.TOKEN, token);
+      PreferenceUtils.putString(PreferenceUtils.TOKEN, token);
       String savedToken = PreferenceUtils.getString(PreferenceUtils.TOKEN);
       print(savedToken);
       Navigator.pushNamed(context, '/dashboard');
