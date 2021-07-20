@@ -53,27 +53,34 @@ class _TermsOfUseState extends State<TermsOfUse> {
                         SizedBox(
                           height: 20,
                         ),
-                        Padding(padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Terms of Use",
-                          style: kTextStyleBlueBoldMedium,
-                        ),),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Text(
+                            "Terms of Use",
+                            style: kTextStyleBlueBoldMedium,
+                          ),
+                        ),
                         SizedBox(
                           height: 10,
                         ),
                         Expanded(
-                          child: Container(
-                            width: double.infinity,
-                            margin: EdgeInsets.only(left: 10,right: 10),
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                color: Colors.white,
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                            child: HtmlWidget(provider.getTermsOfUse,textStyle: kTextStyleSmallPrimary,),
+                          child: SingleChildScrollView(
+                            child: Container(
+                              width: double.infinity,
+                              margin: EdgeInsets.only(left: 10, right: 10),
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  color: Colors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              child: HtmlWidget(
+                                provider.getTermsOfUse,
+                                textStyle: kTextStyleSmallPrimary,
+                              ),
+                            ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   );

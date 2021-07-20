@@ -62,17 +62,22 @@ class _AboutUsState extends State<AboutUs> {
                           height: 10,
                         ),
                         Expanded(
-                          child: Container(
-                            width: double.infinity,
-                            margin: EdgeInsets.only(left: 10,right: 10),
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                color: Colors.white,
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                            child: HtmlWidget(provider.getAboutUs,textStyle: kTextStyleSmallPrimary,),
-                          )
+                          child: SingleChildScrollView(
+                            child: Container(
+                              width: double.infinity,
+                              margin: EdgeInsets.only(left: 10, right: 10),
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  color: Colors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              child: HtmlWidget(
+                                provider.getAboutUs,
+                                textStyle: kTextStyleSmallPrimary,
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
