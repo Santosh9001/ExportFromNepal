@@ -1,16 +1,27 @@
 import 'package:export_nepal/model/services/APICalls.dart';
+import 'package:export_nepal/repositories/RegistrationRepository.dart';
 import 'package:flutter/cupertino.dart';
 
 class LoginProvider extends ChangeNotifier {
   bool loading = false;
   String? loginToken;
+  RegistrationRepository? _registrationRepository;
 
-  fetchUserToken(context, String username, String password) async {
-    var api = APICalls();
-    loading = true;
-    print(username);
-    loginToken = (await api.loginUser(context, username, password));
-    print(loginToken);
-    loading = false;
+  LoginProvider() {
+    _registrationRepository = RegistrationRepository();
+  }
+
+  Future<String?> loginUser(String email, String password) async {
+    try {
+      if (_registrationRepository != null) {
+        String response =
+            await _registrationRepository!.loginUser(email, password);
+        return response;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
   }
 }

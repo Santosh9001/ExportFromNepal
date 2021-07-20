@@ -1,6 +1,7 @@
 import 'package:export_nepal/provider/login_provider.dart';
 import 'package:export_nepal/ui/screens/ForgotPasswordUI.dart';
 import 'package:export_nepal/utils/constants.dart';
+import 'package:export_nepal/utils/preference_utils.dart';
 import 'package:export_nepal/utils/validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -36,6 +37,18 @@ class _LoginUIState extends State<LoginUI> {
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+
+  void login() async {
+    final _loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    String? token = await _loginProvider.loginUser(
+        _emailController.text, _passwordController.text);
+    if (token != null) {
+      PreferenceUtils.setString(PreferenceUtils.TOKEN, token);
+      String savedToken = PreferenceUtils.getString(PreferenceUtils.TOKEN);
+      print(savedToken);
+      Navigator.pushNamed(context, '/dashboard');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,14 +167,15 @@ class _LoginUIState extends State<LoginUI> {
                             Button(
                               text: "Log In",
                               onPress: () {
-                                // if (_formKey.currentState!.validate()) {
-                                Navigator.pushNamed(context, '/dashboard');
+                                if (_formKey.currentState!.validate()) {
+                                  login();
+                                  // Navigator.pushNamed(context, '/dashboard');
 
-                                // _loginProvider.fetchUserToken(
-                                //     context,
-                                //     _emailController.text,
-                                //     _passwordController.text)!;
-                                // }
+                                  // _loginProvider.fetchUserToken(
+                                  //     context,
+                                  //     _emailController.text,
+                                  //     _passwordController.text)!;
+                                }
                               },
                               color: kColorPrimary,
                             ),

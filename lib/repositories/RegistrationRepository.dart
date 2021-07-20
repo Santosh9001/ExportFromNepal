@@ -29,4 +29,12 @@ class RegistrationRepository {
     print("Response - $response");
     return Register.fromJson(response);
   }
+
+  Future<String> loginUser(String email, String password) async {
+    Map<String, dynamic> data = {"username": "$email", "password": "$password"};
+    final response = await HttpClient.instance
+        .postData(APIPathHelper.getValue(APIPath.login), data);
+    print("Response - $response");
+    return response;
+  }
 }
