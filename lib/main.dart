@@ -25,6 +25,7 @@ import 'package:export_nepal/ui/screens/general/ReturnPolicy.dart';
 import 'package:export_nepal/ui/screens/general/ShippingPolicy.dart';
 import 'package:export_nepal/ui/screens/general/TermsOfUse.dart';
 import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
+import 'package:export_nepal/ui/screens/search/SearchUI.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -84,6 +85,7 @@ class MainApp extends StatelessWidget {
         '/affiliationSettings': (context) => AffiliateSettings(),
         '/contactUs': (context) => ContactUs(),
         '/faq': (context) => FAQ(),
+        '/searchUI': (context) => SearchUI(),
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),
