@@ -28,6 +28,7 @@ import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
 import 'package:export_nepal/ui/screens/product/ProductList.dart';
 import 'package:export_nepal/ui/screens/search/SearchUI.dart';
 import 'package:export_nepal/utils/constants.dart';
+import 'package:export_nepal/utils/preference_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +39,7 @@ void main() async {
   // runApp(MainApp());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  PreferenceUtils.init();
   runApp(
     MultiProvider(
       providers: providers,

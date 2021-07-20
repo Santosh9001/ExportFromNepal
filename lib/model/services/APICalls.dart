@@ -11,6 +11,7 @@ import 'package:export_nepal/model/core/return_policy.dart';
 import 'package:export_nepal/model/core/shipping_policy.dart';
 import 'package:export_nepal/model/core/team.dart';
 import 'package:export_nepal/model/core/terms_of_use.dart';
+import 'package:export_nepal/utils/preference_utils.dart';
 import 'package:http/http.dart' as http;
 
 class APICalls {
@@ -87,13 +88,13 @@ class APICalls {
     return result;
   }
 
-  Future<String?> loginUser(context,String email, String pass) async{
+  Future<String?> loginUser(context, String email, String pass) async {
     String? result;
     try {
       final url = Uri.parse(baseUrl + "integration/customer/token");
       Map<String, dynamic> data = {
-          "username": "$email",
-          "password": "$pass",
+        "username": "$email",
+        "password": "$pass",
       };
       var response = await http.post(url, body: jsonEncode(data));
       print(response.statusCode);
@@ -115,8 +116,10 @@ class APICalls {
   Future<Aboutus?> aboutUs() async {
     Aboutus? result;
     try {
-      final url = Uri.parse(baseUrl + "cmsPage/5");
-      var response = await http.get(url, headers: {"Authorization ": "Token"});
+      final url = Uri.parse(baseUrl + "cmsPage/5");      
+      var response = await http.get(url, headers: {
+        "Authorization ": PreferenceUtils.getString(PreferenceUtils.TOKEN)
+      });
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Aboutus.fromJson(response.body);
