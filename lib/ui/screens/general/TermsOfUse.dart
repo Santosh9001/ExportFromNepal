@@ -1,6 +1,7 @@
 import 'package:export_nepal/provider/GeneralProvider.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:provider/provider.dart';
 
 class TermsOfUse extends StatefulWidget {
@@ -60,17 +61,19 @@ class _TermsOfUseState extends State<TermsOfUse> {
                         SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          width: double.infinity,
-                          margin: EdgeInsets.only(left: 10,right: 10),
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          child: Text(provider.getTermsOfUse,style: kTextStyleMediumPrimary,),
-                        ),
+                        Expanded(
+                          child: Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.only(left: 10,right: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                color: Colors.white,
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                            child: HtmlWidget(provider.getTermsOfUse,textStyle: kTextStyleSmallPrimary,),
+                          ),
+                        )
                       ],
                     ),
                   );

@@ -44,6 +44,7 @@ dependencies:
   webview_flutter: ^2.0.10
   google_maps_flutter: ^2.0.6
   shared_preferences: ^2.0.6
+  flutter_widget_from_html: ^0.6.1
 dev_dependencies:
   flutter_native_splash: ^1.2.0
   flutter_test:
