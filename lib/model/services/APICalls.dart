@@ -116,9 +116,10 @@ class APICalls {
   Future<Aboutus?> aboutUs() async {
     Aboutus? result;
     try {
-      final url = Uri.parse(baseUrl + "cmsPage/5");      
+      print(PreferenceUtils.getString(PreferenceUtils.TOKEN));
+      final url = Uri.parse(baseUrl + "cmsPage/5");
       var response = await http.get(url, headers: {
-        "Authorization ": PreferenceUtils.getString(PreferenceUtils.TOKEN)
+        "Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)
       });
       print(response.statusCode);
       if (response.statusCode == 200) {
@@ -138,7 +139,7 @@ class APICalls {
     Manuals? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/59");
-      var response = await http.get(url, headers: {"Authorization ": "Token"});
+      var response = await http.get(url, headers: {"Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)});
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Manuals.fromJson(response.body);
@@ -157,7 +158,7 @@ class APICalls {
     Privacy_policy? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/48");
-      var response = await http.get(url, headers: {"Authorization ": "Token"});
+      var response = await http.get(url, headers: {"Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)});
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Privacy_policy.fromJson(response.body);
@@ -176,7 +177,7 @@ class APICalls {
     Shipping_policy? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/49");
-      var response = await http.get(url, headers: {"Authorization ": "Token"});
+      var response = await http.get(url, headers: {"Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)});
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Shipping_policy.fromJson(response.body);
@@ -195,7 +196,7 @@ class APICalls {
     Team? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/57");
-      var response = await http.get(url, headers: {"Authorization ": "Token"});
+      var response = await http.get(url, headers: {"Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)});
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Team.fromJson(response.body);
@@ -214,7 +215,7 @@ class APICalls {
     Terms_of_use? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/47");
-      var response = await http.get(url, headers: {"Authorization ": "Token"});
+      var response = await http.get(url, headers: {"Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)});
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Terms_of_use.fromJson(response.body);
@@ -233,7 +234,7 @@ class APICalls {
     Return_policy? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/52");
-      var response = await http.get(url, headers: {"Authorization ": "Token"});
+      var response = await http.get(url, headers: {"Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)});
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Return_policy.fromJson(response.body);
@@ -252,7 +253,7 @@ class APICalls {
     Payment_methods? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/53");
-      var response = await http.get(url, headers: {"Authorization ": "Token"});
+      var response = await http.get(url, headers: {"Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)});
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Payment_methods.fromJson(response.body);

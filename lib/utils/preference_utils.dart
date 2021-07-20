@@ -2,22 +2,33 @@ import 'dart:async' show Future;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferenceUtils {
-  static Future<SharedPreferences?> get _instance async => _prefsInstance;
-  static SharedPreferences? _prefsInstance;
+  static SharedPreferences? _prefs;
   static const TOKEN = "token";
-
-  // call this method from iniState() function of mainApp().
-  static Future<SharedPreferences?> init() async {
-    _prefsInstance = await _instance;
-    return _prefsInstance;
+  static init() async {
+    _prefs = await SharedPreferences.getInstance();
   }
 
-  static String getString(String key, [String? defValue]) {
-    return _prefsInstance?.getString(key) ?? defValue ?? "";
+  static putInteger(String key, int value) {
+    if (_prefs != null) _prefs!.setInt(key, value);
   }
 
-  static Future<bool> setString(String key, String value) async {
-    var prefs = await _instance;
-    return prefs?.setString(key, value) ?? Future.value(false);
+  static int getInteger(String key) {
+    return _prefs == null ? 0 : _prefs!.getInt(key) ?? 0;
+  }
+
+  static putString(String key, String value) {
+    if (_prefs != null) _prefs!.setString(key, value);
+  }
+
+  static String getString(String key) {
+    return _prefs == null ? 'DEFAULT_VALUE' : _prefs!.getString(key) ?? "";
+  }
+
+  static putBool(String key, bool value) {
+    if (_prefs != null) _prefs!.setBool(key, value);
+  }
+
+  static bool getBool(String key) {
+    return _prefs == null ? false : _prefs!.getBool(key) ?? false;
   }
 }
