@@ -177,7 +177,7 @@ class APICalls {
     Shipping_policy? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/49");
-      var response = await http.get(url, headers: {"Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)});
+      var response = await http.get(url, headers: {"Authorization": "Bearer zzimp56xrm0zuiu1f827qonutsojlwym"});
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Shipping_policy.fromJson(json.decode(response.body));
@@ -234,7 +234,7 @@ class APICalls {
     Return_policy? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/52");
-      var response = await http.get(url, headers: {"Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)});
+      var response = await http.get(url, headers: {"Authorization": "Bearer zzimp56xrm0zuiu1f827qonutsojlwym"});
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Return_policy.fromJson(json.decode(response.body));
