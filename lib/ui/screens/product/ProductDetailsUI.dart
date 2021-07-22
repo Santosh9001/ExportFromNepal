@@ -1098,7 +1098,7 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                           InkWell(
                                             onTap: () {},
                                             child: Text(
-                                              "Request Queue",
+                                              "Request Quote",
                                               style: TextStyle(fontSize: 16),
                                             ),
                                           ),

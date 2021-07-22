@@ -109,51 +109,66 @@ class _SignUpUIState extends State<SignUpUI> {
                     style: kTextStyleLarge,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 8.0),
-                  child: TextFormField(
-                    textInputAction: TextInputAction.next,
-                    controller: _fNameController,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(20.0),
-                      hintText: "First Name",
-                      suffixIcon: Icon(
-                        Feather.user,
-                        size: 20.0,
+                SizedBox(height: 16,),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 8.0),
+                        child: TextFormField(
+                          keyboardType: TextInputType.name,
+                          textInputAction: TextInputAction.next,
+                          controller: _fNameController,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(20.0),
+                            hintText: "First Name",
+                            suffixIcon: Icon(
+                              Feather.user,
+                              size: 20.0,
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your Full Name';
+                            }
+                            return null;
+                          },
+                        ),
                       ),
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your Full Name';
-                      }
-                      return null;
-                    },
-                  ),
+                    SizedBox(width: 5,),
+                    Expanded(
+                      flex: 5,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 8.0),
+                        child: TextFormField(
+                          keyboardType: TextInputType.name,
+                          textInputAction: TextInputAction.next,
+                          controller: _lNameController,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(20.0),
+                            hintText: "Last Name",
+                            suffixIcon: Icon(
+                              Feather.user,
+                              size: 20.0,
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your Full Name';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 8.0),
                   child: TextFormField(
-                    textInputAction: TextInputAction.next,
-                    controller: _lNameController,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(20.0),
-                      hintText: "Last Name",
-                      suffixIcon: Icon(
-                        Feather.user,
-                        size: 20.0,
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your Full Name';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 8.0),
-                  child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     controller: _emailController,
                     decoration: InputDecoration(

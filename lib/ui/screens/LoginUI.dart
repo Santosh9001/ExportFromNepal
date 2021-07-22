@@ -93,6 +93,7 @@ class _LoginUIState extends State<LoginUI> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 16, 0, 8.0),
                               child: TextFormField(
+                                keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
                                 controller: _emailController,
                                 decoration: InputDecoration(
@@ -314,6 +315,19 @@ class _LoginUIState extends State<LoginUI> {
                                   ),
                                 ),
                               ],
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/dashboard');
+                              },
+                              child: Text("Skip For Now",
+                                  style: TextStyle(
+                                      color: kColorPrimary,
+                                      fontSize: 20,
+                                      decoration: TextDecoration.underline)),
                             ),
                           ],
                         ),
