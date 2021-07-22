@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'ProductCard.dart';
 
-
 class HorizontalProductsList extends StatelessWidget {
   final String title;
-
 
   HorizontalProductsList(this.title);
 
@@ -21,10 +19,16 @@ class HorizontalProductsList extends StatelessWidget {
               this.title,
               style: kTextStyleBlueBoldMedium,
             ),
-            Text(
-              "Shop More",
-              style: kTextStyleRedBoldMedium,
-            )
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, '/productLists',
+                    arguments: {'name': title});
+              },
+              child: Text(
+                "Shop More",
+                style: kTextStyleRedBoldMedium,
+              ),
+            ),
           ],
         ),
         SizedBox(
@@ -42,5 +46,3 @@ class HorizontalProductsList extends StatelessWidget {
     );
   }
 }
-
-
