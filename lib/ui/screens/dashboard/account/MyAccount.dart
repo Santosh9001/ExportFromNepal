@@ -12,11 +12,22 @@ class MyAccount extends StatefulWidget {
 }
 
 class _MyAccountState extends State<MyAccount> {
-  final List<String> entries = <String>['My Orders', 'Downloadable Products'
-    , 'My Wish list', 'Address Book', 'Account Information', 'Stored Payment Methods'
-    , 'Product Reviews', 'Newsletter Subscriptions'
-    , 'Affiliates', 'Saved Cards', 'Supplier\'s Message'
-    , 'RMA', 'Requested Quotes', 'Logout'];
+  final List<String> entries = <String>[
+    'My Orders',
+    'Downloadable Products',
+    'My Wish list',
+    'Address Book',
+    'Account Information',
+    'Stored Payment Methods',
+    'Product Reviews',
+    'Newsletter Subscriptions',
+    'Affiliates',
+    'Saved Cards',
+    'Supplier\'s Message',
+    'RMA',
+    'Requested Quotes',
+    'Logout'
+  ];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,36 +58,50 @@ class _MyAccountState extends State<MyAccount> {
                 borderRadius: BorderRadius.all(Radius.circular(16.0)),
               ),
               child: ListView.separated(
-                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-                  itemCount: entries.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      onTap: (){
-                        if (index == 0){
-                          Navigator.pushNamed(context, '/myOrder');
-                        }else if (index == 1){
-
-                        }else if (index == 2){
-                          Navigator.pushNamed(context, '/wishList');
-                        }else if (index == 3){
-                          Navigator.pushNamed(context, '/addressBook');
-
-                        }
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(entries[index], style: kTextStyleRegularPrimary,),
-                            index == entries.length - 1 ? Icon(MaterialIcons.logout, color: kSecondaryTextColor, size: 16,) : Icon(AntDesign.right, color: kSecondaryTextColor, size: 16,),
-                          ],
-                        ),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                itemCount: entries.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      if (index == 0) {
+                        Navigator.pushNamed(context, '/myOrder');
+                      } else if (index == 1) {
+                      } else if (index == 2) {
+                        Navigator.pushNamed(context, '/wishList');
+                      } else if (index == 3) {
+                        Navigator.pushNamed(context, '/addressBook');
+                      } else if (index == 4) {
+                        Navigator.pushNamed(context, '/accountInformation');
+                      }
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            entries[index],
+                            style: kTextStyleRegularPrimary,
+                          ),
+                          index == entries.length - 1
+                              ? Icon(
+                                  MaterialIcons.logout,
+                                  color: kSecondaryTextColor,
+                                  size: 16,
+                                )
+                              : Icon(
+                                  AntDesign.right,
+                                  color: kSecondaryTextColor,
+                                  size: 16,
+                                ),
+                        ],
                       ),
-                    );
-                  },
-                separatorBuilder: (BuildContext context, int index) => const Divider(),
-
+                    ),
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
               ),
             ),
           ),

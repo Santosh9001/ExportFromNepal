@@ -19,6 +19,8 @@ const kTextStyleLarge = TextStyle(
 const kTextStyleLargeBlue = TextStyle(
     fontSize: 26.0, color: kColorPrimary, fontWeight: FontWeight.bold);
 
+const kTextStyleMediumBlue = TextStyle(
+    fontSize: 20.0, color: kColorPrimary, fontWeight: FontWeight.bold);
 const kTextStyleSmall = TextStyle(
     fontSize: 12.0, color: kSecondaryTextColor, fontWeight: FontWeight.normal);
 
@@ -39,7 +41,7 @@ const kTextStyleMediumPrimary = TextStyle(
 const kTextStyleBlueBold = TextStyle(
     fontSize: 13.0, color: kColorPrimary, fontWeight: FontWeight.bold);
 
-    const kTextStyleBlueSmall = TextStyle(
+const kTextStyleBlueSmall = TextStyle(
     fontSize: 13.0, color: kColorPrimary, fontWeight: FontWeight.normal);
 const kTextStyleLargeRed = TextStyle(
   fontSize: 20,
