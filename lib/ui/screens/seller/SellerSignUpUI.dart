@@ -1,5 +1,6 @@
 import 'package:export_nepal/provider/SellerProvider.dart';
 import 'package:export_nepal/ui/screens/seller/SellerSignup1.dart';
+import 'package:export_nepal/ui/screens/seller/SellerSignup2.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -82,7 +83,7 @@ class _SellerSignUpState extends State<SellerSignUpUI> {
                         controller: provider.pageController,
                         children: [
                           SellerSignup1(),
-                          Text("Hello"),
+                          SellerSignup2(),
                           Text("Hello"),
                           Text("Hello")
                         ],

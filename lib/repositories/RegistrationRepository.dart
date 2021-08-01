@@ -1,4 +1,6 @@
+import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/register.dart';
+import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_path.dart';
 import 'package:export_nepal/network_module/http_client.dart';
 
@@ -30,10 +32,11 @@ class RegistrationRepository {
     return Register.fromJson(response);
   }
 
-  Future<String> loginUser(String email, String password) async {
+  Future<Either<Glitch, dynamic>> loginUser(
+      String email, String password) async {
     Map<String, dynamic> data = {"username": "$email", "password": "$password"};
-    final response = await HttpClient.instance
-        .postData(APIPathHelper.getValue(APIPath.login), data);
+    Either<Glitch, dynamic> response = await HttpClient.instance
+        .post(APIPathHelper.getValue(APIPath.login), data);
     print("Response - $response");
     return response;
   }

@@ -9,6 +9,7 @@ import 'package:export_nepal/ui/screens/affiliate/AffiliateTransactions.dart';
 import 'package:export_nepal/ui/screens/affiliate/AffiliateUI.dart';
 import 'package:export_nepal/ui/screens/affiliate/AffiliateWithdrawls.dart';
 import 'package:export_nepal/ui/screens/affiliate/JoinAffiliate.dart';
+import 'package:export_nepal/ui/screens/dashboard/account/AccountInformation.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressBookUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressDetailsUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/checkout/OrderConfirmUI.dart';
@@ -92,6 +93,7 @@ class MainApp extends StatelessWidget {
         '/searchUI': (context) => SearchUI(),
         '/productLists': (context) => ProductList(),
         '/sellerLogin': (context) => SellerSignUpUI(),
+        '/accountInformation': (context) => AccountInformation(),
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),

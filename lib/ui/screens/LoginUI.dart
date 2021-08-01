@@ -1,3 +1,5 @@
+import 'package:either_dart/either.dart';
+import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/provider/login_provider.dart';
 import 'package:export_nepal/ui/screens/ForgotPasswordUI.dart';
 import 'package:export_nepal/utils/constants.dart';
@@ -39,15 +41,22 @@ class _LoginUIState extends State<LoginUI> {
   TextEditingController _passwordController = TextEditingController();
 
   void login() async {
+    print("login");
     final _loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    String? token = await _loginProvider.loginUser(
+    Either<Glitch, String> response = await _loginProvider.login(
         _emailController.text, _passwordController.text);
-    if (token != null) {
-      PreferenceUtils.putString(PreferenceUtils.TOKEN, token);
-      String savedToken = PreferenceUtils.getString(PreferenceUtils.TOKEN);
-      print(savedToken);
-      Navigator.pushNamed(context, '/dashboard');
+
+    if (response.isLeft) {
+      print(response.left.message);
+    } else if (response.isRight) {
+      print(response.right);
     }
+    // if (token != null) {
+    //   PreferenceUtils.putString(PreferenceUtils.TOKEN, token);
+    //   String savedToken = PreferenceUtils.getString(PreferenceUtils.TOKEN);
+    //   print(savedToken);
+    //   Navigator.pushNamed(context, '/dashboard');
+    // }
   }
 
   @override

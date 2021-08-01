@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:either_dart/either.dart';
+import 'package:export_nepal/model/glitch/NoInternetGlitch.dart';
+import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_base.dart';
 import 'package:export_nepal/network_module/api_exceptions.dart';
 import 'package:http/http.dart' as http;
@@ -34,6 +36,23 @@ class HttpClient {
       return '?${jsonString.query}';
     }
     return '';
+  }
+
+  Future<Either<Glitch, dynamic>> post(String url, dynamic body) async {
+    var responseJson;
+    var header = {HttpHeaders.contentTypeHeader: 'application/json'};
+    try {
+      final response = await http.post(Uri.parse(APIBase.baseURL + url),
+          body: jsonEncode(body), headers: header);
+      responseJson = _returnResponse(response);
+    } on SocketException {
+      return Left(NoInternetGlitch());
+    } on BadRequestException catch (e) {
+      return Left(Glitch(message: e.toString()));
+    } on UnauthorisedException catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
+    return Right(responseJson);
   }
 
   Future<dynamic> postData(String url, dynamic body) async {

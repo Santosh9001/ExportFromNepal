@@ -2,8 +2,7 @@ import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class SellerProvider extends ChangeNotifier {
-  final List<String> _titles = ["Personal", "Company", "Account","Address"];
-  
+  final List<String> _titles = ["Personal", "Company", "Account", "Address"];
 
   final PageController pageController = PageController(initialPage: 0);
 
@@ -96,5 +95,25 @@ class SellerProvider extends ChangeNotifier {
       list.add(Text(text, style: TextStyle(color: kPrimaryTextColor)));
     });
     return list;
+  }
+
+  String get getTextName => someList.length == 0 ? " " : "Edit List";
+  List<String> someList = ["Art & Craft", "Shopping", "Clothes", "Carpets"];
+  List<Widget> getCategories() {
+    return new List<Widget>.generate(someList.length, (int index) {
+      var value = index + 1;
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 8,
+          ),
+          Text(
+            "$value. " + someList[index],
+            style: kTextStyleSmallPrimary,
+          )
+        ],
+      );
+    });
   }
 }
