@@ -1,4 +1,5 @@
-import 'package:export_nepal/model/services/APICalls.dart';
+import 'package:either_dart/either.dart';
+import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/repositories/RegistrationRepository.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -10,18 +11,35 @@ class LoginProvider extends ChangeNotifier {
   LoginProvider() {
     _registrationRepository = RegistrationRepository();
   }
-
-  Future<String?> loginUser(String email, String password) async {
+  Future<Either<Glitch, String>> login(String email, String password) async {
     try {
       if (_registrationRepository != null) {
-        String response =
+        Either<Glitch, dynamic> response =
             await _registrationRepository!.loginUser(email, password);
-        return response;
+        if (response.isLeft) {
+          return Left(response.left);
+        } else {
+          return Right(response.right);
+        }
       } else {
-        return null;
+        return Left(Glitch(message: "Internal Error"));
       }
     } catch (e) {
-      return null;
+      return Left(Glitch(message: e.toString()));
     }
   }
+
+  // Future<String?> loginUser(String email, String password) async {
+  //   try {
+  //     if (_registrationRepository != null) {
+  //       String response =
+  //           await _registrationRepository!.loginUser(email, password);
+  //       return response;
+  //     } else {
+  //       return null;
+  //     }
+  //   } catch (e) {
+  //     return null;
+  //   }
+  // }
 }

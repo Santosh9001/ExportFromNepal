@@ -139,7 +139,10 @@ class APICalls {
     Manuals? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/59");
-      var response = await http.get(url, headers: {"Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)});
+      var response = await http.get(url, headers: {
+        "Authorization":
+            "Bearer " + PreferenceUtils.getString(PreferenceUtils.TOKEN)
+      });
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Manuals.fromJson(json.decode(response.body));
@@ -158,7 +161,10 @@ class APICalls {
     Privacy_policy? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/48");
-      var response = await http.get(url, headers: {"Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)});
+      var response = await http.get(url, headers: {
+        "Authorization":
+            "Bearer " + PreferenceUtils.getString(PreferenceUtils.TOKEN)
+      });
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Privacy_policy.fromJson(json.decode(response.body));
@@ -177,7 +183,9 @@ class APICalls {
     Shipping_policy? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/49");
-      var response = await http.get(url, headers: {"Authorization": "Bearer zzimp56xrm0zuiu1f827qonutsojlwym"});
+      var response = await http.get(url, headers: {
+        "Authorization": "Bearer zzimp56xrm0zuiu1f827qonutsojlwym"
+      });
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Shipping_policy.fromJson(json.decode(response.body));
@@ -196,7 +204,10 @@ class APICalls {
     Team? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/57");
-      var response = await http.get(url, headers: {"Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)});
+      var response = await http.get(url, headers: {
+        "Authorization":
+            "Bearer " + PreferenceUtils.getString(PreferenceUtils.TOKEN)
+      });
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Team.fromJson(json.decode(response.body));
@@ -215,7 +226,9 @@ class APICalls {
     Terms_of_use? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/47");
-      var response = await http.get(url, headers: {"Authorization": "Bearer zzimp56xrm0zuiu1f827qonutsojlwym"});
+      var response = await http.get(url, headers: {
+        "Authorization": "Bearer zzimp56xrm0zuiu1f827qonutsojlwym"
+      });
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Terms_of_use.fromJson(json.decode(response.body));
@@ -234,7 +247,9 @@ class APICalls {
     Return_policy? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/52");
-      var response = await http.get(url, headers: {"Authorization": "Bearer zzimp56xrm0zuiu1f827qonutsojlwym"});
+      var response = await http.get(url, headers: {
+        "Authorization": "Bearer zzimp56xrm0zuiu1f827qonutsojlwym"
+      });
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Return_policy.fromJson(json.decode(response.body));
@@ -253,7 +268,10 @@ class APICalls {
     Payment_methods? result;
     try {
       final url = Uri.parse(baseUrl + "cmsPage/53");
-      var response = await http.get(url, headers: {"Authorization": "Bearer "+PreferenceUtils.getString(PreferenceUtils.TOKEN)});
+      var response = await http.get(url, headers: {
+        "Authorization":
+            "Bearer " + PreferenceUtils.getString(PreferenceUtils.TOKEN)
+      });
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Payment_methods.fromJson(json.decode(response.body));

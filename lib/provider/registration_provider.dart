@@ -1,11 +1,7 @@
 import 'package:export_nepal/model/core/register.dart';
-import 'package:export_nepal/network_module/api_exceptions.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/repositories/RegistrationRepository.dart';
-import 'package:export_nepal/utils/validation_item.dart';
-import 'package:export_nepal/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:export_nepal/model/services/APICalls.dart';
 
 class RegistrationProvider with ChangeNotifier {
   RegistrationRepository? _registrationRepository;
