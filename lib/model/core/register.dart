@@ -35,18 +35,18 @@ class Register {
   int? get websiteId => _websiteId;
   int? get disableAutoGroupChange => _disableAutoGroupChange;
 
-  Register({
-      int? id, 
-      int? groupId, 
-      String? createdAt, 
-      String? updatedAt, 
-      String? createdIn, 
-      String? email, 
-      String? firstname, 
-      String? lastname, 
-      int? storeId, 
-      int? websiteId, 
-      int? disableAutoGroupChange}){
+  Register(
+      {int? id,
+      int? groupId,
+      String? createdAt,
+      String? updatedAt,
+      String? createdIn,
+      String? email,
+      String? firstname,
+      String? lastname,
+      int? storeId,
+      int? websiteId,
+      int? disableAutoGroupChange}) {
     _id = id;
     _groupId = groupId;
     _createdAt = createdAt;
@@ -58,7 +58,7 @@ class Register {
     _storeId = storeId;
     _websiteId = websiteId;
     _disableAutoGroupChange = disableAutoGroupChange;
-}
+  }
 
   Register.fromJson(dynamic json) {
     _id = json["id"];
@@ -89,5 +89,4 @@ class Register {
     map["disable_auto_group_change"] = _disableAutoGroupChange;
     return map;
   }
-
 }

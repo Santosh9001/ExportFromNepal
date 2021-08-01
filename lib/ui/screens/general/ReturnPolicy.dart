@@ -53,11 +53,13 @@ class _ReturnPolicyState extends State<ReturnPolicy> {
                         SizedBox(
                           height: 20,
                         ),
-                        Padding(padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Return Policy",
-                          style: kTextStyleBlueBoldMedium,
-                        ),),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Text(
+                            "Return Policy",
+                            style: kTextStyleBlueBoldMedium,
+                          ),
+                        ),
                         SizedBox(
                           height: 10,
                         ),

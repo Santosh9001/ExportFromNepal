@@ -7,7 +7,8 @@ class SubCategoryItemSmall extends StatelessWidget {
   final String title;
 
   const SubCategoryItemSmall({
-    Key? key, required this.title,
+    Key? key,
+    required this.title,
   }) : super(key: key);
 
   @override

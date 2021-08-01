@@ -64,7 +64,7 @@ class OrderConfirmUI extends StatelessWidget {
                       style: TextStyle(fontSize: 16),
                     ),
                   ),
-                  SizedBox(height:10),
+                  SizedBox(height: 10),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Colors.black,

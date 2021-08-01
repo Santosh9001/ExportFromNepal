@@ -109,7 +109,9 @@ class _SignUpUIState extends State<SignUpUI> {
                     style: kTextStyleLarge,
                   ),
                 ),
-                SizedBox(height: 16,),
+                SizedBox(
+                  height: 16,
+                ),
                 Row(
                   children: [
                     Expanded(
@@ -137,7 +139,9 @@ class _SignUpUIState extends State<SignUpUI> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 5,),
+                    SizedBox(
+                      width: 5,
+                    ),
                     Expanded(
                       flex: 5,
                       child: Padding(

@@ -10,7 +10,7 @@ class WishListCard extends StatelessWidget {
         children: [
           Positioned(
             child: Container(
-              margin: EdgeInsets.only(top: 30,bottom: 10),
+              margin: EdgeInsets.only(top: 30, bottom: 10),
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
@@ -51,24 +51,30 @@ class WishListCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            child: Stack(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(left: 10, right: 10),
-                  width: double.infinity,
-                  height: 85,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      kDummyImage,
-                      fit: BoxFit.cover,
-                    ),
+              child: Stack(
+            children: [
+              Container(
+                padding: EdgeInsets.only(left: 10, right: 10),
+                width: double.infinity,
+                height: 85,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    kDummyImage,
+                    fit: BoxFit.cover,
                   ),
                 ),
-                Positioned(right: 20, top: 10, child: Icon(AntDesign.heart, color: kColorRed, size: 20,)),
-              ],
-            )
-          ),
+              ),
+              Positioned(
+                  right: 20,
+                  top: 10,
+                  child: Icon(
+                    AntDesign.heart,
+                    color: kColorRed,
+                    size: 20,
+                  )),
+            ],
+          )),
         ],
       ),
     );

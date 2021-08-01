@@ -37,7 +37,6 @@ class RegistrationRepository {
     Map<String, dynamic> data = {"username": "$email", "password": "$password"};
     Either<Glitch, dynamic> response = await HttpClient.instance
         .post(APIPathHelper.getValue(APIPath.login), data);
-    print("Response - $response");
     return response;
   }
 }

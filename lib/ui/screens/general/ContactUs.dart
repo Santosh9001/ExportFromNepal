@@ -29,7 +29,7 @@ class _ContactUsState extends State<ContactUs> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left: 10,top: 10),
+                          padding: EdgeInsets.only(left: 10, top: 10),
                           child: Row(
                             children: [
                               SizedBox(height: 10),

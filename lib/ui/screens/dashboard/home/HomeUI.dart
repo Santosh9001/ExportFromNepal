@@ -1,10 +1,16 @@
+import 'package:either_dart/either.dart';
+import 'package:export_nepal/model/core/Product/product.dart';
+import 'package:export_nepal/model/glitch/glitch.dart';
+import 'package:export_nepal/provider/dashboard_provider.dart';
 import 'package:export_nepal/ui/screens/dashboard/home/components/HomeMenuDialog.dart';
 import 'package:export_nepal/utils/constants.dart';
+import 'package:export_nepal/utils/error.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:provider/provider.dart';
 import 'components/CollectionGrid.dart';
 import 'components/HorizontalProductsList.dart';
 import 'components/ProductCard.dart';
@@ -18,6 +24,21 @@ class HomeUI extends StatefulWidget {
 }
 
 class _HomeUIState extends State<HomeUI> {
+  DashboardProvider? _dashboardProvider;
+  Future<Either<Glitch, Product>>? _newProducts;
+  @override
+  void initState() {
+    super.initState();
+    _dashboardProvider = DashboardProvider();
+    _newProducts = _dashboardProvider!.getNewProducts();
+  }
+
+  void reloadServerData() {
+    setState(() {
+      _newProducts = _dashboardProvider!.getNewProducts();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -160,8 +181,22 @@ class _HomeUIState extends State<HomeUI> {
                         padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                         child: Container(
                           margin: EdgeInsets.only(top: 16),
-                          child: Center(
-                              child: HorizontalProductsList("New Products")),
+                          child: FutureBuilder<Either<Glitch, Product>>(
+                              future: _newProducts,
+                              builder: (context, snapshot) {
+                                return Center(
+                                    // Error in future not handling
+                                    child: snapshot.hasData &&
+                                            snapshot.connectionState !=
+                                                ConnectionState.waiting
+                                        ? snapshot.data!.fold<Widget>(
+                                            (err) => ServerErrorWidget(err,
+                                                onReload: reloadServerData),
+                                            (data) => HorizontalProductsList(
+                                                "New Products",
+                                                snapshot.data!.right))
+                                        : CircularProgressIndicator());
+                              }),
                           width: double.infinity,
                           height: 300,
                         ),
@@ -187,7 +222,7 @@ class _HomeUIState extends State<HomeUI> {
                           margin: EdgeInsets.only(top: 16),
                           child: Center(
                               child: HorizontalProductsList(
-                                  "Best Selling Products")),
+                                  "Best Selling Products", null)),
                           width: double.infinity,
                           height: 300,
                         ),
@@ -202,7 +237,8 @@ class _HomeUIState extends State<HomeUI> {
                         child: Container(
                           margin: EdgeInsets.only(top: 16),
                           child: Center(
-                              child: HorizontalProductsList("Most Viewed")),
+                              child:
+                                  HorizontalProductsList("Most Viewed", null)),
                           width: double.infinity,
                           height: 300,
                         ),

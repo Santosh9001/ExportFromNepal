@@ -78,8 +78,8 @@ class _BlogsUIState extends State<Blogs> {
                             child: ListView.builder(
                                 itemCount: 1,
                                 itemBuilder: (BuildContext context, int index) {
-                              return BlogsItem();
-                            }),
+                                  return BlogsItem();
+                                }),
                           ),
                         ),
                       ],

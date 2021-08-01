@@ -38,6 +38,7 @@ class HttpClient {
     var uri = APIBase.baseURL +
         url +
         ((params != null) ? this.queryParameters(params) : "");
+
     var header = {HttpHeaders.contentTypeHeader: 'application/json'};
     try {
       final response = await http.get(Uri.parse(uri), headers: header);

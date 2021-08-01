@@ -1,6 +1,7 @@
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
+
 class MyAccountInfo extends StatelessWidget {
   const MyAccountInfo({
     Key? key,
@@ -22,8 +23,14 @@ class MyAccountInfo extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("John Doe", style: kTextStyleMediumPrimary,),
-                Text("johndoe@gmail.com", style: kTextStyleSmallPrimary,),
+                Text(
+                  "John Doe",
+                  style: kTextStyleMediumPrimary,
+                ),
+                Text(
+                  "johndoe@gmail.com",
+                  style: kTextStyleSmallPrimary,
+                ),
               ],
             )
           ],

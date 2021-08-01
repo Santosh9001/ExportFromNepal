@@ -11,8 +11,7 @@ class Glitch {
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
 
-    return o is Glitch &&
-        o.message == message;
+    return o is Glitch && o.message == message;
   }
 
   @override
