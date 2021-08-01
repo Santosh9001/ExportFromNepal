@@ -37,6 +37,7 @@ class _SellerSignupState1 extends State<SellerSignup1> {
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: TextField(
+                      textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.name,
                       decoration: new InputDecoration(
                         border: OutlineInputBorder(
@@ -44,7 +45,6 @@ class _SellerSignupState1 extends State<SellerSignup1> {
                         ),
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                        focusedBorder: OutlineInputBorder(),
                       ),
                     ),
                   ),
@@ -61,11 +61,11 @@ class _SellerSignupState1 extends State<SellerSignup1> {
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 8.0),
                     child: TextField(
+                      textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.name,
                       decoration: new InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 10),
-                          focusedBorder: OutlineInputBorder(),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           )),
@@ -132,7 +132,6 @@ class _SellerSignupState1 extends State<SellerSignup1> {
                               ),
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 10),
-                              focusedBorder: OutlineInputBorder(),
                             ),
                           ),
                         ),
