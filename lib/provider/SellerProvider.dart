@@ -116,4 +116,27 @@ class SellerProvider extends ChangeNotifier {
       );
     });
   }
+
+  List<String> sellerOptions = [
+    "Exporter",
+    "Wholesaler",
+    "Retailer",
+    "Service"
+  ];
+
+  int _currentIndex = 0;
+  void setCurrentIndexChecked(index) {
+    _currentIndex = index;
+    notifyListeners();
+  }
+
+  int get getCurrentIndex => _currentIndex;
+
+  bool _sellerLicence = false;
+  void setLicenceAgreement(bool value) {
+    _sellerLicence = value;
+    notifyListeners();
+  }
+
+  bool get getSellersLicence => _sellerLicence;
 }
