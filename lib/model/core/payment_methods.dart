@@ -47,22 +47,22 @@ class Payment_methods {
   String? get customRootTemplate => _customRootTemplate;
   bool? get active => _active;
 
-  Payment_methods({
-      int? id, 
-      String? identifier, 
-      String? title, 
-      String? pageLayout, 
-      String? metaTitle, 
-      String? metaKeywords, 
-      String? metaDescription, 
-      String? contentHeading, 
-      String? content, 
-      String? creationTime, 
-      String? updateTime, 
-      String? sortOrder, 
-      String? customTheme, 
-      String? customRootTemplate, 
-      bool? active}){
+  Payment_methods(
+      {int? id,
+      String? identifier,
+      String? title,
+      String? pageLayout,
+      String? metaTitle,
+      String? metaKeywords,
+      String? metaDescription,
+      String? contentHeading,
+      String? content,
+      String? creationTime,
+      String? updateTime,
+      String? sortOrder,
+      String? customTheme,
+      String? customRootTemplate,
+      bool? active}) {
     _id = id;
     _identifier = identifier;
     _title = title;
@@ -78,7 +78,7 @@ class Payment_methods {
     _customTheme = customTheme;
     _customRootTemplate = customRootTemplate;
     _active = active;
-}
+  }
 
   Payment_methods.fromJson(dynamic json) {
     _id = json["id"];
@@ -117,5 +117,4 @@ class Payment_methods {
     map["active"] = _active;
     return map;
   }
-
 }

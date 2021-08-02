@@ -215,7 +215,8 @@ class _AffiliateWithdrawlsState extends State<AffiliateWithdrawls> {
                           ),
                           Container(
                             margin: EdgeInsets.only(left: 10, right: 10),
-                            padding: EdgeInsets.only(top: 10, bottom: 15,left: 15,right: 15),
+                            padding: EdgeInsets.only(
+                                top: 10, bottom: 15, left: 15, right: 15),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(10),
@@ -267,7 +268,8 @@ class _AffiliateWithdrawlsState extends State<AffiliateWithdrawls> {
                               itemBuilder: (context, int index) {
                                 return Container(
                                   margin: EdgeInsets.only(left: 10, right: 10),
-                                  padding: EdgeInsets.only(top: 10, bottom: 15,left: 15,right: 15),
+                                  padding: EdgeInsets.only(
+                                      top: 10, bottom: 15, left: 15, right: 15),
                                   decoration: BoxDecoration(
                                       color: index % 2 == 0
                                           ? Colors.white

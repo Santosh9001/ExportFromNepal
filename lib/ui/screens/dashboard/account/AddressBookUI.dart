@@ -112,7 +112,10 @@ class _AddressBookState extends State<AddressBook>
             onPressed: () {
               Navigator.pushNamed(context, '/addressDetails');
             },
-            child: Icon(Icons.add, color: Colors.white,),
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
             backgroundColor: kColorPrimary,
           ),
         ),

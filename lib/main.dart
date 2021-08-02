@@ -1,3 +1,4 @@
+import 'package:export_nepal/provider/dashboard_provider.dart';
 import 'package:export_nepal/provider/registration_provider.dart';
 import 'package:export_nepal/provider/login_provider.dart';
 import 'package:export_nepal/ui/screens/DashboardUI.dart';
@@ -54,6 +55,7 @@ void main() async {
 List<SingleChildWidget> providers = [
   ChangeNotifierProvider<RegistrationProvider>(
       create: (_) => RegistrationProvider()),
+  ChangeNotifierProvider<DashboardProvider>(create: (_) => DashboardProvider()),
   ChangeNotifierProvider<LoginProvider>(create: (_) => LoginProvider()),
 ];
 

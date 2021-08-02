@@ -1,16 +1,17 @@
+import 'package:export_nepal/model/core/Product/items.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
   final width;
   final height;
+  Items? item;
 
-  ProductCard(this.height, this.width);
+  ProductCard(this.height, this.width, this.item);
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Container(
+    return Container(
       child: Stack(
         children: [
           Positioned(
@@ -29,7 +30,9 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        "Lorem ipsum dolor sit amet,",
+                        this.item != null
+                            ? this.item!.name!
+                            : "Lorem ipsum dolor sit amet,",
                         style: kTextStyleSmallPrimary,
                       ),
                       SizedBox(
@@ -45,7 +48,9 @@ class ProductCard extends StatelessWidget {
                         height: 4,
                       ),
                       Text(
-                        "\$ 59.99",
+                        this.item != null
+                            ? '\$ ${this.item!.price!}'
+                            : "\$ 59.99",
                         style: kTextStyleRedBoldLarge,
                       ),
                     ],

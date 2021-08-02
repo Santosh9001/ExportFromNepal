@@ -47,22 +47,22 @@ class Shipping_policy {
   String? get customRootTemplate => _customRootTemplate;
   bool? get active => _active;
 
-  Shipping_policy({
-      int? id, 
-      String? identifier, 
-      String? title, 
-      String? pageLayout, 
-      String? metaTitle, 
-      String? metaKeywords, 
-      String? metaDescription, 
-      String? contentHeading, 
-      String? content, 
-      String? creationTime, 
-      String? updateTime, 
-      String? sortOrder, 
-      String? customTheme, 
-      String? customRootTemplate, 
-      bool? active}){
+  Shipping_policy(
+      {int? id,
+      String? identifier,
+      String? title,
+      String? pageLayout,
+      String? metaTitle,
+      String? metaKeywords,
+      String? metaDescription,
+      String? contentHeading,
+      String? content,
+      String? creationTime,
+      String? updateTime,
+      String? sortOrder,
+      String? customTheme,
+      String? customRootTemplate,
+      bool? active}) {
     _id = id;
     _identifier = identifier;
     _title = title;
@@ -78,7 +78,7 @@ class Shipping_policy {
     _customTheme = customTheme;
     _customRootTemplate = customRootTemplate;
     _active = active;
-}
+  }
 
   Shipping_policy.fromJson(dynamic json) {
     _id = json["id"];
@@ -117,5 +117,4 @@ class Shipping_policy {
     map["active"] = _active;
     return map;
   }
-
 }

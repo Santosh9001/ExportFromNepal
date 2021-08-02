@@ -49,21 +49,22 @@ class _StepProgressState extends State<StepProgressView> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(bottom: 15),
-        width: this._width,
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: _iconViews(),
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: _titleViews(),
-            ),
-          ],
-        ),);
+      width: this._width,
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: _iconViews(),
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: _titleViews(),
+          ),
+        ],
+      ),
+    );
   }
 
   List<Widget> _iconViews() {

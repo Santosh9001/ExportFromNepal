@@ -9,7 +9,7 @@ class ProductCardSmall extends StatelessWidget {
         children: [
           Positioned(
             child: Container(
-              margin: EdgeInsets.only(top: 30,bottom: 10),
+              margin: EdgeInsets.only(top: 30, bottom: 10),
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),

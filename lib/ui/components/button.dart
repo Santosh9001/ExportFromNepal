@@ -6,7 +6,6 @@ class Button extends StatelessWidget {
   final String text;
   final onPress;
 
-
   Button({required this.color, required this.text, required this.onPress});
 
   @override
@@ -16,9 +15,9 @@ class Button extends StatelessWidget {
       child: Container(
         child: Center(
             child: Text(
-              text,
-              style: kButtonStyle,
-            )),
+          text,
+          style: kButtonStyle,
+        )),
         width: 200.0,
         height: 50.0,
         decoration: BoxDecoration(

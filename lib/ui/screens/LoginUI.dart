@@ -4,6 +4,7 @@ import 'package:export_nepal/provider/login_provider.dart';
 import 'package:export_nepal/ui/screens/ForgotPasswordUI.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:export_nepal/utils/preference_utils.dart';
+import 'package:export_nepal/utils/toast.dart';
 import 'package:export_nepal/utils/validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -47,9 +48,10 @@ class _LoginUIState extends State<LoginUI> {
         _emailController.text, _passwordController.text);
 
     if (response.isLeft) {
-      print(response.left.message);
+      showToast(context, response.left.message);
     } else if (response.isRight) {
-      print(response.right);
+      PreferenceUtils.putString(PreferenceUtils.TOKEN, response.right);
+      Navigator.pushNamed(context, '/dashboard');
     }
     // if (token != null) {
     //   PreferenceUtils.putString(PreferenceUtils.TOKEN, token);

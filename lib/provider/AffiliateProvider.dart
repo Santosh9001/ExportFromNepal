@@ -60,34 +60,38 @@ class AffiliateProvider extends ChangeNotifier {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        isChangeEmail?  Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Change Email *",
-              style: kTextStyleSmall,
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            TextField(
-              decoration: new InputDecoration(
-                isDense: true,
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                focusedBorder: OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: kSecondaryTextColor, width: 1.0),
-                ),
+        isChangeEmail
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Change Email *",
+                    style: kTextStyleSmall,
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  TextField(
+                    decoration: new InputDecoration(
+                      isDense: true,
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      focusedBorder: OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: kSecondaryTextColor, width: 1.0),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  )
+                ],
+              )
+            : SizedBox(
+                height: 0,
               ),
-            ),
-            SizedBox(
-              height: 10,
-            )
-          ],
-        ) : SizedBox(height: 0,),
         Text(
           "Current Password *",
           style: kTextStyleSmall,
@@ -109,30 +113,37 @@ class AffiliateProvider extends ChangeNotifier {
         SizedBox(
           height: 10,
         ),
-        isChangePass ? Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-          Text(
-          "New Password *",
-          style: kTextStyleSmall,
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        TextField(
-          obscureText: _obscureText,
-          decoration: new InputDecoration(
-            isDense: true,
-            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            focusedBorder: OutlineInputBorder(),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: kSecondaryTextColor, width: 1.0),
-            ),
-          ),
-        ),
-        SizedBox(height: 15)
-        ],) : SizedBox(height: 0,),
+        isChangePass
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "New Password *",
+                    style: kTextStyleSmall,
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  TextField(
+                    obscureText: _obscureText,
+                    decoration: new InputDecoration(
+                      isDense: true,
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      focusedBorder: OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: kSecondaryTextColor, width: 1.0),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15)
+                ],
+              )
+            : SizedBox(
+                height: 0,
+              ),
       ],
     );
   }

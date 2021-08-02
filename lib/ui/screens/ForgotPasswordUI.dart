@@ -126,8 +126,7 @@ class _ForgotPasswordState extends State<ForgotPasswordUI> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          PasswordResetUI()));
+                                      builder: (context) => PasswordResetUI()));
                             },
                             child: Text(
                               "Submit",
@@ -136,7 +135,7 @@ class _ForgotPasswordState extends State<ForgotPasswordUI> {
                             style: ElevatedButton.styleFrom(
                                 primary: kColorPrimary,
                                 side:
-                                BorderSide(width: 1, color: kColorPrimary),
+                                    BorderSide(width: 1, color: kColorPrimary),
                                 elevation: 1,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),

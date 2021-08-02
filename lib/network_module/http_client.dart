@@ -13,6 +13,7 @@ class HttpClient {
 
   static HttpClient get instance => _singleton;
 
+  @Deprecated('migration')
   Future<dynamic> fetchData(String url, {Map<String, String>? params}) async {
     var responseJson;
 
@@ -30,7 +31,30 @@ class HttpClient {
     return responseJson;
   }
 
-  String queryParameters(Map<String, String> params) {
+  Future<Either<Glitch, dynamic>> get(String url,
+      {Map<String, String>? params}) async {
+    var responseJson;
+
+    var uri = APIBase.baseURL +
+        url +
+        ((params != null) ? this.queryParameters(params) : "");
+
+    var header = {HttpHeaders.contentTypeHeader: 'application/json'};
+    try {
+      final response = await http.get(Uri.parse(uri), headers: header);
+      print(response.body.toString());
+      responseJson = _returnResponse(response);
+    } on SocketException {
+      return Left(NoInternetGlitch());
+    } on BadRequestException catch (e) {
+      return Left(Glitch(message: e.toString()));
+    } on UnauthorisedException catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
+    return Right(responseJson);
+  }
+
+  String queryParameters(Map<String, String>? params) {
     if (params != null) {
       final jsonString = Uri(queryParameters: params);
       return '?${jsonString.query}';
@@ -55,6 +79,7 @@ class HttpClient {
     return Right(responseJson);
   }
 
+  @Deprecated('migration')
   Future<dynamic> postData(String url, dynamic body) async {
     var responseJson;
     var header = {HttpHeaders.contentTypeHeader: 'application/json'};

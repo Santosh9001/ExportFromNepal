@@ -112,4 +112,3 @@ class _MyAccountState extends State<MyAccount> {
 }
 
 // child: Center(child: Text('Entry ${entries[index]}')),
-

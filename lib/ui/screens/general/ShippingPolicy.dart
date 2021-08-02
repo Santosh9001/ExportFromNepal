@@ -53,11 +53,13 @@ class _ShippingPolicyState extends State<ShippingPolicy> {
                         SizedBox(
                           height: 20,
                         ),
-                        Padding(padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Shipping Policy",
-                          style: kTextStyleBlueBoldMedium,
-                        ),),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Text(
+                            "Shipping Policy",
+                            style: kTextStyleBlueBoldMedium,
+                          ),
+                        ),
                         SizedBox(
                           height: 10,
                         ),

@@ -17,7 +17,6 @@ class CollectionGrid extends StatelessWidget {
                 "Our Collection",
                 style: kTextStyleBlueBoldMedium,
               ),
-
             ],
           ),
         ),
@@ -25,8 +24,7 @@ class CollectionGrid extends StatelessWidget {
           height: 8,
         ),
         Expanded(
-          child:
-          Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Row(
@@ -38,7 +36,9 @@ class CollectionGrid extends StatelessWidget {
                   CollectionItem()
                 ],
               ),
-              SizedBox(height: 8,),
+              SizedBox(
+                height: 8,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -78,14 +78,15 @@ class CollectionItem extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 4,),
+        SizedBox(
+          height: 4,
+        ),
         Text(
           "Art and Craft",
           style: TextStyle(
               fontSize: 10.0,
               color: kSecondaryTextColor,
-              fontWeight: FontWeight.normal
-          ),
+              fontWeight: FontWeight.normal),
         ),
       ],
     );

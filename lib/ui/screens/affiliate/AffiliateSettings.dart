@@ -350,9 +350,7 @@ class _AffiliateSettingsState extends State<AffiliateSettings> {
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         primary: kColorPrimary),
-                                    onPressed: () {
-                                      
-                                    },
+                                    onPressed: () {},
                                     child: Text(
                                       "Save",
                                       style: TextStyle(

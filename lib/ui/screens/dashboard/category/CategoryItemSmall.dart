@@ -19,7 +19,8 @@ class CategoryItemSmall extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SubCategoryUI(title: "Categories")),
+                MaterialPageRoute(
+                    builder: (context) => SubCategoryUI(title: "Categories")),
               );
             },
             child: Container(

@@ -1,3 +1,4 @@
+import 'package:export_nepal/model/core/Product/product.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -5,8 +6,8 @@ import 'ProductCard.dart';
 
 class HorizontalProductsList extends StatelessWidget {
   final String title;
-
-  HorizontalProductsList(this.title);
+  Product? product;
+  HorizontalProductsList(this.title, this.product);
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +37,11 @@ class HorizontalProductsList extends StatelessWidget {
         ),
         Expanded(
           child: ListView.builder(
-              itemCount: 4,
+              itemCount: this.product != null ? this.product!.items!.length : 0,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return ProductCard(180.0, 180.0);
+                return ProductCard(180.0, 180.0,
+                    this.product != null ? this.product!.items![index] : null);
               }),
         )
       ],

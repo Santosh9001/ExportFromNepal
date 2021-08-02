@@ -47,22 +47,22 @@ class Team {
   String? get customRootTemplate => _customRootTemplate;
   bool? get active => _active;
 
-  Team({
-      int? id, 
-      String? identifier, 
-      String? title, 
-      String? pageLayout, 
-      String? metaTitle, 
-      String? metaKeywords, 
-      String? metaDescription, 
-      String? contentHeading, 
-      String? content, 
-      String? creationTime, 
-      String? updateTime, 
-      String? sortOrder, 
-      String? customTheme, 
-      String? customRootTemplate, 
-      bool? active}){
+  Team(
+      {int? id,
+      String? identifier,
+      String? title,
+      String? pageLayout,
+      String? metaTitle,
+      String? metaKeywords,
+      String? metaDescription,
+      String? contentHeading,
+      String? content,
+      String? creationTime,
+      String? updateTime,
+      String? sortOrder,
+      String? customTheme,
+      String? customRootTemplate,
+      bool? active}) {
     _id = id;
     _identifier = identifier;
     _title = title;
@@ -78,7 +78,7 @@ class Team {
     _customTheme = customTheme;
     _customRootTemplate = customRootTemplate;
     _active = active;
-}
+  }
 
   Team.fromJson(dynamic json) {
     _id = json["id"];
@@ -117,5 +117,4 @@ class Team {
     map["active"] = _active;
     return map;
   }
-
 }

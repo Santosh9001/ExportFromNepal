@@ -47,22 +47,22 @@ class Terms_of_use {
   String? get customRootTemplate => _customRootTemplate;
   bool? get active => _active;
 
-  Terms_of_use({
-      int? id, 
-      String? identifier, 
-      String? title, 
-      String? pageLayout, 
-      String? metaTitle, 
-      String? metaKeywords, 
-      String? metaDescription, 
-      String? contentHeading, 
-      String? content, 
-      String? creationTime, 
-      String? updateTime, 
-      String? sortOrder, 
-      String? customTheme, 
-      String? customRootTemplate, 
-      bool? active}){
+  Terms_of_use(
+      {int? id,
+      String? identifier,
+      String? title,
+      String? pageLayout,
+      String? metaTitle,
+      String? metaKeywords,
+      String? metaDescription,
+      String? contentHeading,
+      String? content,
+      String? creationTime,
+      String? updateTime,
+      String? sortOrder,
+      String? customTheme,
+      String? customRootTemplate,
+      bool? active}) {
     _id = id;
     _identifier = identifier;
     _title = title;
@@ -78,7 +78,7 @@ class Terms_of_use {
     _customTheme = customTheme;
     _customRootTemplate = customRootTemplate;
     _active = active;
-}
+  }
 
   Terms_of_use.fromJson(dynamic json) {
     _id = json["id"];
@@ -117,5 +117,4 @@ class Terms_of_use {
     map["active"] = _active;
     return map;
   }
-
 }

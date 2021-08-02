@@ -53,11 +53,13 @@ class _AboutUsState extends State<AboutUs> {
                         SizedBox(
                           height: 20,
                         ),
-                        Padding(padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          "About Us",
-                          style: kTextStyleBlueBoldMedium,
-                        ),),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Text(
+                            "About Us",
+                            style: kTextStyleBlueBoldMedium,
+                          ),
+                        ),
                         SizedBox(
                           height: 10,
                         ),

@@ -139,7 +139,7 @@ class _AffiliateLinksState extends State<AffiliateLinks> {
                                     onTap: () {
                                       // do what you need to do when "Click here" gets clicked
                                     }),
-                                    SizedBox(
+                                SizedBox(
                                   height: 15,
                                 ),
                                 Text(
