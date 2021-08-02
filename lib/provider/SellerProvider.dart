@@ -139,4 +139,22 @@ class SellerProvider extends ChangeNotifier {
   }
 
   bool get getSellersLicence => _sellerLicence;
+
+  List<int> selectedCategories = [];
+  void categoryTapped(int index) {
+    if (selectedCategories.contains(index)) {
+      selectedCategories.remove(index);
+    } else {
+      selectedCategories.add(index);
+    }
+    notifyListeners();
+  }
+
+  bool checkIfSelected(index) {
+    if (selectedCategories.contains(index)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

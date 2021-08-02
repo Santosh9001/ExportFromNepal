@@ -28,6 +28,7 @@ import 'package:export_nepal/ui/screens/general/TermsOfUse.dart';
 import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
 import 'package:export_nepal/ui/screens/product/ProductList.dart';
 import 'package:export_nepal/ui/screens/search/SearchUI.dart';
+import 'package:export_nepal/ui/screens/seller/SellerCategories.dart';
 import 'package:export_nepal/ui/screens/seller/SellerSignUpUI.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:export_nepal/utils/preference_utils.dart';
@@ -94,6 +95,7 @@ class MainApp extends StatelessWidget {
         '/productLists': (context) => ProductList(),
         '/sellerLogin': (context) => SellerSignUpUI(),
         '/accountInformation': (context) => AccountInformation(),
+        '/sellerCategories': (context) => SellerCategories(),
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),

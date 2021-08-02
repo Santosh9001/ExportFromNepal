@@ -84,7 +84,9 @@ class _SellerSignupState2 extends State<SellerSignup2> {
                                       children: provider.getCategories(),
                                     ),
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                   Navigator.pushNamed(context, '/sellerCategories');
+                                },
                                 child: Row(
                                   children: [
                                     Icon(
@@ -165,7 +167,9 @@ class _SellerSignupState2 extends State<SellerSignup2> {
                           height: 10,
                         ),
                         ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                           
+                          },
                           icon: Icon(Icons.upload_file),
                           label: Text("Upload"),
                           style:
