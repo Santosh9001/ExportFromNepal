@@ -73,6 +73,8 @@ class _MyAccountState extends State<MyAccount> {
                         Navigator.pushNamed(context, '/addressBook');
                       } else if (index == 4) {
                         Navigator.pushNamed(context, '/accountInformation');
+                      } else if (index == 8) {
+                        Navigator.pushNamed(context, '/affiliateDashboard');
                       }
                     },
                     child: Padding(
