@@ -117,10 +117,8 @@ class APICalls {
     Aboutus? result;
     try {
       print(PreferenceUtils.getString(PreferenceUtils.TOKEN));
-      final url = Uri.parse(baseUrl + "cmsPage/5");
-      var response = await http.get(url, headers: {
-        "Authorization": "Bearer zzimp56xrm0zuiu1f827qonutsojlwym"
-      });
+      final url = Uri.parse(baseUrl + "efn/page/identifier/about-us");
+      var response = await http.get(url);
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Aboutus.fromJson(json.decode(response.body));
@@ -138,11 +136,8 @@ class APICalls {
   Future<Manuals?> manuals(context) async {
     Manuals? result;
     try {
-      final url = Uri.parse(baseUrl + "cmsPage/59");
-      var response = await http.get(url, headers: {
-        "Authorization":
-            "Bearer " + PreferenceUtils.getString(PreferenceUtils.TOKEN)
-      });
+      final url = Uri.parse(baseUrl + "efn/manual");
+      var response = await http.get(url);
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Manuals.fromJson(json.decode(response.body));
@@ -182,10 +177,8 @@ class APICalls {
   Future<Shipping_policy?> shippingPolicy() async {
     Shipping_policy? result;
     try {
-      final url = Uri.parse(baseUrl + "cmsPage/49");
-      var response = await http.get(url, headers: {
-        "Authorization": "Bearer zzimp56xrm0zuiu1f827qonutsojlwym"
-      });
+      final url = Uri.parse(baseUrl + "efn/page/identifier/shipping-policy");
+      var response = await http.get(url);
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Shipping_policy.fromJson(json.decode(response.body));
@@ -203,11 +196,8 @@ class APICalls {
   Future<Team?> team(context) async {
     Team? result;
     try {
-      final url = Uri.parse(baseUrl + "cmsPage/57");
-      var response = await http.get(url, headers: {
-        "Authorization":
-            "Bearer " + PreferenceUtils.getString(PreferenceUtils.TOKEN)
-      });
+      final url = Uri.parse(baseUrl + "efn/page/identifier/team");
+      var response = await http.get(url);
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Team.fromJson(json.decode(response.body));
@@ -225,10 +215,8 @@ class APICalls {
   Future<Terms_of_use?> termsOfUse() async {
     Terms_of_use? result;
     try {
-      final url = Uri.parse(baseUrl + "cmsPage/47");
-      var response = await http.get(url, headers: {
-        "Authorization": "Bearer zzimp56xrm0zuiu1f827qonutsojlwym"
-      });
+      final url = Uri.parse(baseUrl + "efn/page/identifier/terms-of-use");
+      var response = await http.get(url);
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Terms_of_use.fromJson(json.decode(response.body));
@@ -246,10 +234,8 @@ class APICalls {
   Future<Return_policy?> returnPolicy() async {
     Return_policy? result;
     try {
-      final url = Uri.parse(baseUrl + "cmsPage/52");
-      var response = await http.get(url, headers: {
-        "Authorization": "Bearer zzimp56xrm0zuiu1f827qonutsojlwym"
-      });
+      final url = Uri.parse(baseUrl + "efn/page/identifier/return-policy");
+      var response = await http.get(url);
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Return_policy.fromJson(json.decode(response.body));
@@ -267,11 +253,8 @@ class APICalls {
   Future<Payment_methods?> paymentMethods(context) async {
     Payment_methods? result;
     try {
-      final url = Uri.parse(baseUrl + "cmsPage/53");
-      var response = await http.get(url, headers: {
-        "Authorization":
-            "Bearer " + PreferenceUtils.getString(PreferenceUtils.TOKEN)
-      });
+      final url = Uri.parse(baseUrl + "efn/page/identifier/payment-methods");
+      var response = await http.get(url);
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Payment_methods.fromJson(json.decode(response.body));
