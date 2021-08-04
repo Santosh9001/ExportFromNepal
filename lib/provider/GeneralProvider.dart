@@ -1,4 +1,5 @@
 import 'package:export_nepal/model/core/aboutus.dart';
+import 'package:export_nepal/model/core/affiliate_program.dart';
 import 'package:export_nepal/model/core/faq.dart';
 import 'package:export_nepal/model/core/return_policy.dart';
 import 'package:export_nepal/model/core/shipping_policy.dart';
@@ -15,16 +16,19 @@ class GeneralProvider extends ChangeNotifier {
   Terms_of_use? termsOfUse;
   Shipping_policy? shippingPolicy;
   Return_policy? returnPolicy;
+  Affiliate_program? affiliatePrograms;
 
   String _termsOfUse = '';
   String _shippingPolicy = '';
   String _returnPolicy = '';
   String _aboutUs = '';
+  String _affiliateProgram = '';
 
   String get getTermsOfUse => _termsOfUse;
   String get getAboutUs => _aboutUs;
   String get getShippingPolicy => _shippingPolicy;
   String get getReturninPolicy => _returnPolicy;
+  String get getAffiiateProgram => _affiliateProgram;
 
   void invokeTermsOfUse() async {
     var api = APICalls();
@@ -62,6 +66,16 @@ class GeneralProvider extends ChangeNotifier {
     loading = true;
     returnPolicy = await api.returnPolicy();
     _returnPolicy = returnPolicy!.content!;
+    loading = false;
+
+    notifyListeners();
+  }
+
+  void invokeAffiliatePrograms() async {
+    var api = APICalls();
+    loading = true;
+    affiliatePrograms = await api.affiliatePrograms();
+    _affiliateProgram = affiliatePrograms!.content!;
     loading = false;
 
     notifyListeners();

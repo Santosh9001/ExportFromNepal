@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:export_nepal/model/core/aboutus.dart';
+import 'package:export_nepal/model/core/affiliate_program.dart';
 import 'package:export_nepal/model/core/manuals.dart';
 import 'package:export_nepal/model/core/payment_methods.dart';
 import 'package:export_nepal/model/core/privacy_policy.dart';
@@ -258,6 +259,25 @@ class APICalls {
       print(response.statusCode);
       if (response.statusCode == 200) {
         result = Payment_methods.fromJson(json.decode(response.body));
+        print(result.toString());
+      } else {
+        result = null;
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      result = null;
+    }
+    return result;
+  }
+
+  Future<Affiliate_program?> affiliatePrograms() async {
+    Affiliate_program? result;
+    try {
+      final url = Uri.parse(baseUrl + "efn/page/identifier/payment-methods");
+      var response = await http.get(url);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        result = Affiliate_program.fromJson(json.decode(response.body));
         print(result.toString());
       } else {
         result = null;
