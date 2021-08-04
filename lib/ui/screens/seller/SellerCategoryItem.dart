@@ -2,6 +2,7 @@ import 'package:export_nepal/provider/SellerProvider.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class SellerCategoryItem extends StatefulWidget {
@@ -38,14 +39,19 @@ class _SellerCategoryItemState extends State<SellerCategoryItem> {
                           alignment: Alignment.topRight,
                           children: [
                             Container(
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8)),
+                                color: provider.checkIfSelected(index)
+                                    ? kColorPrimary
+                                    : Colors.white,
+                              ),
                               padding: EdgeInsets.all(10),
-                              color: provider.checkIfSelected(index)
-                                  ? kColorPrimary
-                                  : Colors.white,
                               width: 70,
                               height: 70,
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8)),
                                 /*child: Image.network(
                                   kDummyImage,
                                   fit: BoxFit.cover,
@@ -55,17 +61,12 @@ class _SellerCategoryItemState extends State<SellerCategoryItem> {
                             provider.checkIfSelected(index)
                                 ? Padding(
                                     padding:
-                                        EdgeInsets.only(top: 10, right: 10),
-                                    child: SizedBox(
-                                      height: 10,
-                                      width: 10,
-                                      child: Checkbox(
-                                        checkColor: Colors.black,
-                                        activeColor: kColorPink,
-                                        value: true,
-                                        onChanged: (value) {},
-                                      ),
-                                    ),
+                                        EdgeInsets.only(top: 5, right: 5),
+                                    child: SvgPicture.asset(
+                                        "assets/images/tick_square.svg",
+                                        height: 10,
+                                        width: 10,
+                                        allowDrawingOutsideViewBox: true),
                                   )
                                 : Text(""),
                           ],
