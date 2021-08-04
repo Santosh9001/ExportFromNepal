@@ -1,6 +1,5 @@
-import 'package:either_dart/either.dart';
-import 'package:export_nepal/model/core/Product/product.dart';
-import 'package:export_nepal/model/glitch/glitch.dart';
+import 'package:export_nepal/model/core/Product/models/product.dart';
+import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/provider/dashboard_provider.dart';
 import 'package:export_nepal/ui/screens/dashboard/home/components/HomeMenuDialog.dart';
 import 'package:export_nepal/utils/constants.dart';
@@ -9,11 +8,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:provider/provider.dart';
 import 'components/CollectionGrid.dart';
 import 'components/HorizontalProductsList.dart';
-import 'components/ProductCard.dart';
 import 'components/ProductCardSmall.dart';
 
 class HomeUI extends StatefulWidget {
@@ -25,22 +22,39 @@ class HomeUI extends StatefulWidget {
 
 class _HomeUIState extends State<HomeUI> {
   DashboardProvider? _dashboardProvider;
-  Future<Either<Glitch, Product>>? _newProducts;
+  ApiResponse? _newProductResponse,
+      _bestSellingProductResponse,
+      _mostViewedProductResponse;
+  Product? _newProduct, _bestSellingProduct, _mostViewedProduct;
   @override
   void initState() {
     super.initState();
-    _dashboardProvider = DashboardProvider();
-    _newProducts = _dashboardProvider!.getNewProducts();
   }
 
   void reloadServerData() {
-    setState(() {
-      _newProducts = _dashboardProvider!.getNewProducts();
-    });
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    _dashboardProvider = Provider.of<DashboardProvider>(context, listen: true);
+    _newProductResponse = _dashboardProvider!.newProductResponse;
+    _mostViewedProductResponse = _dashboardProvider!.mostViewedProductResponse;
+    _bestSellingProductResponse =
+        _dashboardProvider!.bestSellingProductResponse;
+
+    if (_newProductResponse!.data != null) {
+      _newProduct = _newProductResponse!.data as Product;
+    }
+
+    if (_bestSellingProductResponse!.data != null) {
+      _bestSellingProduct = _bestSellingProductResponse!.data as Product;
+    }
+
+    if (_mostViewedProductResponse!.data != null) {
+      _mostViewedProduct = _mostViewedProductResponse!.data as Product;
+    }
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: kColorPrimary),
@@ -181,22 +195,19 @@ class _HomeUIState extends State<HomeUI> {
                         padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                         child: Container(
                           margin: EdgeInsets.only(top: 16),
-                          child: FutureBuilder<Either<Glitch, Product>>(
-                              future: _newProducts,
-                              builder: (context, snapshot) {
-                                return Center(
-                                    // Error in future not handling
-                                    child: snapshot.hasData &&
-                                            snapshot.connectionState !=
-                                                ConnectionState.waiting
-                                        ? snapshot.data!.fold<Widget>(
-                                            (err) => ServerErrorWidget(err,
-                                                onReload: reloadServerData),
-                                            (data) => HorizontalProductsList(
-                                                "New Products",
-                                                snapshot.data!.right))
-                                        : CircularProgressIndicator());
-                              }),
+                          child: Center(
+                            // Error in future not handling
+                            child: _newProductResponse!.status != Status.LOADING
+                                ? (_newProductResponse!.status ==
+                                            Status.ERROR &&
+                                        _newProduct == null
+                                    ? ServerErrorWidget(
+                                        _newProductResponse!.message!,
+                                        onReload: reloadServerData)
+                                    : HorizontalProductsList(
+                                        "New Products", _newProduct))
+                                : CircularProgressIndicator(),
+                          ),
                           width: double.infinity,
                           height: 300,
                         ),
@@ -221,8 +232,20 @@ class _HomeUIState extends State<HomeUI> {
                         child: Container(
                           margin: EdgeInsets.only(top: 16),
                           child: Center(
-                              child: HorizontalProductsList(
-                                  "Best Selling Products", null)),
+                            // Error in future not handling
+                            child: _bestSellingProductResponse!.status !=
+                                    Status.LOADING
+                                ? (_bestSellingProductResponse!.status ==
+                                            Status.ERROR &&
+                                        _bestSellingProduct == null
+                                    ? ServerErrorWidget(
+                                        _bestSellingProductResponse!.message!,
+                                        onReload: reloadServerData)
+                                    : HorizontalProductsList(
+                                        "Best Selling Products",
+                                        _bestSellingProduct))
+                                : CircularProgressIndicator(),
+                          ),
                           width: double.infinity,
                           height: 300,
                         ),
@@ -237,8 +260,19 @@ class _HomeUIState extends State<HomeUI> {
                         child: Container(
                           margin: EdgeInsets.only(top: 16),
                           child: Center(
-                              child:
-                                  HorizontalProductsList("Most Viewed", null)),
+                            // Error in future not handling
+                            child: _mostViewedProductResponse!.status !=
+                                    Status.LOADING
+                                ? (_mostViewedProductResponse!.status ==
+                                            Status.ERROR &&
+                                        _mostViewedProduct == null
+                                    ? ServerErrorWidget(
+                                        _mostViewedProductResponse!.message!,
+                                        onReload: reloadServerData)
+                                    : HorizontalProductsList(
+                                        "Most Viewed", _mostViewedProduct))
+                                : CircularProgressIndicator(),
+                          ),
                           width: double.infinity,
                           height: 300,
                         ),
