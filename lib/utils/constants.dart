@@ -53,6 +53,9 @@ const kTextStyleRedRegularPrimary =
 const kTextStyleRedBoldMedium =
     TextStyle(fontSize: 14.0, color: kColorRed, fontWeight: FontWeight.normal);
 
+const kTextStyleRedSmall =
+    TextStyle(fontSize: 13.0, color: kColorRed, fontWeight: FontWeight.normal);
+
 const kTextStyleRedBold =
     TextStyle(fontSize: 14.0, color: kColorRed, fontWeight: FontWeight.bold);
 

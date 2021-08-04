@@ -373,6 +373,34 @@ class _SignUpUIState extends State<SignUpUI> {
                     ),
                   ],
                 ),
+                SizedBox(height: 15),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10,20,10,20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                      color: Colors.white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Want To Sell Your Products?",
+                        style: kTextStyleSmallPrimary,
+                      ),
+                      SizedBox(
+                        width: 5.0,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/sellerLogin');
+                        },
+                        child: Text(
+                          "Sign Up As A Seller",
+                          style: kTextStyleBlueBold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

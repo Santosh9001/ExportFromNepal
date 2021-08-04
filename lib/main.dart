@@ -13,12 +13,13 @@ import 'package:export_nepal/ui/screens/affiliate/JoinAffiliate.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AccountInformation.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressBookUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressDetailsUI.dart';
-import 'package:export_nepal/ui/screens/dashboard/checkout/OrerConfirmUI.dart';
+import 'package:export_nepal/ui/screens/dashboard/checkout/OrderConfirmUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyOrderUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyWishListUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/checkout/ShippingEstimate.dart';
 import 'package:export_nepal/ui/screens/dashboard/home/components/HomeMenuDialog.dart';
 import 'package:export_nepal/ui/screens/general/AboutUs.dart';
+import 'package:export_nepal/ui/screens/general/AffiliateProgram.dart';
 import 'package:export_nepal/ui/screens/general/Blogs.dart';
 import 'package:export_nepal/ui/screens/general/ContactUs.dart';
 import 'package:export_nepal/ui/screens/general/FAQ.dart';
@@ -29,6 +30,8 @@ import 'package:export_nepal/ui/screens/general/TermsOfUse.dart';
 import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
 import 'package:export_nepal/ui/screens/product/ProductList.dart';
 import 'package:export_nepal/ui/screens/search/SearchUI.dart';
+import 'package:export_nepal/ui/screens/seller/SellerCategories.dart';
+import 'package:export_nepal/ui/screens/seller/SellerSignUpUI.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:export_nepal/utils/preference_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -93,7 +96,10 @@ class MainApp extends StatelessWidget {
         '/faq': (context) => FAQ(),
         '/searchUI': (context) => SearchUI(),
         '/productLists': (context) => ProductList(),
+        '/sellerLogin': (context) => SellerSignUpUI(),
         '/accountInformation': (context) => AccountInformation(),
+        '/sellerCategories': (context) => SellerCategories(),
+        '/affiliate': (context) => AffiliateProgram()
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),
