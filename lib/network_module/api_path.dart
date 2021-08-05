@@ -3,6 +3,8 @@ enum APIPath {
   login,
   validate_email,
   new_products,
+  best_selling,
+  most_viewed,
 }
 
 class APIPathHelper {
@@ -16,6 +18,10 @@ class APIPathHelper {
         return "customers/isEmailAvailable";
       case APIPath.new_products:
         return "efn/products/new/";
+      case APIPath.best_selling:
+        return "efn/products/best-seller/";
+      case APIPath.most_viewed:
+        return "efn/products/most-viewed/";
       default:
         return "";
     }

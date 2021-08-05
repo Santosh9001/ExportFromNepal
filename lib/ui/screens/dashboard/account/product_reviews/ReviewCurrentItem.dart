@@ -150,11 +150,13 @@ class _ReviewCurrentItemState extends State<ReviewCurrentItem> {
                                           SizedBox(
                                             height: 10,
                                           ),
-                                          Padding(padding: EdgeInsets.only(left: 10),
-                                          child: Text(
-                                            "Rate The Product",
-                                            style: kTextStyleRegularPrimary,
-                                          ),),
+                                          Padding(
+                                            padding: EdgeInsets.only(left: 10),
+                                            child: Text(
+                                              "Rate The Product",
+                                              style: kTextStyleRegularPrimary,
+                                            ),
+                                          ),
                                           SizedBox(
                                             height: 10,
                                           ),
@@ -176,8 +178,40 @@ class _ReviewCurrentItemState extends State<ReviewCurrentItem> {
                                               print(rating);
                                             },
                                           ),
-                                          SizedBox(height: 10,),
-                                          
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(left: 10),
+                                            child: Text(
+                                              "Review The Product",
+                                              style: kTextStyleRegularPrimary,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 10, right: 10),
+                                            child: TextField(
+                                              keyboardType:
+                                                  TextInputType.multiline,
+                                              maxLines: 6,
+                                              style: kTextStyleSmallPrimary,
+                                              decoration: new InputDecoration(
+                                                isDense: true,
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        vertical: 15,
+                                                        horizontal: 10),
+                                                hintText: 'Your Message',
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 30,
+                                          )
                                         ],
                                       ),
                                     ),
@@ -260,13 +294,36 @@ class _ReviewCurrentItemState extends State<ReviewCurrentItem> {
                       ),
                     ),
                     Expanded(
-                      flex: 2,
+                      flex: 1,
                       child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10),
-                                topRight: Radius.circular(10))),
+                        width: double.infinity,
+                        padding: EdgeInsets.all(10),
+                        alignment: Alignment.topRight,
+                        decoration: BoxDecoration(color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10)
+                        )),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SizedBox(
+                              width: 10,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: kColorPrimary),
+                              onPressed: () {
+                              },
+                              child: Text(
+                                "Add Review",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

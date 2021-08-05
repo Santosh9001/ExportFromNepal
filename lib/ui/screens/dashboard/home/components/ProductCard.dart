@@ -1,4 +1,4 @@
-import 'package:export_nepal/model/core/Product/items.dart';
+import 'package:export_nepal/model/core/Product/models/items.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +40,9 @@ class ProductCard extends StatelessWidget {
                       ),
                       Container(
                         child: Text(
-                          "Gorkha Exim Pvt Ltd",
+                          this.item != null
+                              ? this.item!.sellerName!
+                              : "Lorem ipsum dolor sit amet,",
                           style: kTextStyleSmall,
                         ),
                       ),
@@ -67,7 +69,7 @@ class ProductCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: Image.network(
-                  kDummyImage,
+                  this.item != null ? this.item!.image! : kDummyImage,
                   fit: BoxFit.cover,
                 ),
               ),

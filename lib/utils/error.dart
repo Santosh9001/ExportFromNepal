@@ -3,7 +3,7 @@ import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ServerErrorWidget extends StatelessWidget {
-  final Glitch _error;
+  final String _error;
   final VoidCallback onReload;
   const ServerErrorWidget(this._error, {required this.onReload});
 
@@ -11,7 +11,7 @@ class ServerErrorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Text(
-        "Error: ${_error.message}",
+        "Error: ${_error}",
         style: TextStyle(color: kPrimaryTextColor),
       ),
       SizedBox(height: 20),

@@ -38,11 +38,10 @@ class HttpClient {
     var uri = APIBase.baseURL +
         url +
         ((params != null) ? this.queryParameters(params) : "");
-
+    print(uri.toString());
     var header = {HttpHeaders.contentTypeHeader: 'application/json'};
     try {
       final response = await http.get(Uri.parse(uri), headers: header);
-      print(response.body.toString());
       responseJson = _returnResponse(response);
     } on SocketException {
       return Left(NoInternetGlitch());
