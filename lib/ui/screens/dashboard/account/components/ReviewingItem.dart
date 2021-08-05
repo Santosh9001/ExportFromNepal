@@ -10,7 +10,9 @@ class ReviewingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, '/reviewCurrentItem');
+      },
       child: Padding(
         padding: EdgeInsets.only(bottom: 10),
         child: Stack(
