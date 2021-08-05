@@ -77,6 +77,8 @@ class _MyAccountState extends State<MyAccount> {
                         Navigator.pushNamed(context, '/productReviews');
                       } else if (index == 8) {
                         Navigator.pushNamed(context, '/affiliateDashboard');
+                      } else if (index == 12) {
+                        Navigator.pushNamed(context, '/requestedQuotes');
                       }
                     },
                     child: Padding(

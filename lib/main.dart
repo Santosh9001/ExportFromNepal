@@ -13,6 +13,7 @@ import 'package:export_nepal/ui/screens/affiliate/JoinAffiliate.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AccountInformation.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressBookUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressDetailsUI.dart';
+import 'package:export_nepal/ui/screens/dashboard/account/RequestedQuotes.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/product_reviews/ProductReviews.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/product_reviews/ReviewCurrentItem.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/product_reviews/ReviewingItemsList.dart';
@@ -105,7 +106,8 @@ class MainApp extends StatelessWidget {
         '/affiliate': (context) => AffiliateProgram(),
         '/productReviews': (context) => ProductReviews(),
         '/reviewingItemLists': (context) => ReviewingItemsList(),
-        '/reviewCurrentItem': (context) => ReviewCurrentItem()
+        '/reviewCurrentItem': (context) => ReviewCurrentItem(),
+        '/requestedQuotes': (context) => RequestedQuotes()
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),
