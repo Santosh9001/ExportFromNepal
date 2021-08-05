@@ -13,6 +13,7 @@ import 'package:export_nepal/ui/screens/affiliate/JoinAffiliate.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AccountInformation.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressBookUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/AddressDetailsUI.dart';
+import 'package:export_nepal/ui/screens/dashboard/account/ProductReviews.dart';
 import 'package:export_nepal/ui/screens/dashboard/checkout/OrderConfirmUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyOrderUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyWishListUI.dart';
@@ -99,7 +100,8 @@ class MainApp extends StatelessWidget {
         '/sellerLogin': (context) => SellerSignUpUI(),
         '/accountInformation': (context) => AccountInformation(),
         '/sellerCategories': (context) => SellerCategories(),
-        '/affiliate': (context) => AffiliateProgram()
+        '/affiliate': (context) => AffiliateProgram(),
+        '/productReviews': (context) => ProductReviews()
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),
