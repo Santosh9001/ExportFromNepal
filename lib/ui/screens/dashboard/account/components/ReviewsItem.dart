@@ -10,10 +10,7 @@ class ReviewsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, '/productLists');
-      },
+    return GestureDetector(      
       child: Container(
         margin: EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
