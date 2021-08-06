@@ -1,4 +1,5 @@
 import 'package:export_nepal/ui/components/button.dart';
+import 'package:export_nepal/ui/screens/dashboard/cart/CartListItem.dart';
 import 'package:export_nepal/ui/screens/dashboard/cart/NoCart.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class _CartState extends State<Cart> {
     return kCategoryBlue;
   }
 
-  bool check = true;
+  bool check = false;
   @override
   Widget build(BuildContext context) {
     return check
@@ -68,174 +69,13 @@ class _CartState extends State<Cart> {
                 height: 16.0,
               ),
               Flexible(
-                flex: 3,
+                flex: 4,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                   child: ListView.separated(
                     itemCount: 5,
                     itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Flexible(
-                              flex: 1,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  margin: EdgeInsets.only(top: 4),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(4.0),
-                                    child: Image.network(
-                                      kDummyImage,
-                                      fit: BoxFit.fitHeight,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Flexible(
-                              flex: 3,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Flexible(
-                                            flex: 3,
-                                            child: Text(
-                                              "Handmade Evergy Healing Metal Yoga Meditational singing Bowl",
-                                              style: kTextStyleBlueBold,
-                                            )),
-                                        Flexible(
-                                          flex: 1,
-                                          child: Checkbox(
-                                            checkColor: Colors.white,
-                                            value: true,
-                                            onChanged: (bool? value) {},
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "Color: ",
-                                          style: kTextStyleSmallPrimary,
-                                        ),
-                                        Container(
-                                          color: kColorPrimary,
-                                          width: 14,
-                                          height: 14,
-                                          margin: EdgeInsets.only(top: 2),
-                                        ),
-                                        SizedBox(
-                                          width: 8,
-                                        ),
-                                        Text(
-                                          "|",
-                                          style: kTextStyleSmallPrimary,
-                                        ),
-                                        SizedBox(
-                                          width: 8,
-                                        ),
-                                        Text(
-                                          "Size: XL",
-                                          style: kTextStyleSmallPrimary,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      "\$ 59.99",
-                                      style: TextStyle(
-                                          fontSize: 14.0,
-                                          color: kColorRed,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "+ Add to wish list",
-                                          style: kTextStyleRegularPrimary,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            InkWell(
-                                              onTap: () {
-                                                setState(() {});
-                                              },
-                                              child: Icon(
-                                                Icons.remove,
-                                                size: 20.0,
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                setState(() {});
-                                              },
-                                              child: Container(
-                                                margin: EdgeInsets.only(
-                                                    left: 8, right: 8),
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(8)),
-                                                    color: kCategoryBlue),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8),
-                                                  child: Text(
-                                                    "1",
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 14),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                setState(() {});
-                                              },
-                                              child: Icon(
-                                                Icons.add,
-                                                size: 20.0,
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      );
+                      return CartListItem();
                     },
                     separatorBuilder: (BuildContext context, int index) =>
                         const SizedBox(
@@ -251,7 +91,7 @@ class _CartState extends State<Cart> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(
-                          left: 16, top: 8, right: 16, bottom: 8),
+                          left: 10, top: 8, right: 10, bottom: 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
