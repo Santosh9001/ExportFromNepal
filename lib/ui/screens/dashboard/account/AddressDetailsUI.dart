@@ -44,10 +44,8 @@ class _AddressDetailUIState extends State<AddressDetailUI> {
                 height: 8,
               ),
               TextField(
+                keyboardType: TextInputType.name,
                 decoration: new InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5.0),
-                  ),
                   hintText: 'First Name',
                 ),
               ),
@@ -62,10 +60,8 @@ class _AddressDetailUIState extends State<AddressDetailUI> {
                 height: 8,
               ),
               TextField(
+                keyboardType: TextInputType.name,
                 decoration: new InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5.0),
-                  ),
                   hintText: 'Last Name',
                 ),
               ),
@@ -80,10 +76,8 @@ class _AddressDetailUIState extends State<AddressDetailUI> {
                 height: 8,
               ),
               TextField(
+                keyboardType: TextInputType.name,
                 decoration: new InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5.0),
-                  ),
                   hintText: 'Company Name',
                 ),
               ),
@@ -98,10 +92,8 @@ class _AddressDetailUIState extends State<AddressDetailUI> {
                 height: 8,
               ),
               TextField(
+                keyboardType: TextInputType.name,
                 decoration: new InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5.0),
-                  ),
                   hintText: 'Country',
                 ),
               ),
@@ -116,10 +108,8 @@ class _AddressDetailUIState extends State<AddressDetailUI> {
                 height: 8,
               ),
               TextField(
+                keyboardType: TextInputType.name,
                 decoration: new InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5.0),
-                  ),
                   hintText: '',
                 ),
               ),
@@ -134,10 +124,8 @@ class _AddressDetailUIState extends State<AddressDetailUI> {
                 height: 8,
               ),
               TextField(
+                keyboardType: TextInputType.name,
                 decoration: new InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5.0),
-                  ),
                   hintText: '',
                 ),
               ),
@@ -152,10 +140,8 @@ class _AddressDetailUIState extends State<AddressDetailUI> {
                 height: 8,
               ),
               TextField(
+                keyboardType: TextInputType.name,
                 decoration: new InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5.0),
-                  ),
                   hintText: '',
                 ),
               ),
@@ -163,10 +149,8 @@ class _AddressDetailUIState extends State<AddressDetailUI> {
                 height: 4,
               ),
               TextField(
+                keyboardType: TextInputType.name,
                 decoration: new InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5.0),
-                  ),
                   hintText: '',
                 ),
               ),
@@ -182,9 +166,6 @@ class _AddressDetailUIState extends State<AddressDetailUI> {
               ),
               TextField(
                 decoration: new InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5.0),
-                  ),
                   hintText: '',
                 ),
               ),
@@ -199,10 +180,8 @@ class _AddressDetailUIState extends State<AddressDetailUI> {
                 height: 8,
               ),
               TextField(
+                keyboardType: TextInputType.number,
                 decoration: new InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5.0),
-                  ),
                   hintText: '',
                 ),
               ),

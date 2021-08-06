@@ -1,11 +1,8 @@
 import 'package:export_nepal/provider/QuoteProvider.dart';
-import 'package:export_nepal/provider/ReviewProvider.dart';
-import 'package:export_nepal/ui/screens/dashboard/account/components/ReviewsItem.dart';
-import 'package:export_nepal/ui/screens/dashboard/category/subCategory/innerCategory/InnerCategoryItems.dart';
+import 'package:export_nepal/ui/screens/dashboard/account/components/QuotesItem.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 class RequestedQuotes extends StatefulWidget {
@@ -64,7 +61,7 @@ class _RequestedQuotesState extends State<RequestedQuotes> {
                         child: ListView.builder(
                           itemCount: 15,
                           itemBuilder: (BuildContext context, int index) {
-                            return ReviewsItem();
+                            return QuotesItem();
                           },
                         ),
                       ),

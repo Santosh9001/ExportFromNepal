@@ -35,6 +35,10 @@ const kTextStyleSmallBlueBoldPrimary = TextStyle(
 
 const kTextStyleRegularPrimary = TextStyle(
     fontSize: 16.0, color: kPrimaryTextColor, fontWeight: FontWeight.normal);
+
+const kTextStyleRegularBlue = TextStyle(
+    fontSize: 16.0, color: kColorPrimary, fontWeight: FontWeight.normal);
+
 const kTextStyleMediumPrimary = TextStyle(
     fontSize: 16.0, color: kPrimaryTextColor, fontWeight: FontWeight.w500);
 

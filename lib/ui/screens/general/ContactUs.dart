@@ -104,9 +104,11 @@ class _ContactUsState extends State<ContactUs> {
                                           SizedBox(
                                             width: 5,
                                           ),
-                                          Text(
-                                              "1313 Riverdale Street, West SpringField, MA 09081, USA",
-                                              style: kTextStyleSmallPrimary),
+                                          Expanded(
+                                              child: Text(
+                                            "1313 Riverdale Street, West SpringField, MA 09081, USA",
+                                            style: kTextStyleSmallPrimary,
+                                          )),
                                         ],
                                       ),
                                       SizedBox(
