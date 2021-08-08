@@ -222,7 +222,8 @@ class _AffiliateWithdrawlsState extends State<AffiliateWithdrawls> {
                                     topLeft: Radius.circular(10),
                                     topRight: Radius.circular(10)),
                                 color: Colors.white),
-                            child: Row(
+                            child: 
+                            Row(
                               children: [
                                 Expanded(
                                   child: Text(
@@ -263,7 +264,8 @@ class _AffiliateWithdrawlsState extends State<AffiliateWithdrawls> {
                             ),
                           ),
                           Expanded(
-                            child: ListView.builder(
+                            child: 
+                            ListView.builder(
                               itemCount: 35,
                               itemBuilder: (context, int index) {
                                 return Container(
