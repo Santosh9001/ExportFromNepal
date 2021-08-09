@@ -1,4 +1,5 @@
 import 'package:export_nepal/provider/RMAProvider.dart';
+import 'package:export_nepal/ui/screens/dashboard/account/components/RMAStatusDialog.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -173,26 +174,38 @@ class _RMAState extends State<RMADashboard> {
                             Row(
                               children: [
                                 Expanded(
-                                  child: Container(
-                                    padding: EdgeInsets.fromLTRB(10, 5, 5, 5),
-                                    decoration: BoxDecoration(
-                                        color: kColorBackground,
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(8))),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "All Status",
-                                          style: kTextStyleSmallPrimary,
-                                        ),
-                                        Icon(
-                                          Icons.expand_more,
-                                          size: 13,
-                                        ),
-                                      ],
+                                  child: GestureDetector(
+                                    child: Container(
+                                      padding: EdgeInsets.fromLTRB(10, 5, 5, 5),
+                                      decoration: BoxDecoration(
+                                          color: kColorBackground,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(8))),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            provider.currentSelectedValue,
+                                            style: kTextStyleSmallPrimary,
+                                          ),
+                                          Icon(
+                                            Icons.expand_more,
+                                            size: 13,
+                                          ),
+                                        ],
+                                      ),
                                     ),
+                                    onTap: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              backgroundColor: Colors.transparent,
+                                              content: RMAStatusDialog(),                                                                                            
+                                            );
+                                          });
+                                    },
                                   ),
                                 ),
                                 SizedBox(
@@ -310,42 +323,32 @@ class _RMAState extends State<RMADashboard> {
                                   children: [
                                     Expanded(
                                       flex: 1,
-                                      child: Text(
-                                        "1234",
-                                        style: kTextStyleSmallPrimary,
-                                        textAlign: TextAlign.center
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 2,
-                                      child: Text(
-                                        "Date",
-                                        style: kTextStyleSmallPrimary,
-                                        textAlign: TextAlign.center
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 2,
-                                      child: Text(
-                                        "\$123",
-                                        style: kTextStyleSmallPrimary,
-                                        textAlign: TextAlign.center
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        "card",
-                                        style: kTextStyleSmallPrimary,
-                                        textAlign: TextAlign.center
-                                      ),
-                                      flex: 2,
-                                    ),
-                                    Expanded(
-                                        child: Text(
-                                          "Paid",
+                                      child: Text("1234",
                                           style: kTextStyleSmallPrimary,
-                                          textAlign: TextAlign.end
-                                        ),
+                                          textAlign: TextAlign.center),
+                                    ),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text("Date",
+                                          style: kTextStyleSmallPrimary,
+                                          textAlign: TextAlign.center),
+                                    ),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text("\$123",
+                                          style: kTextStyleSmallPrimary,
+                                          textAlign: TextAlign.center),
+                                    ),
+                                    Expanded(
+                                      child: Text("card",
+                                          style: kTextStyleSmallPrimary,
+                                          textAlign: TextAlign.center),
+                                      flex: 2,
+                                    ),
+                                    Expanded(
+                                        child: Text("Paid",
+                                            style: kTextStyleSmallPrimary,
+                                            textAlign: TextAlign.end),
                                         flex: 1),
                                   ],
                                 ),

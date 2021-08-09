@@ -78,7 +78,7 @@ class _MyAccountState extends State<MyAccount> {
                       } else if (index == 7) {
                         Navigator.pushNamed(context, '/newsletterSubs');
                       } else if (index == 8) {
-                        Navigator.pushNamed(context, '/affiliateDashboard');
+                        Navigator.pushNamed(context, '/affiliateProgram');
                       } else if (index == 11) {
                         Navigator.pushNamed(context, '/rmaDashboard');
                       } else if (index == 12) {

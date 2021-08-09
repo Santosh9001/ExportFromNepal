@@ -1,3 +1,4 @@
+import 'package:export_nepal/provider/RMAProvider.dart';
 import 'package:export_nepal/provider/dashboard_provider.dart';
 import 'package:export_nepal/provider/registration_provider.dart';
 import 'package:export_nepal/provider/login_provider.dart';
@@ -64,6 +65,7 @@ List<SingleChildWidget> providers = [
       create: (_) => RegistrationProvider()),
   ChangeNotifierProvider<DashboardProvider>(create: (_) => DashboardProvider()),
   ChangeNotifierProvider<LoginProvider>(create: (_) => LoginProvider()),
+  ChangeNotifierProvider<RMAProvider>(create: (_) => RMAProvider()),
 ];
 
 class MainApp extends StatelessWidget {
