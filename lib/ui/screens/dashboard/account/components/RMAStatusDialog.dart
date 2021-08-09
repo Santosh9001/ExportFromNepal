@@ -10,7 +10,7 @@ class RMAStatusDialog extends StatefulWidget {
   _RMAStatusDialogState createState() => _RMAStatusDialogState();
 }
 
-class _RMAStatusDialogState extends State<RMAStatusDialog> {  
+class _RMAStatusDialogState extends State<RMAStatusDialog> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<RMAProvider>(context);
@@ -73,6 +73,7 @@ class _RMAStatusDialogState extends State<RMAStatusDialog> {
             style: ElevatedButton.styleFrom(primary: kColorPrimary),
             onPressed: () {
               Navigator.of(context).pop(true);
+              provider.setCurrentSelectedValue();
             },
             child: Text(
               "Make A Request",
