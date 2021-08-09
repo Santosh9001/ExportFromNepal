@@ -12,6 +12,7 @@ const kColorPink = Color(0xFFFDEAFA);
 const kColorOrange = Color(0xFFFDA607);
 const kColorGreen = Color(0xFFD0E3C4);
 const kColorLightGrey = Color(0xFFEDEDEA);
+const kColorGrey = Color(0xFFDEE2EC);
 
 const kTextStyleLarge = TextStyle(
     fontSize: 26.0, color: kPrimaryTextColor, fontWeight: FontWeight.bold);

@@ -258,105 +258,101 @@ class _RMAState extends State<RMADashboard> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: Text(
-                                "RMA ID",
-                                style: kTextStyleSmallBlueBoldPrimary,
-                                textAlign: TextAlign.center
-                              ),
+                              child: Text("RMA ID",
+                                  style: kTextStyleSmallBlueBoldPrimary,
+                                  textAlign: TextAlign.center),
                               flex: 1,
                             ),
                             Expanded(
-                              child: Text(
-                                "Order No.",
-                                style: kTextStyleSmallBlueBoldPrimary,
-                                textAlign: TextAlign.center
-                              ),
+                              child: Text("Order No.",
+                                  style: kTextStyleSmallBlueBoldPrimary,
+                                  textAlign: TextAlign.center),
                               flex: 2,
                             ),
                             Expanded(
-                              child: Text(
-                                "Resolution",
-                                style: kTextStyleSmallBlueBoldPrimary,
-                                textAlign: TextAlign.center
-                              ),
+                              child: Text("Resolution",
+                                  style: kTextStyleSmallBlueBoldPrimary,
+                                  textAlign: TextAlign.center),
                               flex: 2,
                             ),
                             Expanded(
-                              child: Text(
-                                "Quote's Status",
-                                style: kTextStyleSmallBlueBoldPrimary,
-                                textAlign: TextAlign.center
-                              ),
+                              child: Text("Quote's Status",
+                                  style: kTextStyleSmallBlueBoldPrimary,
+                                  textAlign: TextAlign.center),
                               flex: 2,
                             ),
                             Expanded(
-                              child: Text(
-                                "Date",
-                                style: kTextStyleSmallBlueBoldPrimary,
-                                textAlign: TextAlign.end
-                              ),
+                              child: Text("Date",
+                                  style: kTextStyleSmallBlueBoldPrimary,
+                                  textAlign: TextAlign.end),
                               flex: 1,
                             ),
                           ],
                         ),
                       ),
                     ),
-                    Expanded(flex: 5, child: Container(
-                      child: ListView.builder(
-                              itemCount: 35,
-                              itemBuilder: (context, int index) {
-                                return Container(
-                                  margin: EdgeInsets.only(left: 10, right: 10),
-                                  padding: EdgeInsets.only(
-                                      top: 10, bottom: 15, left: 15, right: 15),
-                                  decoration: BoxDecoration(
-                                      color: index % 2 == 0
-                                          ? Colors.white
-                                          : kColorLightGrey),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                        flex: 2,
-                                        child: Text(
-                                          "1234",
-                                          style: kTextStyleSmallPrimary,
-                                        ),
+                    Expanded(
+                        flex: 5,
+                        child: Container(
+                          child: ListView.builder(
+                            itemCount: 35,
+                            itemBuilder: (context, int index) {
+                              return Container(
+                                margin: EdgeInsets.only(left: 10, right: 10),
+                                padding: EdgeInsets.only(
+                                    top: 10, bottom: 15, left: 0, right: 0),
+                                decoration: BoxDecoration(
+                                    color: index % 2 == 0
+                                        ? kColorBackground
+                                        : kColorGrey),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Text(
+                                        "1234",
+                                        style: kTextStyleSmallPrimary,
+                                        textAlign: TextAlign.center
                                       ),
-                                      Expanded(
-                                        flex: 2,
-                                        child: Text(
-                                          "Date",
-                                          style: kTextStyleSmallPrimary,
-                                        ),
+                                    ),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        "Date",
+                                        style: kTextStyleSmallPrimary,
+                                        textAlign: TextAlign.center
                                       ),
-                                      Expanded(
-                                        flex: 2,
-                                        child: Text(
-                                          "\$123",
-                                          style: kTextStyleSmallPrimary,
-                                        ),
+                                    ),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        "\$123",
+                                        style: kTextStyleSmallPrimary,
+                                        textAlign: TextAlign.center
                                       ),
-                                      Expanded(
-                                        child: Text(
-                                          "card",
-                                          style: kTextStyleSmallPrimary,
-                                        ),
-                                        flex: 2,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        "card",
+                                        style: kTextStyleSmallPrimary,
+                                        textAlign: TextAlign.center
                                       ),
-                                      Expanded(
-                                          child: Text(
-                                            "Paid",
-                                            style: kTextStyleSmallPrimary,
-                                          ),
-                                          flex: 1),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                          
-                    )),
+                                      flex: 2,
+                                    ),
+                                    Expanded(
+                                        child: Text(
+                                          "Paid",
+                                          style: kTextStyleSmallPrimary,
+                                          textAlign: TextAlign.end
+                                        ),
+                                        flex: 1),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        )),
                     Expanded(
                       flex: 1,
                       child: Container(
