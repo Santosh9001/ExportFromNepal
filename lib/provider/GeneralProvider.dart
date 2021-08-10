@@ -36,14 +36,18 @@ class GeneralProvider extends ChangeNotifier {
 
   GeneralRepository? _generalRepository;
   ApiResponse _aboutUsResponse = ApiResponse.loading("Loading");
+  ApiResponse _affiliateResponse = ApiResponse.loading("Loading");
 
   GeneralProvider() {
-    _generalRepository = GeneralRepository();
-    invokeAboutUs();
+    _generalRepository = GeneralRepository();    
   }
 
   ApiResponse get aboutUsResponse {
     return _aboutUsResponse;
+  }
+
+  ApiResponse get affiliateResponse {
+    return _affiliateResponse;
   }
 
   Future<void> invokeAboutUs() async {
@@ -63,6 +67,26 @@ class GeneralProvider extends ChangeNotifier {
     } catch (e) {
       _aboutUsResponse = ApiResponse.error(e.toString());
       _aboutUsResponse.status = Status.ERROR;
+    }
+  }
+
+  Future<void> invokeAffiliateProgram() async{
+    try {
+      if (_generalRepository != null) {
+        Either<Glitch, Affiliate_program> response =
+            await _generalRepository!.getAffiliatePrograms();
+        if (response.isLeft) {
+          _affiliateResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _affiliateResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _affiliateResponse = ApiResponse.error("Internal Error");
+      }
+      notifyListeners();
+    } catch (e) {
+      _affiliateResponse = ApiResponse.error(e.toString());
+      _affiliateResponse.status = Status.ERROR;
     }
   }
 

@@ -42,6 +42,7 @@ class _AboutUsState extends State<AboutUs> {
   @override
   Widget build(BuildContext context) {
     provider = Provider.of<GeneralProvider>(context, listen: true);
+    provider!.invokeAboutUs();
     _aboutUsResponse = provider!.aboutUsResponse;
     if (_aboutUsResponse!.data != null) {
       _aboutUs = _aboutUsResponse!.data as Aboutus;
