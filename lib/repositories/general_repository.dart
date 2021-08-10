@@ -1,6 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/aboutus.dart';
 import 'package:export_nepal/model/core/affiliate_program.dart';
+import 'package:export_nepal/model/core/return_policy.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_path.dart';
 import 'package:export_nepal/network_module/http_client.dart';
@@ -31,6 +32,21 @@ class GeneralRepository {
         return Left(response.left);
       } else {
         return Right(affiliate_program);
+      }
+    } catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
+  }
+
+  Future<Either<Glitch, Return_policy>> getReturnPolicy() async {
+    Either<Glitch, dynamic> response = await HttpClient.instance
+        .get(APIPathHelper.getValue(APIPath.return_policy));
+        try {
+      Return_policy return_policy = Return_policy.fromJson(response.right);
+      if (response.isLeft) {
+        return Left(response.left);
+      } else {
+        return Right(return_policy);
       }
     } catch (e) {
       return Left(Glitch(message: e.toString()));

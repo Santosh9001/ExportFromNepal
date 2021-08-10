@@ -37,9 +37,10 @@ class GeneralProvider extends ChangeNotifier {
   GeneralRepository? _generalRepository;
   ApiResponse _aboutUsResponse = ApiResponse.loading("Loading");
   ApiResponse _affiliateResponse = ApiResponse.loading("Loading");
+  ApiResponse _returnPolicyResponse = ApiResponse.loading("Loading");
 
   GeneralProvider() {
-    _generalRepository = GeneralRepository();    
+    _generalRepository = GeneralRepository();
   }
 
   ApiResponse get aboutUsResponse {
@@ -48,6 +49,10 @@ class GeneralProvider extends ChangeNotifier {
 
   ApiResponse get affiliateResponse {
     return _affiliateResponse;
+  }
+
+  ApiResponse get returnPolicyResponse {
+    return _returnPolicyResponse;
   }
 
   Future<void> invokeAboutUs() async {
@@ -70,7 +75,7 @@ class GeneralProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> invokeAffiliateProgram() async{
+  Future<void> invokeAffiliateProgram() async {
     try {
       if (_generalRepository != null) {
         Either<Glitch, Affiliate_program> response =
@@ -90,6 +95,26 @@ class GeneralProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> invokeReturnPolicy() async {
+    try {
+      if (_generalRepository != null) {
+        Either<Glitch, Return_policy> response =
+            await _generalRepository!.getReturnPolicy();
+        if (response.isLeft) {
+          _returnPolicyResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _returnPolicyResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _returnPolicyResponse = ApiResponse.error("Internal Error");
+      }
+      notifyListeners();
+    } catch (e) {
+      _returnPolicyResponse = ApiResponse.error(e.toString());
+      _returnPolicyResponse.status = Status.ERROR;
+    }
+  }
+
   void invokeTermsOfUse() async {
     var api = APICalls();
     loading = true;
@@ -105,16 +130,6 @@ class GeneralProvider extends ChangeNotifier {
     loading = true;
     shippingPolicy = await api.shippingPolicy();
     _shippingPolicy = shippingPolicy!.content!;
-    loading = false;
-
-    notifyListeners();
-  }
-
-  void invokeReturnPolicy() async {
-    var api = APICalls();
-    loading = true;
-    returnPolicy = await api.returnPolicy();
-    _returnPolicy = returnPolicy!.content!;
     loading = false;
 
     notifyListeners();
