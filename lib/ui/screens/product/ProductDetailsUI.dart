@@ -634,13 +634,18 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   children: [
-                                                    Text(
+                                                    InkWell(
+                                                      onTap: (){
+                                                        
+                                                      },
+                                                      child: Text(
                                                       "Lakhey Trade Suppliers",
                                                       style: TextStyle(
                                                           color: kColorPrimary,
                                                           fontSize: 18,
                                                           fontWeight:
                                                               FontWeight.bold),
+                                                    ),
                                                     ),
                                                     Padding(
                                                       padding: EdgeInsets.only(

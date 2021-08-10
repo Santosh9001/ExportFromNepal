@@ -5,6 +5,14 @@ enum APIPath {
   new_products,
   best_selling,
   most_viewed,
+  about_us,
+  manuals,
+  shipping_policy,
+  team,
+  terms_of_use,
+  return_policy,
+  payment_methods,
+  affiliate_programs
 }
 
 class APIPathHelper {
@@ -22,6 +30,22 @@ class APIPathHelper {
         return "efn/products/best-seller/";
       case APIPath.most_viewed:
         return "efn/products/most-viewed/";
+      case APIPath.about_us:
+        return "efn/page/identifier/about-us";
+      case APIPath.manuals:
+        return "efn/manual";
+      case APIPath.shipping_policy:
+        return "efn/page/identifier/shipping-policy";
+      case APIPath.team:
+        return "efn/page/identifier/team";
+      case APIPath.terms_of_use:
+        return "efn/page/identifier/terms-of-use";
+      case APIPath.return_policy:
+        return "efn/page/identifier/return-policy";
+      case APIPath.payment_methods:
+        return "efn/page/identifier/payment-methods";
+      case APIPath.affiliate_programs:
+        return "efn/page/identifier/payment-methods";
       default:
         return "";
     }

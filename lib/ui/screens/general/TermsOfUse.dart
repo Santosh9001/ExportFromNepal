@@ -22,7 +22,6 @@ class _TermsOfUseState extends State<TermsOfUse> {
             body: SafeArea(
               child: Consumer<GeneralProvider>(
                 builder: (context, provider, child) {
-                  provider.invokeTermsOfUse();
                   return Padding(
                     padding: EdgeInsets.all(10),
                     child: Column(

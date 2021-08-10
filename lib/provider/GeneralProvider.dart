@@ -1,10 +1,14 @@
+import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/aboutus.dart';
 import 'package:export_nepal/model/core/affiliate_program.dart';
 import 'package:export_nepal/model/core/faq.dart';
 import 'package:export_nepal/model/core/return_policy.dart';
 import 'package:export_nepal/model/core/shipping_policy.dart';
 import 'package:export_nepal/model/core/terms_of_use.dart';
+import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/model/services/APICalls.dart';
+import 'package:export_nepal/network_module/api_response.dart';
+import 'package:export_nepal/repositories/general_repository.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:export_nepal/utils/preference_utils.dart';
 import 'package:flutter/material.dart';
@@ -30,22 +34,42 @@ class GeneralProvider extends ChangeNotifier {
   String get getReturninPolicy => _returnPolicy;
   String get getAffiiateProgram => _affiliateProgram;
 
+  GeneralRepository? _generalRepository;
+  ApiResponse _aboutUsResponse = ApiResponse.loading("Loading");
+
+  GeneralProvider() {
+    _generalRepository = GeneralRepository();
+  }
+
+  ApiResponse get aboutUsResponse {    
+    return _aboutUsResponse;
+  }
+
+  Future<void> invokeAboutUs() async {
+    try {
+      if (_generalRepository != null) {
+        Either<Glitch, Aboutus> response =
+            await _generalRepository!.getAboutUs();
+        if (response.isLeft) {
+          _aboutUsResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _aboutUsResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _aboutUsResponse = ApiResponse.error("Internal Error");
+      }
+      notifyListeners();
+    } catch (e) {
+      _aboutUsResponse = ApiResponse.error(e.toString());
+      _aboutUsResponse.status = Status.ERROR;
+    }
+  }
+
   void invokeTermsOfUse() async {
     var api = APICalls();
     loading = true;
     termsOfUse = await api.termsOfUse();
     _termsOfUse = termsOfUse!.content!;
-    loading = false;
-
-    notifyListeners();
-  }
-
-  void invokeAboutUs() async {
-    print("about us");
-    var api = APICalls();
-    loading = true;
-    aboutUs = await api.aboutUs();
-    _aboutUs = aboutUs!.content!;
     loading = false;
 
     notifyListeners();

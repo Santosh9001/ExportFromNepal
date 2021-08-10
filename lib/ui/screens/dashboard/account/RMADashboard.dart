@@ -264,10 +264,9 @@ class _RMAState extends State<RMADashboard> {
                         ),
                       ),
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    SizedBox(height: 10,),
+                    Padding(
+                        padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                         child: Row(
                           children: [
                             Expanded(
@@ -303,7 +302,7 @@ class _RMAState extends State<RMADashboard> {
                           ],
                         ),
                       ),
-                    ),
+                      SizedBox(height: 8,),
                     Expanded(
                         flex: 5,
                         child: Container(
