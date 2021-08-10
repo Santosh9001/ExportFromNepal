@@ -39,9 +39,10 @@ class GeneralProvider extends ChangeNotifier {
 
   GeneralProvider() {
     _generalRepository = GeneralRepository();
+    invokeAboutUs();
   }
 
-  ApiResponse get aboutUsResponse {    
+  ApiResponse get aboutUsResponse {
     return _aboutUsResponse;
   }
 

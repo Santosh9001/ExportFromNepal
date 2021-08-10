@@ -18,7 +18,7 @@ class _AboutUsState extends State<AboutUs> {
   GeneralProvider? provider;
 
   Aboutus? _aboutUs;
-  String defaultValue = " ";
+  String defaultValue = "Loading....";
   ApiResponse? _aboutUsResponse;
 
   void reloadServerData() {
@@ -31,16 +31,17 @@ class _AboutUsState extends State<AboutUs> {
         ServerErrorWidget(_aboutUsResponse!.message!,
             onReload: reloadServerData);
         return defaultValue;
+      } else {
+        return _aboutUs!.content!;
       }
     } else {
-      return _aboutUs!.content!;
+      return defaultValue;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     provider = Provider.of<GeneralProvider>(context, listen: true);
-    provider!.invokeAboutUs();
     _aboutUsResponse = provider!.aboutUsResponse;
     if (_aboutUsResponse!.data != null) {
       _aboutUs = _aboutUsResponse!.data as Aboutus;
