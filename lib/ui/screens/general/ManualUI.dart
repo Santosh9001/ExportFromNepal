@@ -1,49 +1,36 @@
-import 'package:export_nepal/model/core/terms_of_use.dart';
+import 'package:export_nepal/model/core/manuals.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/provider/GeneralProvider.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:export_nepal/utils/error.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:provider/provider.dart';
 
-class TermsOfUse extends StatefulWidget {
-  const TermsOfUse({Key? key}) : super(key: key);
+class ManualUI extends StatefulWidget {
+  const ManualUI({Key? key}) : super(key: key);
 
   @override
-  _TermsOfUseState createState() => _TermsOfUseState();
+  _ManualsState createState() => _ManualsState();
 }
 
-class _TermsOfUseState extends State<TermsOfUse> {
+class _ManualsState extends State<ManualUI> {
   GeneralProvider? provider;
 
-  Terms_of_use? _terms_of_use;
+  Manuals? _manuals;
   String defaultValue = "Loading....";
-  ApiResponse? _termsResponse;
+  ApiResponse? _manualResponse;
 
   void reloadServerData() {
     setState(() {});
   }
 
-  getContent() {
-    if (_termsResponse!.status != Status.LOADING) {
-      if (_termsResponse!.status == Status.ERROR && _terms_of_use == null) {
-        ServerErrorWidget(_termsResponse!.message!, onReload: reloadServerData);
-        return defaultValue;
-      } else {
-        return _terms_of_use!.content!;
-      }
-    } else {
-      return defaultValue;
-    }
-  }
   @override
   Widget build(BuildContext context) {
     provider = Provider.of<GeneralProvider>(context, listen: true);
-    provider!.invokeTermsOfUse();
-    _termsResponse = provider!.termsOfUseResponse;
-    if (_termsResponse!.data != null) {
-      _terms_of_use = _termsResponse!.data as Terms_of_use;
+    provider!.invokeManuals();
+    _manualResponse = provider!.manualResponse;
+    if (_manualResponse!.data != null) {
+      _manuals = _manualResponse!.data as Manuals;
     }
     return Scaffold(
       body: SafeArea(
@@ -68,7 +55,7 @@ class _TermsOfUseState extends State<TermsOfUse> {
                   Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text(
-                      "Terms of Use",
+                      "Manuals",
                       style: kTextStyleMediumPrimary,
                     ),
                   ),
@@ -80,30 +67,17 @@ class _TermsOfUseState extends State<TermsOfUse> {
               Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Text(
-                  "Terms of Use",
+                  "Manuals",
                   style: kTextStyleBlueBoldMedium,
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    width: double.infinity,
-                    margin: EdgeInsets.only(left: 10, right: 10),
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: HtmlWidget(
-                      getContent(),
-                      textStyle: kTextStyleSmallPrimary,
-                    ),
-                  ),
-                ),
-              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: provider!.manualLists(_manuals),
+              )
             ],
           ),
         ),

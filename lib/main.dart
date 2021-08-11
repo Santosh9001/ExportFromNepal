@@ -31,7 +31,7 @@ import 'package:export_nepal/ui/screens/general/AffiliateProgram.dart';
 import 'package:export_nepal/ui/screens/general/Blogs.dart';
 import 'package:export_nepal/ui/screens/general/ContactUs.dart';
 import 'package:export_nepal/ui/screens/general/FAQ.dart';
-import 'package:export_nepal/ui/screens/general/Manuals.dart';
+import 'package:export_nepal/ui/screens/general/ManualUI.dart';
 import 'package:export_nepal/ui/screens/general/ReturnPolicy.dart';
 import 'package:export_nepal/ui/screens/general/ShippingPolicy.dart';
 import 'package:export_nepal/ui/screens/general/TermsOfUse.dart';
@@ -94,7 +94,7 @@ class MainApp extends StatelessWidget {
         '/addressBook': (context) => AddressBook(),
         '/addressDetails': (context) => AddressDetailUI(),
         '/blogs': (context) => Blogs(),
-        '/manuals': (context) => Manuals(),
+        '/manuals': (context) => ManualUI(),
         '/affiliateProgram': (context) => AffiliateUI(),
         '/joinAffiliate': (context) => JoinAffiliate(),
         '/affiliateDashboard': (context) => AffiliateDashBoard(),
