@@ -12,7 +12,8 @@ enum APIPath {
   terms_of_use,
   return_policy,
   payment_methods,
-  affiliate_programs
+  affiliate_programs,
+  categories
 }
 
 class APIPathHelper {
@@ -46,6 +47,8 @@ class APIPathHelper {
         return "efn/page/identifier/payment-methods";
       case APIPath.affiliate_programs:
         return "efn/page/identifier/payment-methods";
+      case APIPath.categories:
+        return "efn/categories";
       default:
         return "";
     }
