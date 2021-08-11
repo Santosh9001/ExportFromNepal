@@ -1,10 +1,7 @@
 import 'package:export_nepal/model/core/categories/categories.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/provider/CategoryProvider.dart';
-import 'package:export_nepal/provider/GeneralProvider.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/CategoryItemSmall.dart';
-import 'package:export_nepal/ui/screens/dashboard/category/subCategory/SubCategoryItemSmall.dart';
-import 'package:export_nepal/ui/screens/dashboard/home/components/ProductCardSmall.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +26,7 @@ class _CategoryUIState extends State<CategoryUI> {
     if (_categoryResponse!.data != null) {
       _categories = _categoryResponse!.data as Categories;
     }
+
     return Container(
       color: Colors.white,
       child: Column(
@@ -57,9 +55,11 @@ class _CategoryUIState extends State<CategoryUI> {
                 crossAxisCount: 4,
                 childAspectRatio: 0.8,
               ),
-              itemCount: 30,
+              itemCount: _categories != null ? _categories!.items!.length : 0,
               itemBuilder: (BuildContext context, int index) {
-                return CategoryItemSmall();
+                return _categories != null
+                    ? CategoryItemSmall(items: _categories!.items![index],)
+                    : Text("");
               },
             ),
           ),

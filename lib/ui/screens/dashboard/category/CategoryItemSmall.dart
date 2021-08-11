@@ -1,3 +1,4 @@
+import 'package:export_nepal/model/core/categories/categories.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/subCategory/SubCategoryUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/subCategory/innerCategory/InnerCategoryUI.dart';
 import 'package:export_nepal/utils/constants.dart';
@@ -5,8 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItemSmall extends StatelessWidget {
+  final Items items;
   const CategoryItemSmall({
-    Key? key,
+    Key? key, required this.items
   }) : super(key: key);
 
   @override
@@ -29,10 +31,10 @@ class CategoryItemSmall extends StatelessWidget {
               height: 70,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                /*child: Image.network(
-                kDummyImage,
+                child: Image.network(
+                items.image!,
                 fit: BoxFit.cover,
-              ),*/
+              ),
               ),
             ),
           ),
@@ -41,7 +43,7 @@ class CategoryItemSmall extends StatelessWidget {
           height: 4,
         ),
         Text(
-          "Art and Craft",
+          items.name!,
           style: TextStyle(
               fontSize: 10.0,
               color: kPrimaryTextColor,

@@ -1,4 +1,33 @@
 class Categories {
+  List<Items>? _items;
+
+  List<Items>? get items => _items;
+
+  Categories({
+      List<Items>? items}){
+    _items = items;
+}
+
+  Categories.fromJson(dynamic json) {
+    if (json["items"] != null) {
+      _items = [];
+      json["items"].forEach((v) {
+        _items?.add(Items.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    var map = <String, dynamic>{};
+    if (_items != null) {
+      map["items"] = _items?.map((v) => v.toJson()).toList();
+    }
+    return map;
+  }
+
+}
+
+class Items {
   String? _id;
   String? _parentId;
   String? _name;
@@ -19,7 +48,7 @@ class Categories {
   int? get productCount => _productCount;
   String? get childrenCount => _childrenCount;
 
-  Categories({
+  Items({
       String? id, 
       String? parentId, 
       String? name, 
@@ -40,7 +69,7 @@ class Categories {
     _childrenCount = childrenCount;
 }
 
-  Categories.fromJson(dynamic json) {
+  Items.fromJson(dynamic json) {
     _id = json["id"];
     _parentId = json["parent_id"];
     _name = json["name"];

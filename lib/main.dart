@@ -41,6 +41,7 @@ import 'package:export_nepal/ui/screens/product/ProductList.dart';
 import 'package:export_nepal/ui/screens/search/SearchUI.dart';
 import 'package:export_nepal/ui/screens/seller/SellerCategories.dart';
 import 'package:export_nepal/ui/screens/seller/SellerSignUpUI.dart';
+import 'package:export_nepal/ui/screens/seller/dashboard/SellerDashboard.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:export_nepal/utils/preference_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -118,7 +119,8 @@ class MainApp extends StatelessWidget {
         '/reviewCurrentItem': (context) => ReviewCurrentItem(),
         '/requestedQuotes': (context) => RequestedQuotes(),
         '/newsletterSubs': (context) => NewsLetterSubscription(),
-        '/rmaDashboard': (context) => RMADashboard()
+        '/rmaDashboard': (context) => RMADashboard(),
+        '/sellerDashboard': (context) => SellerDashboard()
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),

@@ -76,7 +76,8 @@ class _ManualsState extends State<ManualUI> {
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: provider!.manualLists(_manuals),
+                children:
+                    _manuals != null ? provider!.manualLists(_manuals) : [],
               )
             ],
           ),
