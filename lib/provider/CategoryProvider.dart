@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 class CategoryProvider extends ChangeNotifier {
   CategoryRepository? _categoryRepository;
   ApiResponse _categoryResponse = ApiResponse.loading("Loading");
+  ApiResponse _subCategoryResponse = ApiResponse.loading("Loading");
 
   CategoryProvider() {
     _categoryRepository = CategoryRepository();
@@ -16,6 +17,31 @@ class CategoryProvider extends ChangeNotifier {
 
   ApiResponse? get categoryResponse {
     return _categoryResponse;
+  }
+
+  ApiResponse? get subCategoryResponse {
+    return _subCategoryResponse;
+  }
+
+  Future<void> invokeSubcategory(String id) async {
+    try {
+      if (_categoryRepository != null) {
+        Either<Glitch, Categories> response =
+            await _categoryRepository!.getSubCategory(id);
+        if (response.isLeft) {
+          _subCategoryResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _subCategoryResponse = ApiResponse.completed(response.right);
+          print(_subCategoryResponse.data);
+        }
+      } else {
+        _subCategoryResponse = ApiResponse.error("Internal Error");
+      }
+      notifyListeners();
+    } catch (e) {
+      _subCategoryResponse = ApiResponse.error(e.toString());
+      _subCategoryResponse.status = Status.ERROR;
+    }
   }
 
   Future<void> invokeCategories() async {

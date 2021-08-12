@@ -1,3 +1,4 @@
+import 'package:export_nepal/model/core/categories/categories.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/CategoryItemSmall.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/subCategory/innerCategory/InnerCategoryItems.dart';
 import 'package:export_nepal/utils/constants.dart';
@@ -5,14 +6,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InnerCategoryUI extends StatefulWidget {
-  const InnerCategoryUI({Key? key}) : super(key: key);
+  final Items items;
+  final String category;
+  InnerCategoryUI(this.items, this.category);
 
   @override
-  _InnerCategoryUIState createState() => _InnerCategoryUIState();
+  _InnerCategoryUIState createState() => _InnerCategoryUIState(items, category);
 }
 
 class _InnerCategoryUIState extends State<InnerCategoryUI>
     with SingleTickerProviderStateMixin {
+  final Items items;
+  final String category;
+  _InnerCategoryUIState(this.items,this.category);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,10 +31,15 @@ class _InnerCategoryUIState extends State<InnerCategoryUI>
               color: Colors.white,
               child: Row(
                 children: [
-                  Icon(
-                    Icons.chevron_left,
-                    size: 35,
-                    color: kColorPrimary,
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop(true);
+                    },
+                    child: Icon(
+                      Icons.chevron_left,
+                      size: 35,
+                      color: kColorPrimary,
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 10),
@@ -35,12 +47,12 @@ class _InnerCategoryUIState extends State<InnerCategoryUI>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Sub Category title",
+                          items.name!,
                           style:
                               TextStyle(color: kPrimaryTextColor, fontSize: 20),
                         ),
                         Text(
-                          "Sub Title",
+                          "Categories > $category > "+items.name!,
                           style: TextStyle(
                               color: kSecondaryTextColor, fontSize: 11),
                         ),

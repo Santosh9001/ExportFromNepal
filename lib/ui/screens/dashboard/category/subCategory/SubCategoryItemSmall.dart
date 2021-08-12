@@ -2,53 +2,56 @@ import 'package:export_nepal/ui/screens/dashboard/category/subCategory/innerCate
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:export_nepal/model/core/categories/categories.dart';
 
 class SubCategoryItemSmall extends StatelessWidget {
-  final String title;
-
-  const SubCategoryItemSmall({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
+  final Items items;
+  final String category;
+  SubCategoryItemSmall(this.items, this.category);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Card(
-          margin: EdgeInsets.zero,
-          child: InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => InnerCategoryUI()),
-              );
-            },
-            child: Container(
-              color: kCategoryBlue,
-              width: 70,
-              height: 70,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                /*child: Image.network(
-                kDummyImage,
-                fit: BoxFit.cover,
-              ),*/
+    return Padding(
+      padding: EdgeInsets.all(5),
+      child: Column(
+        children: [
+          Card(
+            margin: EdgeInsets.zero,
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => InnerCategoryUI(items,category)),
+                );
+              },
+              child: Container(
+                color: kCategoryBlue,
+                width: 60,
+                height: 60,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    items.image!,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-        SizedBox(
-          height: 4,
-        ),
-        Text(
-          title,
-          style: TextStyle(
-              fontSize: 10.0,
-              color: kPrimaryTextColor,
-              fontWeight: FontWeight.normal),
-        ),
-      ],
+          SizedBox(
+            height: 4,
+          ),
+          Text(
+            items.name!,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 8.0,
+                color: kPrimaryTextColor,
+                fontWeight: FontWeight.normal),
+          ),
+        ],
+      ),
     );
   }
 }

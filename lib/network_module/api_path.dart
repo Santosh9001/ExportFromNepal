@@ -13,7 +13,8 @@ enum APIPath {
   return_policy,
   payment_methods,
   affiliate_programs,
-  categories
+  categories,
+  subCategories
 }
 
 class APIPathHelper {
@@ -49,6 +50,8 @@ class APIPathHelper {
         return "efn/page/identifier/payment-methods";
       case APIPath.categories:
         return "efn/categories";
+      case APIPath.subCategories:
+        return "efn/categories?id=";
       default:
         return "";
     }
