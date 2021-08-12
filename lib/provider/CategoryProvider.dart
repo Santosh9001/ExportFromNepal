@@ -9,7 +9,14 @@ class CategoryProvider extends ChangeNotifier {
   CategoryRepository? _categoryRepository;
   ApiResponse _categoryResponse = ApiResponse.loading("Loading");
 
-  ApiResponse? get categoryResponse => _categoryResponse;
+  CategoryProvider() {
+    _categoryRepository = CategoryRepository();
+    invokeCategories();
+  }
+
+  ApiResponse? get categoryResponse {
+    return _categoryResponse;
+  }
 
   Future<void> invokeCategories() async {
     try {
@@ -20,6 +27,7 @@ class CategoryProvider extends ChangeNotifier {
           _categoryResponse = ApiResponse.error(response.left.message);
         } else if (response.isRight) {
           _categoryResponse = ApiResponse.completed(response.right);
+          print(_categoryResponse.data);
         }
       } else {
         _categoryResponse = ApiResponse.error("Internal Error");

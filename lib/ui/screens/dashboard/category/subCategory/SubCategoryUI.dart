@@ -1,7 +1,11 @@
+import 'package:export_nepal/model/core/categories/categories.dart';
+import 'package:export_nepal/network_module/api_response.dart';
+import 'package:export_nepal/provider/CategoryProvider.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/CategoryItemSmall.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'SubCategoryItemSmall.dart';
 
@@ -18,7 +22,6 @@ class _SubCategoryUIState extends State<SubCategoryUI>
     with SingleTickerProviderStateMixin {
   // ignore: deprecated_member_use
   late List<Tab> _tabs = <Tab>[];
-  List<Widget> _generalWidgets = <Widget>[];
 
   @override
   void dispose() {
@@ -28,28 +31,34 @@ class _SubCategoryUIState extends State<SubCategoryUI>
   @override
   void initState() {
     super.initState();
-    _tabs = getTabs(8);
     addItems();
   }
 
   List<Tab> getTabs(int count) {
     _tabs.clear();
     for (int i = 0; i < count; i++) {
-      _tabs.add(getTab(i));
+       String? name = _categories!.items![i].name;
+      _tabs.add(Tab(text: name,));
     }
     return _tabs;
   }
 
-  Tab getTab(int widgetNumber) {
-    return Tab(
-      text: "Tab $widgetNumber",
-    );
-  }
+  CategoryProvider? provider;
+  Categories? _categories;
+  ApiResponse? _categoryResponse;
+  String defaultValue = "Loading....";
 
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of<CategoryProvider>(context, listen: true);
+    _categoryResponse = provider!.categoryResponse;
+    if (_categoryResponse!.data != null) {
+      _categories = _categoryResponse!.data as Categories;
+      _tabs = getTabs(_categories!.items!.length);
+    }
+
     return DefaultTabController(
-      length: 8,
+      length: _tabs.length,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -69,10 +78,10 @@ class _SubCategoryUIState extends State<SubCategoryUI>
           bottom: TabBar(
             isScrollable: true,
             indicatorColor: kColorRed,
-            labelStyle: TextStyle(color: kColorRed),
+            labelStyle: TextStyle(color: kColorRed,fontSize: 10),
             unselectedLabelColor: kColorPrimary,
             labelColor: kColorRed,
-            unselectedLabelStyle: TextStyle(color: kColorPrimary),
+            unselectedLabelStyle: TextStyle(color: kColorPrimary,fontSize: 10),
             tabs: _tabs,
           ),
         ),
