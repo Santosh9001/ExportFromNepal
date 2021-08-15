@@ -35,11 +35,13 @@ class _SubCategoryUIState extends State<SubCategoryUI>
 
   List<Tab> getTabs(int count) {
     _tabs.clear();
-    for (int i = 0; i < count; i++) {
-      String? name = _categories!.items![i].name;
-      _tabs.add(Tab(
-        text: name,
-      ));
+    if (_categories != null) {
+      for (int i = 0; i < count; i++) {
+        String? name = _categories!.items![i].name;
+        _tabs.add(Tab(
+          text: name,
+        ));
+      }
     }
     return _tabs;
   }
@@ -51,25 +53,28 @@ class _SubCategoryUIState extends State<SubCategoryUI>
   int _currentTab = 0;
 
   fetchSubCategory() {
-    for (int i = 0; i < _categories!.items!.length; i++) {
-      if (i == _currentTab) {
-        provider!.invokeSubcategory(_categories!.items![i].id!);
+        for (int i = 0; i < _categories!.items!.length; i++) {
+          if (i == _currentTab) {
+            provider!.invokeSubcategory(_categories!.items![i].id!);
+          }
+        }
       }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     provider = Provider.of<CategoryProvider>(context, listen: true);
-    _categoryResponse = provider!.categoryResponse;
-    if (_categoryResponse!.data != null) {
-      _categories = _categoryResponse!.data as Categories;
-      _tabs = getTabs(_categories!.items!.length);
-      fetchSubCategory();
-    }
-    _subCategoryResponse = provider!.subCategoryResponse;
-    if (_subCategoryResponse!.data! != null) {
-      _subCategories = _subCategoryResponse!.data as Categories;
+    if (provider != null) {      
+      _categoryResponse = provider!.categoryResponse;      
+
+      if (_categoryResponse!.data != null) {
+        _categories = _categoryResponse!.data as Categories;
+        _tabs = getTabs(_categories!.items!.length);
+        fetchSubCategory();
+      }
+      _subCategoryResponse = provider!.subCategoryResponse;
+      if (_subCategoryResponse!.data! != null) {
+        _subCategories = _subCategoryResponse!.data as Categories;
+      }
     }
 
     return DefaultTabController(
@@ -127,10 +132,9 @@ class _SubCategoryUIState extends State<SubCategoryUI>
                             ? _subCategories!.items!.length
                             : 0,
                         itemBuilder: (BuildContext context, int index) {
-                          return _subCategories != null
+                          return _subCategoryResponse != null
                               ? SubCategoryItemSmall(
-                                  _subCategories!.items![index],item.text!
-                                )
+                                  _subCategories!.items![index], item.text!)
                               : Text(
                                   "$defaultValue",
                                   style: kTextStyleSmallPrimary,
@@ -145,13 +149,5 @@ class _SubCategoryUIState extends State<SubCategoryUI>
         ),
       ),
     );
-  }
-
-  List<String> _items = <String>[];
-
-  void addItems() {
-    for (int i = 0; i < 20; i++) {
-      _items.add("Value $i");
-    }
   }
 }

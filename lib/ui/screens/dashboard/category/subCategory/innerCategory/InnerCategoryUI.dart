@@ -1,9 +1,13 @@
 import 'package:export_nepal/model/core/categories/categories.dart';
+import 'package:export_nepal/network_module/api_response.dart';
+import 'package:export_nepal/provider/CategoryProvider.dart';
+import 'package:export_nepal/provider/InnerCategoryProvider.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/CategoryItemSmall.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/subCategory/innerCategory/InnerCategoryItems.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class InnerCategoryUI extends StatefulWidget {
   final Items items;
@@ -18,10 +22,23 @@ class _InnerCategoryUIState extends State<InnerCategoryUI>
     with SingleTickerProviderStateMixin {
   final Items items;
   final String category;
-  _InnerCategoryUIState(this.items,this.category);
+  _InnerCategoryUIState(this.items, this.category);
+
+  InnerCategoryProvider? provider;
+  Categories? _subCategories;
+  ApiResponse? _subCategoryResponse;
+  String defaultValue = "Loading....";
 
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of<InnerCategoryProvider>(context, listen: true);
+    if (provider != null) {
+      provider!.invokeSubcategory(items.id!);
+      _subCategoryResponse = provider!.subCategoryResponse;
+      if (_subCategoryResponse!.data != null) {
+        _subCategories = _subCategoryResponse!.data as Categories;
+      }
+    }
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -52,9 +69,9 @@ class _InnerCategoryUIState extends State<InnerCategoryUI>
                               TextStyle(color: kPrimaryTextColor, fontSize: 20),
                         ),
                         Text(
-                          "Categories > $category > "+items.name!,
+                          "Categories > $category > " + items.name!,
                           style: TextStyle(
-                              color: kSecondaryTextColor, fontSize: 11),
+                              color: kSecondaryTextColor, fontSize: 8),
                         ),
                       ],
                     ),
@@ -66,9 +83,18 @@ class _InnerCategoryUIState extends State<InnerCategoryUI>
               child: Padding(
                 padding: EdgeInsets.all(0),
                 child: ListView.separated(
-                  itemCount: 15,
+                  itemCount: _subCategories != null
+                      ? _subCategories!.items!.length
+                      : 0,
                   itemBuilder: (BuildContext context, int index) {
-                    return InnerCategoryItem();
+                    return _subCategories != null
+                        ? InnerCategoryItem(
+                            _subCategories!.items![index],
+                          )
+                        : Text(
+                            "$defaultValue",
+                            style: kTextStyleSmallPrimary,
+                          );
                   },
                   separatorBuilder: (BuildContext context, int index) =>
                       new Divider(color: kSecondaryTextColor, height: 2),

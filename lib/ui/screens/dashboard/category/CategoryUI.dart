@@ -22,11 +22,18 @@ class _CategoryUIState extends State<CategoryUI> {
   String defaultValue = "Loading....";
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     provider = Provider.of<CategoryProvider>(context, listen: true);
-    _categoryResponse = provider!.categoryResponse;
-    if (_categoryResponse!.data != null) {
-      _categories = _categoryResponse!.data as Categories;
+    if (provider != null) {      
+      _categoryResponse = provider!.categoryResponse;
+      if (_categoryResponse!.data! != null) {
+        _categories = _categoryResponse!.data as Categories;
+      }
     }
     return Container(
       color: Colors.white,
@@ -59,8 +66,13 @@ class _CategoryUIState extends State<CategoryUI> {
               itemCount: _categories != null ? _categories!.items!.length : 0,
               itemBuilder: (BuildContext context, int index) {
                 return _categories != null
-                    ? CategoryItemSmall(_categories!.items![index],)
-                    : Text("$defaultValue", style: kTextStyleSmallPrimary,);
+                    ? CategoryItemSmall(
+                        _categories!.items![index],
+                      )
+                    : Text(
+                        "$defaultValue",
+                        style: kTextStyleSmallPrimary,
+                      );
               },
             ),
           ),
