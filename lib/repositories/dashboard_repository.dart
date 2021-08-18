@@ -7,7 +7,7 @@ import 'package:export_nepal/network_module/http_client.dart';
 class DashboardRepository {
   Future<Either<Glitch, Product>> getNewproducts() async {
     Either<Glitch, dynamic> response = await HttpClient.instance
-        .get(APIPathHelper.getValue(APIPath.new_products) + "10");
+        .get(APIPathHelper.getValue(APIPath.new_products) + "?pageSize=10");
     try {
       Product product = Product.fromJson(response.right);
       if (response.isLeft) {
@@ -22,7 +22,7 @@ class DashboardRepository {
 
   Future<Either<Glitch, Product>> getBestSelling() async {
     Either<Glitch, dynamic> response = await HttpClient.instance
-        .get(APIPathHelper.getValue(APIPath.best_selling) + "10");
+        .get(APIPathHelper.getValue(APIPath.best_selling) + "?pageSize=10");
     try {
       Product product = Product.fromJson(response.right);
       if (response.isLeft) {
@@ -37,7 +37,22 @@ class DashboardRepository {
 
   Future<Either<Glitch, Product>> getMostViewed() async {
     Either<Glitch, dynamic> response = await HttpClient.instance
-        .get(APIPathHelper.getValue(APIPath.most_viewed) + "10");
+        .get(APIPathHelper.getValue(APIPath.most_viewed) + "?pageSize=10");
+    try {
+      Product product = Product.fromJson(response.right);
+      if (response.isLeft) {
+        return Left(response.left);
+      } else {
+        return Right(product);
+      }
+    } catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
+  }
+
+  Future<Either<Glitch, Product>> getJustForYou() async {
+    Either<Glitch, dynamic> response = await HttpClient.instance
+        .get(APIPathHelper.getValue(APIPath.just_for_you) + "?pageSize=10");
     try {
       Product product = Product.fromJson(response.right);
       if (response.isLeft) {

@@ -2,6 +2,7 @@ import 'package:export_nepal/model/core/categories/categories.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/provider/CategoryProvider.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/CategoryItemSmall.dart';
+import 'package:export_nepal/ui/screens/dashboard/category/subCategory/SubCategoryList.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +11,7 @@ import 'package:provider/provider.dart';
 import 'SubCategoryItemSmall.dart';
 
 class SubCategoryUI extends StatefulWidget {
-  final String title;
-
-  const SubCategoryUI({Key? key, required this.title}) : super(key: key);
+  const SubCategoryUI({Key? key}) : super(key: key);
 
   @override
   _SubCategoryUIState createState() => _SubCategoryUIState();
@@ -53,27 +52,28 @@ class _SubCategoryUIState extends State<SubCategoryUI>
   int _currentTab = 0;
 
   fetchSubCategory() {
-        for (int i = 0; i < _categories!.items!.length; i++) {
-          if (i == _currentTab) {
-            provider!.invokeSubcategory(_categories!.items![i].id!);
-          }
-        }
+    for (int i = 0; i < _categories!.items!.length; i++) {
+      if (i == _currentTab) {
+        provider!.invokeSubcategory(_categories!.items![i].id!);
       }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     provider = Provider.of<CategoryProvider>(context, listen: true);
-    if (provider != null) {      
-      _categoryResponse = provider!.categoryResponse;      
+    if (provider != null) {
+      provider!.invokeCategories();
+      _categoryResponse = provider!.categoryResponse;
 
       if (_categoryResponse!.data != null) {
-        _categories = _categoryResponse!.data as Categories;
+        _categories = _categoryResponse!.data! as Categories;
         _tabs = getTabs(_categories!.items!.length);
         fetchSubCategory();
       }
       _subCategoryResponse = provider!.subCategoryResponse;
-      if (_subCategoryResponse!.data! != null) {
-        _subCategories = _subCategoryResponse!.data as Categories;
+      if (_subCategoryResponse!.data != null) {
+        _subCategories = _subCategoryResponse!.data! as Categories;
       }
     }
 
@@ -84,7 +84,7 @@ class _SubCategoryUIState extends State<SubCategoryUI>
           backgroundColor: Colors.white,
           elevation: 0,
           title: new Text(
-            widget.title,
+            "Categories",
             style: kTextStyleLargeBlue,
           ),
           leading: IconButton(
@@ -113,38 +113,7 @@ class _SubCategoryUIState extends State<SubCategoryUI>
         ),
         body: TabBarView(
           children: _tabs
-              .map(
-                (item) => Container(
-                  color: Colors.white,
-                  padding: EdgeInsets.only(top: 10),
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Container(
-                      color: Colors.white,
-                      child: GridView.builder(
-                        shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
-                          childAspectRatio: 0.8,
-                        ),
-                        itemCount: _subCategories != null
-                            ? _subCategories!.items!.length
-                            : 0,
-                        itemBuilder: (BuildContext context, int index) {
-                          return _subCategoryResponse != null
-                              ? SubCategoryItemSmall(
-                                  _subCategories!.items![index], item.text!)
-                              : Text(
-                                  "$defaultValue",
-                                  style: kTextStyleSmallPrimary,
-                                );
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-              )
+              .map((item) => SubCategoryList(_subCategories!, item.text!))
               .toList(),
         ),
       ),

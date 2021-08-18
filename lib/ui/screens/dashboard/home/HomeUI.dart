@@ -24,8 +24,9 @@ class _HomeUIState extends State<HomeUI> {
   DashboardProvider? _dashboardProvider;
   ApiResponse? _newProductResponse,
       _bestSellingProductResponse,
+      _justForYouResponse,
       _mostViewedProductResponse;
-  Product? _newProduct, _bestSellingProduct, _mostViewedProduct;
+  Product? _newProduct, _bestSellingProduct, _mostViewedProduct, _justForYou;
   @override
   void initState() {
     super.initState();
@@ -40,6 +41,7 @@ class _HomeUIState extends State<HomeUI> {
     _dashboardProvider = Provider.of<DashboardProvider>(context, listen: true);
     _newProductResponse = _dashboardProvider!.newProductResponse;
     _mostViewedProductResponse = _dashboardProvider!.mostViewedProductResponse;
+    _justForYouResponse = _dashboardProvider!.justForYourResponse;
     _bestSellingProductResponse =
         _dashboardProvider!.bestSellingProductResponse;
 
@@ -53,6 +55,10 @@ class _HomeUIState extends State<HomeUI> {
 
     if (_mostViewedProductResponse!.data != null) {
       _mostViewedProduct = _mostViewedProductResponse!.data as Product;
+    }
+
+    if (_justForYouResponse!.data != null) {
+      _justForYou = _justForYouResponse!.data as Product;
     }
 
     return Scaffold(
@@ -301,7 +307,8 @@ class _HomeUIState extends State<HomeUI> {
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 8.0),
-                          child: ProductCardSmall(),
+                          child: Text(
+                              "test"), // to be replaced by ProductCardSmall()
                         ),
                       );
                     },

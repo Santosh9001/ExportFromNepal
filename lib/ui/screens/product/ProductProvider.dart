@@ -1,3 +1,8 @@
+import 'package:either_dart/either.dart';
+import 'package:export_nepal/model/core/products.dart';
+import 'package:export_nepal/model/glitch/glitch.dart';
+import 'package:export_nepal/network_module/api_response.dart';
+import 'package:export_nepal/repositories/product_repository.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +15,38 @@ class ProductProvider extends ChangeNotifier {
 
   int get colorIndex => _selectedColorIndex;
   int get sizeIndex => _selectedSizeIndex;
+
+  ProductRepository? _productRepository;
+
+  ProductProvider() {
+    _productRepository = ProductRepository();
+  }
+
+  ApiResponse _productResponse = ApiResponse.loading("Loading");
+  ApiResponse? get productResponse {
+    return _productResponse;
+  }
+
+  Future<void> invokeproductsByCategory(String id) async {
+    try {
+      if (_productRepository != null) {
+        Either<Glitch, Products> response =
+            await _productRepository!.getCategoryProducts(id);
+        if (response.isLeft) {
+          _productResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _productResponse = ApiResponse.completed(response.right);
+          print(_productResponse.data);
+        }
+      } else {
+        _productResponse = ApiResponse.error("Internal Error");
+      }
+      notifyListeners();
+    } catch (e) {
+      _productResponse = ApiResponse.error(e.toString());
+      _productResponse.status = Status.ERROR;
+    }
+  }
 
   void setQuantity(int qty) {
     _itemQty += qty;

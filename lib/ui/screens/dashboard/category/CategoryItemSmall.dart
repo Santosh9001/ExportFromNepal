@@ -1,12 +1,14 @@
 import 'package:export_nepal/model/core/categories/categories.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/subCategory/SubCategoryUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/subCategory/innerCategory/InnerCategoryUI.dart';
+import 'package:export_nepal/ui/screens/product/ProductList.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItemSmall extends StatelessWidget {
   final Items items;
+
   CategoryItemSmall(this.items);
 
   @override
@@ -20,11 +22,11 @@ class CategoryItemSmall extends StatelessWidget {
             margin: EdgeInsets.zero,
             child: InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => SubCategoryUI(title: "Categories")),
-                );
+                if (int.parse(items.childrenCount!) != 0)
+                  Navigator.pushNamed(context, '/subCategory');
+                else
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProductList('',items.id!)));
               },
               child: Container(
                 color: kCategoryBlue,

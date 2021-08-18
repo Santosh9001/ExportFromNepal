@@ -1,4 +1,5 @@
 import 'package:export_nepal/ui/screens/dashboard/category/subCategory/innerCategory/InnerCategoryUI.dart';
+import 'package:export_nepal/ui/screens/product/ProductList.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:export_nepal/model/core/categories/categories.dart';
 class SubCategoryItemSmall extends StatelessWidget {
   final Items items;
   final String category;
+
   SubCategoryItemSmall(this.items, this.category);
 
   @override
@@ -19,12 +21,16 @@ class SubCategoryItemSmall extends StatelessWidget {
             margin: EdgeInsets.zero,
             child: InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => InnerCategoryUI(items,category)),
-                );
-              },
+                if (int.parse(items.childrenCount!) != 0)
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => InnerCategoryUI(items, category)),
+                  );
+                else
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProductList('',items.id!)));
+                },
               child: Container(
                 color: kCategoryBlue,
                 width: 60,

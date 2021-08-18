@@ -23,6 +23,8 @@ import 'package:export_nepal/ui/screens/dashboard/account/RequestedQuotes.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/product_reviews/ProductReviews.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/product_reviews/ReviewCurrentItem.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/product_reviews/ReviewingItemsList.dart';
+import 'package:export_nepal/ui/screens/dashboard/category/CategoryUI.dart';
+import 'package:export_nepal/ui/screens/dashboard/category/subCategory/SubCategoryUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/checkout/OrderConfirmUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyOrderUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/account/MyWishListUI.dart';
@@ -39,6 +41,7 @@ import 'package:export_nepal/ui/screens/general/ShippingPolicy.dart';
 import 'package:export_nepal/ui/screens/general/TermsOfUse.dart';
 import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
 import 'package:export_nepal/ui/screens/product/ProductList.dart';
+import 'package:export_nepal/ui/screens/product/ProductProvider.dart';
 import 'package:export_nepal/ui/screens/search/SearchUI.dart';
 import 'package:export_nepal/ui/screens/seller/SellerCategories.dart';
 import 'package:export_nepal/ui/screens/seller/SellerSignUpUI.dart';
@@ -73,6 +76,7 @@ List<SingleChildWidget> providers = [
   ChangeNotifierProvider<GeneralProvider>(create: (_) => GeneralProvider()),
   ChangeNotifierProvider<CategoryProvider>(create: (_) => CategoryProvider()),
   ChangeNotifierProvider<InnerCategoryProvider>(create: (_) => InnerCategoryProvider()),
+  ChangeNotifierProvider<ProductProvider>(create: (_) => ProductProvider()),
 
 ];
 
@@ -111,7 +115,6 @@ class MainApp extends StatelessWidget {
         '/contactUs': (context) => ContactUs(),
         '/faq': (context) => FAQ(),
         '/searchUI': (context) => SearchUI(),
-        '/productLists': (context) => ProductList(),
         '/sellerLogin': (context) => SellerSignUpUI(),
         '/accountInformation': (context) => AccountInformation(),
         '/sellerCategories': (context) => SellerCategories(),
@@ -122,7 +125,8 @@ class MainApp extends StatelessWidget {
         '/requestedQuotes': (context) => RequestedQuotes(),
         '/newsletterSubs': (context) => NewsLetterSubscription(),
         '/rmaDashboard': (context) => RMADashboard(),
-        '/sellerDashboard': (context) => SellerDashboard()
+        '/sellerDashboard': (context) => SellerDashboard(),
+        '/subCategory':(context) => SubCategoryUI(),
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),
