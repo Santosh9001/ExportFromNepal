@@ -1,112 +1,63 @@
-
 class Categories {
-  int? _id;
-  int? _parentId;
-  String? _name;
-  String? _image;
-  bool? _isActive;
-  int? _position;
-  int? _level;
-  int? _productCount;
-  List<Children_data>? _childrenData;
+  List<Items>? _items;
 
-  int? get id => _id;
-  int? get parentId => _parentId;
-  String? get name => _name;
-  String? get image => _image;
-  bool? get isActive => _isActive;
-  int? get position => _position;
-  int? get level => _level;
-  int? get productCount => _productCount;
-  List<Children_data>? get childrenData => _childrenData;
+  List<Items>? get items => _items;
 
   Categories({
-      int? id, 
-      int? parentId, 
-      String? name, 
-      String? image, 
-      bool? isActive, 
-      int? position, 
-      int? level, 
-      int? productCount, 
-      List<Children_data>? childrenData}){
-    _id = id;
-    _parentId = parentId;
-    _name = name;
-    _image = image;
-    _isActive = isActive;
-    _position = position;
-    _level = level;
-    _productCount = productCount;
-    _childrenData = childrenData;
+      List<Items>? items}){
+    _items = items;
 }
 
   Categories.fromJson(dynamic json) {
-    _id = json["id"];
-    _parentId = json["parent_id"];
-    _name = json["name"];
-    _image = json["image"];
-    _isActive = json["is_active"];
-    _position = json["position"];
-    _level = json["level"];
-    _productCount = json["product_count"];
-    if (json["children_data"] != null) {
-      _childrenData = [];
-      json["children_data"].forEach((v) {
-        _childrenData?.add(Children_data.fromJson(v));
+    if (json["items"] != null) {
+      _items = [];
+      json["items"].forEach((v) {
+        _items?.add(Items.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
-    map["id"] = _id;
-    map["parent_id"] = _parentId;
-    map["name"] = _name;
-    map["image"] = _image;
-    map["is_active"] = _isActive;
-    map["position"] = _position;
-    map["level"] = _level;
-    map["product_count"] = _productCount;
-    if (_childrenData != null) {
-      map["children_data"] = _childrenData?.map((v) => v.toJson()).toList();
+    if (_items != null) {
+      map["items"] = _items?.map((v) => v.toJson()).toList();
     }
     return map;
   }
 
 }
 
-class Children_data {
-  int? _id;
-  int? _parentId;
+class Items {
+  String? _id;
+  String? _parentId;
   String? _name;
   String? _image;
-  bool? _isActive;
-  int? _position;
-  int? _level;
+  String? _isActive;
+  String? _position;
+  String? _level;
   int? _productCount;
-  List<Children_data>? _childrenData;
+  String? _childrenCount;
 
-  int? get id => _id;
-  int? get parentId => _parentId;
+  String? get id => _id;
+  String? get parentId => _parentId;
   String? get name => _name;
   String? get image => _image;
-  bool? get isActive => _isActive;
-  int? get position => _position;
-  int? get level => _level;
+  String? get isActive => _isActive;
+  String? get position => _position;
+  String? get level => _level;
   int? get productCount => _productCount;
-  List<Children_data>? get childrenData => _childrenData;
+  String? get childrenCount => _childrenCount;
 
-  Children_data({
-      int? id, 
-      int? parentId, 
+  Items({
+      String? id, 
+      String? parentId, 
       String? name, 
       String? image, 
-      bool? isActive, 
-      int? position, 
-      int? level, 
+      String? isActive, 
+      String? position, 
+      String? level, 
       int? productCount, 
-      List<Children_data>? childrenData}){
+      String? childrenCount}){
     _id = id;
     _parentId = parentId;
     _name = name;
@@ -115,10 +66,10 @@ class Children_data {
     _position = position;
     _level = level;
     _productCount = productCount;
-    _childrenData = childrenData;
+    _childrenCount = childrenCount;
 }
 
-  Children_data.fromJson(dynamic json) {
+  Items.fromJson(dynamic json) {
     _id = json["id"];
     _parentId = json["parent_id"];
     _name = json["name"];
@@ -127,12 +78,7 @@ class Children_data {
     _position = json["position"];
     _level = json["level"];
     _productCount = json["product_count"];
-    if (json["children_data"] != null) {
-      _childrenData = [];
-      json["children_data"].forEach((v) {
-        _childrenData?.add(Children_data.fromJson(v));
-      });
-    }
+    _childrenCount = json["children_count"];
   }
 
   Map<String, dynamic> toJson() {
@@ -145,9 +91,7 @@ class Children_data {
     map["position"] = _position;
     map["level"] = _level;
     map["product_count"] = _productCount;
-    if (_childrenData != null) {
-      map["children_data"] = _childrenData?.map((v) => v.toJson()).toList();
-    }
+    map["children_count"] = _childrenCount;
     return map;
   }
 

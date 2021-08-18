@@ -635,17 +635,21 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                       MainAxisAlignment.start,
                                                   children: [
                                                     InkWell(
-                                                      onTap: (){
-                                                        
+                                                      onTap: () {
+                                                        Navigator.pushNamed(
+                                                            context,
+                                                            '/sellerDashboard');
                                                       },
                                                       child: Text(
-                                                      "Lakhey Trade Suppliers",
-                                                      style: TextStyle(
-                                                          color: kColorPrimary,
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
+                                                        "Lakhey Trade Suppliers",
+                                                        style: TextStyle(
+                                                            color:
+                                                                kColorPrimary,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
                                                     ),
                                                     Padding(
                                                       padding: EdgeInsets.only(

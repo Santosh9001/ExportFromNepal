@@ -1,51 +1,36 @@
-import 'package:export_nepal/model/core/aboutus.dart';
+import 'package:export_nepal/model/core/manuals.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/provider/GeneralProvider.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:export_nepal/utils/error.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:provider/provider.dart';
 
-class AboutUs extends StatefulWidget {
-  const AboutUs({Key? key}) : super(key: key);
+class ManualUI extends StatefulWidget {
+  const ManualUI({Key? key}) : super(key: key);
 
   @override
-  _AboutUsState createState() => _AboutUsState();
+  _ManualsState createState() => _ManualsState();
 }
 
-class _AboutUsState extends State<AboutUs> {
+class _ManualsState extends State<ManualUI> {
   GeneralProvider? provider;
 
-  Aboutus? _aboutUs;
+  Manuals? _manuals;
   String defaultValue = "Loading....";
-  ApiResponse? _aboutUsResponse;
+  ApiResponse? _manualResponse;
 
   void reloadServerData() {
-    // setState(() {});
-  }
-
-  getContent() {
-    if (_aboutUsResponse!.status != Status.LOADING) {
-      if (_aboutUsResponse!.status == Status.ERROR && _aboutUs == null) {
-        ServerErrorWidget(_aboutUsResponse!.message!,
-            onReload: reloadServerData);
-        return defaultValue;
-      } else {
-        return _aboutUs!.content!;
-      }
-    } else {
-      return defaultValue;
-    }
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     provider = Provider.of<GeneralProvider>(context, listen: true);
-    provider!.invokeAboutUs();
-    _aboutUsResponse = provider!.aboutUsResponse;
-    if (_aboutUsResponse!.data != null) {
-      _aboutUs = _aboutUsResponse!.data as Aboutus;
+    provider!.invokeManuals();
+    _manualResponse = provider!.manualResponse;
+    if (_manualResponse!.data != null) {
+      _manuals = _manualResponse!.data as Manuals;
     }
     return Scaffold(
       body: SafeArea(
@@ -70,7 +55,7 @@ class _AboutUsState extends State<AboutUs> {
                   Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text(
-                      "About",
+                      "Manuals",
                       style: kTextStyleMediumPrimary,
                     ),
                   ),
@@ -82,30 +67,18 @@ class _AboutUsState extends State<AboutUs> {
               Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Text(
-                  "About Us",
+                  "Manuals",
                   style: kTextStyleBlueBoldMedium,
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    width: double.infinity,
-                    margin: EdgeInsets.only(left: 10, right: 10),
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: HtmlWidget(
-                      getContent(),
-                      textStyle: kTextStyleSmallPrimary,
-                    ),
-                  ),
-                ),
-              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children:
+                    _manuals != null ? provider!.manualLists(_manuals) : [],
+              )
             ],
           ),
         ),

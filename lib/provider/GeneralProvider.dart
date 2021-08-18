@@ -2,6 +2,7 @@ import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/aboutus.dart';
 import 'package:export_nepal/model/core/affiliate_program.dart';
 import 'package:export_nepal/model/core/faq.dart';
+import 'package:export_nepal/model/core/manuals.dart';
 import 'package:export_nepal/model/core/return_policy.dart';
 import 'package:export_nepal/model/core/shipping_policy.dart';
 import 'package:export_nepal/model/core/terms_of_use.dart';
@@ -12,37 +13,44 @@ import 'package:export_nepal/repositories/general_repository.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:export_nepal/utils/preference_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:flutter_svg/svg.dart';
 
 class GeneralProvider extends ChangeNotifier {
-  bool loading = false;
-  Aboutus? aboutUs;
-  Terms_of_use? termsOfUse;
-  Shipping_policy? shippingPolicy;
-  Return_policy? returnPolicy;
-  Affiliate_program? affiliatePrograms;
-
-  String _termsOfUse = '';
-  String _shippingPolicy = '';
-  String _returnPolicy = '';
-  String _aboutUs = '';
-  String _affiliateProgram = '';
-
-  String get getTermsOfUse => _termsOfUse;
-  String get getAboutUs => _aboutUs;
-  String get getShippingPolicy => _shippingPolicy;
-  String get getReturninPolicy => _returnPolicy;
-  String get getAffiiateProgram => _affiliateProgram;
-
   GeneralRepository? _generalRepository;
   ApiResponse _aboutUsResponse = ApiResponse.loading("Loading");
+  ApiResponse _affiliateResponse = ApiResponse.loading("Loading");
+  ApiResponse _returnPolicyResponse = ApiResponse.loading("Loading");
+  ApiResponse _shippingResponse = ApiResponse.loading("Loading");
+  ApiResponse _termsOfUseResponse = ApiResponse.loading("Loading");
+  ApiResponse _manualResponse = ApiResponse.loading("Loading");
 
   GeneralProvider() {
     _generalRepository = GeneralRepository();
   }
 
-  ApiResponse get aboutUsResponse {    
+  ApiResponse get aboutUsResponse {
     return _aboutUsResponse;
+  }
+
+  ApiResponse get affiliateResponse {
+    return _affiliateResponse;
+  }
+
+  ApiResponse get returnPolicyResponse {
+    return _returnPolicyResponse;
+  }
+
+  ApiResponse get shippingPolicyResponse {
+    return _shippingResponse;
+  }
+
+  ApiResponse get termsOfUseResponse {
+    return _termsOfUseResponse;
+  }
+
+  ApiResponse get manualResponse {
+    return _manualResponse;
   }
 
   Future<void> invokeAboutUs() async {
@@ -65,44 +73,104 @@ class GeneralProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> invokeAffiliateProgram() async {
+    try {
+      if (_generalRepository != null) {
+        Either<Glitch, Affiliate_program> response =
+            await _generalRepository!.getAffiliatePrograms();
+        if (response.isLeft) {
+          _affiliateResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _affiliateResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _affiliateResponse = ApiResponse.error("Internal Error");
+      }
+      notifyListeners();
+    } catch (e) {
+      _affiliateResponse = ApiResponse.error(e.toString());
+      _affiliateResponse.status = Status.ERROR;
+    }
+  }
+
+  Future<void> invokeReturnPolicy() async {
+    try {
+      if (_generalRepository != null) {
+        Either<Glitch, Return_policy> response =
+            await _generalRepository!.getReturnPolicy();
+        if (response.isLeft) {
+          _returnPolicyResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _returnPolicyResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _returnPolicyResponse = ApiResponse.error("Internal Error");
+      }
+      notifyListeners();
+    } catch (e) {
+      _returnPolicyResponse = ApiResponse.error(e.toString());
+      _returnPolicyResponse.status = Status.ERROR;
+    }
+  }
+
   void invokeTermsOfUse() async {
-    var api = APICalls();
-    loading = true;
-    termsOfUse = await api.termsOfUse();
-    _termsOfUse = termsOfUse!.content!;
-    loading = false;
-
-    notifyListeners();
+    try {
+      if (_generalRepository != null) {
+        Either<Glitch, Terms_of_use> response =
+            await _generalRepository!.getTermsOfUse();
+        if (response.isLeft) {
+          _termsOfUseResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _termsOfUseResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _termsOfUseResponse = ApiResponse.error("Internal Error");
+      }
+      notifyListeners();
+    } catch (e) {
+      _termsOfUseResponse = ApiResponse.error(e.toString());
+      _termsOfUseResponse.status = Status.ERROR;
+    }
   }
 
-  void invokeShippingPolicy() async {
-    var api = APICalls();
-    loading = true;
-    shippingPolicy = await api.shippingPolicy();
-    _shippingPolicy = shippingPolicy!.content!;
-    loading = false;
-
-    notifyListeners();
+  Future<void> invokeShippingPolicy() async {
+    try {
+      if (_generalRepository != null) {
+        Either<Glitch, Shipping_policy> response =
+            await _generalRepository!.getShippingPolicy();
+        if (response.isLeft) {
+          _shippingResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _shippingResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _shippingResponse = ApiResponse.error("Internal Error");
+      }
+      notifyListeners();
+    } catch (e) {
+      _shippingResponse = ApiResponse.error(e.toString());
+      _shippingResponse.status = Status.ERROR;
+    }
   }
 
-  void invokeReturnPolicy() async {
-    var api = APICalls();
-    loading = true;
-    returnPolicy = await api.returnPolicy();
-    _returnPolicy = returnPolicy!.content!;
-    loading = false;
-
-    notifyListeners();
-  }
-
-  void invokeAffiliatePrograms() async {
-    var api = APICalls();
-    loading = true;
-    affiliatePrograms = await api.affiliatePrograms();
-    _affiliateProgram = affiliatePrograms!.content!;
-    loading = false;
-
-    notifyListeners();
+  Future<void> invokeManuals() async {
+    try {
+      if (_generalRepository != null) {
+        Either<Glitch, Manuals> response =
+            await _generalRepository!.getManuals();
+        if (response.isLeft) {
+          _manualResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _manualResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _manualResponse = ApiResponse.error("Internal Error");
+      }
+      notifyListeners();
+    } catch (e) {
+      _manualResponse = ApiResponse.error(e.toString());
+      _manualResponse.status = Status.ERROR;
+    }
   }
 
   List<String> icons = [
@@ -236,6 +304,33 @@ class GeneralProvider extends ChangeNotifier {
                 fontWeight: FontWeight.normal),
           ),
         ],
+      );
+    });
+  }
+
+  manualLists(Manuals? manuals) {
+    return new List<Widget>.generate(manuals!.items!.length, (int index) {
+      var item = manuals.items![index].name;
+      var pdf = manuals.items![index].file;
+      var i = index + 1;
+      return InkWell(
+        onTap: () {
+          PDF().fromUrl(pdf!);
+          print(pdf);
+        },
+        child: Container(
+          width: double.infinity,
+          margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(10))),
+          child: Text(
+            "$i. $item",
+            style: kTextStyleSmallBlueBoldPrimary,
+          ),
+        ),
       );
     });
   }

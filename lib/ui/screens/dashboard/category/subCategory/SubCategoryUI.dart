@@ -1,7 +1,11 @@
+import 'package:export_nepal/model/core/categories/categories.dart';
+import 'package:export_nepal/network_module/api_response.dart';
+import 'package:export_nepal/provider/CategoryProvider.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/CategoryItemSmall.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'SubCategoryItemSmall.dart';
 
@@ -18,7 +22,6 @@ class _SubCategoryUIState extends State<SubCategoryUI>
     with SingleTickerProviderStateMixin {
   // ignore: deprecated_member_use
   late List<Tab> _tabs = <Tab>[];
-  List<Widget> _generalWidgets = <Widget>[];
 
   @override
   void dispose() {
@@ -28,28 +31,49 @@ class _SubCategoryUIState extends State<SubCategoryUI>
   @override
   void initState() {
     super.initState();
-    _tabs = getTabs(8);
-    addItems();
   }
 
   List<Tab> getTabs(int count) {
     _tabs.clear();
     for (int i = 0; i < count; i++) {
-      _tabs.add(getTab(i));
+      String? name = _categories!.items![i].name;
+      _tabs.add(Tab(
+        text: name,
+      ));
     }
     return _tabs;
   }
 
-  Tab getTab(int widgetNumber) {
-    return Tab(
-      text: "Tab $widgetNumber",
-    );
+  CategoryProvider? provider;
+  Categories? _categories, _subCategories;
+  ApiResponse? _categoryResponse, _subCategoryResponse;
+  String defaultValue = "Loading....";
+  int _currentTab = 0;
+
+  fetchSubCategory() {
+    for (int i = 0; i < _categories!.items!.length; i++) {
+      if (i == _currentTab) {
+        provider!.invokeSubcategory(_categories!.items![i].id!);
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of<CategoryProvider>(context, listen: true);
+    _categoryResponse = provider!.categoryResponse;
+    if (_categoryResponse!.data != null) {
+      _categories = _categoryResponse!.data as Categories;
+      _tabs = getTabs(_categories!.items!.length);
+      fetchSubCategory();
+    }
+    _subCategoryResponse = provider!.subCategoryResponse;
+    if (_subCategoryResponse!.data! != null) {
+      _subCategories = _subCategoryResponse!.data as Categories;
+    }
+
     return DefaultTabController(
-      length: 8,
+      length: _tabs.length,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -59,7 +83,9 @@ class _SubCategoryUIState extends State<SubCategoryUI>
             style: kTextStyleLargeBlue,
           ),
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop(true);
+            },
             icon: Icon(
               Icons.chevron_left,
               color: kColorPrimary,
@@ -67,12 +93,16 @@ class _SubCategoryUIState extends State<SubCategoryUI>
             ),
           ),
           bottom: TabBar(
+            onTap: (value) {
+              _currentTab = value;
+              fetchSubCategory();
+            },
             isScrollable: true,
             indicatorColor: kColorRed,
-            labelStyle: TextStyle(color: kColorRed),
+            labelStyle: TextStyle(color: kColorRed, fontSize: 10),
             unselectedLabelColor: kColorPrimary,
             labelColor: kColorRed,
-            unselectedLabelStyle: TextStyle(color: kColorPrimary),
+            unselectedLabelStyle: TextStyle(color: kColorPrimary, fontSize: 10),
             tabs: _tabs,
           ),
         ),
@@ -86,10 +116,26 @@ class _SubCategoryUIState extends State<SubCategoryUI>
                     padding: EdgeInsets.only(top: 10),
                     child: Container(
                       color: Colors.white,
-                      child: GridView.count(
-                        crossAxisCount: 4,
-                        children: List.generate(_items.length,
-                            (index) => SubCategoryItemSmall(title: "Title")),
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          childAspectRatio: 0.8,
+                        ),
+                        itemCount: _subCategories != null
+                            ? _subCategories!.items!.length
+                            : 0,
+                        itemBuilder: (BuildContext context, int index) {
+                          return _subCategories != null
+                              ? SubCategoryItemSmall(
+                                  _subCategories!.items![index],item.text!
+                                )
+                              : Text(
+                                  "$defaultValue",
+                                  style: kTextStyleSmallPrimary,
+                                );
+                        },
                       ),
                     ),
                   ),

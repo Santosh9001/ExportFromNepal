@@ -1,3 +1,4 @@
+import 'package:export_nepal/model/core/categories/categories.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/subCategory/SubCategoryUI.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/subCategory/innerCategory/InnerCategoryUI.dart';
 import 'package:export_nepal/utils/constants.dart';
@@ -5,49 +6,53 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItemSmall extends StatelessWidget {
-  const CategoryItemSmall({
-    Key? key,
-  }) : super(key: key);
+  final Items items;
+  CategoryItemSmall(this.items);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Card(
-          margin: EdgeInsets.zero,
-          child: InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => SubCategoryUI(title: "Categories")),
-              );
-            },
-            child: Container(
-              color: kCategoryBlue,
-              width: 70,
-              height: 70,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                /*child: Image.network(
-                kDummyImage,
-                fit: BoxFit.cover,
-              ),*/
+    return Padding(
+      padding: EdgeInsets.all(5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Card(
+            margin: EdgeInsets.zero,
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => SubCategoryUI(title: "Categories")),
+                );
+              },
+              child: Container(
+                color: kCategoryBlue,
+                width: 60,
+                height: 60,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    items.image!,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-        SizedBox(
-          height: 4,
-        ),
-        Text(
-          "Art and Craft",
-          style: TextStyle(
-              fontSize: 10.0,
-              color: kPrimaryTextColor,
-              fontWeight: FontWeight.normal),
-        ),
-      ],
+          SizedBox(
+            height: 4,
+          ),
+          Text(
+            items.name!,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 8.0,
+                color: kPrimaryTextColor,
+                fontWeight: FontWeight.normal),
+          ),
+        ],
+      ),
     );
   }
 }

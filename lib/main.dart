@@ -1,3 +1,4 @@
+import 'package:export_nepal/provider/CategoryProvider.dart';
 import 'package:export_nepal/provider/GeneralProvider.dart';
 import 'package:export_nepal/provider/RMAProvider.dart';
 import 'package:export_nepal/provider/dashboard_provider.dart';
@@ -31,7 +32,7 @@ import 'package:export_nepal/ui/screens/general/AffiliateProgram.dart';
 import 'package:export_nepal/ui/screens/general/Blogs.dart';
 import 'package:export_nepal/ui/screens/general/ContactUs.dart';
 import 'package:export_nepal/ui/screens/general/FAQ.dart';
-import 'package:export_nepal/ui/screens/general/Manuals.dart';
+import 'package:export_nepal/ui/screens/general/ManualUI.dart';
 import 'package:export_nepal/ui/screens/general/ReturnPolicy.dart';
 import 'package:export_nepal/ui/screens/general/ShippingPolicy.dart';
 import 'package:export_nepal/ui/screens/general/TermsOfUse.dart';
@@ -40,6 +41,7 @@ import 'package:export_nepal/ui/screens/product/ProductList.dart';
 import 'package:export_nepal/ui/screens/search/SearchUI.dart';
 import 'package:export_nepal/ui/screens/seller/SellerCategories.dart';
 import 'package:export_nepal/ui/screens/seller/SellerSignUpUI.dart';
+import 'package:export_nepal/ui/screens/seller/dashboard/SellerDashboard.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:export_nepal/utils/preference_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -68,6 +70,8 @@ List<SingleChildWidget> providers = [
   ChangeNotifierProvider<LoginProvider>(create: (_) => LoginProvider()),
   ChangeNotifierProvider<RMAProvider>(create: (_) => RMAProvider()),
   ChangeNotifierProvider<GeneralProvider>(create: (_) => GeneralProvider()),
+  ChangeNotifierProvider<CategoryProvider>(create: (_) => CategoryProvider()),
+
 ];
 
 class MainApp extends StatelessWidget {
@@ -94,7 +98,7 @@ class MainApp extends StatelessWidget {
         '/addressBook': (context) => AddressBook(),
         '/addressDetails': (context) => AddressDetailUI(),
         '/blogs': (context) => Blogs(),
-        '/manuals': (context) => Manuals(),
+        '/manuals': (context) => ManualUI(),
         '/affiliateProgram': (context) => AffiliateUI(),
         '/joinAffiliate': (context) => JoinAffiliate(),
         '/affiliateDashboard': (context) => AffiliateDashBoard(),
@@ -115,7 +119,8 @@ class MainApp extends StatelessWidget {
         '/reviewCurrentItem': (context) => ReviewCurrentItem(),
         '/requestedQuotes': (context) => RequestedQuotes(),
         '/newsletterSubs': (context) => NewsLetterSubscription(),
-        '/rmaDashboard': (context) => RMADashboard()
+        '/rmaDashboard': (context) => RMADashboard(),
+        '/sellerDashboard': (context) => SellerDashboard()
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),
