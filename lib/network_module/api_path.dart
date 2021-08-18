@@ -25,11 +25,11 @@ class APIPathHelper {
       case APIPath.validate_email:
         return "customers/isEmailAvailable";
       case APIPath.new_products:
-        return "efn/products/new/";
+        return "efn/products/new?pageSize=";
       case APIPath.best_selling:
-        return "efn/products/best-seller/";
+        return "efn/products/best-seller?pageSize=";
       case APIPath.most_viewed:
-        return "efn/products/most-viewed/";
+        return "efn/products/most-viewed?pageSize=";
       case APIPath.about_us:
         return "efn/page/identifier/about-us";
       case APIPath.manuals:

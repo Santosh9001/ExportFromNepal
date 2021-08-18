@@ -22,7 +22,7 @@ class _AboutUsState extends State<AboutUs> {
   ApiResponse? _aboutUsResponse;
 
   void reloadServerData() {
-    setState(() {});
+    // setState(() {});
   }
 
   getContent() {
@@ -31,9 +31,9 @@ class _AboutUsState extends State<AboutUs> {
         ServerErrorWidget(_aboutUsResponse!.message!,
             onReload: reloadServerData);
         return defaultValue;
+      } else {
+        return _aboutUs!.content!;
       }
-    } else {
-      return _aboutUs!.content!;
     }
   }
 
