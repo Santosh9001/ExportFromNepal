@@ -218,8 +218,10 @@ class _LoginUIState extends State<LoginUI> {
                                             idToken: googleAuth.idToken);
                                     await FirebaseAuth.instance
                                         .signInWithCredential(credential)
-                                        .then((value) =>
-                                            print(value.user!.displayName));
+                                        .then((value) {
+                                      print(value);
+                                      print(value.user!.displayName);
+                                    });
                                   },
                                   child: Container(
                                     child: Center(

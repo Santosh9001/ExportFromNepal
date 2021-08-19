@@ -71,7 +71,6 @@ List<SingleChildWidget> providers = [
   ChangeNotifierProvider<RMAProvider>(create: (_) => RMAProvider()),
   ChangeNotifierProvider<GeneralProvider>(create: (_) => GeneralProvider()),
   ChangeNotifierProvider<CategoryProvider>(create: (_) => CategoryProvider()),
-
 ];
 
 class MainApp extends StatelessWidget {
