@@ -8,8 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'SubCategoryItemSmall.dart';
-
 class SubCategoryUI extends StatefulWidget {
   const SubCategoryUI({Key? key}) : super(key: key);
 
@@ -58,6 +56,7 @@ class _SubCategoryUIState extends State<SubCategoryUI>
       }
     }
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -111,9 +110,9 @@ class _SubCategoryUIState extends State<SubCategoryUI>
             tabs: _tabs,
           ),
         ),
-        body: TabBarView(
+        body: new TabBarView(
           children: _tabs
-              .map((item) => SubCategoryList(_subCategories!, item.text!))
+              .map((item) => new SubCategoryList(_subCategories!, item.text!))
               .toList(),
         ),
       ),

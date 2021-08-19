@@ -1,5 +1,5 @@
 import 'package:either_dart/either.dart';
-import 'package:export_nepal/model/core/products.dart';
+import 'package:export_nepal/model/core/Product/models/product.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/repositories/product_repository.dart';
@@ -30,7 +30,7 @@ class ProductProvider extends ChangeNotifier {
   Future<void> invokeproductsByCategory(String id) async {
     try {
       if (_productRepository != null) {
-        Either<Glitch, Products> response =
+        Either<Glitch, Product> response =
             await _productRepository!.getCategoryProducts(id);
         if (response.isLeft) {
           _productResponse = ApiResponse.error(response.left.message);

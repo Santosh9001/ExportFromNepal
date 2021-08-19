@@ -1,4 +1,4 @@
-import 'package:export_nepal/model/core/products.dart';
+import 'package:export_nepal/model/core/Product/models/items.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +22,7 @@ class ProductCardSmall extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.fromLTRB(8,8,8,8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -30,6 +30,7 @@ class ProductCardSmall extends StatelessWidget {
                       Text(
                         "$name",
                         style: kTextStyleSmallPrimary,
+                        maxLines: 2,
                       ),
                       SizedBox(
                         height: 4,
@@ -38,6 +39,7 @@ class ProductCardSmall extends StatelessWidget {
                         child: Text(
                           "$reseller",
                           style: kTextStyleSmall,
+                          maxLines: 2,
                         ),
                       ),
                       SizedBox(

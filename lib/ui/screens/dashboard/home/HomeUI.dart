@@ -26,7 +26,7 @@ class _HomeUIState extends State<HomeUI> {
       _bestSellingProductResponse,
       _justForYouResponse,
       _mostViewedProductResponse;
-  Product? _newProduct, _bestSellingProduct, _mostViewedProduct, _justForYou;
+  Product? _newProduct, _bestSellingProduct, _mostViewedProduct,_justForYou;
   @override
   void initState() {
     super.initState();
@@ -297,7 +297,7 @@ class _HomeUIState extends State<HomeUI> {
                 SliverGrid(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
-                    childAspectRatio: 0.65,
+                    childAspectRatio: 0.60,
                   ),
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
@@ -306,13 +306,12 @@ class _HomeUIState extends State<HomeUI> {
                           Navigator.pushNamed(context, '/details');
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Text(
-                              "test"), // to be replaced by ProductCardSmall()
-                        ),
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child:
+                                ProductCardSmall(_justForYou!.items![index])),
                       );
                     },
-                    childCount: 6,
+                    childCount: _justForYou?.items!.length ?? 0,
                   ),
                 ),
               ],

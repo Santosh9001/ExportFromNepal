@@ -1,4 +1,4 @@
-import 'package:export_nepal/model/core/products.dart';
+import 'package:export_nepal/model/core/Product/models/product.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/ui/screens/dashboard/home/components/ProductCardSmall.dart';
 import 'package:export_nepal/ui/screens/product/ProductItemList.dart';
@@ -24,7 +24,7 @@ class _ProductListState extends State<ProductList> {
   _ProductListState(this.title, this.id);
 
   ProductProvider? provider;
-  Products? _products;
+  Product? _products;
   ApiResponse? _productResponse;
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _ProductListState extends State<ProductList> {
       provider!.invokeproductsByCategory(id);
       _productResponse = provider!.productResponse;
       if (_productResponse!.data != null) {
-        _products = _productResponse!.data! as Products;
+        _products = _productResponse!.data! as Product;
       }
     }
 

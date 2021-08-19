@@ -52,7 +52,7 @@ class DashboardRepository {
 
   Future<Either<Glitch, Product>> getJustForYou() async {
     Either<Glitch, dynamic> response = await HttpClient.instance
-        .get(APIPathHelper.getValue(APIPath.just_for_you) + "?pageSize=10");
+        .get(APIPathHelper.getValue(APIPath.just_for_you) + "?pageSize=20");
     try {
       Product product = Product.fromJson(response.right);
       if (response.isLeft) {
