@@ -126,4 +126,8 @@ class ProductProvider extends ChangeNotifier {
       );
     });
   }
+
+  void checkAndCreateCart() {
+    
+  }
 }
