@@ -53,7 +53,7 @@ class GeneralProvider extends ChangeNotifier {
     return _manualResponse;
   }
 
-  Future<void> invokeAboutUs() async {
+  Future<ApiResponse> invokeAboutUs() async {
     try {
       if (_generalRepository != null) {
         Either<Glitch, Aboutus> response =
@@ -65,12 +65,13 @@ class GeneralProvider extends ChangeNotifier {
         }
       } else {
         _aboutUsResponse = ApiResponse.error("Internal Error");
-      }
-      notifyListeners();
+      }      
     } catch (e) {
-      _aboutUsResponse = ApiResponse.error(e.toString());
       _aboutUsResponse.status = Status.ERROR;
+      _aboutUsResponse = ApiResponse.error(e.toString());
     }
+    notifyListeners();
+    return _aboutUsResponse;
   }
 
   Future<void> invokeAffiliateProgram() async {

@@ -21,95 +21,104 @@ class _AboutUsState extends State<AboutUs> {
   String defaultValue = "Loading....";
   ApiResponse? _aboutUsResponse;
 
+  Future<ApiResponse>? _response;
+
   void reloadServerData() {
     setState(() {});
   }
 
-  getContent() {
-    if (_aboutUsResponse!.status != Status.LOADING) {
-      if (_aboutUsResponse!.status == Status.ERROR && _aboutUs == null) {
-        ServerErrorWidget(_aboutUsResponse!.message!,
-            onReload: reloadServerData);
-        return defaultValue;
-      } else {
-        return _aboutUs!.content!;
-      }
-    } else {
-      return defaultValue;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of<GeneralProvider>(context, listen: true);
-    provider!.invokeAboutUs();
-    _aboutUsResponse = provider!.aboutUsResponse;
-    if (_aboutUsResponse!.data != null) {
-      _aboutUs = _aboutUsResponse!.data as Aboutus;
-    }
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  SizedBox(height: 10),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop(true);
-                    },
-                    child: Icon(
-                      Icons.chevron_left,
-                      color: Colors.black,
-                      size: 30,
+      body: FutureBuilder<ApiResponse<dynamic>>(
+        builder: (context, snapshot) {
+          return SafeArea(
+              child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    SizedBox(height: 10),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop(true);
+                      },
+                      child: Icon(
+                        Icons.chevron_left,
+                        color: Colors.black,
+                        size: 30,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      "About",
-                      style: kTextStyleMediumPrimary,
+                    Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Text(
+                        "About",
+                        style: kTextStyleMediumPrimary,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text(
-                  "About Us",
-                  style: kTextStyleBlueBoldMedium,
+                  ],
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    width: double.infinity,
-                    margin: EdgeInsets.only(left: 10, right: 10),
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: HtmlWidget(
-                      getContent(),
-                      textStyle: kTextStyleSmallPrimary,
-                    ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text(
+                    "About Us",
+                    style: kTextStyleBlueBoldMedium,
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
+                SizedBox(
+                  height: 10,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      width: double.infinity,
+                      margin: EdgeInsets.only(left: 10, right: 10),
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: snapshot.connectionState == ConnectionState.done
+                          ? (snapshot.hasError
+                              ? Center(
+                                  child: Text('${snapshot.error} occured',
+                                      style: kTextStyleSmallPrimary),
+                                )
+                              : getWidgetValue(snapshot.data))
+                          : Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ));
+        },
+        future: invokeAboutUs(),
       ),
     );
+  }
+
+  Future<ApiResponse<dynamic>> invokeAboutUs() async {
+    provider = Provider.of<GeneralProvider>(context, listen: false);
+    await provider!.invokeAboutUs();
+    return provider!.aboutUsResponse;
+  }
+
+  getWidgetValue(data) {
+    _aboutUsResponse = data;
+    if (_aboutUsResponse != null) {
+      _aboutUs = _aboutUsResponse!.data as Aboutus;
+      return HtmlWidget(
+        "${_aboutUs!.content}",
+        textStyle: kTextStyleSmallPrimary,
+      );
+    }
   }
 }
