@@ -98,7 +98,7 @@ class GeneralProvider extends ChangeNotifier {
         }
       } else {
         _affiliateResponse = ApiResponse.error("Internal Error");
-      }      
+      }
     } catch (e) {
       _affiliateResponse = ApiResponse.error(e.toString());
       _affiliateResponse.status = Status.ERROR;
@@ -106,7 +106,6 @@ class GeneralProvider extends ChangeNotifier {
     notifyListeners();
     return _affiliateResponse;
   }
-
 
   Future<ApiResponse> invokeContact() async {
     try {
@@ -120,7 +119,7 @@ class GeneralProvider extends ChangeNotifier {
         }
       } else {
         _contactResponse = ApiResponse.error("Internal Error");
-      }      
+      }
     } catch (e) {
       _contactResponse = ApiResponse.error(e.toString());
       _contactResponse.status = Status.ERROR;
@@ -141,7 +140,7 @@ class GeneralProvider extends ChangeNotifier {
         }
       } else {
         _blogResponse = ApiResponse.error("Internal Error");
-      }      
+      }
     } catch (e) {
       _blogResponse = ApiResponse.error(e.toString());
       _blogResponse.status = Status.ERROR;
@@ -170,7 +169,7 @@ class GeneralProvider extends ChangeNotifier {
     }
   }
 
-  void invokeTermsOfUse() async {
+  Future<ApiResponse> invokeTermsOfUse() async {
     try {
       if (_generalRepository != null) {
         Either<Glitch, Terms_of_use> response =
@@ -182,12 +181,13 @@ class GeneralProvider extends ChangeNotifier {
         }
       } else {
         _termsOfUseResponse = ApiResponse.error("Internal Error");
-      }
-      notifyListeners();
+      }     
     } catch (e) {
       _termsOfUseResponse = ApiResponse.error(e.toString());
       _termsOfUseResponse.status = Status.ERROR;
     }
+     notifyListeners();
+    return _termsOfUseResponse;
   }
 
   Future<void> invokeShippingPolicy() async {
