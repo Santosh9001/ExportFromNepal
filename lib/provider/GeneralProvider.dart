@@ -181,16 +181,16 @@ class GeneralProvider extends ChangeNotifier {
         }
       } else {
         _termsOfUseResponse = ApiResponse.error("Internal Error");
-      }     
+      }
     } catch (e) {
       _termsOfUseResponse = ApiResponse.error(e.toString());
       _termsOfUseResponse.status = Status.ERROR;
     }
-     notifyListeners();
+    notifyListeners();
     return _termsOfUseResponse;
   }
 
-  Future<void> invokeShippingPolicy() async {
+  Future<ApiResponse> invokeShippingPolicy() async {
     try {
       if (_generalRepository != null) {
         Either<Glitch, Shipping_policy> response =
@@ -208,6 +208,8 @@ class GeneralProvider extends ChangeNotifier {
       _shippingResponse = ApiResponse.error(e.toString());
       _shippingResponse.status = Status.ERROR;
     }
+    notifyListeners();
+    return _shippingResponse;
   }
 
   Future<void> invokeManuals() async {

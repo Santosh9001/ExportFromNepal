@@ -105,7 +105,7 @@ class GeneralRepository {
 
   Future<Either<Glitch, Terms_of_use>> getTermsOfUse() async {
     Either<Glitch, dynamic> response = await HttpClient.instance
-        .get(APIPathHelper.getValue(APIPath.shipping_policy));
+        .get(APIPathHelper.getValue(APIPath.terms_of_use));
         try {
       Terms_of_use terms_of_use = Terms_of_use.fromJson(response.right);
       if (response.isLeft) {
