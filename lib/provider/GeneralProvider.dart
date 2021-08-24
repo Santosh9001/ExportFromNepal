@@ -1,6 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/aboutus.dart';
 import 'package:export_nepal/model/core/affiliate_program.dart';
+import 'package:export_nepal/model/core/contact.dart';
 import 'package:export_nepal/model/core/faq.dart';
 import 'package:export_nepal/model/core/manuals.dart';
 import 'package:export_nepal/model/core/return_policy.dart';
@@ -24,6 +25,7 @@ class GeneralProvider extends ChangeNotifier {
   ApiResponse _shippingResponse = ApiResponse.loading("Loading");
   ApiResponse _termsOfUseResponse = ApiResponse.loading("Loading");
   ApiResponse _manualResponse = ApiResponse.loading("Loading");
+  ApiResponse _contactResponse = ApiResponse.loading("Loading");
 
   GeneralProvider() {
     _generalRepository = GeneralRepository();
@@ -31,6 +33,10 @@ class GeneralProvider extends ChangeNotifier {
 
   ApiResponse get aboutUsResponse {
     return _aboutUsResponse;
+  }
+
+  ApiResponse get contactResponse {
+    return _contactResponse;
   }
 
   ApiResponse get affiliateResponse {
@@ -65,7 +71,7 @@ class GeneralProvider extends ChangeNotifier {
         }
       } else {
         _aboutUsResponse = ApiResponse.error("Internal Error");
-      }      
+      }
     } catch (e) {
       _aboutUsResponse.status = Status.ERROR;
       _aboutUsResponse = ApiResponse.error(e.toString());
@@ -74,7 +80,7 @@ class GeneralProvider extends ChangeNotifier {
     return _aboutUsResponse;
   }
 
-  Future<void> invokeAffiliateProgram() async {
+  Future<ApiResponse> invokeAffiliateProgram() async {
     try {
       if (_generalRepository != null) {
         Either<Glitch, Affiliate_program> response =
@@ -86,12 +92,35 @@ class GeneralProvider extends ChangeNotifier {
         }
       } else {
         _affiliateResponse = ApiResponse.error("Internal Error");
-      }
-      notifyListeners();
+      }      
     } catch (e) {
       _affiliateResponse = ApiResponse.error(e.toString());
       _affiliateResponse.status = Status.ERROR;
     }
+    notifyListeners();
+    return _affiliateResponse;
+  }
+
+
+  Future<ApiResponse> invokeContact() async {
+    try {
+      if (_generalRepository != null) {
+        Either<Glitch, Contact> response =
+            await _generalRepository!.getContact();
+        if (response.isLeft) {
+          _contactResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _contactResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _contactResponse = ApiResponse.error("Internal Error");
+      }      
+    } catch (e) {
+      _contactResponse = ApiResponse.error(e.toString());
+      _contactResponse.status = Status.ERROR;
+    }
+    notifyListeners();
+    return _contactResponse;
   }
 
   Future<void> invokeReturnPolicy() async {

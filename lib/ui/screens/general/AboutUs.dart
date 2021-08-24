@@ -18,10 +18,7 @@ class _AboutUsState extends State<AboutUs> {
   GeneralProvider? provider;
 
   Aboutus? _aboutUs;
-  String defaultValue = "Loading....";
   ApiResponse? _aboutUsResponse;
-
-  Future<ApiResponse>? _response;
 
   void reloadServerData() {
     setState(() {});

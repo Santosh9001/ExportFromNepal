@@ -13,6 +13,7 @@ enum APIPath {
   return_policy,
   payment_methods,
   affiliate_programs,
+  contact,
   categories,
   subCategories,
   categoryProducts,
@@ -50,7 +51,9 @@ class APIPathHelper {
       case APIPath.payment_methods:
         return "efn/page/identifier/payment-methods";
       case APIPath.affiliate_programs:
-        return "efn/page/identifier/payment-methods";
+        return "efn/page/identifier/affiliate-program";
+      case APIPath.contact:
+        return "efn/contact";
       case APIPath.categories:
         return "efn/categories";
       case APIPath.subCategories:
