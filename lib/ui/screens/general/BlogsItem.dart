@@ -1,16 +1,21 @@
 import 'dart:io';
 
-import 'package:export_nepal/ui/screens/general/Blogs.dart';
+import 'package:export_nepal/model/core/user_blogs.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class BlogsItem extends StatefulWidget {
+  final Posts _blogs;
+  BlogsItem(this._blogs);
   @override
-  _BlogsItemState createState() => _BlogsItemState();
+  _BlogsItemState createState() => _BlogsItemState(_blogs);
 }
 
 class _BlogsItemState extends State<BlogsItem> {
+  final Posts _blogs;
+  _BlogsItemState(this._blogs);
   @override
   void initState() {
     super.initState();
@@ -25,7 +30,7 @@ class _BlogsItemState extends State<BlogsItem> {
       child: Stack(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 90),
+            margin: EdgeInsets.only(top: 110),
             padding: EdgeInsets.only(top: 45),
             alignment: Alignment.bottomCenter,
             decoration: BoxDecoration(
@@ -43,7 +48,7 @@ class _BlogsItemState extends State<BlogsItem> {
                     height: 10,
                   ),
                   Text(
-                    "Export from Nepal New Updates and Sales",
+                    "${_blogs.ogTitle}",
                     style: TextStyle(
                       color: kPrimaryTextColor,
                       fontWeight: FontWeight.bold,
@@ -53,7 +58,7 @@ class _BlogsItemState extends State<BlogsItem> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Posted : Apri 2,2021",
+                        "Posted : ${_blogs.publishTime!.substring(0, 11)}",
                         style: kTextStyleSmallestPrimary,
                       ),
                       SizedBox(
@@ -68,7 +73,7 @@ class _BlogsItemState extends State<BlogsItem> {
                         width: 3,
                       ),
                       Text(
-                        "Categories : Blog post, Article",
+                        "Categories : ${_blogs.ogType}",
                         style: kTextStyleSmallestPrimary,
                       ),
                       SizedBox(
@@ -99,9 +104,12 @@ class _BlogsItemState extends State<BlogsItem> {
                     height: 10,
                   ),
                   Text(
-                    "Description goes here about the blog",
+                    "${_blogs.ogDescription}",
                     style: kTextStyleSmallPrimary,
-                  )
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),
@@ -116,13 +124,12 @@ class _BlogsItemState extends State<BlogsItem> {
                   color: Colors.black,
                   width: 1,
                 )),
-            margin: EdgeInsets.only(left: 10, right: 10),
+            margin: EdgeInsets.only(left: 10, right: 10, top: 20),
             height: 150,
             padding: EdgeInsets.all(3),
-            child: WebView(
-              initialUrl:
-                  'https://www.youtube.com/watch?v=kEbcHhNsRoU&list=RDfzHWFF6Je3o&index=3',
-              javascriptMode: JavascriptMode.unrestricted,
+            child: HtmlWidget(
+              "${_blogs.shortContent}",
+              textStyle: kTextStyleSmallPrimary,
             ),
           ),
         ],

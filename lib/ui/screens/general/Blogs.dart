@@ -76,7 +76,16 @@ class _BlogsUIState extends State<Blogs> {
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.all(10),
-                      child: getWidgetValue(snapshot.data),
+                      child: snapshot.connectionState == ConnectionState.done
+                              ? (snapshot.hasError
+                                  ? Center(
+                                      child: Text('${snapshot.error} occured',
+                                          style: kTextStyleSmallPrimary),
+                                    )
+                                  : getWidgetValue(snapshot.data))
+                              : Center(
+                                  child: CircularProgressIndicator(),
+                                ),
                     ),
                   ),
                 ],
@@ -99,11 +108,11 @@ class _BlogsUIState extends State<Blogs> {
     _blogResponse = data;
     if (_blogResponse != null) {
       _blogs = _blogResponse!.data as UserBlogs;
-      var _blog = _blogs!.posts;
+      var _posts = _blogs!.posts;
       return ListView.builder(
-          itemCount: _blogs!.posts!.length,
+          itemCount: _posts!.length,
           itemBuilder: (BuildContext context, int index) {
-            return BlogsItem();
+            return BlogsItem(_posts[index]);
           });
     }
   }
