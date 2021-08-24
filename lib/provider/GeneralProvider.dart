@@ -203,7 +203,6 @@ class GeneralProvider extends ChangeNotifier {
       } else {
         _shippingResponse = ApiResponse.error("Internal Error");
       }
-      notifyListeners();
     } catch (e) {
       _shippingResponse = ApiResponse.error(e.toString());
       _shippingResponse.status = Status.ERROR;
@@ -212,7 +211,7 @@ class GeneralProvider extends ChangeNotifier {
     return _shippingResponse;
   }
 
-  Future<void> invokeManuals() async {
+  Future<ApiResponse> invokeManuals() async {
     try {
       if (_generalRepository != null) {
         Either<Glitch, Manuals> response =
@@ -225,11 +224,12 @@ class GeneralProvider extends ChangeNotifier {
       } else {
         _manualResponse = ApiResponse.error("Internal Error");
       }
-      notifyListeners();
     } catch (e) {
       _manualResponse = ApiResponse.error(e.toString());
       _manualResponse.status = Status.ERROR;
     }
+    notifyListeners();
+    return _manualResponse;
   }
 
   List<String> icons = [
