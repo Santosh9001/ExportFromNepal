@@ -15,19 +15,11 @@ class ManualUI extends StatefulWidget {
 
 class _ManualsState extends State<ManualUI> {
   GeneralProvider? provider;
-
   Manuals? _manuals;
   ApiResponse? _manualResponse;
 
-  void reloadServerData() {
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (_manualResponse!.data != null) {
-      _manuals = _manualResponse!.data as Manuals;
-    }
     return Scaffold(
       body: FutureBuilder<ApiResponse<dynamic>>(
         builder: (context, snapshot) {
@@ -81,9 +73,11 @@ class _ManualsState extends State<ManualUI> {
                                     style: kTextStyleSmallPrimary),
                               )
                             : getWidgetValue(snapshot.data))
-                        : Center(
-                            child: CircularProgressIndicator(),
-                          ),
+                        : [
+                            Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          ],
                   )
                 ],
               ),
