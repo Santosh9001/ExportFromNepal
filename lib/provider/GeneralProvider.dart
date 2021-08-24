@@ -7,6 +7,7 @@ import 'package:export_nepal/model/core/manuals.dart';
 import 'package:export_nepal/model/core/return_policy.dart';
 import 'package:export_nepal/model/core/shipping_policy.dart';
 import 'package:export_nepal/model/core/terms_of_use.dart';
+import 'package:export_nepal/model/core/user_blogs.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/model/services/APICalls.dart';
 import 'package:export_nepal/network_module/api_response.dart';
@@ -26,6 +27,7 @@ class GeneralProvider extends ChangeNotifier {
   ApiResponse _termsOfUseResponse = ApiResponse.loading("Loading");
   ApiResponse _manualResponse = ApiResponse.loading("Loading");
   ApiResponse _contactResponse = ApiResponse.loading("Loading");
+  ApiResponse _blogResponse = ApiResponse.loading("Loading");
 
   GeneralProvider() {
     _generalRepository = GeneralRepository();
@@ -33,6 +35,10 @@ class GeneralProvider extends ChangeNotifier {
 
   ApiResponse get aboutUsResponse {
     return _aboutUsResponse;
+  }
+
+  ApiResponse get blogResponse {
+    return _blogResponse;
   }
 
   ApiResponse get contactResponse {
@@ -121,6 +127,27 @@ class GeneralProvider extends ChangeNotifier {
     }
     notifyListeners();
     return _contactResponse;
+  }
+
+  Future<ApiResponse> invokeBlogs() async {
+    try {
+      if (_generalRepository != null) {
+        Either<Glitch, UserBlogs> response =
+            await _generalRepository!.getBlogs();
+        if (response.isLeft) {
+          _blogResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _blogResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _blogResponse = ApiResponse.error("Internal Error");
+      }      
+    } catch (e) {
+      _blogResponse = ApiResponse.error(e.toString());
+      _blogResponse.status = Status.ERROR;
+    }
+    notifyListeners();
+    return _blogResponse;
   }
 
   Future<void> invokeReturnPolicy() async {

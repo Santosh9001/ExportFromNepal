@@ -18,7 +18,8 @@ enum APIPath {
   subCategories,
   categoryProducts,
   just_for_you,
-  create_cart
+  create_cart,
+  blogs
 }
 
 class APIPathHelper {
@@ -64,6 +65,8 @@ class APIPathHelper {
         return "efn/products/just-for-you";
       case APIPath.create_cart:
         return "carts/mine";
+      case APIPath.blogs:
+        return "efn/blog/post/list/1/100";
       default:
         return "";
     }
