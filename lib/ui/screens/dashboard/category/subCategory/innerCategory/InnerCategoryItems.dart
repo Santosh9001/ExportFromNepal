@@ -1,19 +1,21 @@
+import 'package:export_nepal/model/core/categories/categories.dart';
 import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
+import 'package:export_nepal/ui/screens/product/ProductList.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class InnerCategoryItem extends StatelessWidget {
-  const InnerCategoryItem({
-    Key? key,
-  }) : super(key: key);
+  final Items item;
+  InnerCategoryItem(this.item);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/productLists');
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ProductList(item.name!,item.id!)));
       },
       child: Container(
           color: Colors.white,
@@ -22,7 +24,7 @@ class InnerCategoryItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Art and Craft",
+                item.name!,
                 style: TextStyle(color: kColorPrimary, fontSize: 13),
               ),
               RichText(

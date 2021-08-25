@@ -10,6 +10,7 @@ class DashboardProvider extends ChangeNotifier {
   ApiResponse _newProductResponse = ApiResponse.loading("Loading");
   ApiResponse _bestSellingProductResponse = ApiResponse.loading("Loading");
   ApiResponse _mostViewedProductResponse = ApiResponse.loading("Loading");
+  ApiResponse _justForYouResponse = ApiResponse.loading("Loading");
 
   ApiResponse get newProductResponse {
     return _newProductResponse;
@@ -23,11 +24,16 @@ class DashboardProvider extends ChangeNotifier {
     return _mostViewedProductResponse;
   }
 
+  ApiResponse? get justForYourResponse {
+    return _justForYouResponse;
+  }
+
   DashboardProvider() {
     _registrationRepository = DashboardRepository();
     getNewProducts();
     getBestSelling();
     getMostViewed();
+    getJustForYou();
   }
 
   Future<void> getNewProducts() async {
@@ -47,6 +53,28 @@ class DashboardProvider extends ChangeNotifier {
     } catch (e) {
       _newProductResponse = ApiResponse.error(e.toString());
       _newProductResponse.status = Status.ERROR;
+
+      notifyListeners();
+    }
+  }
+
+  Future<void> getJustForYou() async {
+    try {
+      if (_registrationRepository != null) {
+        Either<Glitch, Product> response =
+            await _registrationRepository!.getJustForYou();
+        if (response.isLeft) {
+          _justForYouResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _justForYouResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _justForYouResponse = ApiResponse.error("Internal Error");
+      }
+      notifyListeners();
+    } catch (e) {
+      _justForYouResponse = ApiResponse.error(e.toString());
+      _justForYouResponse.status = Status.ERROR;
 
       notifyListeners();
     }
