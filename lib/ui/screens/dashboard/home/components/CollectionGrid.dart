@@ -1,8 +1,11 @@
+import 'package:export_nepal/model/core/home_content.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class CollectionGrid extends StatelessWidget {
-  const CollectionGrid({Key? key}) : super(key: key);
+  final Collection? collection;
+
+  CollectionGrid(this.collection);
 
   @override
   Widget build(BuildContext context) {
@@ -24,42 +27,24 @@ class CollectionGrid extends StatelessWidget {
           height: 8,
         ),
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CollectionItem(),
-                  CollectionItem(),
-                  CollectionItem(),
-                  CollectionItem()
-                ],
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CollectionItem(),
-                  CollectionItem(),
-                  CollectionItem(),
-                  CollectionItem()
-                ],
-              ),
-            ],
+          child: GridView.count(
+            crossAxisCount: 4,
+            childAspectRatio: 0.7,
+            children: List.generate(collection!.items!.length, (index) {
+              return Center(
+                child: CollectionItem(collection!.items![index]),
+              );
+            }),
           ),
-        )
+        ),
       ],
     );
   }
 }
 
 class CollectionItem extends StatelessWidget {
-  const CollectionItem({
-    Key? key,
-  }) : super(key: key);
+  final CollectionItems? item;
+  CollectionItem(this.item);
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +67,7 @@ class CollectionItem extends StatelessWidget {
           height: 4,
         ),
         Text(
-          "Art and Craft",
+          "${item!.name}",
           style: TextStyle(
               fontSize: 10.0,
               color: kSecondaryTextColor,

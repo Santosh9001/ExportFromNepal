@@ -1,5 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/Product/models/product.dart';
+import 'package:export_nepal/model/core/home_content.dart';
+import 'package:export_nepal/model/core/notice.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/repositories/dashboard_repository.dart';
@@ -11,6 +13,11 @@ class DashboardProvider extends ChangeNotifier {
   ApiResponse _bestSellingProductResponse = ApiResponse.loading("Loading");
   ApiResponse _mostViewedProductResponse = ApiResponse.loading("Loading");
   ApiResponse _justForYouResponse = ApiResponse.loading("Loading");
+  ApiResponse _homeContentResponse = ApiResponse.loading("Loading");
+
+  ApiResponse get homeContentResponse {
+    return _homeContentResponse;
+  }
 
   ApiResponse get newProductResponse {
     return _newProductResponse;
@@ -34,6 +41,29 @@ class DashboardProvider extends ChangeNotifier {
     getBestSelling();
     getMostViewed();
     getJustForYou();
+    getHomeContent();
+  }
+
+  Future<void> getHomeContent() async {
+    try {
+      if (_registrationRepository != null) {
+        Either<Glitch, Home_content> response =
+            await _registrationRepository!.getHomeContent();
+        if (response.isLeft) {
+          _homeContentResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _homeContentResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _homeContentResponse = ApiResponse.error("Internal Error");
+      }
+      notifyListeners();
+    } catch (e) {
+      _homeContentResponse = ApiResponse.error(e.toString());
+      _homeContentResponse.status = Status.ERROR;
+
+      notifyListeners();
+    }
   }
 
   Future<void> getNewProducts() async {
@@ -121,5 +151,17 @@ class DashboardProvider extends ChangeNotifier {
 
       notifyListeners();
     }
+  }
+
+  getClipRect(List<Items>? items) {
+    return new List<Widget>.generate(items!.length, (int index) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: Image.network(
+          "${items[index].image}",
+          fit: BoxFit.cover,
+        ),
+      );
+    });
   }
 }

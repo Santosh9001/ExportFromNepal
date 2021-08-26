@@ -1,4 +1,6 @@
 import 'package:export_nepal/model/core/Product/models/product.dart';
+import 'package:export_nepal/model/core/home_content.dart';
+import 'package:export_nepal/model/core/notice.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/provider/dashboard_provider.dart';
 import 'package:export_nepal/ui/screens/dashboard/home/components/HomeMenuDialog.dart';
@@ -25,8 +27,10 @@ class _HomeUIState extends State<HomeUI> {
   ApiResponse? _newProductResponse,
       _bestSellingProductResponse,
       _justForYouResponse,
+      _homeContentResponse,
       _mostViewedProductResponse;
-  Product? _newProduct, _bestSellingProduct, _mostViewedProduct,_justForYou;
+  Product? _newProduct, _bestSellingProduct, _mostViewedProduct, _justForYou;
+  Home_content? _home_content;
   @override
   void initState() {
     super.initState();
@@ -42,8 +46,13 @@ class _HomeUIState extends State<HomeUI> {
     _newProductResponse = _dashboardProvider!.newProductResponse;
     _mostViewedProductResponse = _dashboardProvider!.mostViewedProductResponse;
     _justForYouResponse = _dashboardProvider!.justForYourResponse;
+    _homeContentResponse = _dashboardProvider!.homeContentResponse;
     _bestSellingProductResponse =
         _dashboardProvider!.bestSellingProductResponse;
+
+    if (_homeContentResponse!.data != null) {
+      _home_content = _homeContentResponse!.data as Home_content;
+    }
 
     if (_newProductResponse!.data != null) {
       _newProduct = _newProductResponse!.data as Product;
@@ -119,22 +128,17 @@ class _HomeUIState extends State<HomeUI> {
                             initialPage: 0,
                             indicatorColor: Colors.blue,
                             indicatorBackgroundColor: Colors.grey,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.network(
-                                  "https://www.campaignmonitor.com/wp-content/uploads/2010/12/background_d.jpg",
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.network(
-                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOVU3xeaCk1CgdaPgancYulm2-vQdr4w7mzumRB5eXr9tWkOECoUCWgbg9F_39USGkDA&usqp=CAU",
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ],
+                            children: _homeContentResponse!.status !=
+                                    Status.LOADING
+                                ? (_homeContentResponse!.status ==
+                                            Status.ERROR &&
+                                        _home_content == null
+                                    ? ServerErrorWidget(
+                                        _homeContentResponse!.message!,
+                                        onReload: reloadServerData)
+                                    : _dashboardProvider!.getClipRect(
+                                        _home_content!.bannerslider!.items))
+                                : [Center(child: CircularProgressIndicator())],
 
                             /// Called whenever the page in the center of the viewport changes.
                             onPageChanged: (value) {
@@ -175,13 +179,21 @@ class _HomeUIState extends State<HomeUI> {
                                     fontSize: 16,
                                   ),
                                 ),
-                                Text(kDummyNotice,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 14,
-                                    ),
-                                    textAlign: TextAlign.center),
+                                _homeContentResponse!.status != Status.LOADING
+                                    ? (_homeContentResponse!.status ==
+                                                Status.ERROR &&
+                                            _home_content == null
+                                        ? ServerErrorWidget(
+                                            _homeContentResponse!.message!,
+                                            onReload: reloadServerData)
+                                        : Text("${_home_content!.notice!.data}",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 14,
+                                            ),
+                                            textAlign: TextAlign.center))
+                                    : CircularProgressIndicator(),
                                 Text(
                                   "Stay Home Stay Safe!",
                                   style: TextStyle(
@@ -258,7 +270,14 @@ class _HomeUIState extends State<HomeUI> {
                       ),
                       Container(
                         margin: EdgeInsets.only(top: 16),
-                        child: CollectionGrid(),
+                        child: _homeContentResponse!.status != Status.LOADING
+                            ? (_homeContentResponse!.status == Status.ERROR &&
+                                    _home_content == null
+                                ? ServerErrorWidget(
+                                    _homeContentResponse!.message!,
+                                    onReload: reloadServerData)
+                                : CollectionGrid(_home_content!.collection))
+                            : CircularProgressIndicator(),
                         height: 270,
                       ),
                       Padding(
