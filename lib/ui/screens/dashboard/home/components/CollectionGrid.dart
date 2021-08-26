@@ -27,14 +27,19 @@ class CollectionGrid extends StatelessWidget {
           height: 8,
         ),
         Expanded(
-          child: GridView.count(
-            crossAxisCount: 4,
-            childAspectRatio: 0.7,
-            children: List.generate(collection!.items!.length, (index) {
+          child: GridView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: collection!.items!.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              childAspectRatio: 0.7,
+            ),
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
               return Center(
                 child: CollectionItem(collection!.items![index]),
               );
-            }),
+            },
           ),
         ),
       ],
