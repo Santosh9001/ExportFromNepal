@@ -30,72 +30,74 @@ class _AboutUsState extends State<AboutUs> {
       body: FutureBuilder<ApiResponse<dynamic>>(
         builder: (context, snapshot) {
           return SafeArea(
-              child: Padding(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(height: 10),
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).pop(true);
-                      },
-                      child: Icon(
-                        Icons.chevron_left,
-                        color: Colors.black,
-                        size: 30,
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(height: 10),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: Icon(
+                          Icons.chevron_left,
+                          color: Colors.black,
+                          size: 30,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Text(
-                        "About",
-                        style: kTextStyleMediumPrimary,
+                      Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(
+                          "About",
+                          style: kTextStyleMediumPrimary,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Text(
-                    "About Us",
-                    style: kTextStyleBlueBoldMedium,
+                    ],
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      width: double.infinity,
-                      margin: EdgeInsets.only(left: 10, right: 10),
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: snapshot.connectionState == ConnectionState.done
-                          ? (snapshot.hasError
-                              ? Center(
-                                  child: Text('${snapshot.error} occured',
-                                      style: kTextStyleSmallPrimary),
-                                )
-                              : getWidgetValue(snapshot.data))
-                          : Center(
-                              child: CircularProgressIndicator(),
-                            ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Text(
+                      "About Us",
+                      style: kTextStyleBlueBoldMedium,
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.only(left: 10, right: 10),
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        child: snapshot.connectionState == ConnectionState.done
+                            ? (snapshot.hasError
+                                ? Center(
+                                    child: Text('${snapshot.error} occured',
+                                        style: kTextStyleSmallPrimary),
+                                  )
+                                : getWidgetValue(snapshot.data))
+                            : Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ));
+          );
         },
         future: invokeAboutUs(),
       ),

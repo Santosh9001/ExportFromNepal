@@ -21,4 +21,18 @@ class ProductRepository {
       return Left(Glitch(message: e.toString()));
     }
   }
+  Future<Either<Glitch, Product>> getProductBySku(String sku) async {
+    Either<Glitch, dynamic> response = await HttpClient.instance
+        .get(APIPathHelper.getValue(APIPath.categories)+"$id/products");
+    try {
+      Product products = Product.fromJson(response.right);
+      if (response.isLeft) {
+        return Left(response.left);
+      } else {
+        return Right(products);
+      }
+    } catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
+  }
 }
