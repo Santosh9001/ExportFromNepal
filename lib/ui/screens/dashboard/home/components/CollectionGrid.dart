@@ -59,10 +59,11 @@ class CollectionItem extends StatelessWidget {
           margin: EdgeInsets.zero,
           child: Container(
             height: 100,
+            width: 80,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
               child: Image.network(
-                kDummyImage,
+                "${item!.image}",
                 fit: BoxFit.cover,
               ),
             ),

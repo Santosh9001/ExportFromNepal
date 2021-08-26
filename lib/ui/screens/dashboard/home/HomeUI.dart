@@ -235,10 +235,22 @@ class _HomeUIState extends State<HomeUI> {
                         child: Container(
                           margin: EdgeInsets.only(top: 16),
                           child: Center(
-                            child: Text(
-                              "Advertisement",
-                              style: TextStyle(color: Colors.black54),
-                            ),
+                            child:
+                                _homeContentResponse!.status != Status.LOADING
+                                    ? (_homeContentResponse!.status ==
+                                                Status.ERROR &&
+                                            _home_content == null
+                                        ? ServerErrorWidget(
+                                            _homeContentResponse!.message!,
+                                            onReload: reloadServerData)
+                                        : Image.network(
+                                            "${_home_content!.advertisement!.image}",
+                                            fit: BoxFit.cover,
+                                          ))
+                                    : Text(
+                                        "Advertisement",
+                                        style: TextStyle(color: Colors.black54),
+                                      ),
                           ),
                           width: double.infinity,
                           height: 80,
