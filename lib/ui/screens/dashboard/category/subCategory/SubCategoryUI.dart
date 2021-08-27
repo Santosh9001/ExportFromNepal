@@ -55,8 +55,7 @@ class _SubCategoryUIState extends State<SubCategoryUI>
         provider!.invokeSubcategory(_categories!.items![i].id!);
       }
     }
-  }
-  
+  }  
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +74,6 @@ class _SubCategoryUIState extends State<SubCategoryUI>
         _subCategories = _subCategoryResponse!.data! as Categories;
       }
     }
-
     return DefaultTabController(
       length: _tabs.length,
       child: Scaffold(

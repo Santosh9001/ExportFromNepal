@@ -28,7 +28,6 @@ class _CategoryUIState extends State<CategoryUI> {
 
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of<CategoryProvider>(context, listen: true);
     if (provider != null) {
       _categoryResponse = provider!.categoryResponse;
       if (_categoryResponse!.data != null) {
@@ -36,39 +35,58 @@ class _CategoryUIState extends State<CategoryUI> {
       }
     }
 
-    void reloadServerData() {
-      setState(() {});
-    }
-
-    return Container(
-      color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          SizedBox(
-            height: 8.0,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              width: double.infinity,
-              child: Text(
-                "Categories",
-                style: kTextStyleLargeBlue,
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        return Container(
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                height: 8.0,
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: double.infinity,
+                  child: Text(
+                    "Categories",
+                    style: kTextStyleLargeBlue,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 16.0,
+              ),
+              snapshot.connectionState == ConnectionState.done
+                  ? (snapshot.hasError
+                      ? Center(
+                          child: Text('${snapshot.error} occured',
+                              style: kTextStyleSmallPrimary),
+                        )
+                      : getWidgetValue(snapshot.data))
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    ),
+            ],
           ),
-          SizedBox(
-            height: 16.0,
-          ),
-          _categoryResponse!.status != Status.LOADING ?
-          (_categoryResponse!.status == Status.ERROR &&
-          _categories == null ? ServerErrorWidget(
-            _categoryResponse!.message!,
-            onReload: reloadServerData): CategoryItemList(_categories!)
-          ) : Text("Loading....", style: kTextStyleSmallPrimary,)
-        ],
-      ),
+        );
+      },
+      future: invokeCategories(),
     );
+  }
+
+  getWidgetValue(data) {
+    _categoryResponse = data;
+    if (_categoryResponse != null) {
+      _categories = _categoryResponse!.data as Categories;
+      return CategoryItemList(_categories!);
+    }
+  }
+
+  Future<ApiResponse<dynamic>> invokeCategories() async {
+    provider = Provider.of<CategoryProvider>(context, listen: false);
+    await provider!.invokeCategories();
+    return provider!.categoryResponse;
   }
 }

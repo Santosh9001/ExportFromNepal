@@ -97,6 +97,7 @@ class _ForgotPasswordState extends State<ForgotPasswordUI> {
                           child: ElevatedButton(
                             onPressed: () {
                               // Cancel the forgot password situation
+                              Navigator.pop(context);
                             },
                             child: Text(
                               "Cancel",
