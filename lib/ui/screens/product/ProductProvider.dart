@@ -1,5 +1,6 @@
 import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/Product/models/product.dart';
+import 'package:export_nepal/model/core/Product/models/product_details.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/repositories/product_repository.dart';
@@ -23,8 +24,36 @@ class ProductProvider extends ChangeNotifier {
   }
 
   ApiResponse _productResponse = ApiResponse.loading("Loading");
+  ApiResponse _productDetailResponse = ApiResponse.loading("Loading");
+
   ApiResponse? get productResponse {
     return _productResponse;
+  }
+
+  ApiResponse get productDetailsResponse {
+    return _productDetailResponse;
+  }
+
+  Future<ApiResponse> invokeProductDetails(String sku) async {
+    try {
+      if (_productRepository != null) {
+        Either<Glitch, Product_details> response =
+            await _productRepository!.getProductBySku(sku);
+        if (response.isLeft) {
+          _productDetailResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _productDetailResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _productDetailResponse = ApiResponse.error("Internal Error");
+      }
+      notifyListeners();
+    } catch (e) {
+      _productDetailResponse = ApiResponse.error(e.toString());
+      _productDetailResponse.status = Status.ERROR;
+    }
+    notifyListeners();
+    return _productDetailResponse;
   }
 
   Future<void> invokeproductsByCategory(String id) async {
@@ -127,7 +156,17 @@ class ProductProvider extends ChangeNotifier {
     });
   }
 
-  void checkAndCreateCart() {
-    
+  void checkAndCreateCart() {}
+
+  getClipRect(List<Media_gallery_entries>? items) {
+    return new List<Widget>.generate(items!.length, (int index) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: Image.network(
+          "${items[index].file}",
+          fit: BoxFit.cover,
+        ),
+      );
+    });
   }
 }

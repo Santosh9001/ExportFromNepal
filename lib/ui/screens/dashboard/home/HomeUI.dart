@@ -334,7 +334,8 @@ class _HomeUIState extends State<HomeUI> {
                     (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, '/details');
+                          Navigator.pushNamed(context, '/details',
+                          arguments: {'exampleArgument': _justForYou!.items![index].sku});
                         },
                         child: Padding(
                             padding: const EdgeInsets.only(left: 8.0),
