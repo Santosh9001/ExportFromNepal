@@ -1,6 +1,7 @@
 
 import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/Product/models/product.dart';
+import 'package:export_nepal/model/core/Product/models/product_details.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_path.dart';
 import 'package:export_nepal/network_module/http_client.dart';
@@ -21,11 +22,12 @@ class ProductRepository {
       return Left(Glitch(message: e.toString()));
     }
   }
-  Future<Either<Glitch, Product>> getProductBySku(String sku) async {
+  
+  Future<Either<Glitch, Product_details>> getProductBySku(String sku) async {
     Either<Glitch, dynamic> response = await HttpClient.instance
-        .get(APIPathHelper.getValue(APIPath.categories)+"$id/products");
+        .get(APIPathHelper.getValue(APIPath.product_details)+"$sku");
     try {
-      Product products = Product.fromJson(response.right);
+      Product_details products = Product_details.fromJson(response.right);
       if (response.isLeft) {
         return Left(response.left);
       } else {

@@ -1,5 +1,6 @@
 import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/Product/models/product.dart';
+import 'package:export_nepal/model/core/Product/models/product_details.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/repositories/product_repository.dart';
@@ -36,7 +37,7 @@ class ProductProvider extends ChangeNotifier {
   Future<ApiResponse> invokeProductDetails(String sku) async {
     try {
       if (_productRepository != null) {
-        Either<Glitch, Product> response =
+        Either<Glitch, Product_details> response =
             await _productRepository!.getProductBySku(sku);
         if (response.isLeft) {
           _productDetailResponse = ApiResponse.error(response.left.message);
@@ -156,4 +157,16 @@ class ProductProvider extends ChangeNotifier {
   }
 
   void checkAndCreateCart() {}
+
+  getClipRect(List<Media_gallery_entries>? items) {
+    return new List<Widget>.generate(items!.length, (int index) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: Image.network(
+          "${items[index].file}",
+          fit: BoxFit.cover,
+        ),
+      );
+    });
+  }
 }

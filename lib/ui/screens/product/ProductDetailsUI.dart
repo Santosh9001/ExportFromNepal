@@ -1,8 +1,11 @@
+import 'package:export_nepal/model/core/Product/models/items.dart';
+import 'package:export_nepal/model/core/Product/models/product_details.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/ui/components/button.dart';
 import 'package:export_nepal/ui/screens/dashboard/home/components/ProductCard.dart';
 import 'package:export_nepal/ui/screens/product/ProductProvider.dart';
 import 'package:export_nepal/utils/constants.dart';
+import 'package:export_nepal/utils/error.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
@@ -23,6 +26,12 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
   Map? arguments;
   ProductProvider? provider;
   ApiResponse? _productDetailsResponse;
+  Product_details? _product_details;
+
+  void reloadServerData() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     arguments = ModalRoute.of(context)!.settings.arguments as Map;
@@ -30,6 +39,10 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
     return Scaffold(
       body: FutureBuilder<ApiResponse<dynamic>>(
         builder: (context, snapshot) {
+          _productDetailsResponse = snapshot.data;
+          if (_productDetailsResponse != null) {
+            _product_details = _productDetailsResponse!.data as Product_details;
+          }
           return SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -880,7 +893,9 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                             scrollDirection: Axis.horizontal,
                                             itemBuilder: (context, index) {
                                               return ProductCard(
-                                                  180.0, 180.0, null);
+                                                  180.0, 180.0, Items(
+                                                    
+                                                  ));
                                             }),
                                       ),
                                       SizedBox(
@@ -903,24 +918,27 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                             indicatorColor: Colors.blue,
                                             indicatorBackgroundColor:
                                                 Colors.grey,
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.network(
-                                                  "https://www.campaignmonitor.com/wp-content/uploads/2010/12/background_d.jpg",
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.network(
-                                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOVU3xeaCk1CgdaPgancYulm2-vQdr4w7mzumRB5eXr9tWkOECoUCWgbg9F_39USGkDA&usqp=CAU",
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ],
+                                            children: _productDetailsResponse!
+                                                        .status !=
+                                                    Status.LOADING
+                                                ? (_productDetailsResponse!
+                                                                .status ==
+                                                            Status.ERROR &&
+                                                        _product_details == null
+                                                    ? ServerErrorWidget(
+                                                        _productDetailsResponse!
+                                                            .message!,
+                                                        onReload:
+                                                            reloadServerData)
+                                                    : provider!.getClipRect(
+                                                        _product_details!
+                                                            .product!
+                                                            .mediaGalleryEntries))
+                                                : [
+                                                    Center(
+                                                        child:
+                                                            CircularProgressIndicator())
+                                                  ],
 
                                             /// Called whenever the page in the center of the viewport changes.
                                             onPageChanged: (value) {

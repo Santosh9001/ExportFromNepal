@@ -20,7 +20,8 @@ enum APIPath {
   just_for_you,
   create_cart,
   blogs,
-  home_content
+  home_content,
+  product_details
 }
 
 class APIPathHelper {
@@ -70,6 +71,8 @@ class APIPathHelper {
         return "efn/blog/post/list/1/100";
       case APIPath.home_content:
         return "efn/home/content";
+      case APIPath.product_details:
+        return "efn/product/";
       default:
         return "";
     }
