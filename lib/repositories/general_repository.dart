@@ -1,10 +1,12 @@
 import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/aboutus.dart';
 import 'package:export_nepal/model/core/affiliate_program.dart';
+import 'package:export_nepal/model/core/contact.dart';
 import 'package:export_nepal/model/core/manuals.dart';
 import 'package:export_nepal/model/core/return_policy.dart';
 import 'package:export_nepal/model/core/shipping_policy.dart';
 import 'package:export_nepal/model/core/terms_of_use.dart';
+import 'package:export_nepal/model/core/user_blogs.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_path.dart';
 import 'package:export_nepal/network_module/http_client.dart';
@@ -35,6 +37,36 @@ class GeneralRepository {
         return Left(response.left);
       } else {
         return Right(affiliate_program);
+      }
+    } catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
+  }
+
+  Future<Either<Glitch, Contact>> getContact() async {
+    Either<Glitch, dynamic> response = await HttpClient.instance
+        .get(APIPathHelper.getValue(APIPath.contact));
+        try {
+      Contact contact = Contact.fromJson(response.right);
+      if (response.isLeft) {
+        return Left(response.left);
+      } else {
+        return Right(contact);
+      }
+    } catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
+  }
+
+  Future<Either<Glitch, UserBlogs>> getBlogs() async {
+    Either<Glitch, dynamic> response = await HttpClient.instance
+        .get(APIPathHelper.getValue(APIPath.blogs));
+        try {
+      UserBlogs blogs = UserBlogs.fromJson(response.right);
+      if (response.isLeft) {
+        return Left(response.left);
+      } else {
+        return Right(blogs);
       }
     } catch (e) {
       return Left(Glitch(message: e.toString()));
@@ -73,7 +105,7 @@ class GeneralRepository {
 
   Future<Either<Glitch, Terms_of_use>> getTermsOfUse() async {
     Either<Glitch, dynamic> response = await HttpClient.instance
-        .get(APIPathHelper.getValue(APIPath.shipping_policy));
+        .get(APIPathHelper.getValue(APIPath.terms_of_use));
         try {
       Terms_of_use terms_of_use = Terms_of_use.fromJson(response.right);
       if (response.isLeft) {

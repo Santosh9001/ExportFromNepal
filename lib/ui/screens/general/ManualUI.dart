@@ -15,74 +15,91 @@ class ManualUI extends StatefulWidget {
 
 class _ManualsState extends State<ManualUI> {
   GeneralProvider? provider;
-
   Manuals? _manuals;
-  String defaultValue = "Loading....";
   ApiResponse? _manualResponse;
-
-  void reloadServerData() {
-    setState(() {});
-  }
 
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of<GeneralProvider>(context, listen: true);
-    provider!.invokeManuals();
-    _manualResponse = provider!.manualResponse;
-    if (_manualResponse!.data != null) {
-      _manuals = _manualResponse!.data as Manuals;
-    }
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+      body: FutureBuilder<ApiResponse<dynamic>>(
+        builder: (context, snapshot) {
+          return SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop(true);
-                    },
-                    child: Icon(
-                      Icons.chevron_left,
-                      color: Colors.black,
-                      size: 30,
-                    ),
+                  Row(
+                    children: [
+                      SizedBox(height: 10),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: Icon(
+                          Icons.chevron_left,
+                          color: Colors.black,
+                          size: 30,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(
+                          "Manuals",
+                          style: kTextStyleMediumPrimary,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text(
                       "Manuals",
-                      style: kTextStyleMediumPrimary,
+                      style: kTextStyleBlueBoldMedium,
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: snapshot.connectionState == ConnectionState.done
+                        ? (snapshot.hasError
+                            ? Center(
+                                child: Text('${snapshot.error} occured',
+                                    style: kTextStyleSmallPrimary),
+                              )
+                            : getWidgetValue(snapshot.data))
+                        : [
+                            Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          ],
+                  )
                 ],
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text(
-                  "Manuals",
-                  style: kTextStyleBlueBoldMedium,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children:
-                    _manuals != null ? provider!.manualLists(_manuals) : [],
-              )
-            ],
-          ),
-        ),
+            ),
+          );
+        },
+        future: invokeManuals(),
       ),
     );
+  }
+
+  Future<ApiResponse<dynamic>> invokeManuals() async {
+    provider = Provider.of<GeneralProvider>(context, listen: false);
+    await provider!.invokeManuals();
+    return provider!.manualResponse;
+  }
+
+  getWidgetValue(data) {
+    _manualResponse = data;
+    if (_manualResponse != null) {
+      _manuals = _manualResponse!.data as Manuals;
+      return provider!.manualLists(_manuals);
+    }
   }
 }

@@ -17,23 +17,7 @@ class AffiliateProgram extends StatefulWidget {
 class _AffiliateProgramState extends State<AffiliateProgram> {
   GeneralProvider? provider;
   Affiliate_program? _affiliate_program;
-  String defaultValue = "Loading....";
   ApiResponse? _affiliateResponse;
-
-  getContent() {
-    if (_affiliateResponse!.status != Status.LOADING) {
-      if (_affiliateResponse!.status == Status.ERROR &&
-          _affiliate_program == null) {
-        ServerErrorWidget(_affiliateResponse!.message!,
-            onReload: reloadServerData);
-        return defaultValue;
-      } else {
-        return _affiliate_program!.content!;
-      }
-    } else {
-      return defaultValue;
-    }
-  }
 
   void reloadServerData() {
     setState(() {});
@@ -41,75 +25,98 @@ class _AffiliateProgramState extends State<AffiliateProgram> {
 
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of<GeneralProvider>(context, listen: true);
-    provider!.invokeAffiliateProgram();
-    _affiliateResponse = provider!.affiliateResponse;
-    if (_affiliateResponse!.data != null) {
-      _affiliate_program = _affiliateResponse!.data as Affiliate_program;
-    }
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+      body: FutureBuilder<ApiResponse<dynamic>>(
+        builder: (context, snapshot) {
+          return SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop(true);
-                    },
-                    child: Icon(
-                      Icons.chevron_left,
-                      color: Colors.black,
-                      size: 30,
-                    ),
+                  Row(
+                    children: [
+                      SizedBox(height: 10),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: Icon(
+                          Icons.chevron_left,
+                          color: Colors.black,
+                          size: 30,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(
+                          "Affiliate Program",
+                          style: kTextStyleMediumPrimary,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text(
                       "Affiliate Program",
-                      style: kTextStyleMediumPrimary,
+                      style: kTextStyleBlueBoldMedium,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.only(left: 10, right: 10),
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        child: snapshot.connectionState == ConnectionState.done
+                          ? (snapshot.hasError
+                              ? Center(
+                                  child: Text('${snapshot.error} occured',
+                                      style: kTextStyleSmallPrimary),
+                                )
+                              : getWidgetValue(snapshot.data))
+                          : Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                      ),
                     ),
                   ),
                 ],
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text(
-                  "Affiliate Program",
-                  style: kTextStyleBlueBoldMedium,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    width: double.infinity,
-                    margin: EdgeInsets.only(left: 10, right: 10),
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: HtmlWidget(
-                      getContent(),
-                      textStyle: kTextStyleSmallPrimary,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
+        future: invokeAffiliateProgram(),
       ),
     );
+  }
+  
+  getWidgetValue(data) {
+    _affiliateResponse = data;
+    if (_affiliateResponse != null) {
+      _affiliate_program = _affiliateResponse!.data as Affiliate_program;
+      return HtmlWidget(
+        "${_affiliate_program!.content}",
+        textStyle: kTextStyleSmallPrimary,
+      );
+    }
+  }
+
+  Future<ApiResponse<dynamic>> invokeAffiliateProgram() async {
+    provider = Provider.of<GeneralProvider>(context, listen: false);
+    await provider!.invokeAffiliateProgram();
+    return provider!.affiliateResponse;
   }
 }

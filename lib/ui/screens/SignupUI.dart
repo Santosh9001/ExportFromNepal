@@ -50,7 +50,7 @@ class _SignUpUIState extends State<SignUpUI> {
     final _registrationProvider =
         Provider.of<RegistrationProvider>(context, listen: false);
     bool valid = await _registrationProvider.checkValid(email);
-    if (!valid) {
+    if (valid) {
       try {
         Register? res = await _registrationProvider.registerUser(
             _emailController.text,

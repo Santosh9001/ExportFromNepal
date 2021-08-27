@@ -13,10 +13,13 @@ enum APIPath {
   return_policy,
   payment_methods,
   affiliate_programs,
+  contact,
   categories,
   subCategories,
   categoryProducts,
-  just_for_you
+  just_for_you,
+  create_cart,
+  blogs
 }
 
 class APIPathHelper {
@@ -49,7 +52,9 @@ class APIPathHelper {
       case APIPath.payment_methods:
         return "efn/page/identifier/payment-methods";
       case APIPath.affiliate_programs:
-        return "efn/page/identifier/payment-methods";
+        return "efn/page/identifier/affiliate-program";
+      case APIPath.contact:
+        return "efn/contact";
       case APIPath.categories:
         return "efn/categories";
       case APIPath.subCategories:
@@ -58,6 +63,10 @@ class APIPathHelper {
         return "efn/categories/";
       case APIPath.just_for_you:
         return "efn/products/just-for-you";
+      case APIPath.create_cart:
+        return "carts/mine";
+      case APIPath.blogs:
+        return "efn/blog/post/list/1/100";
       default:
         return "";
     }

@@ -1124,7 +1124,9 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                             color: Colors.white,
                                           ),
                                           InkWell(
-                                            onTap: () {},
+                                            onTap: () {
+                                              provider.checkAndCreateCart();
+                                            },
                                             child: Text(
                                               "Add to Cart",
                                               style: TextStyle(fontSize: 16),
