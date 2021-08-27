@@ -3,19 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>375787988892-cob9pb7acvlgk3icsb7ajj2i9hvlsjbo.apps.googleusercontent.com</string>
+	<string>375787988892-5pj8236e43nclmgtrj9vpf942ksgn0fg.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.375787988892-cob9pb7acvlgk3icsb7ajj2i9hvlsjbo</string>
+	<string>com.googleusercontent.apps.375787988892-5pj8236e43nclmgtrj9vpf942ksgn0fg</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>375787988892-9dbfi62obkbs75ci2girtmhfq3nnqh9f.apps.googleusercontent.com</string>
+	<string>375787988892-n0hrcqka8b9931kp0k85q4fk6o9cp9hj.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBUqxd6E8QA7o3fGzSHys0CejUXEHBbGt4</string>
+	<string>AIzaSyBgkwtapXLNt9gwggQLJyEy8aqW68tksCY</string>
 	<key>GCM_SENDER_ID</key>
 	<string>375787988892</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.exportfromnepal.app</string>
+	<string>com.efn.app</string>
 	<key>PROJECT_ID</key>
 	<string>export-from-nepal-b2c34</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:375787988892:ios:b92c80337535b491b2ca59</string>
+	<string>1:375787988892:ios:f1099ad66797b9abb2ca59</string>
 </dict>
 </plist>
