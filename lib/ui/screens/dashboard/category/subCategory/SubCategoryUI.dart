@@ -17,9 +17,6 @@ class SubCategoryUI extends StatefulWidget {
 
 class _SubCategoryUIState extends State<SubCategoryUI>
     with SingleTickerProviderStateMixin {
-  // ignore: deprecated_member_use
-  late List<Tab> _tabs = <Tab>[];
-
   @override
   void dispose() {
     super.dispose();
@@ -30,90 +27,108 @@ class _SubCategoryUIState extends State<SubCategoryUI>
     super.initState();
   }
 
-  List<Tab> getTabs(int count) {
-    _tabs.clear();
-    if (_categories != null) {
-      for (int i = 0; i < count; i++) {
-        String? name = _categories!.items![i].name;
-        _tabs.add(Tab(
-          text: name,
-        ));
-      }
-    }
-    return _tabs;
-  }
-
   CategoryProvider? provider;
-  Categories? _categories, _subCategories;
-  ApiResponse? _categoryResponse, _subCategoryResponse;
-  String defaultValue = "Loading....";
-  int _currentTab = 0;
-
-  fetchSubCategory() {
-    for (int i = 0; i < _categories!.items!.length; i++) {
-      if (i == _currentTab) {
-        provider!.invokeSubcategory(_categories!.items![i].id!);
-      }
-    }
-  }  
+  Categories? _categories;
+  ApiResponse? _categoryResponse;
 
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of<CategoryProvider>(context, listen: true);
-    if (provider != null) {
-      provider!.invokeCategories();
-      _categoryResponse = provider!.categoryResponse;
-
-      if (_categoryResponse!.data != null) {
-        _categories = _categoryResponse!.data! as Categories;
-        _tabs = getTabs(_categories!.items!.length);
-        fetchSubCategory();
-      }
-      _subCategoryResponse = provider!.subCategoryResponse;
-      if (_subCategoryResponse!.data != null) {
-        _subCategories = _subCategoryResponse!.data! as Categories;
-      }
-    }
-    return DefaultTabController(
-      length: _tabs.length,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: new Text(
-            "Categories",
-            style: kTextStyleLargeBlue,
-          ),
-          leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop(true);
-            },
-            icon: Icon(
-              Icons.chevron_left,
-              color: kColorPrimary,
-              size: 22,
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        return DefaultTabController(
+          length: snapshot.connectionState == ConnectionState.done
+              ? (snapshot.hasError
+                  ? Center(
+                      child: Text('${snapshot.error} occured',
+                          style: kTextStyleSmallPrimary),
+                    )
+                  : getCategoryLength(snapshot.data))
+              : 0,
+          child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              title: new Text(
+                "Categories",
+                style: kTextStyleLargeBlue,
+              ),
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+                icon: Icon(
+                  Icons.chevron_left,
+                  color: kColorPrimary,
+                  size: 30,
+                ),
+              ),
+              bottom: TabBar(
+                isScrollable: true,
+                indicatorColor: kColorRed,
+                labelStyle: TextStyle(color: kColorRed, fontSize: 12),
+                unselectedLabelColor: kColorPrimary,
+                labelColor: kColorRed,
+                unselectedLabelStyle:
+                    TextStyle(color: kColorPrimary, fontSize: 10),
+                tabs: snapshot.connectionState == ConnectionState.done
+                    ? (snapshot.hasError
+                        ? Center(
+                            child: Text('${snapshot.error} occured',
+                                style: kTextStyleSmallPrimary),
+                          )
+                        : getWidgetValue(snapshot.data))
+                    : [
+                      ],
+              ),
             ),
+            body: new TabBarView(
+                children: snapshot.connectionState == ConnectionState.done
+                    ? (snapshot.hasError
+                        ? Center(
+                            child: Text('${snapshot.error} occured',
+                                style: kTextStyleSmallPrimary),
+                          )
+                        : getWidgetSubcategories(snapshot.data))
+                    : []),
           ),
-          bottom: TabBar(
-            onTap: (value) {
-              _currentTab = value;
-              fetchSubCategory();
-            },
-            isScrollable: true,
-            indicatorColor: kColorRed,
-            labelStyle: TextStyle(color: kColorRed, fontSize: 10),
-            unselectedLabelColor: kColorPrimary,
-            labelColor: kColorRed,
-            unselectedLabelStyle: TextStyle(color: kColorPrimary, fontSize: 10),
-            tabs: _tabs,
-          ),
-        ),
-        body: new TabBarView(
-          children: _tabs
-              .map((item) => new SubCategoryList(_subCategories!, item.text!))
-              .toList(),
-        ),
-      ),
+        );
+      },
+      future: invokeCategories(),
     );
+  }
+
+  getCategoryLength(data) {
+    _categoryResponse = data;
+    if (_categoryResponse != null) {
+      _categories = _categoryResponse!.data as Categories;
+      return _categories!.items!.length;
+    }
+  }
+
+  getWidgetValue(data) {
+    _categoryResponse = data;
+    if (_categoryResponse != null) {
+      _categories = _categoryResponse!.data as Categories;
+      return List<Widget>.generate(_categories!.items!.length, (int index) {
+        return Text("${_categories!.items![index].name}");
+      });
+    }
+  }
+
+  getWidgetSubcategories(data) {
+    _categoryResponse = data;
+    if (_categoryResponse != null) {
+      _categories = _categoryResponse!.data as Categories;
+      return List.generate(
+          _categories!.items!.length,
+          (index) => new SubCategoryList(_categories!.items![index].id!,
+              _categories!.items![index].name!));
+    }
+  }
+
+  Future<ApiResponse<dynamic>> invokeCategories() async {
+    provider = Provider.of<CategoryProvider>(context, listen: false);
+    await provider!.invokeCategories();
+    return provider!.categoryResponse;
   }
 }
