@@ -264,12 +264,12 @@ class _LoginUIState extends State<LoginUI> {
                                       FacebookAuth.instance
                                           .getUserData()
                                           .then((userData) {
-                                        loginSocial(
-                                            userData["id"],
-                                            "Facebook",
-                                            userData["name"],
-                                            userData["name"],
-                                            userData["email"]);
+                                        // loginSocial(
+                                        //     userData["id"],
+                                        //     "Facebook",
+                                        //     userData["name"],
+                                        //     userData["name"],
+                                        //     userData["email"]);
                                       });
                                     });
                                   },
