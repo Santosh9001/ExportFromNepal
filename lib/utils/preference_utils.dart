@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PreferenceUtils {
   static SharedPreferences? _prefs;
   static const TOKEN = "token";
+  static const USER = "user";
   static init() async {
     _prefs = await SharedPreferences.getInstance();
   }

@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/Product/models/product.dart';
 import 'package:export_nepal/model/core/home_content.dart';
+import 'package:export_nepal/model/core/logged_in_user.dart';
 import 'package:export_nepal/model/core/notice.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/repositories/dashboard_repository.dart';
+import 'package:export_nepal/utils/preference_utils.dart';
 import 'package:flutter/cupertino.dart';
 
 class DashboardProvider extends ChangeNotifier {
@@ -42,6 +46,31 @@ class DashboardProvider extends ChangeNotifier {
     getMostViewed();
     getJustForYou();
     getHomeContent();
+    var token = PreferenceUtils.getString(PreferenceUtils.TOKEN);
+    if (token.isNotEmpty) {
+      fetchLoggedInCustomerDetails();
+    }
+  }
+
+  Future<void> fetchLoggedInCustomerDetails() async {
+    try {
+      if (_registrationRepository != null) {
+        Either<Glitch, Logged_in_user> response =
+            await _registrationRepository!.fetchLoggedInCustomer();
+        if (response.isLeft) {
+          _homeContentResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _homeContentResponse = ApiResponse.completed(response.right);
+          var loggedInUser = _homeContentResponse.data as Logged_in_user;
+          PreferenceUtils.putString(PreferenceUtils.USER, json.encode(loggedInUser));
+        }
+      } else {
+        _homeContentResponse = ApiResponse.error("Internal Error");
+      }
+    } catch (e) {
+      _homeContentResponse = ApiResponse.error(e.toString());
+      _homeContentResponse.status = Status.ERROR;
+    }
   }
 
   Future<void> getHomeContent() async {

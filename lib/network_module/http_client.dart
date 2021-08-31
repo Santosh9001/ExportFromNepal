@@ -54,6 +54,30 @@ class HttpClient {
     return Right(responseJson);
   }
 
+  Future<Either<Glitch, dynamic>> getWithToken(String url,
+      {Map<String, String>? params}) async {
+    var responseJson;
+    var token = PreferenceUtils.getString(PreferenceUtils.TOKEN);    
+
+    var uri = APIBase.baseURL +
+        url +
+        ((params != null) ? this.queryParameters(params) : "");
+    print(uri.toString());
+    var header = {HttpHeaders.contentTypeHeader: 'application/json',
+    'Authorization': 'Bearer $token'};
+    try {
+      final response = await http.get(Uri.parse(uri), headers: header);
+      responseJson = _returnResponse(response);
+    } on SocketException {
+      return Left(NoInternetGlitch());
+    } on BadRequestException catch (e) {
+      return Left(Glitch(message: e.toString()));
+    } on UnauthorisedException catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
+    return Right(responseJson);
+  }
+
   String queryParameters(Map<String, String>? params) {
     if (params != null) {
       final jsonString = Uri(queryParameters: params);
@@ -81,7 +105,7 @@ class HttpClient {
 
   Future<Either<Glitch, dynamic>> put(String url, dynamic body) async {
     var responseJson;
-    var token = PreferenceUtils.TOKEN;
+    var token = PreferenceUtils.getString(PreferenceUtils.TOKEN);
     var header = {
       HttpHeaders.contentTypeHeader: 'application/json',
       'Authorization': 'Bearer $token'
@@ -101,13 +125,13 @@ class HttpClient {
   }
   Future<Either<Glitch, dynamic>> putUrlOnly(String url) async {
     var responseJson;
-    var token = PreferenceUtils.TOKEN;
+    var token = PreferenceUtils.getString(PreferenceUtils.TOKEN);
     var header = {
       HttpHeaders.contentTypeHeader: 'application/json',
       'Authorization': 'Bearer $token'
     };
     try {
-      final response = await http.put(Uri.parse(APIBase.baseURL + url));
+      final response = await http.put(Uri.parse(APIBase.baseURL + url),headers: header);
       responseJson = _returnResponse(response);
     } on SocketException {
       return Left(NoInternetGlitch());
