@@ -6,7 +6,6 @@ import 'package:export_nepal/network_module/api_path.dart';
 import 'package:export_nepal/network_module/http_client.dart';
 
 class DashboardRepository {
-
   Future<Either<Glitch, Home_content>> getHomeContent() async {
     Either<Glitch, dynamic> response = await HttpClient.instance
         .get(APIPathHelper.getValue(APIPath.home_content));

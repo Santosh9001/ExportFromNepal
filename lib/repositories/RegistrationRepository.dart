@@ -39,4 +39,18 @@ class RegistrationRepository {
         .post(APIPathHelper.getValue(APIPath.login), data);
     return response;
   }
+
+  Future<Either<Glitch, dynamic>> loginSocial(String identifier, String type,
+      String firstName, String lastName, String email) async {
+    Map<String, dynamic> data = {
+      "identifier": "$identifier",
+      "type": "$type",
+      "firstName": "$firstName",
+      "lastName": "$lastName",
+      "email": "$email"
+    };
+    Either<Glitch, dynamic> response = await HttpClient.instance
+        .post(APIPathHelper.getValue(APIPath.social_login), data);
+    return response;
+  }
 }

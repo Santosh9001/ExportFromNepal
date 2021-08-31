@@ -1,6 +1,7 @@
 enum APIPath {
   register,
   login,
+  social_login,
   validate_email,
   new_products,
   best_selling,
@@ -31,14 +32,16 @@ class APIPathHelper {
         return "customers";
       case APIPath.login:
         return "integration/customer/token";
+      case APIPath.social_login:
+        return "/efn/social/login";
       case APIPath.validate_email:
         return "customers/isEmailAvailable";
       case APIPath.new_products:
-        return "efn/products/new?pageSize=";
+        return "efn/products/new";
       case APIPath.best_selling:
-        return "efn/products/best-seller?pageSize=";
+        return "efn/products/best-seller";
       case APIPath.most_viewed:
-        return "efn/products/most-viewed?pageSize=";
+        return "efn/products/most-viewed";
       case APIPath.about_us:
         return "efn/page/identifier/about-us";
       case APIPath.manuals:

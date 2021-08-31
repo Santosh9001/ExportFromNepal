@@ -11,6 +11,26 @@ class LoginProvider extends ChangeNotifier {
   LoginProvider() {
     _registrationRepository = RegistrationRepository();
   }
+
+  Future<Either<Glitch, String>> loginSocial(String identifier, String type,
+      String firstName, String lastName, String email) async {
+    try {
+      if (_registrationRepository != null) {
+        Either<Glitch, dynamic> response = await _registrationRepository!
+            .loginSocial(identifier, type, firstName, lastName, email);
+        if (response.isLeft) {
+          return Left(response.left);
+        } else {
+          return Right(response.right);
+        }
+      } else {
+        return Left(Glitch(message: "Internal Error"));
+      }
+    } catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
+  }
+
   Future<Either<Glitch, String>> login(String email, String password) async {
     try {
       if (_registrationRepository != null) {
