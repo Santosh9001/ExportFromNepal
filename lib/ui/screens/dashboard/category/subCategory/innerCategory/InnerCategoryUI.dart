@@ -31,80 +31,99 @@ class _InnerCategoryUIState extends State<InnerCategoryUI>
 
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of<InnerCategoryProvider>(context, listen: true);
-    if (provider != null) {
-      provider!.invokeSubcategory(items.id!);
-      _subCategoryResponse = provider!.subCategoryResponse;
-      if (_subCategoryResponse!.data != null) {
-        _subCategories = _subCategoryResponse!.data as Categories;
-      }
-    }
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.only(left: 10, top: 15, bottom: 15),
-              color: Colors.white,
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop(true);
-                    },
-                    child: Icon(
-                      Icons.chevron_left,
-                      size: 35,
-                      color: kColorPrimary,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          items.name!,
-                          style:
-                              TextStyle(color: kPrimaryTextColor, fontSize: 20),
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        return Scaffold(
+          body: SafeArea(
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 10, top: 15, bottom: 15),
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: Icon(
+                          Icons.chevron_left,
+                          size: 35,
+                          color: kColorPrimary,
                         ),
-                        Text(
-                          "Categories > $category > " + items.name!,
-                          style: TextStyle(
-                              color: kSecondaryTextColor, fontSize: 8),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              items.name!,
+                              style: TextStyle(
+                                  color: kPrimaryTextColor, fontSize: 20),
+                            ),
+                            Text(
+                              "Categories > $category > " + items.name!,
+                              style: TextStyle(
+                                  color: kSecondaryTextColor, fontSize: 8),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(0),
-                child: ListView.separated(
-                  itemCount: _subCategories != null
-                      ? _subCategories!.items!.length
-                      : 0,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _subCategories != null
-                        ? InnerCategoryItem(
-                            _subCategories!.items![index],
-                          )
-                        : Text(
-                            "$defaultValue",
-                            style: kTextStyleSmallPrimary,
-                          );
-                  },
-                  separatorBuilder: (BuildContext context, int index) =>
-                      new Divider(color: kSecondaryTextColor, height: 2),
                 ),
-              ),
-              //padding: EdgeInsets.all(15),
+                snapshot.connectionState == ConnectionState.done
+                    ? (snapshot.hasError
+                        ? Center(
+                            child: Text('${snapshot.error} occured',
+                                style: kTextStyleSmallPrimary),
+                          )
+                        : getWidgetValue(snapshot.data))
+                    : Center(
+                        child: CircularProgressIndicator(),
+                      ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
+      future: invokeInnerCategories(),
     );
+  }
+
+  getWidgetValue(data) {
+    _subCategoryResponse = data;
+    if (_subCategoryResponse != null) {
+      _subCategories = _subCategoryResponse!.data as Categories;
+      return Expanded(
+        child: Padding(
+          padding: EdgeInsets.all(0),
+          child: ListView.separated(
+            itemCount:
+                _subCategories != null ? _subCategories!.items!.length : 0,
+            itemBuilder: (BuildContext context, int index) {
+              return _subCategories != null
+                  ? InnerCategoryItem(
+                      _subCategories!.items![index],category
+                    )
+                  : Text(
+                      "$defaultValue",
+                      style: kTextStyleSmallPrimary,
+                    );
+            },
+            separatorBuilder: (BuildContext context, int index) =>
+                new Divider(color: kSecondaryTextColor, height: 2),
+          ),
+        ),
+        //padding: EdgeInsets.all(15),
+      );
+    }
+  }
+
+  Future<ApiResponse<dynamic>> invokeInnerCategories() async {
+    provider = Provider.of<InnerCategoryProvider>(context, listen: false);
+    await provider!.invokeSubcategory(items.id!);
+    return provider!.subCategoryResponse;
   }
 }

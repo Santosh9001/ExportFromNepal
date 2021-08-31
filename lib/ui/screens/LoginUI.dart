@@ -53,19 +53,12 @@ class _LoginUIState extends State<LoginUI> {
       PreferenceUtils.putString(PreferenceUtils.TOKEN, response.right);
       Navigator.pushNamed(context, '/dashboard');
     }
-  }
-
-  void loginSocial(String identifier, String type, String firstName,
-      String lastName, String email) async {
-    final _loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    Either<Glitch, String> response = await _loginProvider.loginSocial(
-        identifier, type, firstName, lastName, email);
-    if (response.isLeft) {
-      showToast(context, response.left.message);
-    } else if (response.isRight) {
-      PreferenceUtils.putString(PreferenceUtils.TOKEN, response.right);
-      Navigator.pushNamed(context, '/dashboard');
-    }
+    // if (token != null) {
+    //   PreferenceUtils.putString(PreferenceUtils.TOKEN, token);
+    //   String savedToken = PreferenceUtils.getString(PreferenceUtils.TOKEN);
+    //   print(savedToken);
+    //   Navigator.pushNamed(context, '/dashboard');
+    // }
   }
 
   @override
@@ -225,18 +218,8 @@ class _LoginUIState extends State<LoginUI> {
                                             idToken: googleAuth.idToken);
                                     await FirebaseAuth.instance
                                         .signInWithCredential(credential)
-                                        .then((value) {
-                                      if (value.user != null) {
-                                        loginSocial(
-                                            value.user!.uid,
-                                            "Google",
-                                            value.user!.displayName!,
-                                            value.user!.displayName!,
-                                            value.user!.email!);
-                                      }
-                                      print(value);
-                                      print(value.user!.displayName);
-                                    });
+                                        .then((value) =>
+                                            print(value.user!.displayName));
                                   },
                                   child: Container(
                                     child: Center(

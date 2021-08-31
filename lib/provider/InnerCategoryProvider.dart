@@ -5,18 +5,18 @@ import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/repositories/category_repository.dart';
 import 'package:flutter/material.dart';
 
-class InnerCategoryProvider extends ChangeNotifier{
-CategoryRepository? _categoryRepository;
-ApiResponse _subCategoryResponse = ApiResponse.loading("Loading");
-  InnerCategoryProvider(){
+class InnerCategoryProvider extends ChangeNotifier {
+  CategoryRepository? _categoryRepository;
+  ApiResponse _subCategoryResponse = ApiResponse.loading("Loading");
+  InnerCategoryProvider() {
     _categoryRepository = CategoryRepository();
   }
 
-  ApiResponse? get subCategoryResponse {
+  ApiResponse get subCategoryResponse {
     return _subCategoryResponse;
   }
 
-  Future<void> invokeSubcategory(String id) async {
+  Future<ApiResponse> invokeSubcategory(String id) async {
     try {
       if (_categoryRepository != null) {
         Either<Glitch, Categories> response =
@@ -30,10 +30,11 @@ ApiResponse _subCategoryResponse = ApiResponse.loading("Loading");
       } else {
         _subCategoryResponse = ApiResponse.error("Internal Error");
       }
-      notifyListeners();
     } catch (e) {
       _subCategoryResponse = ApiResponse.error(e.toString());
       _subCategoryResponse.status = Status.ERROR;
     }
+    notifyListeners();
+    return _subCategoryResponse;
   }
 }

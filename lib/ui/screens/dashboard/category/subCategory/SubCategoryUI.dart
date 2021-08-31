@@ -9,14 +9,20 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SubCategoryUI extends StatefulWidget {
-  const SubCategoryUI({Key? key}) : super(key: key);
+  final Items item;
+
+  SubCategoryUI(this.item);
 
   @override
-  _SubCategoryUIState createState() => _SubCategoryUIState();
+  _SubCategoryUIState createState() => _SubCategoryUIState(item);
 }
 
 class _SubCategoryUIState extends State<SubCategoryUI>
     with SingleTickerProviderStateMixin {
+  final Items item;
+
+  _SubCategoryUIState(this.item);
+
   @override
   void dispose() {
     super.dispose();
@@ -35,83 +41,43 @@ class _SubCategoryUIState extends State<SubCategoryUI>
   Widget build(BuildContext context) {
     return FutureBuilder(
       builder: (context, snapshot) {
-        return DefaultTabController(
-          length: snapshot.connectionState == ConnectionState.done
-              ? (snapshot.hasError
-                  ? Center(
-                      child: Text('${snapshot.error} occured',
-                          style: kTextStyleSmallPrimary),
-                    )
-                  : getCategoryLength(snapshot.data))
-              : 0,
-          child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              elevation: 0,
-              title: new Text(
-                "Categories",
-                style: kTextStyleLargeBlue,
+        return Container(
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                height: 8.0,
               ),
-              leading: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pop(true);
-                },
-                icon: Icon(
-                  Icons.chevron_left,
-                  color: kColorPrimary,
-                  size: 30,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: double.infinity,
+                  child: Text(
+                    "${item.name}",
+                    style: kTextStyleLargeBlue,
+                  ),
                 ),
               ),
-              bottom: TabBar(
-                isScrollable: true,
-                indicatorColor: kColorRed,
-                labelStyle: TextStyle(color: kColorRed, fontSize: 12),
-                unselectedLabelColor: kColorPrimary,
-                labelColor: kColorRed,
-                unselectedLabelStyle:
-                    TextStyle(color: kColorPrimary, fontSize: 10),
-                tabs: snapshot.connectionState == ConnectionState.done
-                    ? (snapshot.hasError
-                        ? Center(
-                            child: Text('${snapshot.error} occured',
-                                style: kTextStyleSmallPrimary),
-                          )
-                        : getWidgetValue(snapshot.data))
-                    : [],
+              SizedBox(
+                height: 16.0,
               ),
-            ),
-            body: new TabBarView(
-                children: snapshot.connectionState == ConnectionState.done
-                    ? (snapshot.hasError
-                        ? Center(
-                            child: Text('${snapshot.error} occured',
-                                style: kTextStyleSmallPrimary),
-                          )
-                        : getWidgetSubcategories(snapshot.data))
-                    : []),
+              snapshot.connectionState == ConnectionState.done
+                  ? (snapshot.hasError
+                      ? Center(
+                          child: Text('${snapshot.error} occured',
+                              style: kTextStyleSmallPrimary),
+                        )
+                      : getWidgetSubcategories(snapshot.data))
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    ),
+            ],
           ),
         );
       },
-      future: invokeCategories(),
+      future: invokeSubCategories(item.id!),
     );
-  }
-
-  getCategoryLength(data) {
-    _categoryResponse = data;
-    if (_categoryResponse != null) {
-      _categories = _categoryResponse!.data as Categories;
-      return _categories!.items!.length;
-    }
-  }
-
-  getWidgetValue(data) {
-    _categoryResponse = data;
-    if (_categoryResponse != null) {
-      _categories = _categoryResponse!.data as Categories;
-      return List<Widget>.generate(_categories!.items!.length, (int index) {
-        return Text("${_categories!.items![index].name}");
-      });
-    }
   }
 
   getWidgetSubcategories(data) {
@@ -125,9 +91,9 @@ class _SubCategoryUIState extends State<SubCategoryUI>
     }
   }
 
-  Future<ApiResponse<dynamic>> invokeCategories() async {
+  Future<ApiResponse<dynamic>> invokeSubCategories(String id) async {
     provider = Provider.of<CategoryProvider>(context, listen: false);
-    await provider!.invokeCategories();
+    await provider!.invokeSubcategory(id);
     return provider!.categoryResponse;
   }
 }
