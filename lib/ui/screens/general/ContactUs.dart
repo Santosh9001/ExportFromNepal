@@ -17,11 +17,7 @@ class _ContactUsState extends State<ContactUs> {
   GeneralProvider? provider;
   ApiResponse? _contactResponse;
   Contact? _contact;
-  String dropdownValue = 'Nepal';
-
-  void reloadServerData() {
-    setState(() {});
-  }
+  String dropdownValue = 'Nepal';  
 
   @override
   Widget build(BuildContext context) {
@@ -77,236 +73,246 @@ class _ContactUsState extends State<ContactUs> {
                               : Center(
                                   child: CircularProgressIndicator(),
                                 ),
-                                Padding(
-                        padding: EdgeInsets.only(left: 20),
-                        child: Text(
-                          "Send Your Comments",
-                          style: kTextStyleBlueBoldMedium,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: TextField(
-                          keyboardType: TextInputType.name,
-                          style: kTextStyleSmallPrimary,
-                          decoration: new InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 5.0),
-                            ),
-                            hintText: 'Your Name',
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          style: kTextStyleSmallPrimary,
-                          decoration: new InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 5.0),
-                            ),
-                            hintText: 'Your Email',
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: TextField(
-                          keyboardType: TextInputType.number,
-                          style: kTextStyleSmallPrimary,
-                          decoration: new InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 5.0),
-                            ),
-                            hintText: 'Your Phone',
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      Container(
-                        margin: EdgeInsets.only(left: 20, right: 20),
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        child: DropdownButton<String>(
-                          isExpanded: true,
-                          value: dropdownValue,
-                          icon: const Icon(Icons.expand_more),
-                          iconSize: 18,
-                          style: const TextStyle(color: kSecondaryTextColor),
-                          underline: Container(
-                            color: null,
-                          ),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dropdownValue = newValue!;
-                            });
-                          },
-                          items: <String>['Nepal', 'Two', 'Free', 'Four']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      Container(
-                        margin: EdgeInsets.only(left: 20, right: 20),
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        child: DropdownButton<String>(
-                          isExpanded: true,
-                          value: dropdownValue,
-                          icon: const Icon(Icons.expand_more),
-                          iconSize: 18,
-                          style: const TextStyle(color: kSecondaryTextColor),
-                          underline: Container(
-                            color: null,
-                          ),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dropdownValue = newValue!;
-                            });
-                          },
-                          items: <String>['Nepal', 'Two', 'Free', 'Four']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: TextField(
-                          keyboardType: TextInputType.multiline,
-                          maxLines: 6,
-                          style: kTextStyleSmallPrimary,
-                          decoration: new InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 5.0),
-                            ),
-                            hintText: 'Your Message',
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        child: ElevatedButton(
-                          style:
-                              ElevatedButton.styleFrom(primary: kColorPrimary),
-                          onPressed: () {},
-                          child: Text(
-                            "Send Message",
-                            style: TextStyle(
-                              color: Colors.white,
+                          Padding(
+                            padding: EdgeInsets.only(left: 20),
+                            child: Text(
+                              "Send Your Comments",
+                              style: kTextStyleBlueBoldMedium,
                             ),
                           ),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Container(
-                        margin: EdgeInsets.only(
-                          left: 10,
-                          right: 10,
-                        ),
-                        width: MediaQuery.of(context).size.width,
-                        height: 180,
-                        child: Maps(),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        color: Colors.white,
-                        padding: EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            InkWell(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.call,
-                                    size: 20,
-                                    color: kSecondaryTextColor,
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text("Give Us A Call",
-                                      style: kTextStyleSmallPrimary),
-                                ],
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: TextField(
+                              keyboardType: TextInputType.name,
+                              style: kTextStyleSmallPrimary,
+                              decoration: new InputDecoration(
+                                isDense: true,
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 15, horizontal: 10),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.black, width: 5.0),
+                                ),
+                                hintText: 'Your Name',
                               ),
                             ),
-                            Container(
-                              color: kSecondaryTextColor,
-                              width: 1,
-                              height: 40,
-                            ),
-                            InkWell(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.email,
-                                    size: 20,
-                                    color: kSecondaryTextColor,
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text("Send An Email",
-                                      style: kTextStyleSmallPrimary),
-                                ],
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: TextField(
+                              keyboardType: TextInputType.emailAddress,
+                              style: kTextStyleSmallPrimary,
+                              decoration: new InputDecoration(
+                                isDense: true,
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 15, horizontal: 10),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.black, width: 5.0),
+                                ),
+                                hintText: 'Your Email',
                               ),
                             ),
-                          ],
-                        ),
-                      ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              style: kTextStyleSmallPrimary,
+                              decoration: new InputDecoration(
+                                isDense: true,
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 15, horizontal: 10),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.black, width: 5.0),
+                                ),
+                                hintText: 'Your Phone',
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Container(
+                            margin: EdgeInsets.only(left: 20, right: 20),
+                            padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              value: dropdownValue,
+                              icon: const Icon(Icons.expand_more),
+                              iconSize: 18,
+                              style:
+                                  const TextStyle(color: kSecondaryTextColor),
+                              underline: Container(
+                                color: null,
+                              ),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue = newValue!;
+                                });
+                              },
+                              items: <String>[
+                                'Nepal',
+                                'Two',
+                                'Free',
+                                'Four'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Container(
+                            margin: EdgeInsets.only(left: 20, right: 20),
+                            padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              value: dropdownValue,
+                              icon: const Icon(Icons.expand_more),
+                              iconSize: 18,
+                              style:
+                                  const TextStyle(color: kSecondaryTextColor),
+                              underline: Container(
+                                color: null,
+                              ),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue = newValue!;
+                                });
+                              },
+                              items: <String>[
+                                'Nepal',
+                                'Two',
+                                'Free',
+                                'Four'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: TextField(
+                              keyboardType: TextInputType.multiline,
+                              maxLines: 6,
+                              style: kTextStyleSmallPrimary,
+                              decoration: new InputDecoration(
+                                isDense: true,
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 15, horizontal: 10),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.black, width: 5.0),
+                                ),
+                                hintText: 'Your Message',
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: kColorPrimary),
+                              onPressed: () {},
+                              child: Text(
+                                "Send Message",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Container(
+                            margin: EdgeInsets.only(
+                              left: 10,
+                              right: 10,
+                            ),
+                            width: MediaQuery.of(context).size.width,
+                            height: 180,
+                            child: Maps(),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            color: Colors.white,
+                            padding: EdgeInsets.all(10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                InkWell(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(
+                                        Icons.call,
+                                        size: 20,
+                                        color: kSecondaryTextColor,
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text("Give Us A Call",
+                                          style: kTextStyleSmallPrimary),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  color: kSecondaryTextColor,
+                                  width: 1,
+                                  height: 40,
+                                ),
+                                InkWell(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(
+                                        Icons.email,
+                                        size: 20,
+                                        color: kSecondaryTextColor,
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text("Send An Email",
+                                          style: kTextStyleSmallPrimary),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),

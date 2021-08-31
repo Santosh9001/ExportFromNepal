@@ -1,15 +1,15 @@
 class Contact {
   List<Contact_information>? _contactInformation;
-  List<Categories>? _categories;
+  List<String>? _categories;
   List<Country>? _country;
 
   List<Contact_information>? get contactInformation => _contactInformation;
-  List<Categories>? get categories => _categories;
+  List<String>? get categories => _categories;
   List<Country>? get country => _country;
 
   Contact({
       List<Contact_information>? contactInformation, 
-      List<Categories>? categories, 
+      List<String>? categories, 
       List<Country>? country}){
     _contactInformation = contactInformation;
     _categories = categories;
@@ -23,12 +23,7 @@ class Contact {
         _contactInformation?.add(Contact_information.fromJson(v));
       });
     }
-    if (json['categories'] != null) {
-      _categories = [];
-      json['categories'].forEach((v) {
-        _categories?.add(Categories.fromJson(v));
-      });
-    }
+    _categories = json['categories'] != null ? json['categories'].cast<String>() : [];
     if (json['country'] != null) {
       _country = [];
       json['country'].forEach((v) {
@@ -42,9 +37,7 @@ class Contact {
     if (_contactInformation != null) {
       map['contact_information'] = _contactInformation?.map((v) => v.toJson()).toList();
     }
-    if (_categories != null) {
-      map['categories'] = _categories?.map((v) => v.toJson()).toList();
-    }
+    map['categories'] = _categories;
     if (_country != null) {
       map['country'] = _country?.map((v) => v.toJson()).toList();
     }
@@ -76,64 +69,6 @@ class Country {
     var map = <String, dynamic>{};
     map['country_id'] = _countryId;
     map['country_name'] = _countryName;
-    return map;
-  }
-
-}
-
-class Categories {
-  String? _manufacturer;
-  String? _exporter;
-  String? _wholesaler;
-  String? _retailer;
-  String? _forwarder;
-  String? _importer;
-  String? _consumer;
-
-  String? get manufacturer => _manufacturer;
-  String? get exporter => _exporter;
-  String? get wholesaler => _wholesaler;
-  String? get retailer => _retailer;
-  String? get forwarder => _forwarder;
-  String? get importer => _importer;
-  String? get consumer => _consumer;
-
-  Categories({
-      String? manufacturer, 
-      String? exporter, 
-      String? wholesaler, 
-      String? retailer, 
-      String? forwarder, 
-      String? importer, 
-      String? consumer}){
-    _manufacturer = manufacturer;
-    _exporter = exporter;
-    _wholesaler = wholesaler;
-    _retailer = retailer;
-    _forwarder = forwarder;
-    _importer = importer;
-    _consumer = consumer;
-}
-
-  Categories.fromJson(dynamic json) {
-    _manufacturer = json['Manufacturer'];
-    _exporter = json['Exporter'];
-    _wholesaler = json['Wholesaler'];
-    _retailer = json['Retailer'];
-    _forwarder = json['Forwarder'];
-    _importer = json['Importer'];
-    _consumer = json['Consumer'];
-  }
-
-  Map<String, dynamic> toJson() {
-    var map = <String, dynamic>{};
-    map['Manufacturer'] = _manufacturer;
-    map['Exporter'] = _exporter;
-    map['Wholesaler'] = _wholesaler;
-    map['Retailer'] = _retailer;
-    map['Forwarder'] = _forwarder;
-    map['Importer'] = _importer;
-    map['Consumer'] = _consumer;
     return map;
   }
 

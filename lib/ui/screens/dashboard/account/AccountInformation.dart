@@ -1,6 +1,11 @@
+import 'package:either_dart/either.dart';
+import 'package:export_nepal/model/glitch/glitch.dart';
+import 'package:export_nepal/provider/AccountProvider.dart';
 import 'package:export_nepal/ui/components/button.dart';
 import 'package:export_nepal/utils/constants.dart';
+import 'package:export_nepal/utils/toast.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AccountInformation extends StatefulWidget {
   const AccountInformation({Key? key}) : super(key: key);
@@ -118,6 +123,36 @@ class _AccountInformationState extends State<AccountInformation> {
   }
 
   Future<dynamic> PasswordChangeSheet(BuildContext context) {
+    TextEditingController _currentPass = TextEditingController();
+    TextEditingController _newPass = TextEditingController();
+    TextEditingController _confirmPass = TextEditingController();
+    final provider = Provider.of<AccountProvider>(context);
+
+    checkCriteria() {
+      if (_currentPass.text.isNotEmpty &&
+          _newPass.text.isNotEmpty &&
+          _confirmPass.text.isNotEmpty) {
+        if (_newPass.text == _confirmPass.text) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    }
+
+    changePassword() async {
+      Either<Glitch, String> response =
+          await provider.updatePassword(_currentPass.text, _newPass.text);
+      if (response.isLeft) {
+        showToast(context, response.left.message);
+      } else if (response.isRight) {
+        showToast(context, "Password update successfully");
+        Navigator.pop(context);
+      }
+    }
+
     return showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
@@ -151,6 +186,7 @@ class _AccountInformationState extends State<AccountInformation> {
                   TextFormField(
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
+                    controller: _currentPass,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(20.0),
@@ -162,6 +198,7 @@ class _AccountInformationState extends State<AccountInformation> {
                   TextFormField(
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
+                    controller: _newPass,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(20.0),
@@ -173,6 +210,7 @@ class _AccountInformationState extends State<AccountInformation> {
                   TextFormField(
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
+                    controller: _confirmPass,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(20.0),
@@ -199,7 +237,11 @@ class _AccountInformationState extends State<AccountInformation> {
                       Expanded(
                         child: Button(
                           text: "Update Password",
-                          onPress: () {},
+                          onPress: () {
+                            if (checkCriteria()) {
+                              changePassword();
+                            }
+                          },
                           color: kColorPrimary,
                         ),
                       ),

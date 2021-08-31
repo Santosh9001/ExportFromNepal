@@ -6,6 +6,7 @@ import 'package:export_nepal/model/glitch/NoInternetGlitch.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_base.dart';
 import 'package:export_nepal/network_module/api_exceptions.dart';
+import 'package:export_nepal/utils/preference_utils.dart';
 import 'package:http/http.dart' as http;
 
 class HttpClient {
@@ -67,6 +68,46 @@ class HttpClient {
     try {
       final response = await http.post(Uri.parse(APIBase.baseURL + url),
           body: jsonEncode(body), headers: header);
+      responseJson = _returnResponse(response);
+    } on SocketException {
+      return Left(NoInternetGlitch());
+    } on BadRequestException catch (e) {
+      return Left(Glitch(message: e.toString()));
+    } on UnauthorisedException catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
+    return Right(responseJson);
+  }
+
+  Future<Either<Glitch, dynamic>> put(String url, dynamic body) async {
+    var responseJson;
+    var token = PreferenceUtils.TOKEN;
+    var header = {
+      HttpHeaders.contentTypeHeader: 'application/json',
+      'Authorization': 'Bearer $token'
+    };
+    try {
+      final response = await http.put(Uri.parse(APIBase.baseURL + url),
+          body: jsonEncode(body), headers: header);
+      responseJson = _returnResponse(response);
+    } on SocketException {
+      return Left(NoInternetGlitch());
+    } on BadRequestException catch (e) {
+      return Left(Glitch(message: e.toString()));
+    } on UnauthorisedException catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
+    return Right(responseJson);
+  }
+  Future<Either<Glitch, dynamic>> putUrlOnly(String url) async {
+    var responseJson;
+    var token = PreferenceUtils.TOKEN;
+    var header = {
+      HttpHeaders.contentTypeHeader: 'application/json',
+      'Authorization': 'Bearer $token'
+    };
+    try {
+      final response = await http.put(Uri.parse(APIBase.baseURL + url));
       responseJson = _returnResponse(response);
     } on SocketException {
       return Left(NoInternetGlitch());

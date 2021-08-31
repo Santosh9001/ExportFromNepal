@@ -22,7 +22,9 @@ enum APIPath {
   create_cart,
   blogs,
   home_content,
-  product_details
+  product_details,
+  updatePassword,
+  sendEmailVerification
 }
 
 class APIPathHelper {
@@ -76,6 +78,10 @@ class APIPathHelper {
         return "efn/home/content";
       case APIPath.product_details:
         return "efn/product/";
+      case APIPath.updatePassword:
+        return "customers/me/password";
+      case APIPath.sendEmailVerification:
+        return "efn/customers/password/";
       default:
         return "";
     }

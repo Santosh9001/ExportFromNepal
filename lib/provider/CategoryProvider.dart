@@ -12,18 +12,17 @@ class CategoryProvider extends ChangeNotifier {
 
   CategoryProvider() {
     _categoryRepository = CategoryRepository();
-    invokeCategories();
   }
 
-  ApiResponse? get categoryResponse {
+  ApiResponse get categoryResponse {
     return _categoryResponse;
   }
 
-  ApiResponse? get subCategoryResponse {
+  ApiResponse get subCategoryResponse {
     return _subCategoryResponse;
   }
 
-  Future<void> invokeSubcategory(String id) async {
+  Future<ApiResponse> invokeSubcategory(String id) async {
     try {
       _subCategoryResponse = ApiResponse.loading("Loading");
       if (_categoryRepository != null) {
@@ -38,14 +37,15 @@ class CategoryProvider extends ChangeNotifier {
       } else {
         _subCategoryResponse = ApiResponse.error("Internal Error");
       }
-      notifyListeners();
     } catch (e) {
       _subCategoryResponse = ApiResponse.error(e.toString());
       _subCategoryResponse.status = Status.ERROR;
     }
+    notifyListeners();
+    return _subCategoryResponse;
   }
 
-  Future<void> invokeCategories() async {
+  Future<ApiResponse> invokeCategories() async {
     try {
       if (_categoryRepository != null) {
         Either<Glitch, Categories> response =
@@ -54,15 +54,15 @@ class CategoryProvider extends ChangeNotifier {
           _categoryResponse = ApiResponse.error(response.left.message);
         } else if (response.isRight) {
           _categoryResponse = ApiResponse.completed(response.right);
-          print(_categoryResponse.data);
         }
       } else {
         _categoryResponse = ApiResponse.error("Internal Error");
       }
-      notifyListeners();
     } catch (e) {
       _categoryResponse = ApiResponse.error(e.toString());
       _categoryResponse.status = Status.ERROR;
     }
+    notifyListeners();
+    return _categoryResponse;
   }
 }

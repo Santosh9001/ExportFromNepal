@@ -35,7 +35,7 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
   @override
   Widget build(BuildContext context) {
     arguments = ModalRoute.of(context)!.settings.arguments as Map;
-    //print(arguments['exampleArgument']);
+    print(arguments!['exampleArgument']);
     return Scaffold(
       body: FutureBuilder<ApiResponse<dynamic>>(
         builder: (context, snapshot) {
