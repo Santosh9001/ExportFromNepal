@@ -128,7 +128,6 @@ class MainApp extends StatelessWidget {
         '/newsletterSubs': (context) => NewsLetterSubscription(),
         '/rmaDashboard': (context) => RMADashboard(),
         '/sellerDashboard': (context) => SellerDashboard(),
-        '/subCategory':(context) => SubCategoryUI(),
       },
       theme: ThemeData(
           primaryColor: Color(0xFF0A0E21),
