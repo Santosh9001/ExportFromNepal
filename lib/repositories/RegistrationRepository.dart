@@ -24,7 +24,7 @@ class RegistrationRepository {
         "firstname": "$firstName",
         "lastname": "$lastName"
       },
-      "password ": "$password"
+      "password": "$password"
     };
     final response = await HttpClient.instance
         .postData(APIPathHelper.getValue(APIPath.register), data);
