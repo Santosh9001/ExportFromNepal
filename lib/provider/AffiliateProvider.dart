@@ -1,4 +1,11 @@
+import 'package:either_dart/either.dart';
+import 'package:export_nepal/model/core/affiliate_groups.dart';
+import 'package:export_nepal/model/core/logged_in_user.dart';
+import 'package:export_nepal/model/glitch/glitch.dart';
+import 'package:export_nepal/network_module/api_response.dart';
+import 'package:export_nepal/repositories/affiliate_repository.dart';
 import 'package:export_nepal/utils/constants.dart';
+import 'package:export_nepal/utils/preference_utils.dart';
 import 'package:flutter/material.dart';
 
 class AffiliateProvider extends ChangeNotifier {
@@ -25,6 +32,25 @@ class AffiliateProvider extends ChangeNotifier {
   bool get isChangeEmail => _changeEmail;
 
   bool get isChangePass => _changePass;
+
+  AffiliateRepository? _affiliateRepository;
+  Logged_in_user? _loggedInUser;
+
+  AffiliateProvider() {
+    _affiliateRepository = AffiliateRepository();
+    var user = PreferenceUtils.getString(PreferenceUtils.USER);
+      _loggedInUser = Logged_in_user.fromJson(user);    
+  }
+
+  Logged_in_user? get loggedUser {
+    return _loggedInUser;
+  }
+
+  ApiResponse _affiliateResponse = ApiResponse.loading("Loading");
+
+  ApiResponse get affiliateGroupResponse {
+    return _affiliateResponse;
+  }
 
   void setChangeOption() {
     if (_changeEmail || _changePass) {
@@ -168,5 +194,26 @@ class AffiliateProvider extends ChangeNotifier {
       );
     else
       return Container();
+  }
+
+  Future<ApiResponse> invokeAffiliateGroups() async {
+    try {
+      if (_affiliateRepository != null) {
+        Either<Glitch, Affiliate_groups> response =
+            await _affiliateRepository!.getAffiliateGroups();
+        if (response.isLeft) {
+          _affiliateResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _affiliateResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _affiliateResponse = ApiResponse.error("Internal Error");
+      }
+    } catch (e) {
+      _affiliateResponse.status = Status.ERROR;
+      _affiliateResponse = ApiResponse.error(e.toString());
+    }
+    notifyListeners();
+    return _affiliateResponse;
   }
 }

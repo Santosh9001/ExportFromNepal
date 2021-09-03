@@ -47,7 +47,6 @@ class ProductProvider extends ChangeNotifier {
       } else {
         _productDetailResponse = ApiResponse.error("Internal Error");
       }
-      notifyListeners();
     } catch (e) {
       _productDetailResponse = ApiResponse.error(e.toString());
       _productDetailResponse.status = Status.ERROR;

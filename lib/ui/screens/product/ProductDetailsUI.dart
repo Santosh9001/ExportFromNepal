@@ -35,13 +35,27 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
   @override
   Widget build(BuildContext context) {
     arguments = ModalRoute.of(context)!.settings.arguments as Map;
-    print(arguments!['exampleArgument']);
     return Scaffold(
       body: FutureBuilder<ApiResponse<dynamic>>(
         builder: (context, snapshot) {
           _productDetailsResponse = snapshot.data;
           if (_productDetailsResponse != null) {
             _product_details = _productDetailsResponse!.data as Product_details;
+           
+            var configlinks =
+                _product_details!.product!.configurableOptionsLink;
+            List<dynamic> lists = configlinks.keys.toList();
+            List<dynamic> datas = configlinks.values.toList();
+            List<dynamic> colors = [];
+            List<dynamic> sizes = [];
+            for (dynamic dd in datas) {
+              if (colors
+                  .where((element) => element["id"] == dd["color"]["id"])
+                  .isEmpty) colors.add(dd["color"]);
+              if (sizes
+                  .where((element) => element["id"] == dd["size"]["id"])
+                  .isEmpty) sizes.add(dd["size"]);
+            }
           }
           return SafeArea(
             child: Column(
@@ -893,9 +907,7 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                             scrollDirection: Axis.horizontal,
                                             itemBuilder: (context, index) {
                                               return ProductCard(
-                                                  180.0, 180.0, Items(
-                                                    
-                                                  ));
+                                                  180.0, 180.0, Items());
                                             }),
                                       ),
                                       SizedBox(

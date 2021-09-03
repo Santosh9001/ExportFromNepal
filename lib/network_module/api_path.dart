@@ -25,7 +25,8 @@ enum APIPath {
   product_details,
   updatePassword,
   sendEmailVerification,
-  loggedInUser
+  loggedInUser,
+  affiliate_groups
 }
 
 class APIPathHelper {
@@ -85,6 +86,8 @@ class APIPathHelper {
         return "efn/customers/password/";
       case APIPath.loggedInUser:
         return "customers/me";
+      case APIPath.affiliate_groups:
+        return "efn/affiliate/groups";
       default:
         return "";
     }

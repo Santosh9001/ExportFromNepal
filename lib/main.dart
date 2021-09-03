@@ -1,4 +1,5 @@
 import 'package:export_nepal/provider/AccountProvider.dart';
+import 'package:export_nepal/provider/AffiliateProvider.dart';
 import 'package:export_nepal/provider/CategoryProvider.dart';
 import 'package:export_nepal/provider/GeneralProvider.dart';
 import 'package:export_nepal/provider/InnerCategoryProvider.dart';
@@ -75,8 +76,8 @@ List<SingleChildWidget> providers = [
   ChangeNotifierProvider<CategoryProvider>(create: (_) => CategoryProvider()),
   ChangeNotifierProvider<InnerCategoryProvider>(create: (_) => InnerCategoryProvider()),
   ChangeNotifierProvider<ProductProvider>(create: (_) => ProductProvider()),
-  ChangeNotifierProvider<AccountProvider>(create: (_) => AccountProvider())
-
+  ChangeNotifierProvider<AccountProvider>(create: (_) => AccountProvider()),
+  ChangeNotifierProvider<AffiliateProvider>(create: (_) => AffiliateProvider()),
 ];
 
 class MainApp extends StatelessWidget {

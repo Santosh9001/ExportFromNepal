@@ -1,7 +1,7 @@
 class Product_details {
   DetailProduct? _product;
   ReviewParent? _reviews;
-  List<Related_product>? _relatedProduct;
+  List<Related_product>? _relatedProduct;  
 
   DetailProduct? get product => _product;
   ReviewParent? get reviews => _reviews;
@@ -354,8 +354,8 @@ class DetailProduct {
   List<String>? _supplierType;
   List<Custom_attribute>? _customAttribute;
   Seller? _seller;
-  List<dynamic>? _configurableOptions;
-  List<dynamic>? _configurableOptionsLink;
+  dynamic _configurableOptions;
+  dynamic _configurableOptionsLink;
 
   String? get id => _id;
   String? get name => _name;
@@ -379,8 +379,8 @@ class DetailProduct {
   List<String>? get supplierType => _supplierType;
   List<Custom_attribute>? get customAttribute => _customAttribute;
   Seller? get seller => _seller;
-  List<dynamic>? get configurableOptions => _configurableOptions;
-  List<dynamic>? get configurableOptionsLink => _configurableOptionsLink;
+  dynamic get configurableOptions => _configurableOptions;
+  dynamic get configurableOptionsLink => _configurableOptionsLink;
 
   Product({
       String? id, 
@@ -405,8 +405,8 @@ class DetailProduct {
       List<String>? supplierType, 
       List<Custom_attribute>? customAttribute, 
       Seller? seller, 
-      List<dynamic>? configurableOptions, 
-      List<dynamic>? configurableOptionsLink}){
+      dynamic configurableOptions, 
+      dynamic configurableOptionsLink}){
     _id = id;
     _name = name;
     _sku = sku;
@@ -435,6 +435,7 @@ class DetailProduct {
 
   DetailProduct.fromJson(dynamic json) {
     _id = json['id'];
+    _configurableOptionsLink = json['configurable_options_link'];
     _name = json['name'];
     _sku = json['sku'];
     _price = json['price'];

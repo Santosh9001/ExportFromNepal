@@ -235,7 +235,7 @@ class _LoginUIState extends State<LoginUI> {
                                             value.user!.email!);
                                       }
                                       print(value);
-                                      print(value.user!.displayName);
+                                      print(value.user!.uid);
                                     });
                                   },
                                   child: Container(
