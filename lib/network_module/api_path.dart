@@ -26,7 +26,9 @@ enum APIPath {
   updatePassword,
   sendEmailVerification,
   loggedInUser,
-  affiliate_groups
+  affiliate_groups,
+  countries,
+  currencies
 }
 
 class APIPathHelper {
@@ -88,6 +90,10 @@ class APIPathHelper {
         return "customers/me";
       case APIPath.affiliate_groups:
         return "efn/affiliate/groups";
+      case APIPath.countries:
+        return "directory/countries";
+      case APIPath.currencies:
+        return "directory/currency";
       default:
         return "";
     }
