@@ -28,7 +28,8 @@ enum APIPath {
   loggedInUser,
   affiliate_groups,
   countries,
-  currencies
+  currencies,
+  apply_coupons
 }
 
 class APIPathHelper {
@@ -94,6 +95,8 @@ class APIPathHelper {
         return "directory/countries";
       case APIPath.currencies:
         return "directory/currency";
+      case APIPath.apply_coupons:
+        return "carts/mine/coupons/";
       default:
         return "";
     }

@@ -23,4 +23,12 @@ class CartRepository {
       return Left(Glitch(message: e.toString()));
     }
   }
+
+  Future<Either<Glitch, dynamic>> applyCoupon(String code) async {
+    Either<Glitch, dynamic> response = await HttpClient.instance
+        .put(APIPathHelper.getValue(APIPath.create_cart), null);
+    return response;
+  }
+
+  
 }
