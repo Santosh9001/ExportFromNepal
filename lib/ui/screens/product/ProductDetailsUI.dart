@@ -1,4 +1,4 @@
-import 'package:export_nepal/model/core/Product/models/items.dart';
+import 'package:export_nepal/model/core/Product/models/product.dart';
 import 'package:export_nepal/model/core/Product/models/product_details.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/ui/components/button.dart';

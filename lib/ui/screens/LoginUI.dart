@@ -1,8 +1,10 @@
 import 'package:either_dart/either.dart';
+import 'package:export_nepal/model/core/logged_user.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/provider/login_provider.dart';
 import 'package:export_nepal/ui/screens/ForgotPasswordUI.dart';
 import 'package:export_nepal/utils/constants.dart';
+import 'package:export_nepal/utils/internet_check.dart';
 import 'package:export_nepal/utils/preference_utils.dart';
 import 'package:export_nepal/utils/toast.dart';
 import 'package:export_nepal/utils/validator.dart';
@@ -44,13 +46,14 @@ class _LoginUIState extends State<LoginUI> {
   void login() async {
     print("login");
     final _loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    Either<Glitch, String> response = await _loginProvider.login(
+    Either<Glitch, Logged_user> response = await _loginProvider.login(
         _emailController.text, _passwordController.text);
 
     if (response.isLeft) {
       showToast(context, response.left.message);
     } else if (response.isRight) {
-      PreferenceUtils.putString(PreferenceUtils.TOKEN, response.right);
+      PreferenceUtils.putString(
+          PreferenceUtils.TOKEN, response.right.data!.token!);
       Navigator.pushNamed(context, '/dashboard');
     }
   }
@@ -58,12 +61,13 @@ class _LoginUIState extends State<LoginUI> {
   void loginSocial(String identifier, String type, String firstName,
       String lastName, String email) async {
     final _loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    Either<Glitch, String> response = await _loginProvider.loginSocial(
+    Either<Glitch, Logged_user> response = await _loginProvider.loginSocial(
         identifier, type, firstName, lastName, email);
     if (response.isLeft) {
       showToast(context, response.left.message);
     } else if (response.isRight) {
-      PreferenceUtils.putString(PreferenceUtils.TOKEN, response.right);
+      PreferenceUtils.putString(
+          PreferenceUtils.TOKEN, response.right.data!.token!);
       Navigator.pushNamed(context, '/dashboard');
     }
   }
@@ -352,7 +356,19 @@ class _LoginUIState extends State<LoginUI> {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.pushNamed(context, '/dashboard');
+                                var check = checkInternetConnection();
+                                check.then((value) => {
+                                      if (value == 1)
+                                        {
+                                          Navigator.pushNamed(
+                                              context, '/dashboard')
+                                        }
+                                      else
+                                        {
+                                          showToast(context,
+                                              "Check Internet Connection")
+                                        }
+                                    });
                               },
                               child: Text("Skip For Now",
                                   style: TextStyle(

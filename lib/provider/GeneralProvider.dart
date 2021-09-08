@@ -1,6 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/aboutus.dart';
 import 'package:export_nepal/model/core/affiliate_program.dart';
+import 'package:export_nepal/model/core/cms_page.dart';
 import 'package:export_nepal/model/core/contact.dart';
 import 'package:export_nepal/model/core/faq.dart';
 import 'package:export_nepal/model/core/manuals.dart';
@@ -65,11 +66,11 @@ class GeneralProvider extends ChangeNotifier {
     return _manualResponse;
   }
 
-  Future<ApiResponse> invokeAboutUs() async {
+  Future<ApiResponse> invokeCmsPage(String path) async {
     try {
       if (_generalRepository != null) {
-        Either<Glitch, Aboutus> response =
-            await _generalRepository!.getAboutUs();
+        Either<Glitch, Cms_page> response =
+            await _generalRepository!.getCmsPage(path);
         if (response.isLeft) {
           _aboutUsResponse = ApiResponse.error(response.left.message);
         } else if (response.isRight) {
@@ -84,27 +85,6 @@ class GeneralProvider extends ChangeNotifier {
     }
     notifyListeners();
     return _aboutUsResponse;
-  }
-
-  Future<ApiResponse> invokeAffiliateProgram() async {
-    try {
-      if (_generalRepository != null) {
-        Either<Glitch, Affiliate_program> response =
-            await _generalRepository!.getAffiliatePrograms();
-        if (response.isLeft) {
-          _affiliateResponse = ApiResponse.error(response.left.message);
-        } else if (response.isRight) {
-          _affiliateResponse = ApiResponse.completed(response.right);
-        }
-      } else {
-        _affiliateResponse = ApiResponse.error("Internal Error");
-      }
-    } catch (e) {
-      _affiliateResponse = ApiResponse.error(e.toString());
-      _affiliateResponse.status = Status.ERROR;
-    }
-    notifyListeners();
-    return _affiliateResponse;
   }
 
   Future<ApiResponse> invokeContact() async {
@@ -147,68 +127,6 @@ class GeneralProvider extends ChangeNotifier {
     }
     notifyListeners();
     return _blogResponse;
-  }
-
-  Future<void> invokeReturnPolicy() async {
-    try {
-      if (_generalRepository != null) {
-        Either<Glitch, Return_policy> response =
-            await _generalRepository!.getReturnPolicy();
-        if (response.isLeft) {
-          _returnPolicyResponse = ApiResponse.error(response.left.message);
-        } else if (response.isRight) {
-          _returnPolicyResponse = ApiResponse.completed(response.right);
-        }
-      } else {
-        _returnPolicyResponse = ApiResponse.error("Internal Error");
-      }
-      notifyListeners();
-    } catch (e) {
-      _returnPolicyResponse = ApiResponse.error(e.toString());
-      _returnPolicyResponse.status = Status.ERROR;
-    }
-  }
-
-  Future<ApiResponse> invokeTermsOfUse() async {
-    try {
-      if (_generalRepository != null) {
-        Either<Glitch, Terms_of_use> response =
-            await _generalRepository!.getTermsOfUse();
-        if (response.isLeft) {
-          _termsOfUseResponse = ApiResponse.error(response.left.message);
-        } else if (response.isRight) {
-          _termsOfUseResponse = ApiResponse.completed(response.right);
-        }
-      } else {
-        _termsOfUseResponse = ApiResponse.error("Internal Error");
-      }
-    } catch (e) {
-      _termsOfUseResponse = ApiResponse.error(e.toString());
-      _termsOfUseResponse.status = Status.ERROR;
-    }
-    notifyListeners();
-    return _termsOfUseResponse;
-  }
-
-  Future<ApiResponse> invokeShippingPolicy() async {
-    try {
-      if (_generalRepository != null) {
-        Either<Glitch, Shipping_policy> response =
-            await _generalRepository!.getShippingPolicy();
-        if (response.isLeft) {
-          _shippingResponse = ApiResponse.error(response.left.message);
-        } else if (response.isRight) {
-          _shippingResponse = ApiResponse.completed(response.right);
-        }
-      } else {
-        _shippingResponse = ApiResponse.error("Internal Error");
-      }
-    } catch (e) {
-      _shippingResponse = ApiResponse.error(e.toString());
-      _shippingResponse.status = Status.ERROR;
-    }
-    notifyListeners();
-    return _shippingResponse;
   }
 
   Future<ApiResponse> invokeManuals() async {

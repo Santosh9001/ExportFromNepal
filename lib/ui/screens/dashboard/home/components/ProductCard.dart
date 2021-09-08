@@ -1,4 +1,4 @@
-import 'package:export_nepal/model/core/Product/models/items.dart';
+import 'package:export_nepal/model/core/Product/models/product.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 

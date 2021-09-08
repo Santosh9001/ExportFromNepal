@@ -4,10 +4,10 @@ import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/Product/models/product.dart';
 import 'package:export_nepal/model/core/home_content.dart';
 import 'package:export_nepal/model/core/logged_in_user.dart';
-import 'package:export_nepal/model/core/notice.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/repositories/dashboard_repository.dart';
+import 'package:export_nepal/utils/internet_check.dart';
 import 'package:export_nepal/utils/preference_utils.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -62,7 +62,8 @@ class DashboardProvider extends ChangeNotifier {
         } else if (response.isRight) {
           _homeContentResponse = ApiResponse.completed(response.right);
           var loggedInUser = _homeContentResponse.data as Logged_in_user;
-          PreferenceUtils.putString(PreferenceUtils.USER, json.encode(loggedInUser));
+          PreferenceUtils.putString(
+              PreferenceUtils.USER, json.encode(loggedInUser));
         }
       } else {
         _homeContentResponse = ApiResponse.error("Internal Error");
@@ -182,7 +183,8 @@ class DashboardProvider extends ChangeNotifier {
     }
   }
 
-  getClipRect(List<Items>? items) {
+  getClipRect(Bannerslider? bannerslider) {
+    var items = bannerslider!.items;
     return new List<Widget>.generate(items!.length, (int index) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(8.0),

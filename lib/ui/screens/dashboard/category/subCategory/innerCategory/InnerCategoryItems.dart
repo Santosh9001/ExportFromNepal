@@ -8,7 +8,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class InnerCategoryItem extends StatelessWidget {
-  final Items item;
+  final CategoryItems item;
   final String category;
   InnerCategoryItem(this.item, this.category);
 

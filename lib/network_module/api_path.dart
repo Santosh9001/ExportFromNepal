@@ -38,9 +38,9 @@ class APIPathHelper {
       case APIPath.register:
         return "customers";
       case APIPath.login:
-        return "integration/customer/token";
+        return "efn/customer/login";
       case APIPath.social_login:
-        return "/efn/social/login";
+        return "efn/social/login";
       case APIPath.validate_email:
         return "customers/isEmailAvailable";
       case APIPath.new_products:

@@ -1,33 +1,69 @@
 class Categories {
-  List<Items>? _items;
+  bool? _status;
+  String? _message;
+  Data? _data;
 
-  List<Items>? get items => _items;
+  bool? get status => _status;
+  String? get message => _message;
+  Data? get data => _data;
 
   Categories({
-      List<Items>? items}){
-    _items = items;
+      bool? status, 
+      String? message, 
+      Data? data}){
+    _status = status;
+    _message = message;
+    _data = data;
 }
 
   Categories.fromJson(dynamic json) {
-    if (json["items"] != null) {
-      _items = [];
-      json["items"].forEach((v) {
-        _items?.add(Items.fromJson(v));
-      });
-    }
+    _status = json['status'];
+    _message = json['message'];
+    _data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
-    if (_items != null) {
-      map["items"] = _items?.map((v) => v.toJson()).toList();
+    map['status'] = _status;
+    map['message'] = _message;
+    if (_data != null) {
+      map['data'] = _data?.toJson();
     }
     return map;
   }
 
 }
 
-class Items {
+class Data {
+  List<CategoryItems>? _categoryItems;
+
+  List<CategoryItems>? get categoryItems => _categoryItems;
+
+  Data({
+      List<CategoryItems>? categoryItems}){
+    _categoryItems = categoryItems;
+}
+
+  Data.fromJson(dynamic json) {
+    if (json['items'] != null) {
+      _categoryItems = [];
+      json['items'].forEach((v) {
+        _categoryItems?.add(CategoryItems.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    var map = <String, dynamic>{};
+    if (_categoryItems != null) {
+      map['items'] = _categoryItems?.map((v) => v.toJson()).toList();
+    }
+    return map;
+  }
+
+}
+
+class CategoryItems {
   String? _id;
   String? _parentId;
   String? _name;
@@ -48,7 +84,7 @@ class Items {
   int? get productCount => _productCount;
   String? get childrenCount => _childrenCount;
 
-  Items({
+  CategoryItems({
       String? id, 
       String? parentId, 
       String? name, 
@@ -69,29 +105,29 @@ class Items {
     _childrenCount = childrenCount;
 }
 
-  Items.fromJson(dynamic json) {
-    _id = json["id"];
-    _parentId = json["parent_id"];
-    _name = json["name"];
-    _image = json["image"];
-    _isActive = json["is_active"];
-    _position = json["position"];
-    _level = json["level"];
-    _productCount = json["product_count"];
-    _childrenCount = json["children_count"];
+  CategoryItems.fromJson(dynamic json) {
+    _id = json['id'];
+    _parentId = json['parent_id'];
+    _name = json['name'];
+    _image = json['image'];
+    _isActive = json['is_active'];
+    _position = json['position'];
+    _level = json['level'];
+    _productCount = json['product_count'];
+    _childrenCount = json['children_count'];
   }
 
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
-    map["id"] = _id;
-    map["parent_id"] = _parentId;
-    map["name"] = _name;
-    map["image"] = _image;
-    map["is_active"] = _isActive;
-    map["position"] = _position;
-    map["level"] = _level;
-    map["product_count"] = _productCount;
-    map["children_count"] = _childrenCount;
+    map['id'] = _id;
+    map['parent_id'] = _parentId;
+    map['name'] = _name;
+    map['image'] = _image;
+    map['is_active'] = _isActive;
+    map['position'] = _position;
+    map['level'] = _level;
+    map['product_count'] = _productCount;
+    map['children_count'] = _childrenCount;
     return map;
   }
 

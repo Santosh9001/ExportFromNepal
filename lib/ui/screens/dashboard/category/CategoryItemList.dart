@@ -18,10 +18,10 @@ class CategoryItemList extends StatelessWidget{
             crossAxisCount: 4,
             childAspectRatio: 0.8,
           ),
-          itemCount: _categories.items!.length,
+          itemCount: _categories.data!.categoryItems!.length,
           itemBuilder: (BuildContext context, int index) {
             return CategoryItemSmall(
-                _categories.items![index]
+                _categories.data!.categoryItems![index]
             );
           },
         ),

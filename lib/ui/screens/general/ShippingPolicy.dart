@@ -1,4 +1,6 @@
+import 'package:export_nepal/model/core/cms_page.dart';
 import 'package:export_nepal/model/core/shipping_policy.dart';
+import 'package:export_nepal/network_module/api_path.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/provider/GeneralProvider.dart';
 import 'package:export_nepal/utils/constants.dart';
@@ -16,7 +18,7 @@ class ShippingPolicy extends StatefulWidget {
 
 class _ShippingPolicyState extends State<ShippingPolicy> {
   GeneralProvider? provider;
-  Shipping_policy? _shipping_policy;
+  Cms_page? _shipping_policy;
   ApiResponse? _shippingResponse;
 
   @override
@@ -101,16 +103,16 @@ class _ShippingPolicyState extends State<ShippingPolicy> {
 
   Future<ApiResponse<dynamic>> invokeShippingPolicy() async {
     provider = Provider.of<GeneralProvider>(context, listen: true);
-    await provider!.invokeShippingPolicy();
+    await provider!.invokeCmsPage(APIPathHelper.getValue(APIPath.shipping_policy));
     return provider!.shippingPolicyResponse;
   }
 
   getWidgetValue(data) {
     _shippingResponse = data;
     if (_shippingResponse != null) {
-      _shipping_policy = _shippingResponse!.data as Shipping_policy;
+      _shipping_policy = _shippingResponse!.data as Cms_page;
       return HtmlWidget(
-        "${_shipping_policy!.content}",
+        "${_shipping_policy!.data!.content}",
         textStyle: kTextStyleSmallPrimary,
       );
     }

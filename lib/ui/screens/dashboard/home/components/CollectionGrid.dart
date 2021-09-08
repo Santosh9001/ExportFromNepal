@@ -48,7 +48,7 @@ class CollectionGrid extends StatelessWidget {
 }
 
 class CollectionItem extends StatelessWidget {
-  final CollectionItems? item;
+  final Items? item;
   CollectionItem(this.item);
 
   @override

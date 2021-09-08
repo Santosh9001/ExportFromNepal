@@ -64,9 +64,9 @@ class _SubCategoryState extends State<SubCategoryList> {
           crossAxisCount: 4,
           childAspectRatio: 0.8,
         ),
-        itemCount: _subCategories!.items!.length,
+        itemCount: _subCategories!.data!.categoryItems!.length,
         itemBuilder: (BuildContext context, int index) {
-          return SubCategoryItemSmall(_subCategories!.items![index], name);
+          return SubCategoryItemSmall(_subCategories!.data!.categoryItems![index], name);
         },
       );
     }

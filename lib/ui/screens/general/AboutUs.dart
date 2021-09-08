@@ -1,4 +1,6 @@
 import 'package:export_nepal/model/core/aboutus.dart';
+import 'package:export_nepal/model/core/cms_page.dart';
+import 'package:export_nepal/network_module/api_path.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/provider/GeneralProvider.dart';
 import 'package:export_nepal/utils/constants.dart';
@@ -17,7 +19,7 @@ class AboutUs extends StatefulWidget {
 class _AboutUsState extends State<AboutUs> {
   GeneralProvider? provider;
 
-  Aboutus? _aboutUs;
+  Cms_page? _aboutUs;
   ApiResponse? _aboutUsResponse;
 
   void reloadServerData() {
@@ -106,16 +108,16 @@ class _AboutUsState extends State<AboutUs> {
 
   Future<ApiResponse<dynamic>> invokeAboutUs() async {
     provider = Provider.of<GeneralProvider>(context, listen: false);
-    await provider!.invokeAboutUs();
+    await provider!.invokeCmsPage(APIPathHelper.getValue(APIPath.about_us));
     return provider!.aboutUsResponse;
   }
 
   getWidgetValue(data) {
     _aboutUsResponse = data;
     if (_aboutUsResponse != null) {
-      _aboutUs = _aboutUsResponse!.data as Aboutus;
+      _aboutUs = _aboutUsResponse!.data as Cms_page;
       return HtmlWidget(
-        "${_aboutUs!.content}",
+        "${_aboutUs!.data!.content}",
         textStyle: kTextStyleSmallPrimary,
       );
     }

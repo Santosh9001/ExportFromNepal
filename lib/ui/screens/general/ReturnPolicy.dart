@@ -1,4 +1,6 @@
+import 'package:export_nepal/model/core/cms_page.dart';
 import 'package:export_nepal/model/core/return_policy.dart';
+import 'package:export_nepal/network_module/api_path.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/provider/GeneralProvider.dart';
 import 'package:export_nepal/utils/constants.dart';
@@ -16,7 +18,7 @@ class ReturnPolicy extends StatefulWidget {
 
 class _ReturnPolicyState extends State<ReturnPolicy> {
   GeneralProvider? provider;
-  Return_policy? _return_policy;
+  Cms_page? _return_policy;
   ApiResponse? _policyResponse;
   @override
   Widget build(BuildContext context) {
@@ -97,16 +99,16 @@ class _ReturnPolicyState extends State<ReturnPolicy> {
 
   Future<ApiResponse<dynamic>> invokeReturnPolicy() async {
     provider = Provider.of<GeneralProvider>(context, listen: false);
-    await provider!.invokeReturnPolicy();
+    await provider!.invokeCmsPage(APIPathHelper.getValue(APIPath.return_policy));
     return provider!.returnPolicyResponse;
   }
 
   getWidgetValue(data) {
     _policyResponse = data;
     if (_policyResponse != null) {
-      _return_policy = _policyResponse!.data as Return_policy;
+      _return_policy = _policyResponse!.data as Cms_page;
       return HtmlWidget(
-        "${_return_policy!.content}",
+        "${_return_policy!.data!.content}",
         textStyle: kTextStyleSmallPrimary,
       );
     }

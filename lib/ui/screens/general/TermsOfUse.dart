@@ -1,4 +1,6 @@
+import 'package:export_nepal/model/core/cms_page.dart';
 import 'package:export_nepal/model/core/terms_of_use.dart';
+import 'package:export_nepal/network_module/api_path.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/provider/GeneralProvider.dart';
 import 'package:export_nepal/utils/constants.dart';
@@ -16,7 +18,7 @@ class TermsOfUse extends StatefulWidget {
 
 class _TermsOfUseState extends State<TermsOfUse> {
   GeneralProvider? provider;
-  Terms_of_use? _terms_of_use;
+  Cms_page? _terms_of_use;
   ApiResponse? _termsResponse;
 
   @override
@@ -102,9 +104,9 @@ class _TermsOfUseState extends State<TermsOfUse> {
   getWidgetValue(data) {
     _termsResponse = data;
     if (_termsResponse != null) {
-      _terms_of_use = _termsResponse!.data as Terms_of_use;
+      _terms_of_use = _termsResponse!.data as Cms_page;
       return HtmlWidget(
-        "${_terms_of_use!.content}",
+        "${_terms_of_use!.data!.content}",
         textStyle: kTextStyleSmallPrimary,
       );
     }
@@ -112,7 +114,7 @@ class _TermsOfUseState extends State<TermsOfUse> {
 
   Future<ApiResponse<dynamic>> invokeTermsOfUse() async {
     provider = Provider.of<GeneralProvider>(context, listen: false);
-    await provider!.invokeTermsOfUse();
+    await provider!.invokeCmsPage(APIPathHelper.getValue(APIPath.terms_of_use));
     return provider!.termsOfUseResponse;
   }
 }

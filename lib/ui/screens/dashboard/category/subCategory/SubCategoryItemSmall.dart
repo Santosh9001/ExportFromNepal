@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:export_nepal/model/core/categories/categories.dart';
 
 class SubCategoryItemSmall extends StatelessWidget {
-  final Items items;
+  final CategoryItems items;
   final String category;
 
   SubCategoryItemSmall(this.items, this.category);

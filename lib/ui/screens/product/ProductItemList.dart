@@ -14,9 +14,9 @@ class ProductItemList extends StatelessWidget {
           crossAxisCount: 3,
           childAspectRatio: 0.6,
         ),
-        itemCount: _products.items!.length,
+        itemCount: _products.data!.items!.length,
         itemBuilder: (BuildContext context, int index) {
-          return ProductCardSmall(_products.items![index]);
+          return ProductCardSmall(_products.data!.items![index]);
         },
       ),
     );

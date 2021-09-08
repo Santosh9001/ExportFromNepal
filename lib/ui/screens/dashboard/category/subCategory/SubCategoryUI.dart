@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SubCategoryUI extends StatefulWidget {
-  final Items item;
+  final CategoryItems item;
 
   SubCategoryUI(this.item);
 
@@ -20,7 +20,7 @@ class SubCategoryUI extends StatefulWidget {
 
 class _SubCategoryUIState extends State<SubCategoryUI>
     with SingleTickerProviderStateMixin {
-  final Items item;
+  final CategoryItems item;
 
   _SubCategoryUIState(this.item);
 
@@ -88,15 +88,18 @@ class _SubCategoryUIState extends State<SubCategoryUI>
     _subCategoryResponse = data;
     if (_subCategoryResponse != null) {
       _subCategories = _subCategoryResponse!.data as Categories;
-      return Expanded(child: GridView.builder(
+      return Expanded(
+          child: GridView.builder(
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
           childAspectRatio: 0.8,
         ),
-        itemCount: _subCategories!.items!.length,
+        itemCount: _subCategories!.data!.categoryItems!.length,
         itemBuilder: (BuildContext context, int index) {
-          return SubCategoryItemSmall(_subCategories!.items![index], _subCategories!.items![index].name!);
+          return SubCategoryItemSmall(
+              _subCategories!.data!.categoryItems![index],
+              _subCategories!.data!.categoryItems![index].name!);
         },
       ));
     }

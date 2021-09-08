@@ -1,4 +1,5 @@
 import 'package:either_dart/either.dart';
+import 'package:export_nepal/model/core/logged_user.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/repositories/RegistrationRepository.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,11 +13,11 @@ class LoginProvider extends ChangeNotifier {
     _registrationRepository = RegistrationRepository();
   }
 
-  Future<Either<Glitch, String>> loginSocial(String identifier, String type,
+  Future<Either<Glitch, Logged_user>> loginSocial(String identifier, String type,
       String firstName, String lastName, String email) async {
     try {
       if (_registrationRepository != null) {
-        Either<Glitch, dynamic> response = await _registrationRepository!
+        Either<Glitch, Logged_user> response = await _registrationRepository!
             .loginSocial(identifier, type, firstName, lastName, email);
         if (response.isLeft) {
           return Left(response.left);
@@ -31,10 +32,10 @@ class LoginProvider extends ChangeNotifier {
     }
   }
 
-  Future<Either<Glitch, String>> login(String email, String password) async {
+  Future<Either<Glitch, Logged_user>> login(String email, String password) async {
     try {
       if (_registrationRepository != null) {
-        Either<Glitch, dynamic> response =
+        Either<Glitch, Logged_user> response =
             await _registrationRepository!.loginUser(email, password);
         if (response.isLeft) {
           return Left(response.left);

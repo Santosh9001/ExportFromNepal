@@ -1,4 +1,6 @@
 import 'package:export_nepal/model/core/affiliate_program.dart';
+import 'package:export_nepal/model/core/cms_page.dart';
+import 'package:export_nepal/network_module/api_path.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/provider/GeneralProvider.dart';
 import 'package:export_nepal/utils/constants.dart';
@@ -16,7 +18,7 @@ class AffiliateProgram extends StatefulWidget {
 
 class _AffiliateProgramState extends State<AffiliateProgram> {
   GeneralProvider? provider;
-  Affiliate_program? _affiliate_program;
+  Cms_page? _affiliate_program;
   ApiResponse? _affiliateResponse;
 
   void reloadServerData() {
@@ -106,9 +108,9 @@ class _AffiliateProgramState extends State<AffiliateProgram> {
   getWidgetValue(data) {
     _affiliateResponse = data;
     if (_affiliateResponse != null) {
-      _affiliate_program = _affiliateResponse!.data as Affiliate_program;
+      _affiliate_program = _affiliateResponse!.data as Cms_page;
       return HtmlWidget(
-        "${_affiliate_program!.content}",
+        "${_affiliate_program!.data!.content}",
         textStyle: kTextStyleSmallPrimary,
       );
     }
@@ -116,7 +118,7 @@ class _AffiliateProgramState extends State<AffiliateProgram> {
 
   Future<ApiResponse<dynamic>> invokeAffiliateProgram() async {
     provider = Provider.of<GeneralProvider>(context, listen: false);
-    await provider!.invokeAffiliateProgram();
+    await provider!.invokeCmsPage(APIPathHelper.getValue(APIPath.affiliate_programs));
     return provider!.affiliateResponse;
   }
 }

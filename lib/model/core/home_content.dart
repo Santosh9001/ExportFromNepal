@@ -1,4 +1,40 @@
 class Home_content {
+  bool? _status;
+  String? _message;
+  Data? _data;
+
+  bool? get status => _status;
+  String? get message => _message;
+  Data? get data => _data;
+
+  Home_content({
+      bool? status, 
+      String? message, 
+      Data? data}){
+    _status = status;
+    _message = message;
+    _data = data;
+}
+
+  Home_content.fromJson(dynamic json) {
+    _status = json['status'];
+    _message = json['message'];
+    _data = json['data'] != null ? Data.fromJson(json['data']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    var map = <String, dynamic>{};
+    map['status'] = _status;
+    map['message'] = _message;
+    if (_data != null) {
+      map['data'] = _data?.toJson();
+    }
+    return map;
+  }
+
+}
+
+class Data {
   Advertisement? _advertisement;
   Notice? _notice;
   Bannerslider? _bannerslider;
@@ -9,7 +45,7 @@ class Home_content {
   Bannerslider? get bannerslider => _bannerslider;
   Collection? get collection => _collection;
 
-  Home_content({
+  Data({
       Advertisement? advertisement, 
       Notice? notice, 
       Bannerslider? bannerslider, 
@@ -20,7 +56,7 @@ class Home_content {
     _collection = collection;
 }
 
-  Home_content.fromJson(dynamic json) {
+  Data.fromJson(dynamic json) {
     _advertisement = json['advertisement'] != null ? Advertisement.fromJson(json['advertisement']) : null;
     _notice = json['notice'] != null ? Notice.fromJson(json['notice']) : null;
     _bannerslider = json['bannerslider'] != null ? Bannerslider.fromJson(json['bannerslider']) : null;
@@ -47,79 +83,16 @@ class Home_content {
 }
 
 class Collection {
-  List<CollectionItems>? _items;
-
-  List<CollectionItems>? get items => _items;
-
-  Collection({
-      List<CollectionItems>? items}){
-    _items = items;
-}
-
-  Collection.fromJson(dynamic json) {
-    if (json['items'] != null) {
-      _items = [];
-      json['items'].forEach((v) {
-        _items?.add(CollectionItems.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    var map = <String, dynamic>{};
-    if (_items != null) {
-      map['items'] = _items?.map((v) => v.toJson()).toList();
-    }
-    return map;
-  }
-
-}
-
-class CollectionItems {
-  String? _name;
-  String? _image;
-  int? _categoryId;
-
-  String? get name => _name;
-  String? get image => _image;
-  int? get categoryId => _categoryId;
-
-  CollectionItems({
-      String? name, 
-      String? image, 
-      int? categoryId}){
-    _name = name;
-    _image = image;
-    _categoryId = categoryId;
-}
-
-  CollectionItems.fromJson(dynamic json) {
-    _name = json['name'];
-    _image = json['image'];
-    _categoryId = json['category_id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    var map = <String, dynamic>{};
-    map['name'] = _name;
-    map['image'] = _image;
-    map['category_id'] = _categoryId;
-    return map;
-  }
-
-}
-
-class Bannerslider {
   List<Items>? _items;
 
   List<Items>? get items => _items;
 
-  Bannerslider({
+  Collection({
       List<Items>? items}){
     _items = items;
 }
 
-  Bannerslider.fromJson(dynamic json) {
+  Collection.fromJson(dynamic json) {
     if (json['items'] != null) {
       _items = [];
       json['items'].forEach((v) {
@@ -141,13 +114,76 @@ class Bannerslider {
 class Items {
   String? _name;
   String? _image;
+  int? _categoryId;
+
+  String? get name => _name;
+  String? get image => _image;
+  int? get categoryId => _categoryId;
+
+  Items({
+      String? name, 
+      String? image, 
+      int? categoryId}){
+    _name = name;
+    _image = image;
+    _categoryId = categoryId;
+}
+
+  Items.fromJson(dynamic json) {
+    _name = json['name'];
+    _image = json['image'];
+    _categoryId = json['category_id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    var map = <String, dynamic>{};
+    map['name'] = _name;
+    map['image'] = _image;
+    map['category_id'] = _categoryId;
+    return map;
+  }
+
+}
+
+class Bannerslider {
+  List<BannerItems>? _items;
+
+  List<BannerItems>? get items => _items;
+
+  Bannerslider({
+      List<BannerItems>? items}){
+    _items = items;
+}
+
+  Bannerslider.fromJson(dynamic json) {
+    if (json['items'] != null) {
+      _items = [];
+      json['items'].forEach((v) {
+        _items?.add(BannerItems.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    var map = <String, dynamic>{};
+    if (_items != null) {
+      map['items'] = _items?.map((v) => v.toJson()).toList();
+    }
+    return map;
+  }
+
+}
+
+class BannerItems {
+  String? _name;
+  String? _image;
   String? _link;
 
   String? get name => _name;
   String? get image => _image;
   String? get link => _link;
 
-  Items({
+  BannerItems({
       String? name, 
       String? image, 
       String? link}){
@@ -156,7 +192,7 @@ class Items {
     _link = link;
 }
 
-  Items.fromJson(dynamic json) {
+  BannerItems.fromJson(dynamic json) {
     _name = json['name'];
     _image = json['image'];
     _link = json['link'];

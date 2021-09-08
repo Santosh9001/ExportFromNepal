@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class InnerCategoryUI extends StatefulWidget {
-  final Items items;
+  final CategoryItems items;
   final String category;
   InnerCategoryUI(this.items, this.category);
 
@@ -20,7 +20,7 @@ class InnerCategoryUI extends StatefulWidget {
 
 class _InnerCategoryUIState extends State<InnerCategoryUI>
     with SingleTickerProviderStateMixin {
-  final Items items;
+  final CategoryItems items;
   final String category;
   _InnerCategoryUIState(this.items, this.category);
 
@@ -101,11 +101,11 @@ class _InnerCategoryUIState extends State<InnerCategoryUI>
           padding: EdgeInsets.all(0),
           child: ListView.separated(
             itemCount:
-                _subCategories != null ? _subCategories!.items!.length : 0,
+                _subCategories != null ? _subCategories!.data!.categoryItems!.length : 0,
             itemBuilder: (BuildContext context, int index) {
               return _subCategories != null
                   ? InnerCategoryItem(
-                      _subCategories!.items![index],category
+                      _subCategories!.data!.categoryItems![index],category
                     )
                   : Text(
                       "$defaultValue",

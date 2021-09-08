@@ -1,13 +1,12 @@
 import 'package:export_nepal/model/core/categories/categories.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/subCategory/SubCategoryUI.dart';
-import 'package:export_nepal/ui/screens/dashboard/category/subCategory/innerCategory/InnerCategoryUI.dart';
 import 'package:export_nepal/ui/screens/product/ProductList.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItemSmall extends StatelessWidget {
-  final Items items;
+  final CategoryItems items;
 
   CategoryItemSmall(this.items);
 

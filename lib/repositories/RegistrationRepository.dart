@@ -1,4 +1,5 @@
 import 'package:either_dart/either.dart';
+import 'package:export_nepal/model/core/logged_user.dart';
 import 'package:export_nepal/model/core/register.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_path.dart';
@@ -32,16 +33,25 @@ class RegistrationRepository {
     return Register.fromJson(response);
   }
 
-  Future<Either<Glitch, dynamic>> loginUser(
+  Future<Either<Glitch, Logged_user>> loginUser(
       String email, String password) async {
     Map<String, dynamic> data = {"username": "$email", "password": "$password"};
     Either<Glitch, dynamic> response = await HttpClient.instance
         .post(APIPathHelper.getValue(APIPath.login), data);
-    return response;
+    try {
+      Logged_user logged_user = Logged_user.fromJson(response.right);
+      if (response.isLeft) {
+        return Left(response.left);
+      } else {
+        return Right(logged_user);
+      }
+    } catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
   }
 
-  Future<Either<Glitch, dynamic>> loginSocial(String identifier, String type,
-      String firstName, String lastName, String email) async {
+  Future<Either<Glitch, Logged_user>> loginSocial(String identifier,
+      String type, String firstName, String lastName, String email) async {
     Map<String, dynamic> data = {
       "identifier": "$identifier",
       "type": "$type",
@@ -51,6 +61,16 @@ class RegistrationRepository {
     };
     Either<Glitch, dynamic> response = await HttpClient.instance
         .post(APIPathHelper.getValue(APIPath.social_login), data);
-    return response;
+
+    try {
+      Logged_user logged_user = Logged_user.fromJson(response.right);
+      if (response.isLeft) {
+        return Left(response.left);
+      } else {
+        return Right(logged_user);
+      }
+    } catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
   }
 }
