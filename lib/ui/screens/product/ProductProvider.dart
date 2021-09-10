@@ -26,7 +26,7 @@ class ProductProvider extends ChangeNotifier {
   ApiResponse _productResponse = ApiResponse.loading("Loading");
   ApiResponse _productDetailResponse = ApiResponse.loading("Loading");
 
-  ApiResponse? get productResponse {
+  ApiResponse get productResponse {
     return _productResponse;
   }
 
@@ -55,7 +55,7 @@ class ProductProvider extends ChangeNotifier {
     return _productDetailResponse;
   }
 
-  Future<void> invokeproductsByCategory(String id) async {
+  Future<ApiResponse> invokeproductsByCategory(String id) async {
     try {
       if (_productRepository != null) {
         Either<Glitch, Product> response =
@@ -69,11 +69,13 @@ class ProductProvider extends ChangeNotifier {
       } else {
         _productResponse = ApiResponse.error("Internal Error");
       }
-      notifyListeners();
+      
     } catch (e) {
       _productResponse = ApiResponse.error(e.toString());
       _productResponse.status = Status.ERROR;
     }
+    notifyListeners();
+    return _productResponse;
   }
 
   void setQuantity(int qty) {

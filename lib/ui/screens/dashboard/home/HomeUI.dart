@@ -103,11 +103,15 @@ class _HomeUIState extends State<HomeUI> {
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : hasInternet
+          : !hasInternet
               ? Container(
                   child: Center(
-                    child: Text("No Data"),
-                  ),
+                      child: SvgPicture.asset(
+                    "assets/images/no_wifi.svg",
+                    height: 150,
+                    width: MediaQuery.of(context).size.width,
+                    allowDrawingOutsideViewBox: true,
+                  )),
                 )
               : Scaffold(
                   appBar: AppBar(

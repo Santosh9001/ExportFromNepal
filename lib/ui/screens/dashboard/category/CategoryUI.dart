@@ -9,6 +9,7 @@ import 'package:export_nepal/utils/internet_check.dart';
 import 'package:export_nepal/utils/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class CategoryUI extends StatefulWidget {
@@ -68,10 +69,18 @@ class _CategoryUIState extends State<CategoryUI> {
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : hasInternet
-              ? Container(child: Center(child: Text("No data"),),)
-              : 
-              FutureBuilder(
+          : !hasInternet
+              ? Container(
+                  child: Center(
+                    child: SvgPicture.asset(
+                      "assets/images/no_wifi.svg",
+                      height: 150,
+                      width: MediaQuery.of(context).size.width,
+                      allowDrawingOutsideViewBox: true,
+                    ),
+                  ),
+                )
+              : FutureBuilder(
                   builder: (context, snapshot) {
                     return Container(
                       color: Colors.white,
@@ -114,10 +123,12 @@ class _CategoryUIState extends State<CategoryUI> {
   }
 
   getWidgetValue(data) {
-    _categoryResponse = data;
-    if (_categoryResponse != null) {
-      _categories = _categoryResponse!.data as Categories;
-      return CategoryItemList(_categories!);
+    if (data != null) {
+      _categoryResponse = data;
+      if (_categoryResponse != null) {
+        _categories = _categoryResponse!.data as Categories;
+        return CategoryItemList(_categories!);
+      }
     }
   }
 

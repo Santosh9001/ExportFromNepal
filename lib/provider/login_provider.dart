@@ -13,12 +13,17 @@ class LoginProvider extends ChangeNotifier {
     _registrationRepository = RegistrationRepository();
   }
 
-  Future<Either<Glitch, Logged_user>> loginSocial(String identifier, String type,
-      String firstName, String lastName, String email) async {
+  Future<Either<Glitch, Logged_user>> loginSocial(String identifier,
+      String type, String firstName, String lastName, String email) async {
     try {
       if (_registrationRepository != null) {
         Either<Glitch, Logged_user> response = await _registrationRepository!
-            .loginSocial(identifier, type, firstName, lastName, email);
+            .loginSocial(
+                identifier,
+                type,
+                firstName.substring(0, firstName.indexOf(" ")),
+                lastName.substring(lastName.indexOf(" "), lastName.length),
+                email);
         if (response.isLeft) {
           return Left(response.left);
         } else {
@@ -32,7 +37,8 @@ class LoginProvider extends ChangeNotifier {
     }
   }
 
-  Future<Either<Glitch, Logged_user>> login(String email, String password) async {
+  Future<Either<Glitch, Logged_user>> login(
+      String email, String password) async {
     try {
       if (_registrationRepository != null) {
         Either<Glitch, Logged_user> response =

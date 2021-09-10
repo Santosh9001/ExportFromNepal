@@ -63,10 +63,10 @@ class RegistrationRepository {
         .post(APIPathHelper.getValue(APIPath.social_login), data);
 
     try {
-      Logged_user logged_user = Logged_user.fromJson(response.right);
+       Logged_user logged_user = Logged_user.fromJson(response.right);
       if (response.isLeft) {
         return Left(response.left);
-      } else {
+      } else {       
         return Right(logged_user);
       }
     } catch (e) {

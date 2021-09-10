@@ -40,6 +40,7 @@ import 'package:export_nepal/ui/screens/general/ReturnPolicy.dart';
 import 'package:export_nepal/ui/screens/general/ShippingPolicy.dart';
 import 'package:export_nepal/ui/screens/general/TermsOfUse.dart';
 import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
+import 'package:export_nepal/ui/screens/product/ProductList.dart';
 import 'package:export_nepal/ui/screens/product/ProductProvider.dart';
 import 'package:export_nepal/ui/screens/search/SearchUI.dart';
 import 'package:export_nepal/ui/screens/seller/SellerCategories.dart';
