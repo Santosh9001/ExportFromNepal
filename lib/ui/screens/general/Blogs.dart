@@ -17,7 +17,7 @@ class Blogs extends StatefulWidget {
 class _BlogsUIState extends State<Blogs> {
   GeneralProvider? provider;
   ApiResponse? _blogResponse;
-  UserBlogs? _blogs;
+  User_blogs? _blogs;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,8 +107,8 @@ class _BlogsUIState extends State<Blogs> {
   getWidgetValue(data) {
     _blogResponse = data;
     if (_blogResponse != null) {
-      _blogs = _blogResponse!.data as UserBlogs;
-      var _posts = _blogs!.posts;
+      _blogs = _blogResponse!.data as User_blogs;
+      var _posts = _blogs!.data!.items;
       return ListView.builder(
           itemCount: _posts!.length,
           itemBuilder: (BuildContext context, int index) {

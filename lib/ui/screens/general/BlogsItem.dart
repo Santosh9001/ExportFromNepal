@@ -7,14 +7,14 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class BlogsItem extends StatefulWidget {
-  final Posts _blogs;
+  final Items _blogs;
   BlogsItem(this._blogs);
   @override
   _BlogsItemState createState() => _BlogsItemState(_blogs);
 }
 
 class _BlogsItemState extends State<BlogsItem> {
-  final Posts _blogs;
+  final Items _blogs;
   _BlogsItemState(this._blogs);
   @override
   void initState() {
@@ -48,7 +48,7 @@ class _BlogsItemState extends State<BlogsItem> {
                     height: 10,
                   ),
                   Text(
-                    "${_blogs.ogTitle}",
+                    "${_blogs.title}",
                     style: TextStyle(
                       color: kPrimaryTextColor,
                       fontWeight: FontWeight.bold,
@@ -73,7 +73,7 @@ class _BlogsItemState extends State<BlogsItem> {
                         width: 3,
                       ),
                       Text(
-                        "Categories : ${_blogs.ogType}",
+                        "Categories : ${_blogs.categories![0]}",
                         style: kTextStyleSmallestPrimary,
                       ),
                       SizedBox(
@@ -88,7 +88,7 @@ class _BlogsItemState extends State<BlogsItem> {
                         width: 3,
                       ),
                       Text(
-                        "Author : EFN Admin",
+                        "Author : ${_blogs.author}",
                         style: kTextStyleSmallestPrimary,
                       ),
                     ],
@@ -104,7 +104,7 @@ class _BlogsItemState extends State<BlogsItem> {
                     height: 10,
                   ),
                   Text(
-                    "${_blogs.ogDescription}",
+                    "Short Description",
                     style: kTextStyleSmallPrimary,
                   ),
                   SizedBox(

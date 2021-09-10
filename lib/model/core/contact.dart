@@ -1,4 +1,40 @@
 class Contact {
+  bool? _status;
+  String? _message;
+  Data? _data;
+
+  bool? get status => _status;
+  String? get message => _message;
+  Data? get data => _data;
+
+  Contact({
+      bool? status, 
+      String? message, 
+      Data? data}){
+    _status = status;
+    _message = message;
+    _data = data;
+}
+
+  Contact.fromJson(dynamic json) {
+    _status = json['status'];
+    _message = json['message'];
+    _data = json['data'] != null ? Data.fromJson(json['data']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    var map = <String, dynamic>{};
+    map['status'] = _status;
+    map['message'] = _message;
+    if (_data != null) {
+      map['data'] = _data?.toJson();
+    }
+    return map;
+  }
+
+}
+
+class Data {
   List<Contact_information>? _contactInformation;
   List<String>? _categories;
   List<Country>? _country;
@@ -7,7 +43,7 @@ class Contact {
   List<String>? get categories => _categories;
   List<Country>? get country => _country;
 
-  Contact({
+  Data({
       List<Contact_information>? contactInformation, 
       List<String>? categories, 
       List<Country>? country}){
@@ -16,7 +52,7 @@ class Contact {
     _country = country;
 }
 
-  Contact.fromJson(dynamic json) {
+  Data.fromJson(dynamic json) {
     if (json['contact_information'] != null) {
       _contactInformation = [];
       json['contact_information'].forEach((v) {

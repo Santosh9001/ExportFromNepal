@@ -29,120 +29,121 @@ class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder<ApiResponse<dynamic>>(
-      builder: (context, snapshot) {
-        return SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(height: 10),
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).pop(true);
-                      },
-                      child: Icon(
-                        Icons.chevron_left,
-                        color: Colors.black,
-                        size: 30,
-                      ),
-                    ),
-                    Expanded(
-                      flex: 7,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          "$title",
-                          style: kTextStyleMediumPrimary,
+      body: FutureBuilder<ApiResponse<dynamic>>(
+        builder: (context, snapshot) {
+          return SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(height: 10),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: Icon(
+                          Icons.chevron_left,
+                          color: Colors.black,
+                          size: 30,
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return StatefulBuilder(
-                                  builder: (context, StateSetter setState) {
-                                return AlertDialog(
-                                  backgroundColor: Colors.white,
-                                  content: Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    margin: EdgeInsets.only(left: 100),
-                                    padding: EdgeInsets.all(10),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "Filter",
-                                              style: TextStyle(
-                                                  color: kColorPrimary,
-                                                  fontSize: 18),
-                                            ),
-                                            Icon(
-                                              Icons.close,
-                                              size: 20,
-                                              color: kColorPrimary,
-                                            ),
-                                          ],
-                                        )
-                                      ],
+                      Expanded(
+                        flex: 7,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Text(
+                            "$title",
+                            style: kTextStyleMediumPrimary,
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                    builder: (context, StateSetter setState) {
+                                  return AlertDialog(
+                                    backgroundColor: Colors.white,
+                                    content: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      margin: EdgeInsets.only(left: 100),
+                                      padding: EdgeInsets.all(10),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Filter",
+                                                style: TextStyle(
+                                                    color: kColorPrimary,
+                                                    fontSize: 18),
+                                              ),
+                                              Icon(
+                                                Icons.close,
+                                                size: 20,
+                                                color: kColorPrimary,
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                );
+                                  );
+                                });
                               });
-                            });
-                      },
-                      child: SvgPicture.asset(
-                        "assets/images/iconly_light_outline_filter_2.svg",
-                        height: 20,
+                        },
+                        child: SvgPicture.asset(
+                          "assets/images/iconly_light_outline_filter_2.svg",
+                          height: 20,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).pop(true);
-                      },
-                      child: SvgPicture.asset(
-                        "assets/images/iconly_light_outline_search.svg",
-                        height: 25,
+                      SizedBox(
+                        width: 20,
                       ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                snapshot.connectionState == ConnectionState.done
-                    ? (snapshot.hasError
-                        ? Center(
-                            child: Text('${snapshot.error} occured',
-                                style: kTextStyleSmallPrimary),
-                          )
-                        : getWidgetValue(snapshot.data))
-                    : Center(
-                        child: CircularProgressIndicator(),
-                      )
-              ],
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: SvgPicture.asset(
+                          "assets/images/iconly_light_outline_search.svg",
+                          height: 25,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  snapshot.connectionState == ConnectionState.done
+                      ? (snapshot.hasError
+                          ? Center(
+                              child: Text('${snapshot.error} occured',
+                                  style: kTextStyleSmallPrimary),
+                            )
+                          : getWidgetValue(snapshot.data))
+                      : Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                ],
+              ),
             ),
-          ),
-        );
-      },
-      future: invokeProductLists(),
-    ));
+          );
+        },
+        future: invokeProductLists(),
+      ),
+    );
   }
 
   getWidgetValue(data) {

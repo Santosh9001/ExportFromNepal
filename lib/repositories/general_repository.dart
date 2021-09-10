@@ -44,11 +44,11 @@ class GeneralRepository {
     }
   }
 
-  Future<Either<Glitch, UserBlogs>> getBlogs() async {
+  Future<Either<Glitch, User_blogs>> getBlogs() async {
     Either<Glitch, dynamic> response = await HttpClient.instance
         .get(APIPathHelper.getValue(APIPath.blogs));
         try {
-      UserBlogs blogs = UserBlogs.fromJson(response.right);
+      User_blogs blogs = User_blogs.fromJson(response.right);
       if (response.isLeft) {
         return Left(response.left);
       } else {

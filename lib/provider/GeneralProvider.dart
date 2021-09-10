@@ -111,7 +111,7 @@ class GeneralProvider extends ChangeNotifier {
   Future<ApiResponse> invokeBlogs() async {
     try {
       if (_generalRepository != null) {
-        Either<Glitch, UserBlogs> response =
+        Either<Glitch, User_blogs> response =
             await _generalRepository!.getBlogs();
         if (response.isLeft) {
           _blogResponse = ApiResponse.error(response.left.message);

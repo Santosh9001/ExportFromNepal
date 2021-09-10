@@ -331,7 +331,7 @@ class _ContactUsState extends State<ContactUs> {
     _contactResponse = data;
     if (_contactResponse != null) {
       _contact = _contactResponse!.data as Contact;
-      var _contactInfo = _contact!.contactInformation;
+      var _contactInfo = _contact!.data!.contactInformation;
       return ListView.builder(
           itemCount: _contactInfo!.length,
           shrinkWrap: true,
