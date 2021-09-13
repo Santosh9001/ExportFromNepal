@@ -12,14 +12,6 @@ class ProductProvider extends ChangeNotifier {
   var _selectedColorIndex = 0;
   var _itemQty = 1;
 
-  var _page = 1;
-
-  int get currentPage => _page;
-
-  void setCurrentPage(int page) {
-    this._page = page;
-  }
-
   int get quantity => _itemQty;
 
   int get colorIndex => _selectedColorIndex;

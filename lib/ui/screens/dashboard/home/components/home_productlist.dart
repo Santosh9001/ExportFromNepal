@@ -18,21 +18,19 @@ class HomeProductLists extends StatefulWidget {
 
 class _HomeProductListState extends State<HomeProductLists> {
   final String title;
+  int currentPage = 1;
   _HomeProductListState(this.title) {
     controller.addListener(() {
       var isEnd = controller.offset == controller.position.maxScrollExtent;
-      if (isEnd && provider != null) {
+      if (isEnd) {
         setState(() {
-          if (provider!.currentPage != products!.data!.lastPage)
-            invokeProductLists(provider!.currentPage);
+          if (products!.data!.currentPage! < products!.data!.lastPage!)
+            currentPage = products!.data!.currentPage! + 1;
         });
       }
     });
   }
-  ScrollController controller = ScrollController(
-    initialScrollOffset: 0.0,
-    keepScrollOffset: true,
-  );
+  ScrollController controller = ScrollController();
   Product? products;
   List<Items> productLists = [];
   ApiResponse? _productResponse;
@@ -146,7 +144,7 @@ class _HomeProductListState extends State<HomeProductLists> {
             ),
           );
         },
-        future: invokeProductLists(1),
+        future: invokeProductLists(currentPage),
       ),
     );
   }
@@ -156,7 +154,6 @@ class _HomeProductListState extends State<HomeProductLists> {
     if (_productResponse != null) {
       products = _productResponse!.data as Product;
       productLists.addAll(products!.data!.items as List<Items>);
-      provider!.setCurrentPage(products!.data!.currentPage!);
       return Expanded(
         child: GridView.builder(
           controller: controller,

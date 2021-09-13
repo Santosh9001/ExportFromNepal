@@ -40,7 +40,7 @@ class ProductRepository {
       String title, int page) async {
     Either<Glitch, dynamic> response = await HttpClient.instance.get(
         APIPathHelper.getValue(getApiPath(title.toLowerCase())) +
-            "?pageSize=20&currentPage=$page");
+            "?pageSize=100&currentPage=$page");
     try {
       Product products = Product.fromJson(response.right);
       if (response.isLeft) {
