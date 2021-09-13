@@ -12,6 +12,14 @@ class ProductProvider extends ChangeNotifier {
   var _selectedColorIndex = 0;
   var _itemQty = 1;
 
+  var _page = 1;
+
+  int get currentPage => _page;
+
+  void setCurrentPage(int page) {
+    this._page = page;
+  }
+
   int get quantity => _itemQty;
 
   int get colorIndex => _selectedColorIndex;
@@ -25,6 +33,11 @@ class ProductProvider extends ChangeNotifier {
 
   ApiResponse _productResponse = ApiResponse.loading("Loading");
   ApiResponse _productDetailResponse = ApiResponse.loading("Loading");
+  ApiResponse _homeProductResponse = ApiResponse.loading("Loading");
+
+  ApiResponse get homeProductResponse {
+    return _homeProductResponse;
+  }
 
   ApiResponse get productResponse {
     return _productResponse;
@@ -55,6 +68,27 @@ class ProductProvider extends ChangeNotifier {
     return _productDetailResponse;
   }
 
+  Future<ApiResponse> invokeHomeProducts(String title, int page) async {
+    try {
+      if (_productRepository != null) {
+        Either<Glitch, Product> response =
+            await _productRepository!.getHomeProducts(title, page);
+        if (response.isLeft) {
+          _homeProductResponse = ApiResponse.error(response.left.message);
+        } else if (response.isRight) {
+          _homeProductResponse = ApiResponse.completed(response.right);
+        }
+      } else {
+        _homeProductResponse = ApiResponse.error("Internal Error");
+      }
+    } catch (e) {
+      _homeProductResponse = ApiResponse.error(e.toString());
+      _homeProductResponse.status = Status.ERROR;
+    }
+    notifyListeners();
+    return _homeProductResponse;
+  }
+
   Future<ApiResponse> invokeproductsByCategory(String id) async {
     try {
       if (_productRepository != null) {
@@ -69,7 +103,6 @@ class ProductProvider extends ChangeNotifier {
       } else {
         _productResponse = ApiResponse.error("Internal Error");
       }
-      
     } catch (e) {
       _productResponse = ApiResponse.error(e.toString());
       _productResponse.status = Status.ERROR;

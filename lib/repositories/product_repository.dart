@@ -36,6 +36,33 @@ class ProductRepository {
     }
   }
 
+  Future<Either<Glitch, Product>> getHomeProducts(
+      String title, int page) async {
+    Either<Glitch, dynamic> response = await HttpClient.instance.get(
+        APIPathHelper.getValue(getApiPath(title.toLowerCase())) +
+            "?pageSize=20&currentPage=$page");
+    try {
+      Product products = Product.fromJson(response.right);
+      if (response.isLeft) {
+        return Left(response.left);
+      } else {
+        return Right(products);
+      }
+    } catch (e) {
+      return Left(Glitch(message: e.toString()));
+    }
+  }
+
+  getApiPath(String title) {
+    if (title.contains("new")) {
+      return APIPath.new_products;
+    } else if (title.contains("best")) {
+      return APIPath.best_selling;
+    } else if (title.contains("most")) {
+      return APIPath.most_viewed;
+    }
+  }
+
   /*Future<Either<Glitch, Product_details>> getProductBySku(String sku) async {
     Either<Glitch, dynamic> response = await HttpClient.instance
         .get(APIPathHelper.getValue(APIPath.product_details) + "1231-1");

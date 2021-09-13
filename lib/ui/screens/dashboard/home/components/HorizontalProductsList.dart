@@ -1,4 +1,5 @@
 import 'package:export_nepal/model/core/Product/models/product.dart';
+import 'package:export_nepal/ui/screens/dashboard/home/components/home_productlist.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -22,8 +23,10 @@ class HorizontalProductsList extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, '/productLists',
-                    arguments: {'name': title});
+                Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HomeProductLists(title)));
               },
               child: Text(
                 "Shop More",
