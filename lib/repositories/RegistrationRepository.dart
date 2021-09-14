@@ -62,11 +62,11 @@ class RegistrationRepository {
     Either<Glitch, dynamic> response = await HttpClient.instance
         .post(APIPathHelper.getValue(APIPath.social_login), data);
 
-    try {
-       Logged_user logged_user = Logged_user.fromJson(response.right);
+    try {      
       if (response.isLeft) {
         return Left(response.left);
-      } else {       
+      } else {      
+         Logged_user logged_user = Logged_user.fromJson(response.right); 
         return Right(logged_user);
       }
     } catch (e) {
