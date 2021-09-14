@@ -7,14 +7,11 @@ class Home_content {
   String? get message => _message;
   Data? get data => _data;
 
-  Home_content({
-      bool? status, 
-      String? message, 
-      Data? data}){
+  Home_content({bool? status, String? message, Data? data}) {
     _status = status;
     _message = message;
     _data = data;
-}
+  }
 
   Home_content.fromJson(dynamic json) {
     _status = json['status'];
@@ -31,7 +28,6 @@ class Home_content {
     }
     return map;
   }
-
 }
 
 class Data {
@@ -45,22 +41,28 @@ class Data {
   Bannerslider? get bannerslider => _bannerslider;
   Collection? get collection => _collection;
 
-  Data({
-      Advertisement? advertisement, 
-      Notice? notice, 
-      Bannerslider? bannerslider, 
-      Collection? collection}){
+  Data(
+      {Advertisement? advertisement,
+      Notice? notice,
+      Bannerslider? bannerslider,
+      Collection? collection}) {
     _advertisement = advertisement;
     _notice = notice;
     _bannerslider = bannerslider;
     _collection = collection;
-}
+  }
 
   Data.fromJson(dynamic json) {
-    _advertisement = json['advertisement'] != null ? Advertisement.fromJson(json['advertisement']) : null;
+    _advertisement = json['advertisement'] != null
+        ? Advertisement.fromJson(json['advertisement'])
+        : null;
     _notice = json['notice'] != null ? Notice.fromJson(json['notice']) : null;
-    _bannerslider = json['bannerslider'] != null ? Bannerslider.fromJson(json['bannerslider']) : null;
-    _collection = json['collection'] != null ? Collection.fromJson(json['collection']) : null;
+    _bannerslider = json['bannerslider'] != null
+        ? Bannerslider.fromJson(json['bannerslider'])
+        : null;
+    _collection = json['collection'] != null
+        ? Collection.fromJson(json['collection'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -79,7 +81,6 @@ class Data {
     }
     return map;
   }
-
 }
 
 class Collection {
@@ -87,10 +88,9 @@ class Collection {
 
   List<Items>? get items => _items;
 
-  Collection({
-      List<Items>? items}){
+  Collection({List<Items>? items}) {
     _items = items;
-}
+  }
 
   Collection.fromJson(dynamic json) {
     if (json['items'] != null) {
@@ -108,7 +108,6 @@ class Collection {
     }
     return map;
   }
-
 }
 
 class Items {
@@ -120,14 +119,11 @@ class Items {
   String? get image => _image;
   int? get categoryId => _categoryId;
 
-  Items({
-      String? name, 
-      String? image, 
-      int? categoryId}){
+  Items({String? name, String? image, int? categoryId}) {
     _name = name;
     _image = image;
     _categoryId = categoryId;
-}
+  }
 
   Items.fromJson(dynamic json) {
     _name = json['name'];
@@ -142,7 +138,6 @@ class Items {
     map['category_id'] = _categoryId;
     return map;
   }
-
 }
 
 class Bannerslider {
@@ -150,10 +145,9 @@ class Bannerslider {
 
   List<BannerItems>? get items => _items;
 
-  Bannerslider({
-      List<BannerItems>? items}){
+  Bannerslider({List<BannerItems>? items}) {
     _items = items;
-}
+  }
 
   Bannerslider.fromJson(dynamic json) {
     if (json['items'] != null) {
@@ -171,7 +165,6 @@ class Bannerslider {
     }
     return map;
   }
-
 }
 
 class BannerItems {
@@ -183,14 +176,11 @@ class BannerItems {
   String? get image => _image;
   String? get link => _link;
 
-  BannerItems({
-      String? name, 
-      String? image, 
-      String? link}){
+  BannerItems({String? name, String? image, String? link}) {
     _name = name;
     _image = image;
     _link = link;
-}
+  }
 
   BannerItems.fromJson(dynamic json) {
     _name = json['name'];
@@ -205,7 +195,6 @@ class BannerItems {
     map['link'] = _link;
     return map;
   }
-
 }
 
 class Notice {
@@ -213,10 +202,9 @@ class Notice {
 
   String? get data => _data;
 
-  Notice({
-      String? data}){
+  Notice({String? data}) {
     _data = data;
-}
+  }
 
   Notice.fromJson(dynamic json) {
     _data = json['data'];
@@ -227,7 +215,6 @@ class Notice {
     map['data'] = _data;
     return map;
   }
-
 }
 
 class Advertisement {
@@ -237,12 +224,10 @@ class Advertisement {
   String? get image => _image;
   String? get url => _url;
 
-  Advertisement({
-      String? image, 
-      String? url}){
+  Advertisement({String? image, String? url}) {
     _image = image;
     _url = url;
-}
+  }
 
   Advertisement.fromJson(dynamic json) {
     _image = json['image'];
@@ -255,5 +240,4 @@ class Advertisement {
     map['url'] = _url;
     return map;
   }
-
 }

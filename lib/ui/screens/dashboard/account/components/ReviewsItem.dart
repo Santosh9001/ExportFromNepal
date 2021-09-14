@@ -10,7 +10,7 @@ class ReviewsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(      
+    return GestureDetector(
       child: Container(
         margin: EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
@@ -58,8 +58,14 @@ class ReviewsItem extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.end, children: [
               ElevatedButton.icon(
                 onPressed: () {},
-                icon: Icon(Icons.delete, size: 15,),
-                label: Text("Delete Review", style: TextStyle(fontSize: 10),),
+                icon: Icon(
+                  Icons.delete,
+                  size: 15,
+                ),
+                label: Text(
+                  "Delete Review",
+                  style: TextStyle(fontSize: 10),
+                ),
                 style: ElevatedButton.styleFrom(primary: kColorRed),
               ),
               SizedBox(
@@ -68,7 +74,10 @@ class ReviewsItem extends StatelessWidget {
               ElevatedButton.icon(
                 onPressed: () {},
                 icon: Icon(Icons.edit, size: 15),
-                label: Text("Edit Review", style: TextStyle(fontSize: 10),),
+                label: Text(
+                  "Edit Review",
+                  style: TextStyle(fontSize: 10),
+                ),
                 style: ElevatedButton.styleFrom(primary: kColorPrimary),
               ),
             ])

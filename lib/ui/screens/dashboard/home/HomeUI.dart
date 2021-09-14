@@ -419,7 +419,7 @@ class _HomeUIState extends State<HomeUI> {
                                       Navigator.pushNamed(
                                           context, '/details', arguments: {
                                         'exampleArgument':
-                                            _justForYou!.data!.items![index].sku
+                                            _justForYou!.data!.items![index].id
                                       });
                                     },
                                     child: Padding(

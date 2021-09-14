@@ -149,7 +149,7 @@ class _SearchUIState extends State<SearchUI> {
                             ),
                             itemCount: 30,
                             itemBuilder: (BuildContext context, int index) {
-                              return Text("Test");//ProductCardSmall();
+                              return Text("Test"); //ProductCardSmall();
                             },
                           ),
                         ),

@@ -82,7 +82,7 @@ class APIPathHelper {
       case APIPath.home_content:
         return "efn/home/content";
       case APIPath.product_details:
-        return "efn/product/";
+        return "efn/product/id/";
       case APIPath.updatePassword:
         return "customers/me/password";
       case APIPath.sendEmailVerification:

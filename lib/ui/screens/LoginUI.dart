@@ -295,8 +295,7 @@ class _LoginUIState extends State<LoginUI> {
                                       });
                                     });
                                   },
-                                  child: 
-                                  Container(
+                                  child: Container(
                                     child: Center(
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),

@@ -7,14 +7,11 @@ class Product {
   String? get message => _message;
   Data? get data => _data;
 
-  Product({
-      bool? status, 
-      String? message, 
-      Data? data}){
+  Product({bool? status, String? message, Data? data}) {
     _status = status;
     _message = message;
     _data = data;
-}
+  }
 
   Product.fromJson(dynamic json) {
     _status = json['status'];
@@ -31,7 +28,6 @@ class Product {
     }
     return map;
   }
-
 }
 
 class Data {
@@ -49,20 +45,19 @@ class Data {
   int? get pageSize => _pageSize;
   int? get lastPage => _lastPage;
 
-  Data({
-      List<Items>? items, 
-      List<Filter>? filter, 
-      int? total, 
-      int? currentPage, 
-      int? pageSize, 
-      int? lastPage}){
+  Data(
+      {List<Items>? items,
+      int? total,
+      int? currentPage,
+      dynamic? pageSize,
+      int? lastPage}) {
     _items = items;
     _filter = filter;
     _total = total;
     _currentPage = currentPage;
     _pageSize = pageSize;
     _lastPage = lastPage;
-}
+  }
 
   Data.fromJson(dynamic json) {
     if (json['items'] != null) {
@@ -97,7 +92,6 @@ class Data {
     map['lastPage'] = _lastPage;
     return map;
   }
-
 }
 
 class Filter {
@@ -194,15 +188,15 @@ class Items {
   String? get sellerName => _sellerName;
   String? get sellerLogo => _sellerLogo;
 
-  Items({
-    dynamic id,
-      String? sku, 
-      String? name, 
-      dynamic finalPrice,
-      dynamic price,
-      String? image, 
-      String? sellerName, 
-      String? sellerLogo}){
+  Items(
+      {String? id,
+      String? sku,
+      String? name,
+      dynamic? finalPrice,
+      dynamic? price,
+      String? image,
+      String? sellerName,
+      String? sellerLogo}) {
     _id = id;
     _sku = sku;
     _name = name;
@@ -211,7 +205,7 @@ class Items {
     _image = image;
     _sellerName = sellerName;
     _sellerLogo = sellerLogo;
-}
+  }
 
   Items.fromJson(dynamic json) {
     _id = json['id'];
@@ -236,5 +230,4 @@ class Items {
     map['seller_logo'] = _sellerLogo;
     return map;
   }
-
 }

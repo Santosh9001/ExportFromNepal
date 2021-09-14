@@ -18,6 +18,7 @@ class UtilityProvider extends ChangeNotifier {
   ApiResponse get countryResponse {
     return _countryResponse;
   }
+
   ApiResponse get currencyResponse {
     return _currencyResponse;
   }

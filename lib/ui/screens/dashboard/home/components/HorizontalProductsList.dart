@@ -24,9 +24,9 @@ class HorizontalProductsList extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => HomeProductLists(title)));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HomeProductLists(title)));
               },
               child: Text(
                 "Shop More",
@@ -40,11 +40,17 @@ class HorizontalProductsList extends StatelessWidget {
         ),
         Expanded(
           child: ListView.builder(
-              itemCount: this.product!.data != null ? this.product!.data!.items!.length : 0,
+              itemCount: this.product!.data != null
+                  ? this.product!.data!.items!.length
+                  : 0,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return ProductCard(180.0, 180.0,
-                    this.product!.data != null ? this.product!.data!.items![index] : null);
+                return ProductCard(
+                    180.0,
+                    180.0,
+                    this.product!.data != null
+                        ? this.product!.data!.items![index]
+                        : null);
               }),
         )
       ],

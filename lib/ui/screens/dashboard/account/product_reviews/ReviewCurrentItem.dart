@@ -299,11 +299,11 @@ class _ReviewCurrentItemState extends State<ReviewCurrentItem> {
                         width: double.infinity,
                         padding: EdgeInsets.all(10),
                         alignment: Alignment.topRight,
-                        decoration: BoxDecoration(color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10)
-                        )),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -313,8 +313,7 @@ class _ReviewCurrentItemState extends State<ReviewCurrentItem> {
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   primary: kColorPrimary),
-                              onPressed: () {
-                              },
+                              onPressed: () {},
                               child: Text(
                                 "Add Review",
                                 style: TextStyle(

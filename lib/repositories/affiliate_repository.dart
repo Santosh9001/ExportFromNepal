@@ -4,12 +4,13 @@ import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_path.dart';
 import 'package:export_nepal/network_module/http_client.dart';
 
-class AffiliateRepository{
-  Future<Either<Glitch,Affiliate_groups>> getAffiliateGroups() async{
-    Either<Glitch, dynamic> response =
-        await HttpClient.instance.get(APIPathHelper.getValue(APIPath.affiliate_groups));
+class AffiliateRepository {
+  Future<Either<Glitch, Affiliate_groups>> getAffiliateGroups() async {
+    Either<Glitch, dynamic> response = await HttpClient.instance
+        .get(APIPathHelper.getValue(APIPath.affiliate_groups));
     try {
-      Affiliate_groups affiliate_groups = Affiliate_groups.fromJson(response.right);
+      Affiliate_groups affiliate_groups =
+          Affiliate_groups.fromJson(response.right);
       if (response.isLeft) {
         return Left(response.left);
       } else {
@@ -19,5 +20,4 @@ class AffiliateRepository{
       return Left(Glitch(message: e.toString()));
     }
   }
-
 }

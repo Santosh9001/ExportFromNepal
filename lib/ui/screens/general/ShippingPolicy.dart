@@ -103,7 +103,8 @@ class _ShippingPolicyState extends State<ShippingPolicy> {
 
   Future<ApiResponse<dynamic>> invokeShippingPolicy() async {
     provider = Provider.of<GeneralProvider>(context, listen: true);
-    await provider!.invokeCmsPage(APIPathHelper.getValue(APIPath.shipping_policy));
+    await provider!
+        .invokeCmsPage(APIPathHelper.getValue(APIPath.shipping_policy));
     return provider!.shippingPolicyResponse;
   }
 

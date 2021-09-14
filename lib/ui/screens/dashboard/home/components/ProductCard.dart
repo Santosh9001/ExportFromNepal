@@ -1,4 +1,5 @@
 import 'package:export_nepal/model/core/Product/models/product.dart';
+import 'package:export_nepal/model/core/Product/new/models/related_product.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -6,8 +7,10 @@ class ProductCard extends StatelessWidget {
   final width;
   final height;
   Items? item;
+  RelatedProduct? relatedProduct;
 
   ProductCard(this.height, this.width, this.item);
+  ProductCard.relatedProduct(this.height, this.width, this.relatedProduct);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class ProductCard extends StatelessWidget {
                       Text(
                         this.item != null
                             ? this.item!.name!
-                            : "Lorem ipsum dolor sit amet,",
+                            : this.relatedProduct!.name!,
                         style: kTextStyleSmallPrimary,
                       ),
                       SizedBox(
@@ -42,7 +45,7 @@ class ProductCard extends StatelessWidget {
                         child: Text(
                           this.item != null
                               ? this.item!.sellerName!
-                              : "Lorem ipsum dolor sit amet,",
+                              : this.relatedProduct!.sellerName!,
                           style: kTextStyleSmall,
                         ),
                       ),
@@ -52,7 +55,7 @@ class ProductCard extends StatelessWidget {
                       Text(
                         this.item != null
                             ? '\$ ${this.item!.price!}'
-                            : "\$ 59.99",
+                            : '\$ ${this.relatedProduct!.price!}',
                         style: kTextStyleRedBoldLarge,
                       ),
                     ],
@@ -69,7 +72,9 @@ class ProductCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: Image.network(
-                  this.item != null ? this.item!.image! : kDummyImage,
+                  this.item != null
+                      ? this.item!.image!
+                      : this.relatedProduct!.image!,
                   fit: BoxFit.cover,
                 ),
               ),

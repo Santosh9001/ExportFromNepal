@@ -201,8 +201,9 @@ class _RMAState extends State<RMADashboard> {
                                           context: context,
                                           builder: (BuildContext context) {
                                             return AlertDialog(
-                                              backgroundColor: Colors.transparent,
-                                              content: RMAStatusDialog(),                                                                                            
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              content: RMAStatusDialog(),
                                             );
                                           });
                                     },
@@ -264,45 +265,49 @@ class _RMAState extends State<RMADashboard> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Padding(
-                        padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text("RMA ID",
-                                  style: kTextStyleSmallBlueBoldPrimary,
-                                  textAlign: TextAlign.center),
-                              flex: 1,
-                            ),
-                            Expanded(
-                              child: Text("Order No.",
-                                  style: kTextStyleSmallBlueBoldPrimary,
-                                  textAlign: TextAlign.center),
-                              flex: 2,
-                            ),
-                            Expanded(
-                              child: Text("Resolution",
-                                  style: kTextStyleSmallBlueBoldPrimary,
-                                  textAlign: TextAlign.center),
-                              flex: 2,
-                            ),
-                            Expanded(
-                              child: Text("Quote's Status",
-                                  style: kTextStyleSmallBlueBoldPrimary,
-                                  textAlign: TextAlign.center),
-                              flex: 2,
-                            ),
-                            Expanded(
-                              child: Text("Date",
-                                  style: kTextStyleSmallBlueBoldPrimary,
-                                  textAlign: TextAlign.end),
-                              flex: 1,
-                            ),
-                          ],
-                        ),
+                      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text("RMA ID",
+                                style: kTextStyleSmallBlueBoldPrimary,
+                                textAlign: TextAlign.center),
+                            flex: 1,
+                          ),
+                          Expanded(
+                            child: Text("Order No.",
+                                style: kTextStyleSmallBlueBoldPrimary,
+                                textAlign: TextAlign.center),
+                            flex: 2,
+                          ),
+                          Expanded(
+                            child: Text("Resolution",
+                                style: kTextStyleSmallBlueBoldPrimary,
+                                textAlign: TextAlign.center),
+                            flex: 2,
+                          ),
+                          Expanded(
+                            child: Text("Quote's Status",
+                                style: kTextStyleSmallBlueBoldPrimary,
+                                textAlign: TextAlign.center),
+                            flex: 2,
+                          ),
+                          Expanded(
+                            child: Text("Date",
+                                style: kTextStyleSmallBlueBoldPrimary,
+                                textAlign: TextAlign.end),
+                            flex: 1,
+                          ),
+                        ],
                       ),
-                      SizedBox(height: 8,),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
                     Expanded(
                         flex: 5,
                         child: Container(

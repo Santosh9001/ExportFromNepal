@@ -67,6 +67,7 @@ class RegistrationRepository {
         return Left(response.left);
       } else {      
          Logged_user logged_user = Logged_user.fromJson(response.right); 
+
         return Right(logged_user);
       }
     } catch (e) {

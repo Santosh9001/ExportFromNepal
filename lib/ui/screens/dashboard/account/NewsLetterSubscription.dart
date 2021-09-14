@@ -96,7 +96,9 @@ class _NewsLetterSubscriptionState extends State<NewsLetterSubscription> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 15,),
+                    SizedBox(
+                      height: 15,
+                    ),
                     Container(
                       padding: EdgeInsets.all(10),
                       margin: EdgeInsets.all(10),
@@ -128,51 +130,49 @@ class _NewsLetterSubscriptionState extends State<NewsLetterSubscription> {
                           Text(
                             "You will receive email notification regarding general store information.",
                             style: kTextStyleSmallPrimary,
-                          ),                         
+                          ),
                         ],
                       ),
                     ),
+                    Expanded(flex: 5, child: Text("")),
                     Expanded(
-                      flex: 5,
-                      child: Text("")),
-                    Expanded(
-                            child: Container(
-                              padding: EdgeInsets.all(10),
-                              color: Colors.white,
-                              alignment: Alignment.topRight,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: kColorRed),
-                                      onPressed: () {
-                                        Navigator.of(context).pop(true);
-                                      },
-                                      child: Text(
-                                        "Cancel",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      )),
-                                  SizedBox(
-                                    width: 10,
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        color: Colors.white,
+                        alignment: Alignment.topRight,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: kColorRed),
+                                onPressed: () {
+                                  Navigator.of(context).pop(true);
+                                },
+                                child: Text(
+                                  "Cancel",
+                                  style: TextStyle(
+                                    color: Colors.white,
                                   ),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: kColorPrimary),
-                                    onPressed: () {},
-                                    child: Text(
-                                      "Save",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                )),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: kColorPrimary),
+                              onPressed: () {},
+                              child: Text(
+                                "Save",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                          ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 );
               },

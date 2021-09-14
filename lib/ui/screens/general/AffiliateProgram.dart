@@ -83,15 +83,15 @@ class _AffiliateProgramState extends State<AffiliateProgram> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10))),
                         child: snapshot.connectionState == ConnectionState.done
-                          ? (snapshot.hasError
-                              ? Center(
-                                  child: Text('${snapshot.error} occured',
-                                      style: kTextStyleSmallPrimary),
-                                )
-                              : getWidgetValue(snapshot.data))
-                          : Center(
-                              child: CircularProgressIndicator(),
-                            ),
+                            ? (snapshot.hasError
+                                ? Center(
+                                    child: Text('${snapshot.error} occured',
+                                        style: kTextStyleSmallPrimary),
+                                  )
+                                : getWidgetValue(snapshot.data))
+                            : Center(
+                                child: CircularProgressIndicator(),
+                              ),
                       ),
                     ),
                   ),
@@ -104,7 +104,7 @@ class _AffiliateProgramState extends State<AffiliateProgram> {
       ),
     );
   }
-  
+
   getWidgetValue(data) {
     _affiliateResponse = data;
     if (_affiliateResponse != null) {
@@ -118,7 +118,8 @@ class _AffiliateProgramState extends State<AffiliateProgram> {
 
   Future<ApiResponse<dynamic>> invokeAffiliateProgram() async {
     provider = Provider.of<GeneralProvider>(context, listen: false);
-    await provider!.invokeCmsPage(APIPathHelper.getValue(APIPath.affiliate_programs));
+    await provider!
+        .invokeCmsPage(APIPathHelper.getValue(APIPath.affiliate_programs));
     return provider!.affiliateResponse;
   }
 }

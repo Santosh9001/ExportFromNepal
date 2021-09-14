@@ -1,5 +1,3 @@
 import 'package:flutter/cupertino.dart';
 
-class QuoteProvider extends ChangeNotifier{
-    
-}
+class QuoteProvider extends ChangeNotifier {}

@@ -7,14 +7,11 @@ class Product_details {
   String? get message => _message;
   Data? get data => _data;
 
-  Product_details({
-      bool? status, 
-      String? message, 
-      Data? data}){
+  Product_details({bool? status, String? message, Data? data}) {
     _status = status;
     _message = message;
     _data = data;
-}
+  }
 
   Product_details.fromJson(dynamic json) {
     _status = json['status'];
@@ -31,7 +28,6 @@ class Product_details {
     }
     return map;
   }
-
 }
 
 class Data {
@@ -43,18 +39,20 @@ class Data {
   Reviews? get reviews => _reviews;
   List<Related_product>? get relatedProduct => _relatedProduct;
 
-  Data({
-      ProductData? product,
-      Reviews? reviews, 
-      List<Related_product>? relatedProduct}){
+  Data(
+      {ProductData? product,
+      Reviews? reviews,
+      List<Related_product>? relatedProduct}) {
     _product = product;
     _reviews = reviews;
     _relatedProduct = relatedProduct;
-}
+  }
 
   Data.fromJson(dynamic json) {
-    _product = json['product'] != null ? ProductData.fromJson(json['product']) : null;
-    _reviews = json['reviews'] != null ? Reviews.fromJson(json['reviews']) : null;
+    _product =
+        json['product'] != null ? ProductData.fromJson(json['product']) : null;
+    _reviews =
+        json['reviews'] != null ? Reviews.fromJson(json['reviews']) : null;
     if (json['related_product'] != null) {
       _relatedProduct = [];
       json['related_product'].forEach((v) {
@@ -76,7 +74,6 @@ class Data {
     }
     return map;
   }
-
 }
 
 class Related_product {
@@ -98,15 +95,15 @@ class Related_product {
   String? get sellerName => _sellerName;
   String? get sellerLogo => _sellerLogo;
 
-  Related_product({
-      String? id, 
-      String? sku, 
-      String? name, 
-      int? finalPrice, 
-      int? price, 
-      String? image, 
-      String? sellerName, 
-      String? sellerLogo}){
+  Related_product(
+      {String? id,
+      String? sku,
+      String? name,
+      int? finalPrice,
+      int? price,
+      String? image,
+      String? sellerName,
+      String? sellerLogo}) {
     _id = id;
     _sku = sku;
     _name = name;
@@ -115,7 +112,7 @@ class Related_product {
     _image = image;
     _sellerName = sellerName;
     _sellerLogo = sellerLogo;
-}
+  }
 
   Related_product.fromJson(dynamic json) {
     _id = json['id'];
@@ -140,7 +137,6 @@ class Related_product {
     map['seller_logo'] = _sellerLogo;
     return map;
   }
-
 }
 
 class Reviews {
@@ -158,20 +154,20 @@ class Reviews {
   int? get pageSize => _pageSize;
   int? get lastPage => _lastPage;
 
-  Reviews({
-      List<Items>? items, 
-      String? avgRatingPercent, 
-      int? total, 
-      int? currentPage, 
-      int? pageSize, 
-      int? lastPage}){
+  Reviews(
+      {List<Items>? items,
+      String? avgRatingPercent,
+      int? total,
+      int? currentPage,
+      int? pageSize,
+      int? lastPage}) {
     _items = items;
     _avgRatingPercent = avgRatingPercent;
     _total = total;
     _currentPage = currentPage;
     _pageSize = pageSize;
     _lastPage = lastPage;
-}
+  }
 
   Reviews.fromJson(dynamic json) {
     if (json['items'] != null) {
@@ -199,7 +195,6 @@ class Reviews {
     map['lastPage'] = _lastPage;
     return map;
   }
-
 }
 
 class Items {
@@ -219,14 +214,14 @@ class Items {
   String? get rating => _rating;
   String? get ratingPercent => _ratingPercent;
 
-  Items({
-      String? reviewId, 
-      String? createdAt, 
-      String? title, 
-      String? detail, 
-      String? nickname, 
-      String? rating, 
-      String? ratingPercent}){
+  Items(
+      {String? reviewId,
+      String? createdAt,
+      String? title,
+      String? detail,
+      String? nickname,
+      String? rating,
+      String? ratingPercent}) {
     _reviewId = reviewId;
     _createdAt = createdAt;
     _title = title;
@@ -234,7 +229,7 @@ class Items {
     _nickname = nickname;
     _rating = rating;
     _ratingPercent = ratingPercent;
-}
+  }
 
   Items.fromJson(dynamic json) {
     _reviewId = json['review_id'];
@@ -257,7 +252,6 @@ class Items {
     map['rating_percent'] = _ratingPercent;
     return map;
   }
-
 }
 
 class ProductData {
@@ -311,31 +305,31 @@ class ProductData {
   List<dynamic>? get configurableOptions => _configurableOptions;
   List<dynamic>? get configurableOptionsLink => _configurableOptionsLink;
 
-  ProductData({
-      String? id, 
-      String? name, 
-      String? sku, 
-      double? price, 
-      double? finalPrice, 
-      double? specialPrice, 
-      String? specialFromDate, 
-      String? specialToDate, 
-      String? isFeatured, 
-      String? status, 
-      String? typeId, 
-      String? attributeSetId, 
-      String? visibility, 
-      double? weight, 
-      List<Media_gallery_entries>? mediaGalleryEntries, 
-      List<dynamic>? tierPrices, 
-      String? description, 
-      String? shortDescription, 
-      String? inStock, 
-      List<String>? supplierType, 
-      List<Custom_attribute>? customAttribute, 
-      Seller? seller, 
-      List<dynamic>? configurableOptions, 
-      List<dynamic>? configurableOptionsLink}){
+  ProductData(
+      {String? id,
+      String? name,
+      String? sku,
+      double? price,
+      double? finalPrice,
+      double? specialPrice,
+      String? specialFromDate,
+      String? specialToDate,
+      String? isFeatured,
+      String? status,
+      String? typeId,
+      String? attributeSetId,
+      String? visibility,
+      double? weight,
+      List<Media_gallery_entries>? mediaGalleryEntries,
+      List<dynamic>? tierPrices,
+      String? description,
+      String? shortDescription,
+      String? inStock,
+      List<String>? supplierType,
+      List<Custom_attribute>? customAttribute,
+      Seller? seller,
+      List<dynamic>? configurableOptions,
+      List<dynamic>? configurableOptionsLink}) {
     _id = id;
     _name = name;
     _sku = sku;
@@ -360,7 +354,7 @@ class ProductData {
     _seller = seller;
     _configurableOptions = configurableOptions;
     _configurableOptionsLink = configurableOptionsLink;
-}
+  }
 
   ProductData.fromJson(dynamic json) {
     _id = json['id'];
@@ -386,7 +380,9 @@ class ProductData {
     _description = json['description'];
     _shortDescription = json['short_description'];
     _inStock = json['in_stock'];
-    _supplierType = json['supplier_type'] != null ? json['supplier_type'].cast<String>() : [];
+    _supplierType = json['supplier_type'] != null
+        ? json['supplier_type'].cast<String>()
+        : [];
     if (json['custom_attribute'] != null) {
       _customAttribute = [];
       json['custom_attribute'].forEach((v) {
@@ -394,7 +390,6 @@ class ProductData {
       });
     }
     _seller = json['seller'] != null ? Seller.fromJson(json['seller']) : null;
-
   }
 
   Map<String, dynamic> toJson() {
@@ -414,7 +409,8 @@ class ProductData {
     map['visibility'] = _visibility;
     map['weight'] = _weight;
     if (_mediaGalleryEntries != null) {
-      map['media_gallery_entries'] = _mediaGalleryEntries?.map((v) => v.toJson()).toList();
+      map['media_gallery_entries'] =
+          _mediaGalleryEntries?.map((v) => v.toJson()).toList();
     }
     if (_tierPrices != null) {
       map['tier_prices'] = _tierPrices?.map((v) => v.toJson()).toList();
@@ -424,20 +420,22 @@ class ProductData {
     map['in_stock'] = _inStock;
     map['supplier_type'] = _supplierType;
     if (_customAttribute != null) {
-      map['custom_attribute'] = _customAttribute?.map((v) => v.toJson()).toList();
+      map['custom_attribute'] =
+          _customAttribute?.map((v) => v.toJson()).toList();
     }
     if (_seller != null) {
       map['seller'] = _seller?.toJson();
     }
     if (_configurableOptions != null) {
-      map['configurable_options'] = _configurableOptions?.map((v) => v.toJson()).toList();
+      map['configurable_options'] =
+          _configurableOptions?.map((v) => v.toJson()).toList();
     }
     if (_configurableOptionsLink != null) {
-      map['configurable_options_link'] = _configurableOptionsLink?.map((v) => v.toJson()).toList();
+      map['configurable_options_link'] =
+          _configurableOptionsLink?.map((v) => v.toJson()).toList();
     }
     return map;
   }
-
 }
 
 class Seller {
@@ -455,20 +453,20 @@ class Seller {
   String? get isVerifiedSeller => _isVerifiedSeller;
   String? get isPremiumSeller => _isPremiumSeller;
 
-  Seller({
-      String? name, 
-      String? logo, 
-      String? sellerId, 
-      String? address, 
-      String? isVerifiedSeller, 
-      String? isPremiumSeller}){
+  Seller(
+      {String? name,
+      String? logo,
+      String? sellerId,
+      String? address,
+      String? isVerifiedSeller,
+      String? isPremiumSeller}) {
     _name = name;
     _logo = logo;
     _sellerId = sellerId;
     _address = address;
     _isVerifiedSeller = isVerifiedSeller;
     _isPremiumSeller = isPremiumSeller;
-}
+  }
 
   Seller.fromJson(dynamic json) {
     _name = json['name'];
@@ -489,7 +487,6 @@ class Seller {
     map['is_premium_seller'] = _isPremiumSeller;
     return map;
   }
-
 }
 
 class Custom_attribute {
@@ -501,14 +498,11 @@ class Custom_attribute {
   String? get code => _code;
   String? get value => _value;
 
-  Custom_attribute({
-      String? label, 
-      String? code, 
-      String? value}){
+  Custom_attribute({String? label, String? code, String? value}) {
     _label = label;
     _code = code;
     _value = value;
-}
+  }
 
   Custom_attribute.fromJson(dynamic json) {
     _label = json['label'];
@@ -523,7 +517,6 @@ class Custom_attribute {
     map['value'] = _value;
     return map;
   }
-
 }
 
 class Media_gallery_entries {
@@ -541,20 +534,20 @@ class Media_gallery_entries {
   List<String>? get types => _types;
   String? get file => _file;
 
-  Media_gallery_entries({
-      String? id, 
-      String? mediaType, 
-      dynamic? label, 
-      String? position, 
-      List<String>? types, 
-      String? file}){
+  Media_gallery_entries(
+      {String? id,
+      String? mediaType,
+      dynamic? label,
+      String? position,
+      List<String>? types,
+      String? file}) {
     _id = id;
     _mediaType = mediaType;
     _label = label;
     _position = position;
     _types = types;
     _file = file;
-}
+  }
 
   Media_gallery_entries.fromJson(dynamic json) {
     _id = json['id'];
@@ -575,5 +568,4 @@ class Media_gallery_entries {
     map['file'] = _file;
     return map;
   }
-
 }

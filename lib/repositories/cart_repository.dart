@@ -29,6 +29,4 @@ class CartRepository {
         .put(APIPathHelper.getValue(APIPath.create_cart), null);
     return response;
   }
-
-  
 }

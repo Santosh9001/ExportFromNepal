@@ -1,9 +1,14 @@
 import 'package:either_dart/either.dart';
 import 'package:export_nepal/model/core/Product/models/product.dart';
 import 'package:export_nepal/model/core/Product/models/product_details.dart';
+import 'package:export_nepal/model/core/Product/new/models/item.dart';
+import 'package:export_nepal/model/core/Product/new/models/media_gallery_entry.dart';
+import 'package:export_nepal/model/core/Product/new/models/product_detail.dart';
 import 'package:export_nepal/model/glitch/glitch.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/repositories/product_repository.dart';
+import 'package:export_nepal/ui/components/review_item.dart';
+import 'package:export_nepal/ui/screens/product/ProductDetailsUI.dart';
 import 'package:export_nepal/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -40,10 +45,12 @@ class ProductProvider extends ChangeNotifier {
   }
 
   Future<ApiResponse> invokeProductDetails(String sku) async {
+    _productDetailResponse = ApiResponse.loading("Loading");
+
     try {
       if (_productRepository != null) {
-        Either<Glitch, Product_details> response =
-            await _productRepository!.getProductBySku(sku);
+        Either<Glitch, ProductDetail> response =
+            await _productRepository!.getProductById(sku);
         if (response.isLeft) {
           _productDetailResponse = ApiResponse.error(response.left.message);
         } else if (response.isRight) {
@@ -183,9 +190,18 @@ class ProductProvider extends ChangeNotifier {
     });
   }
 
+  List<Widget> getReviews(List<Item>? reviews) {
+    return List<Widget>.generate(reviews!.length, (int index) {
+      return ReviewItemWidget(
+          user: reviews[index].nickname!,
+          description: reviews[index].detail!,
+          rating: reviews[index].rating!);
+    });
+  }
+
   void checkAndCreateCart() {}
 
-  getClipRect(List<Media_gallery_entries>? items) {
+  getClipRect(List<MediaGalleryEntry>? items) {
     return new List<Widget>.generate(items!.length, (int index) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(8.0),

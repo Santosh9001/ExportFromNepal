@@ -375,7 +375,7 @@ class _SignUpUIState extends State<SignUpUI> {
                 ),
                 SizedBox(height: 15),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10,20,10,20),
+                  padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(8)),
                       color: Colors.white),

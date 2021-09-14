@@ -7,14 +7,11 @@ class Categories {
   String? get message => _message;
   Data? get data => _data;
 
-  Categories({
-      bool? status, 
-      String? message, 
-      Data? data}){
+  Categories({bool? status, String? message, Data? data}) {
     _status = status;
     _message = message;
     _data = data;
-}
+  }
 
   Categories.fromJson(dynamic json) {
     _status = json['status'];
@@ -31,7 +28,6 @@ class Categories {
     }
     return map;
   }
-
 }
 
 class Data {
@@ -39,10 +35,9 @@ class Data {
 
   List<CategoryItems>? get categoryItems => _categoryItems;
 
-  Data({
-      List<CategoryItems>? categoryItems}){
+  Data({List<CategoryItems>? categoryItems}) {
     _categoryItems = categoryItems;
-}
+  }
 
   Data.fromJson(dynamic json) {
     if (json['items'] != null) {
@@ -60,7 +55,6 @@ class Data {
     }
     return map;
   }
-
 }
 
 class CategoryItems {
@@ -84,16 +78,16 @@ class CategoryItems {
   int? get productCount => _productCount;
   String? get childrenCount => _childrenCount;
 
-  CategoryItems({
-      String? id, 
-      String? parentId, 
-      String? name, 
-      String? image, 
-      String? isActive, 
-      String? position, 
-      String? level, 
-      int? productCount, 
-      String? childrenCount}){
+  CategoryItems(
+      {String? id,
+      String? parentId,
+      String? name,
+      String? image,
+      String? isActive,
+      String? position,
+      String? level,
+      int? productCount,
+      String? childrenCount}) {
     _id = id;
     _parentId = parentId;
     _name = name;
@@ -103,7 +97,7 @@ class CategoryItems {
     _level = level;
     _productCount = productCount;
     _childrenCount = childrenCount;
-}
+  }
 
   CategoryItems.fromJson(dynamic json) {
     _id = json['id'];
@@ -130,5 +124,4 @@ class CategoryItems {
     map['children_count'] = _childrenCount;
     return map;
   }
-
 }

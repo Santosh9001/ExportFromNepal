@@ -47,22 +47,22 @@ class Affiliate_program {
   String? get customRootTemplate => _customRootTemplate;
   bool? get active => _active;
 
-  Affiliate_program({
-      int? id, 
-      String? identifier, 
-      String? title, 
-      String? pageLayout, 
-      String? metaTitle, 
-      String? metaKeywords, 
-      String? metaDescription, 
-      String? contentHeading, 
-      String? content, 
-      String? creationTime, 
-      String? updateTime, 
-      String? sortOrder, 
-      String? customTheme, 
-      String? customRootTemplate, 
-      bool? active}){
+  Affiliate_program(
+      {int? id,
+      String? identifier,
+      String? title,
+      String? pageLayout,
+      String? metaTitle,
+      String? metaKeywords,
+      String? metaDescription,
+      String? contentHeading,
+      String? content,
+      String? creationTime,
+      String? updateTime,
+      String? sortOrder,
+      String? customTheme,
+      String? customRootTemplate,
+      bool? active}) {
     _id = id;
     _identifier = identifier;
     _title = title;
@@ -78,7 +78,7 @@ class Affiliate_program {
     _customTheme = customTheme;
     _customRootTemplate = customRootTemplate;
     _active = active;
-}
+  }
 
   Affiliate_program.fromJson(dynamic json) {
     _id = json["id"];
@@ -117,5 +117,4 @@ class Affiliate_program {
     map["active"] = _active;
     return map;
   }
-
 }

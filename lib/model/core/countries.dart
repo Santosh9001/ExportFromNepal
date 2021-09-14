@@ -11,18 +11,18 @@ class Countries {
   String? get fullNameLocale => _fullNameLocale;
   String? get fullNameEnglish => _fullNameEnglish;
 
-  Countries({
-      String? id, 
-      String? twoLetterAbbreviation, 
-      String? threeLetterAbbreviation, 
-      String? fullNameLocale, 
-      String? fullNameEnglish}){
+  Countries(
+      {String? id,
+      String? twoLetterAbbreviation,
+      String? threeLetterAbbreviation,
+      String? fullNameLocale,
+      String? fullNameEnglish}) {
     _id = id;
     _twoLetterAbbreviation = twoLetterAbbreviation;
     _threeLetterAbbreviation = threeLetterAbbreviation;
     _fullNameLocale = fullNameLocale;
     _fullNameEnglish = fullNameEnglish;
-}
+  }
 
   Countries.fromJson(dynamic json) {
     _id = json['id'];
@@ -41,5 +41,4 @@ class Countries {
     map['full_name_english'] = _fullNameEnglish;
     return map;
   }
-
 }
