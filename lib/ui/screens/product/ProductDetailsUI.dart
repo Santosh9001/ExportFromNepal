@@ -41,21 +41,21 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
           _productDetailsResponse = snapshot.data;
           if (_productDetailsResponse != null) {
             _product_details = _productDetailsResponse!.data as Product_details;
-           
-            var configlinks =
-                _product_details!.product!.configurableOptionsLink;
-            List<dynamic> lists = configlinks.keys.toList();
-            List<dynamic> datas = configlinks.values.toList();
-            List<dynamic> colors = [];
-            List<dynamic> sizes = [];
-            for (dynamic dd in datas) {
-              if (colors
-                  .where((element) => element["id"] == dd["color"]["id"])
-                  .isEmpty) colors.add(dd["color"]);
-              if (sizes
-                  .where((element) => element["id"] == dd["size"]["id"])
-                  .isEmpty) sizes.add(dd["size"]);
-            }
+
+            // var configlinks =
+            //     _product_details!.product!.configurableOptionsLink;
+            // List<dynamic> lists = configlinks.keys.toList();
+            // List<dynamic> datas = configlinks.values.toList();
+            // List<dynamic> colors = [];
+            // List<dynamic> sizes = [];
+            // for (dynamic dd in datas) {
+            //   if (colors
+            //       .where((element) => element["id"] == dd["color"]["id"])
+            //       .isEmpty) colors.add(dd["color"]);
+            //   if (sizes
+            //       .where((element) => element["id"] == dd["size"]["id"])
+            //       .isEmpty) sizes.add(dd["size"]);
+            // }
           }
           return SafeArea(
             child: Column(
@@ -906,8 +906,10 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                             itemCount: 4,
                                             scrollDirection: Axis.horizontal,
                                             itemBuilder: (context, index) {
-                                              return ProductCard(
-                                                  180.0, 180.0, Items());
+                                              return Container();
+                                              // return ProductCard(
+                                              //     180.0, 180.0, Items()
+                                              //);
                                             }),
                                       ),
                                       SizedBox(
@@ -944,6 +946,7 @@ class _ProductDetailsUIState extends State<ProductDetailsUI> {
                                                             reloadServerData)
                                                     : provider!.getClipRect(
                                                         _product_details!
+                                                            .data!
                                                             .product!
                                                             .mediaGalleryEntries))
                                                 : [
