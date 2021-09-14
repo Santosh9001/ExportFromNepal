@@ -13,27 +13,29 @@ class Currencies {
   List<String>? get availableCurrencyCodes => _availableCurrencyCodes;
   List<Exchange_rates>? get exchangeRates => _exchangeRates;
 
-  Currencies({
-      String? baseCurrencyCode, 
-      String? baseCurrencySymbol, 
-      String? defaultDisplayCurrencyCode, 
-      String? defaultDisplayCurrencySymbol, 
-      List<String>? availableCurrencyCodes, 
-      List<Exchange_rates>? exchangeRates}){
+  Currencies(
+      {String? baseCurrencyCode,
+      String? baseCurrencySymbol,
+      String? defaultDisplayCurrencyCode,
+      String? defaultDisplayCurrencySymbol,
+      List<String>? availableCurrencyCodes,
+      List<Exchange_rates>? exchangeRates}) {
     _baseCurrencyCode = baseCurrencyCode;
     _baseCurrencySymbol = baseCurrencySymbol;
     _defaultDisplayCurrencyCode = defaultDisplayCurrencyCode;
     _defaultDisplayCurrencySymbol = defaultDisplayCurrencySymbol;
     _availableCurrencyCodes = availableCurrencyCodes;
     _exchangeRates = exchangeRates;
-}
+  }
 
   Currencies.fromJson(dynamic json) {
     _baseCurrencyCode = json['base_currency_code'];
     _baseCurrencySymbol = json['base_currency_symbol'];
     _defaultDisplayCurrencyCode = json['default_display_currency_code'];
     _defaultDisplayCurrencySymbol = json['default_display_currency_symbol'];
-    _availableCurrencyCodes = json['available_currency_codes'] != null ? json['available_currency_codes'].cast<String>() : [];
+    _availableCurrencyCodes = json['available_currency_codes'] != null
+        ? json['available_currency_codes'].cast<String>()
+        : [];
     if (json['exchange_rates'] != null) {
       _exchangeRates = [];
       json['exchange_rates'].forEach((v) {
@@ -54,7 +56,6 @@ class Currencies {
     }
     return map;
   }
-
 }
 
 class Exchange_rates {
@@ -64,12 +65,10 @@ class Exchange_rates {
   String? get currencyTo => _currencyTo;
   double? get rate => _rate;
 
-  Exchange_rates({
-      String? currencyTo, 
-      double? rate}){
+  Exchange_rates({String? currencyTo, double? rate}) {
     _currencyTo = currencyTo;
     _rate = rate;
-}
+  }
 
   Exchange_rates.fromJson(dynamic json) {
     _currencyTo = json['currency_to'];
@@ -82,5 +81,4 @@ class Exchange_rates {
     map['rate'] = _rate;
     return map;
   }
-
 }

@@ -77,15 +77,15 @@ class _BlogsUIState extends State<Blogs> {
                     child: Padding(
                       padding: EdgeInsets.all(10),
                       child: snapshot.connectionState == ConnectionState.done
-                              ? (snapshot.hasError
-                                  ? Center(
-                                      child: Text('${snapshot.error} occured',
-                                          style: kTextStyleSmallPrimary),
-                                    )
-                                  : getWidgetValue(snapshot.data))
-                              : Center(
-                                  child: CircularProgressIndicator(),
-                                ),
+                          ? (snapshot.hasError
+                              ? Center(
+                                  child: Text('${snapshot.error} occured',
+                                      style: kTextStyleSmallPrimary),
+                                )
+                              : getWidgetValue(snapshot.data))
+                          : Center(
+                              child: CircularProgressIndicator(),
+                            ),
                     ),
                   ),
                 ],

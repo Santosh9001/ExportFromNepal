@@ -78,10 +78,9 @@ class _RequestedQuotesState extends State<RequestedQuotes> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: kColorRed),
-                              onPressed: () {
-                              },
+                              style:
+                                  ElevatedButton.styleFrom(primary: kColorRed),
+                              onPressed: () {},
                               child: Text(
                                 "Delete All ",
                                 style: TextStyle(
@@ -95,8 +94,7 @@ class _RequestedQuotesState extends State<RequestedQuotes> {
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   primary: kColorPrimary),
-                              onPressed: () {
-                              },
+                              onPressed: () {},
                               child: Text(
                                 "Request A Quote",
                                 style: TextStyle(

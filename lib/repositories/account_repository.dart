@@ -15,9 +15,9 @@ class AccountRepository {
     return response;
   }
 
-  Future<Either<Glitch,dynamic>> sendEmailVerification(String email) async{   
-    Either<Glitch, dynamic> response = await HttpClient.instance
-        .putUrlOnly(APIPathHelper.getValue(APIPath.sendEmailVerification)+"$email");
+  Future<Either<Glitch, dynamic>> sendEmailVerification(String email) async {
+    Either<Glitch, dynamic> response = await HttpClient.instance.putUrlOnly(
+        APIPathHelper.getValue(APIPath.sendEmailVerification) + "$email");
     return response;
   }
 }

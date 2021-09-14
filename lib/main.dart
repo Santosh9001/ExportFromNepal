@@ -76,7 +76,8 @@ List<SingleChildWidget> providers = [
   ChangeNotifierProvider<RMAProvider>(create: (_) => RMAProvider()),
   ChangeNotifierProvider<GeneralProvider>(create: (_) => GeneralProvider()),
   ChangeNotifierProvider<CategoryProvider>(create: (_) => CategoryProvider()),
-  ChangeNotifierProvider<InnerCategoryProvider>(create: (_) => InnerCategoryProvider()),
+  ChangeNotifierProvider<InnerCategoryProvider>(
+      create: (_) => InnerCategoryProvider()),
   ChangeNotifierProvider<ProductProvider>(create: (_) => ProductProvider()),
   ChangeNotifierProvider<AccountProvider>(create: (_) => AccountProvider()),
   ChangeNotifierProvider<AffiliateProvider>(create: (_) => AffiliateProvider()),

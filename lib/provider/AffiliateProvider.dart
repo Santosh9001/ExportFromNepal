@@ -39,7 +39,7 @@ class AffiliateProvider extends ChangeNotifier {
   AffiliateProvider() {
     _affiliateRepository = AffiliateRepository();
     var user = PreferenceUtils.getString(PreferenceUtils.USER);
-      _loggedInUser = Logged_in_user.fromJson(user);    
+    _loggedInUser = Logged_in_user.fromJson(user);
   }
 
   Logged_in_user? get loggedUser {

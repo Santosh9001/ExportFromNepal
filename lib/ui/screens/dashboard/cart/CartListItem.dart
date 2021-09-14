@@ -121,16 +121,18 @@ class CartListItem extends StatelessWidget {
           ),
         ),
       ),
-      Padding(padding: EdgeInsets.only(left: 25),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
-        child: Image.network(
-          kDummyImage,
-          fit: BoxFit.cover,
-          height: 90,
-          width: 80,
+      Padding(
+        padding: EdgeInsets.only(left: 25),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: Image.network(
+            kDummyImage,
+            fit: BoxFit.cover,
+            height: 90,
+            width: 80,
+          ),
         ),
-      ),),
+      ),
       SizedBox(
         height: 10,
         width: 20,

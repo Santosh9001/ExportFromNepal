@@ -3,10 +3,9 @@ class Affiliate_groups {
 
   Data? get data => _data;
 
-  Affiliate_groups({
-      Data? data}){
+  Affiliate_groups({Data? data}) {
     _data = data;
-}
+  }
 
   Affiliate_groups.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
@@ -19,7 +18,6 @@ class Affiliate_groups {
     }
     return map;
   }
-
 }
 
 class Data {
@@ -29,12 +27,10 @@ class Data {
   String? get one => _one;
   String? get two => _two;
 
-  Data({
-      String? one,
-      String? two}){
+  Data({String? one, String? two}) {
     _one = one;
     _two = two;
-}
+  }
 
   Data.fromJson(dynamic json) {
     _one = json['1'];
@@ -47,5 +43,4 @@ class Data {
     map['2'] = _two;
     return map;
   }
-
 }

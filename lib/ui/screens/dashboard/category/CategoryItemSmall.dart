@@ -22,9 +22,10 @@ class CategoryItemSmall extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 if (int.parse(items.childrenCount!) != 0)
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => SubCategoryUI(items)
-                  ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SubCategoryUI(items)));
                 else
                   Navigator.push(
                       context,

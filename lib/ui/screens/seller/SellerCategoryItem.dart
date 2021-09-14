@@ -60,8 +60,7 @@ class _SellerCategoryItemState extends State<SellerCategoryItem> {
                             ),
                             provider.checkIfSelected(index)
                                 ? Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 5, right: 5),
+                                    padding: EdgeInsets.only(top: 5, right: 5),
                                     child: SvgPicture.asset(
                                         "assets/images/tick_square.svg",
                                         height: 10,

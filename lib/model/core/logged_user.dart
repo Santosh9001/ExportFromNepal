@@ -7,14 +7,11 @@ class Logged_user {
   String? get message => _message;
   Data? get data => _data;
 
-  Logged_user({
-      bool? status, 
-      String? message, 
-      Data? data}){
+  Logged_user({bool? status, String? message, Data? data}) {
     _status = status;
     _message = message;
     _data = data;
-}
+  }
 
   Logged_user.fromJson(dynamic json) {
     _status = json['status'];
@@ -31,7 +28,6 @@ class Logged_user {
     }
     return map;
   }
-
 }
 
 class Data {
@@ -41,12 +37,10 @@ class Data {
   User? get user => _user;
   String? get token => _token;
 
-  Data({
-      User? user, 
-      String? token}){
+  Data({User? user, String? token}) {
     _user = user;
     _token = token;
-}
+  }
 
   Data.fromJson(dynamic json) {
     _user = json['user'] != null ? User.fromJson(json['user']) : null;
@@ -61,7 +55,6 @@ class Data {
     map['token'] = _token;
     return map;
   }
-
 }
 
 class User {
@@ -123,35 +116,35 @@ class User {
   String? get authnetcimProfileVersion => _authnetcimProfileVersion;
   String? get verifiedSupplierType => _verifiedSupplierType;
 
-  User({
-      int? id, 
-      int? groupId, 
-      String? defaultBilling, 
-      String? defaultShipping, 
-      String? createdAt, 
-      String? updatedAt, 
-      String? createdIn, 
-      String? email, 
-      String? firstname, 
-      String? lastname, 
-      int? gender, 
-      int? storeId, 
-      String? taxvat, 
-      int? websiteId, 
-      List<Addresses>? addresses, 
-      int? disableAutoGroupChange, 
-      String? wkSupplierCompanyName, 
-      String? wkSupplierCompanyTagline, 
-      String? wkSupplierRegisteredIn, 
-      String? wkSupplierTeamSize, 
-      String? wkSupplierCertification, 
-      String? wkSupplierRole, 
-      String? wkIsVerifiedSupplier, 
-      String? wkSupplierResponseTime, 
-      String? wkSupplierResponseTimeUnit, 
-      String? wkIsPremiumSupplier, 
-      String? authnetcimProfileVersion, 
-      String? verifiedSupplierType}){
+  User(
+      {int? id,
+      int? groupId,
+      String? defaultBilling,
+      String? defaultShipping,
+      String? createdAt,
+      String? updatedAt,
+      String? createdIn,
+      String? email,
+      String? firstname,
+      String? lastname,
+      int? gender,
+      int? storeId,
+      String? taxvat,
+      int? websiteId,
+      List<Addresses>? addresses,
+      int? disableAutoGroupChange,
+      String? wkSupplierCompanyName,
+      String? wkSupplierCompanyTagline,
+      String? wkSupplierRegisteredIn,
+      String? wkSupplierTeamSize,
+      String? wkSupplierCertification,
+      String? wkSupplierRole,
+      String? wkIsVerifiedSupplier,
+      String? wkSupplierResponseTime,
+      String? wkSupplierResponseTimeUnit,
+      String? wkIsPremiumSupplier,
+      String? authnetcimProfileVersion,
+      String? verifiedSupplierType}) {
     _id = id;
     _groupId = groupId;
     _defaultBilling = defaultBilling;
@@ -180,7 +173,7 @@ class User {
     _wkIsPremiumSupplier = wkIsPremiumSupplier;
     _authnetcimProfileVersion = authnetcimProfileVersion;
     _verifiedSupplierType = verifiedSupplierType;
-}
+  }
 
   User.fromJson(dynamic json) {
     _id = json['id'];
@@ -252,7 +245,6 @@ class User {
     map['verified_supplier_type'] = _verifiedSupplierType;
     return map;
   }
-
 }
 
 class Addresses {
@@ -286,21 +278,21 @@ class Addresses {
   bool? get defaultShipping => _defaultShipping;
   bool? get defaultBilling => _defaultBilling;
 
-  Addresses({
-      int? id, 
-      int? customerId, 
-      Region? region, 
-      int? regionId, 
-      String? countryId, 
-      List<String>? street, 
-      String? company, 
-      String? telephone, 
-      String? postcode, 
-      String? city, 
-      String? firstname, 
-      String? lastname, 
-      bool? defaultShipping, 
-      bool? defaultBilling}){
+  Addresses(
+      {int? id,
+      int? customerId,
+      Region? region,
+      int? regionId,
+      String? countryId,
+      List<String>? street,
+      String? company,
+      String? telephone,
+      String? postcode,
+      String? city,
+      String? firstname,
+      String? lastname,
+      bool? defaultShipping,
+      bool? defaultBilling}) {
     _id = id;
     _customerId = customerId;
     _region = region;
@@ -315,7 +307,7 @@ class Addresses {
     _lastname = lastname;
     _defaultShipping = defaultShipping;
     _defaultBilling = defaultBilling;
-}
+  }
 
   Addresses.fromJson(dynamic json) {
     _id = json['id'];
@@ -354,7 +346,6 @@ class Addresses {
     map['default_billing'] = _defaultBilling;
     return map;
   }
-
 }
 
 class Region {
@@ -366,14 +357,11 @@ class Region {
   String? get region => _region;
   int? get regionId => _regionId;
 
-  Region({
-      String? regionCode, 
-      String? region, 
-      int? regionId}){
+  Region({String? regionCode, String? region, int? regionId}) {
     _regionCode = regionCode;
     _region = region;
     _regionId = regionId;
-}
+  }
 
   Region.fromJson(dynamic json) {
     _regionCode = json['region_code'];
@@ -388,5 +376,4 @@ class Region {
     map['region_id'] = _regionId;
     return map;
   }
-
 }

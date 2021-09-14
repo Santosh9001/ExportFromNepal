@@ -100,13 +100,13 @@ class _InnerCategoryUIState extends State<InnerCategoryUI>
         child: Padding(
           padding: EdgeInsets.all(0),
           child: ListView.separated(
-            itemCount:
-                _subCategories != null ? _subCategories!.data!.categoryItems!.length : 0,
+            itemCount: _subCategories != null
+                ? _subCategories!.data!.categoryItems!.length
+                : 0,
             itemBuilder: (BuildContext context, int index) {
               return _subCategories != null
                   ? InnerCategoryItem(
-                      _subCategories!.data!.categoryItems![index],category
-                    )
+                      _subCategories!.data!.categoryItems![index], category)
                   : Text(
                       "$defaultValue",
                       style: kTextStyleSmallPrimary,

@@ -6,14 +6,12 @@ class Manuals {
   List<Items>? get items => _items;
   int? get totalCount => _totalCount;
 
-  Manuals({
-      List<Items>? items, 
-      Search_criteria? searchCriteria, 
-      int? totalCount}){
+  Manuals(
+      {List<Items>? items, Search_criteria? searchCriteria, int? totalCount}) {
     _items = items;
     _searchCriteria = searchCriteria;
     _totalCount = totalCount;
-}
+  }
 
   Manuals.fromJson(dynamic json) {
     if (json["items"] != null) {
@@ -36,7 +34,6 @@ class Manuals {
     map["total_count"] = _totalCount;
     return map;
   }
-
 }
 
 class Search_criteria {
@@ -44,10 +41,9 @@ class Search_criteria {
 
   List<dynamic>? get filterGroups => _filterGroups;
 
-  Search_criteria({
-      List<dynamic>? filterGroups}){
+  Search_criteria({List<dynamic>? filterGroups}) {
     _filterGroups = filterGroups;
-}
+  }
 
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
@@ -56,7 +52,6 @@ class Search_criteria {
     }
     return map;
   }
-
 }
 
 class Items {
@@ -68,14 +63,11 @@ class Items {
   String? get file => _file;
   String? get name => _name;
 
-  Items({
-      String? manualId, 
-      String? file, 
-      String? name}){
+  Items({String? manualId, String? file, String? name}) {
     _manualId = manualId;
     _file = file;
     _name = name;
-}
+  }
 
   Items.fromJson(dynamic json) {
     _manualId = json["manual_id"];
@@ -90,5 +82,4 @@ class Items {
     map["name"] = _name;
     return map;
   }
-
 }

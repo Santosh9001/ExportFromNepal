@@ -7,14 +7,11 @@ class Contact {
   String? get message => _message;
   Data? get data => _data;
 
-  Contact({
-      bool? status, 
-      String? message, 
-      Data? data}){
+  Contact({bool? status, String? message, Data? data}) {
     _status = status;
     _message = message;
     _data = data;
-}
+  }
 
   Contact.fromJson(dynamic json) {
     _status = json['status'];
@@ -31,7 +28,6 @@ class Contact {
     }
     return map;
   }
-
 }
 
 class Data {
@@ -43,14 +39,14 @@ class Data {
   List<String>? get categories => _categories;
   List<Country>? get country => _country;
 
-  Data({
-      List<Contact_information>? contactInformation, 
-      List<String>? categories, 
-      List<Country>? country}){
+  Data(
+      {List<Contact_information>? contactInformation,
+      List<String>? categories,
+      List<Country>? country}) {
     _contactInformation = contactInformation;
     _categories = categories;
     _country = country;
-}
+  }
 
   Data.fromJson(dynamic json) {
     if (json['contact_information'] != null) {
@@ -59,7 +55,8 @@ class Data {
         _contactInformation?.add(Contact_information.fromJson(v));
       });
     }
-    _categories = json['categories'] != null ? json['categories'].cast<String>() : [];
+    _categories =
+        json['categories'] != null ? json['categories'].cast<String>() : [];
     if (json['country'] != null) {
       _country = [];
       json['country'].forEach((v) {
@@ -71,7 +68,8 @@ class Data {
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
     if (_contactInformation != null) {
-      map['contact_information'] = _contactInformation?.map((v) => v.toJson()).toList();
+      map['contact_information'] =
+          _contactInformation?.map((v) => v.toJson()).toList();
     }
     map['categories'] = _categories;
     if (_country != null) {
@@ -79,7 +77,6 @@ class Data {
     }
     return map;
   }
-
 }
 
 class Country {
@@ -89,12 +86,10 @@ class Country {
   String? get countryId => _countryId;
   String? get countryName => _countryName;
 
-  Country({
-      String? countryId, 
-      String? countryName}){
+  Country({String? countryId, String? countryName}) {
     _countryId = countryId;
     _countryName = countryName;
-}
+  }
 
   Country.fromJson(dynamic json) {
     _countryId = json['country_id'];
@@ -107,7 +102,6 @@ class Country {
     map['country_name'] = _countryName;
     return map;
   }
-
 }
 
 class Contact_information {
@@ -123,18 +117,18 @@ class Contact_information {
   String? get email => _email;
   String? get address => _address;
 
-  Contact_information({
-      String? identifier, 
-      String? name, 
-      String? phone, 
-      String? email, 
-      String? address}){
+  Contact_information(
+      {String? identifier,
+      String? name,
+      String? phone,
+      String? email,
+      String? address}) {
     _identifier = identifier;
     _name = name;
     _phone = phone;
     _email = email;
     _address = address;
-}
+  }
 
   Contact_information.fromJson(dynamic json) {
     _identifier = json['identifier'];
@@ -153,5 +147,4 @@ class Contact_information {
     map['address'] = _address;
     return map;
   }
-
 }

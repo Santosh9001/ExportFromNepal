@@ -59,13 +59,17 @@ class _SellerCategoriesState extends State<SellerCategories> {
                       height: 10,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 10,),
+                      padding: EdgeInsets.only(
+                        left: 10,
+                      ),
                       child: Text(
                         "Click on the Categories to select / deselect them",
                         style: kTextStyleSmallPrimary,
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Expanded(
                       flex: 8,
                       child: GridView.builder(

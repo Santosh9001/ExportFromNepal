@@ -3,10 +3,9 @@ class Notice {
 
   String? get data => _data;
 
-  Notice({
-      String? data}){
+  Notice({String? data}) {
     _data = data;
-}
+  }
 
   Notice.fromJson(dynamic json) {
     _data = json['data'];
@@ -17,5 +16,4 @@ class Notice {
     map['data'] = _data;
     return map;
   }
-
 }

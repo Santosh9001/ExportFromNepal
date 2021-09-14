@@ -21,6 +21,7 @@ class _JoinAffiliateState extends State<JoinAffiliate> {
     provider = Provider.of<AffiliateProvider>(context, listen: false);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,9 +102,12 @@ class _JoinAffiliateState extends State<JoinAffiliate> {
                                     width: 5,
                                   ),
                                   provider != null
-                                      ? (provider!.loggedUser != null ? Text("${provider!.loggedUser!.firstname}",
-                                          style: kTextStyleBlackBold): Text("My Name",
-                                          style: kTextStyleBlackBold))
+                                      ? (provider!.loggedUser != null
+                                          ? Text(
+                                              "${provider!.loggedUser!.firstname}",
+                                              style: kTextStyleBlackBold)
+                                          : Text("My Name",
+                                              style: kTextStyleBlackBold))
                                       : Text("My Name",
                                           style: kTextStyleBlackBold)
                                 ],
@@ -121,9 +125,12 @@ class _JoinAffiliateState extends State<JoinAffiliate> {
                                     width: 5,
                                   ),
                                   provider != null
-                                      ? (provider!.loggedUser != null ? Text("${provider!.loggedUser!.email}",
-                                          style: kTextStyleBlackBold): Text("My Email",
-                                          style: kTextStyleBlackBold))
+                                      ? (provider!.loggedUser != null
+                                          ? Text(
+                                              "${provider!.loggedUser!.email}",
+                                              style: kTextStyleBlackBold)
+                                          : Text("My Email",
+                                              style: kTextStyleBlackBold))
                                       : Text("My Email",
                                           style: kTextStyleBlackBold)
                                 ],
@@ -302,7 +309,7 @@ class _JoinAffiliateState extends State<JoinAffiliate> {
     ));
   }
 
-  Future<ApiResponse<dynamic>> fetchAffiliateGroups() async {    
+  Future<ApiResponse<dynamic>> fetchAffiliateGroups() async {
     await provider!.invokeAffiliateGroups();
     return provider!.affiliateGroupResponse;
   }

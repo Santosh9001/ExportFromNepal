@@ -166,38 +166,40 @@ class _SellerSignupState4 extends State<SellerSignup4> {
                                 )),
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 10,
-                              height: 10,
-                              child: Checkbox(
-                                value: provider.getSellersLicence,
-                                onChanged: (value) {
-                                  provider.setLicenceAgreement(value!);
-                                },
-                                activeColor: kColorPrimary,
+                          padding:
+                              EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: 10,
+                                height: 10,
+                                child: Checkbox(
+                                  value: provider.getSellersLicence,
+                                  onChanged: (value) {
+                                    provider.setLicenceAgreement(value!);
+                                  },
+                                  activeColor: kColorPrimary,
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Text(
-                                "I agree to the ",
-                                style: kTextStyleSmallPrimary,
+                              Padding(
+                                padding: EdgeInsets.only(left: 20),
+                                child: Text(
+                                  "I agree to the ",
+                                  style: kTextStyleSmallPrimary,
+                                ),
                               ),
-                            ),
-                            Text(
+                              Text(
                                 "Seller Licence Agreement ",
                                 style: kTextStyleRedSmall,
                               ),
-                          ],
-                        ),
-                      )
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ])),

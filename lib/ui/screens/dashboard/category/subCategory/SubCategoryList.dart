@@ -66,7 +66,8 @@ class _SubCategoryState extends State<SubCategoryList> {
         ),
         itemCount: _subCategories!.data!.categoryItems!.length,
         itemBuilder: (BuildContext context, int index) {
-          return SubCategoryItemSmall(_subCategories!.data!.categoryItems![index], name);
+          return SubCategoryItemSmall(
+              _subCategories!.data!.categoryItems![index], name);
         },
       );
     }

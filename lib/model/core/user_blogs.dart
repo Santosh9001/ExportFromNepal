@@ -7,14 +7,11 @@ class User_blogs {
   String? get message => _message;
   Data? get data => _data;
 
-  User_blogs({
-      bool? status, 
-      String? message, 
-      Data? data}){
+  User_blogs({bool? status, String? message, Data? data}) {
     _status = status;
     _message = message;
     _data = data;
-}
+  }
 
   User_blogs.fromJson(dynamic json) {
     _status = json['status'];
@@ -31,7 +28,6 @@ class User_blogs {
     }
     return map;
   }
-
 }
 
 class Data {
@@ -51,14 +47,14 @@ class Data {
   String? get pageSize => _pageSize;
   int? get lastPage => _lastPage;
 
-  Data({
-      List<Items>? items, 
-      List<BCategories>? categories, 
-      List<String>? archive, 
-      int? total, 
-      int? currentPage, 
-      String? pageSize, 
-      int? lastPage}){
+  Data(
+      {List<Items>? items,
+      List<BCategories>? categories,
+      List<String>? archive,
+      int? total,
+      int? currentPage,
+      String? pageSize,
+      int? lastPage}) {
     _items = items;
     _categories = categories;
     _archive = archive;
@@ -66,7 +62,7 @@ class Data {
     _currentPage = currentPage;
     _pageSize = pageSize;
     _lastPage = lastPage;
-}
+  }
 
   Data.fromJson(dynamic json) {
     if (json['items'] != null) {
@@ -103,7 +99,6 @@ class Data {
     map['lastPage'] = _lastPage;
     return map;
   }
-
 }
 
 class Categories {
@@ -113,12 +108,10 @@ class Categories {
   String? get id => _id;
   String? get title => _title;
 
-  Categories({
-      String? id, 
-      String? title}){
+  Categories({String? id, String? title}) {
     _id = id;
     _title = title;
-}
+  }
 
   Categories.fromJson(dynamic json) {
     _id = json['id'];
@@ -131,7 +124,6 @@ class Categories {
     map['title'] = _title;
     return map;
   }
-
 }
 
 class Items {
@@ -149,20 +141,20 @@ class Items {
   List<Categories>? get categories => _categories;
   String? get author => _author;
 
-  Items({
-      String? title, 
-      String? publishTime, 
-      String? shortContent, 
-      bool? featuredImage, 
-      List<Categories>? categories, 
-      String? author}){
+  Items(
+      {String? title,
+      String? publishTime,
+      String? shortContent,
+      bool? featuredImage,
+      List<Categories>? categories,
+      String? author}) {
     _title = title;
     _publishTime = publishTime;
     _shortContent = shortContent;
     _featuredImage = featuredImage;
     _categories = categories;
     _author = author;
-}
+  }
 
   Items.fromJson(dynamic json) {
     _title = json['title'];
@@ -190,7 +182,6 @@ class Items {
     map['author'] = _author;
     return map;
   }
-
 }
 
 class BCategories {
@@ -200,12 +191,10 @@ class BCategories {
   String? get categoryId => _categoryId;
   String? get title => _title;
 
-  BCategories({
-      String? categoryId, 
-      String? title}){
+  BCategories({String? categoryId, String? title}) {
     _categoryId = categoryId;
     _title = title;
-}
+  }
 
   BCategories.fromJson(dynamic json) {
     _categoryId = json['category_id'];
@@ -218,5 +207,4 @@ class BCategories {
     map['title'] = _title;
     return map;
   }
-
 }

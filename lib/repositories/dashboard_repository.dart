@@ -21,6 +21,7 @@ class DashboardRepository {
       return Left(Glitch(message: e.toString()));
     }
   }
+
   Future<Either<Glitch, Home_content>> getHomeContent() async {
     Either<Glitch, dynamic> response = await HttpClient.instance
         .get(APIPathHelper.getValue(APIPath.home_content));

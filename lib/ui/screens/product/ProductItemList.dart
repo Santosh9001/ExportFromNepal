@@ -12,10 +12,10 @@ class ProductItemList extends StatefulWidget {
 
 class _ProductItemListState extends State<ProductItemList> {
   final Product _products;
-  _ProductItemListState(this._products); 
+  _ProductItemListState(this._products);
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return Expanded(
       child: GridView.builder(
         shrinkWrap: true,

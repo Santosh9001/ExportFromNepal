@@ -15,8 +15,7 @@ import 'package:export_nepal/ui/screens/general/AboutUs.dart';
 
 class GeneralRepository {
   Future<Either<Glitch, Cms_page>> getCmsPage(String path) async {
-    Either<Glitch, dynamic> response =
-        await HttpClient.instance.get(path);
+    Either<Glitch, dynamic> response = await HttpClient.instance.get(path);
     try {
       Cms_page aboutus = Cms_page.fromJson(response.right);
       if (response.isLeft) {
@@ -30,9 +29,9 @@ class GeneralRepository {
   }
 
   Future<Either<Glitch, Contact>> getContact() async {
-    Either<Glitch, dynamic> response = await HttpClient.instance
-        .get(APIPathHelper.getValue(APIPath.contact));
-        try {
+    Either<Glitch, dynamic> response =
+        await HttpClient.instance.get(APIPathHelper.getValue(APIPath.contact));
+    try {
       Contact contact = Contact.fromJson(response.right);
       if (response.isLeft) {
         return Left(response.left);
@@ -45,9 +44,9 @@ class GeneralRepository {
   }
 
   Future<Either<Glitch, User_blogs>> getBlogs() async {
-    Either<Glitch, dynamic> response = await HttpClient.instance
-        .get(APIPathHelper.getValue(APIPath.blogs));
-        try {
+    Either<Glitch, dynamic> response =
+        await HttpClient.instance.get(APIPathHelper.getValue(APIPath.blogs));
+    try {
       User_blogs blogs = User_blogs.fromJson(response.right);
       if (response.isLeft) {
         return Left(response.left);
@@ -60,9 +59,9 @@ class GeneralRepository {
   }
 
   Future<Either<Glitch, Manuals>> getManuals() async {
-    Either<Glitch, dynamic> response = await HttpClient.instance
-        .get(APIPathHelper.getValue(APIPath.manuals));
-        try {
+    Either<Glitch, dynamic> response =
+        await HttpClient.instance.get(APIPathHelper.getValue(APIPath.manuals));
+    try {
       Manuals manuals = Manuals.fromJson(response.right);
       if (response.isLeft) {
         return Left(response.left);

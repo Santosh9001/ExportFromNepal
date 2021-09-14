@@ -27,20 +27,20 @@ class Logged_in_user {
   Extension_attributes? get extensionAttributes => _extensionAttributes;
   List<Custom_attributes>? get customAttributes => _customAttributes;
 
-  Logged_in_user({
-      int? id, 
-      int? groupId, 
-      String? createdAt, 
-      String? updatedAt, 
-      String? createdIn, 
-      String? email, 
-      String? firstname, 
-      String? lastname, 
-      int? storeId, 
-      int? websiteId, 
-      int? disableAutoGroupChange, 
-      Extension_attributes? extensionAttributes, 
-      List<Custom_attributes>? customAttributes}){
+  Logged_in_user(
+      {int? id,
+      int? groupId,
+      String? createdAt,
+      String? updatedAt,
+      String? createdIn,
+      String? email,
+      String? firstname,
+      String? lastname,
+      int? storeId,
+      int? websiteId,
+      int? disableAutoGroupChange,
+      Extension_attributes? extensionAttributes,
+      List<Custom_attributes>? customAttributes}) {
     _id = id;
     _groupId = groupId;
     _createdAt = createdAt;
@@ -54,7 +54,7 @@ class Logged_in_user {
     _disableAutoGroupChange = disableAutoGroupChange;
     _extensionAttributes = extensionAttributes;
     _customAttributes = customAttributes;
-}
+  }
 
   Logged_in_user.fromJson(dynamic json) {
     _id = json['id'];
@@ -68,7 +68,9 @@ class Logged_in_user {
     _storeId = json['store_id'];
     _websiteId = json['website_id'];
     _disableAutoGroupChange = json['disable_auto_group_change'];
-    _extensionAttributes = json['extension_attributes'] != null ? Extension_attributes.fromJson(json['extensionAttributes']) : null;
+    _extensionAttributes = json['extension_attributes'] != null
+        ? Extension_attributes.fromJson(json['extensionAttributes'])
+        : null;
     if (json['custom_attributes'] != null) {
       _customAttributes = [];
       json['custom_attributes'].forEach((v) {
@@ -94,11 +96,11 @@ class Logged_in_user {
       map['extension_attributes'] = _extensionAttributes?.toJson();
     }
     if (_customAttributes != null) {
-      map['custom_attributes'] = _customAttributes?.map((v) => v.toJson()).toList();
+      map['custom_attributes'] =
+          _customAttributes?.map((v) => v.toJson()).toList();
     }
     return map;
   }
-
 }
 
 class Custom_attributes {
@@ -108,12 +110,10 @@ class Custom_attributes {
   String? get attributeCode => _attributeCode;
   String? get value => _value;
 
-  Custom_attributes({
-      String? attributeCode, 
-      String? value}){
+  Custom_attributes({String? attributeCode, String? value}) {
     _attributeCode = attributeCode;
     _value = value;
-}
+  }
 
   Custom_attributes.fromJson(dynamic json) {
     _attributeCode = json['attribute_code'];
@@ -126,7 +126,6 @@ class Custom_attributes {
     map['value'] = _value;
     return map;
   }
-
 }
 
 class Extension_attributes {
@@ -134,10 +133,9 @@ class Extension_attributes {
 
   bool? get isSubscribed => _isSubscribed;
 
-  Extension_attributes({
-      bool? isSubscribed}){
+  Extension_attributes({bool? isSubscribed}) {
     _isSubscribed = isSubscribed;
-}
+  }
 
   Extension_attributes.fromJson(dynamic json) {
     _isSubscribed = json['is_subscribed'];
@@ -148,5 +146,4 @@ class Extension_attributes {
     map['is_subscribed'] = _isSubscribed;
     return map;
   }
-
 }

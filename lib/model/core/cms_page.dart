@@ -7,14 +7,11 @@ class Cms_page {
   String? get message => _message;
   Data? get data => _data;
 
-  Cms_page({
-      bool? status, 
-      String? message, 
-      Data? data}){
+  Cms_page({bool? status, String? message, Data? data}) {
     _status = status;
     _message = message;
     _data = data;
-}
+  }
 
   Cms_page.fromJson(dynamic json) {
     _status = json['status'];
@@ -31,7 +28,6 @@ class Cms_page {
     }
     return map;
   }
-
 }
 
 class Data {
@@ -45,16 +41,12 @@ class Data {
   String? get identifier => _identifier;
   String? get content => _content;
 
-  Data({
-      String? pageId, 
-      String? title, 
-      String? identifier, 
-      String? content}){
+  Data({String? pageId, String? title, String? identifier, String? content}) {
     _pageId = pageId;
     _title = title;
     _identifier = identifier;
     _content = content;
-}
+  }
 
   Data.fromJson(dynamic json) {
     _pageId = json['page_id'];
@@ -71,5 +63,4 @@ class Data {
     map['content'] = _content;
     return map;
   }
-
 }
