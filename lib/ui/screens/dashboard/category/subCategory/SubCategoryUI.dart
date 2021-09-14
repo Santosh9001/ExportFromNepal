@@ -72,9 +72,7 @@ class _SubCategoryUIState extends State<SubCategoryUI>
                                 style: kTextStyleSmallPrimary),
                           )
                         : getWidgetSubcategories(snapshot.data))
-                    : Center(
-                        child: CircularProgressIndicator(),
-                      ),
+                    : LinearProgressIndicator(),
               ],
             ),
           )),

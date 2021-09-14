@@ -1,24 +1,60 @@
 class Product_details {
-  DetailProduct? _product;
-  ReviewParent? _reviews;
-  List<Related_product>? _relatedProduct;  
+  bool? _status;
+  String? _message;
+  Data? _data;
 
-  DetailProduct? get product => _product;
-  ReviewParent? get reviews => _reviews;
-  List<Related_product>? get relatedProduct => _relatedProduct;
+  bool? get status => _status;
+  String? get message => _message;
+  Data? get data => _data;
 
   Product_details({
-    DetailProduct? product,
-    ReviewParent? reviews,
+      bool? status, 
+      String? message, 
+      Data? data}){
+    _status = status;
+    _message = message;
+    _data = data;
+}
+
+  Product_details.fromJson(dynamic json) {
+    _status = json['status'];
+    _message = json['message'];
+    _data = json['data'] != null ? Data.fromJson(json['data']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    var map = <String, dynamic>{};
+    map['status'] = _status;
+    map['message'] = _message;
+    if (_data != null) {
+      map['data'] = _data?.toJson();
+    }
+    return map;
+  }
+
+}
+
+class Data {
+  ProductData? _product;
+  Reviews? _reviews;
+  List<Related_product>? _relatedProduct;
+
+  ProductData? get product => _product;
+  Reviews? get reviews => _reviews;
+  List<Related_product>? get relatedProduct => _relatedProduct;
+
+  Data({
+      ProductData? product,
+      Reviews? reviews, 
       List<Related_product>? relatedProduct}){
     _product = product;
     _reviews = reviews;
     _relatedProduct = relatedProduct;
 }
 
-  Product_details.fromJson(dynamic json) {
-    _product = json['product'] != null ? DetailProduct.fromJson(json['product']) : null;
-    _reviews = json['reviews'] != null ? ReviewParent.fromJson(json['reviews']) : null;
+  Data.fromJson(dynamic json) {
+    _product = json['product'] != null ? ProductData.fromJson(json['product']) : null;
+    _reviews = json['reviews'] != null ? Reviews.fromJson(json['reviews']) : null;
     if (json['related_product'] != null) {
       _relatedProduct = [];
       json['related_product'].forEach((v) {
@@ -107,240 +143,133 @@ class Related_product {
 
 }
 
-class ReviewParent {
+class Reviews {
+  List<Items>? _items;
   String? _avgRatingPercent;
-  int? _count;
-  List<Reviews>? _reviews;
+  int? _total;
+  int? _currentPage;
+  int? _pageSize;
+  int? _lastPage;
 
+  List<Items>? get items => _items;
   String? get avgRatingPercent => _avgRatingPercent;
-  int? get count => _count;
-  List<Reviews>? get reviews => _reviews;
+  int? get total => _total;
+  int? get currentPage => _currentPage;
+  int? get pageSize => _pageSize;
+  int? get lastPage => _lastPage;
 
-  ReviewParent({
+  Reviews({
+      List<Items>? items, 
       String? avgRatingPercent, 
-      int? count, 
-      List<Reviews>? reviews}){
+      int? total, 
+      int? currentPage, 
+      int? pageSize, 
+      int? lastPage}){
+    _items = items;
     _avgRatingPercent = avgRatingPercent;
-    _count = count;
-    _reviews = reviews;
+    _total = total;
+    _currentPage = currentPage;
+    _pageSize = pageSize;
+    _lastPage = lastPage;
 }
 
-  ReviewParent.fromJson(dynamic json) {
-    _avgRatingPercent = json['avg_rating_percent'];
-    _count = json['count'];
-    if (json['reviews'] != null) {
-      _reviews = [];
-      json['reviews'].forEach((v) {
-        _reviews?.add(Reviews.fromJson(v));
+  Reviews.fromJson(dynamic json) {
+    if (json['items'] != null) {
+      _items = [];
+      json['items'].forEach((v) {
+        _items?.add(Items.fromJson(v));
       });
     }
+    _avgRatingPercent = json['avg_rating_percent'];
+    _total = json['total'];
+    _currentPage = json['currentPage'];
+    _pageSize = json['pageSize'];
+    _lastPage = json['lastPage'];
   }
 
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
-    map['avg_rating_percent'] = _avgRatingPercent;
-    map['count'] = _count;
-    if (_reviews != null) {
-      map['reviews'] = _reviews?.map((v) => v.toJson()).toList();
+    if (_items != null) {
+      map['items'] = _items?.map((v) => v.toJson()).toList();
     }
+    map['avg_rating_percent'] = _avgRatingPercent;
+    map['total'] = _total;
+    map['currentPage'] = _currentPage;
+    map['pageSize'] = _pageSize;
+    map['lastPage'] = _lastPage;
     return map;
   }
 
 }
 
-class Reviews {
+class Items {
   String? _reviewId;
   String? _createdAt;
-  String? _entityId;
-  String? _entityPkValue;
-  String? _statusId;
-  String? _detailId;
   String? _title;
   String? _detail;
   String? _nickname;
-  String? _customerId;
-  String? _entityCode;
-  List<Rating_votes>? _ratingVotes;
+  String? _rating;
+  String? _ratingPercent;
 
   String? get reviewId => _reviewId;
   String? get createdAt => _createdAt;
-  String? get entityId => _entityId;
-  String? get entityPkValue => _entityPkValue;
-  String? get statusId => _statusId;
-  String? get detailId => _detailId;
   String? get title => _title;
   String? get detail => _detail;
   String? get nickname => _nickname;
-  String? get customerId => _customerId;
-  String? get entityCode => _entityCode;
-  List<Rating_votes>? get ratingVotes => _ratingVotes;
+  String? get rating => _rating;
+  String? get ratingPercent => _ratingPercent;
 
-  Reviews({
+  Items({
       String? reviewId, 
       String? createdAt, 
-      String? entityId, 
-      String? entityPkValue, 
-      String? statusId, 
-      String? detailId, 
       String? title, 
       String? detail, 
       String? nickname, 
-      String? customerId, 
-      String? entityCode, 
-      List<Rating_votes>? ratingVotes}){
+      String? rating, 
+      String? ratingPercent}){
     _reviewId = reviewId;
     _createdAt = createdAt;
-    _entityId = entityId;
-    _entityPkValue = entityPkValue;
-    _statusId = statusId;
-    _detailId = detailId;
     _title = title;
     _detail = detail;
     _nickname = nickname;
-    _customerId = customerId;
-    _entityCode = entityCode;
-    _ratingVotes = ratingVotes;
+    _rating = rating;
+    _ratingPercent = ratingPercent;
 }
 
-  Reviews.fromJson(dynamic json) {
+  Items.fromJson(dynamic json) {
     _reviewId = json['review_id'];
     _createdAt = json['created_at'];
-    _entityId = json['entity_id'];
-    _entityPkValue = json['entity_pk_value'];
-    _statusId = json['status_id'];
-    _detailId = json['detail_id'];
     _title = json['title'];
     _detail = json['detail'];
     _nickname = json['nickname'];
-    _customerId = json['customer_id'];
-    _entityCode = json['entity_code'];
-    if (json['rating_votes'] != null) {
-      _ratingVotes = [];
-      json['rating_votes'].forEach((v) {
-        _ratingVotes?.add(Rating_votes.fromJson(v));
-      });
-    }
+    _rating = json['rating'];
+    _ratingPercent = json['rating_percent'];
   }
 
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
     map['review_id'] = _reviewId;
     map['created_at'] = _createdAt;
-    map['entity_id'] = _entityId;
-    map['entity_pk_value'] = _entityPkValue;
-    map['status_id'] = _statusId;
-    map['detail_id'] = _detailId;
     map['title'] = _title;
     map['detail'] = _detail;
     map['nickname'] = _nickname;
-    map['customer_id'] = _customerId;
-    map['entity_code'] = _entityCode;
-    if (_ratingVotes != null) {
-      map['rating_votes'] = _ratingVotes?.map((v) => v.toJson()).toList();
-    }
+    map['rating'] = _rating;
+    map['rating_percent'] = _ratingPercent;
     return map;
   }
 
 }
 
-class Rating_votes {
-  String? _voteId;
-  String? _optionId;
-  String? _remoteIp;
-  String? _remoteIpLong;
-  String? _customerId;
-  String? _entityPkValue;
-  String? _ratingId;
-  String? _reviewId;
-  String? _percent;
-  String? _value;
-  String? _ratingCode;
-  String? _storeId;
-
-  String? get voteId => _voteId;
-  String? get optionId => _optionId;
-  String? get remoteIp => _remoteIp;
-  String? get remoteIpLong => _remoteIpLong;
-  String? get customerId => _customerId;
-  String? get entityPkValue => _entityPkValue;
-  String? get ratingId => _ratingId;
-  String? get reviewId => _reviewId;
-  String? get percent => _percent;
-  String? get value => _value;
-  String? get ratingCode => _ratingCode;
-  String? get storeId => _storeId;
-
-  Rating_votes({
-      String? voteId, 
-      String? optionId, 
-      String? remoteIp, 
-      String? remoteIpLong, 
-      String? customerId, 
-      String? entityPkValue, 
-      String? ratingId, 
-      String? reviewId, 
-      String? percent, 
-      String? value, 
-      String? ratingCode, 
-      String? storeId}){
-    _voteId = voteId;
-    _optionId = optionId;
-    _remoteIp = remoteIp;
-    _remoteIpLong = remoteIpLong;
-    _customerId = customerId;
-    _entityPkValue = entityPkValue;
-    _ratingId = ratingId;
-    _reviewId = reviewId;
-    _percent = percent;
-    _value = value;
-    _ratingCode = ratingCode;
-    _storeId = storeId;
-}
-
-  Rating_votes.fromJson(dynamic json) {
-    _voteId = json['vote_id'];
-    _optionId = json['option_id'];
-    _remoteIp = json['remote_ip'];
-    _remoteIpLong = json['remote_ip_long'];
-    _customerId = json['customer_id'];
-    _entityPkValue = json['entity_pk_value'];
-    _ratingId = json['rating_id'];
-    _reviewId = json['review_id'];
-    _percent = json['percent'];
-    _value = json['value'];
-    _ratingCode = json['rating_code'];
-    _storeId = json['store_id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    var map = <String, dynamic>{};
-    map['vote_id'] = _voteId;
-    map['option_id'] = _optionId;
-    map['remote_ip'] = _remoteIp;
-    map['remote_ip_long'] = _remoteIpLong;
-    map['customer_id'] = _customerId;
-    map['entity_pk_value'] = _entityPkValue;
-    map['rating_id'] = _ratingId;
-    map['review_id'] = _reviewId;
-    map['percent'] = _percent;
-    map['value'] = _value;
-    map['rating_code'] = _ratingCode;
-    map['store_id'] = _storeId;
-    return map;
-  }
-
-}
-
-class DetailProduct {
+class ProductData {
   String? _id;
   String? _name;
   String? _sku;
   double? _price;
   double? _finalPrice;
-  int? _specialPrice;
-  dynamic? _specialFromDate;
-  dynamic? _specialToDate;
-  dynamic? _isFeatured;
+  double? _specialPrice;
+  String? _specialFromDate;
+  String? _specialToDate;
+  String? _isFeatured;
   String? _status;
   String? _typeId;
   String? _attributeSetId;
@@ -354,18 +283,18 @@ class DetailProduct {
   List<String>? _supplierType;
   List<Custom_attribute>? _customAttribute;
   Seller? _seller;
-  dynamic _configurableOptions;
-  dynamic _configurableOptionsLink;
+  List<dynamic>? _configurableOptions;
+  List<dynamic>? _configurableOptionsLink;
 
   String? get id => _id;
   String? get name => _name;
   String? get sku => _sku;
   double? get price => _price;
   double? get finalPrice => _finalPrice;
-  int? get specialPrice => _specialPrice;
-  dynamic? get specialFromDate => _specialFromDate;
-  dynamic? get specialToDate => _specialToDate;
-  dynamic? get isFeatured => _isFeatured;
+  double? get specialPrice => _specialPrice;
+  String? get specialFromDate => _specialFromDate;
+  String? get specialToDate => _specialToDate;
+  String? get isFeatured => _isFeatured;
   String? get status => _status;
   String? get typeId => _typeId;
   String? get attributeSetId => _attributeSetId;
@@ -379,19 +308,19 @@ class DetailProduct {
   List<String>? get supplierType => _supplierType;
   List<Custom_attribute>? get customAttribute => _customAttribute;
   Seller? get seller => _seller;
-  dynamic get configurableOptions => _configurableOptions;
-  dynamic get configurableOptionsLink => _configurableOptionsLink;
+  List<dynamic>? get configurableOptions => _configurableOptions;
+  List<dynamic>? get configurableOptionsLink => _configurableOptionsLink;
 
-  Product({
+  ProductData({
       String? id, 
       String? name, 
       String? sku, 
       double? price, 
       double? finalPrice, 
-      int? specialPrice, 
-      dynamic? specialFromDate, 
-      dynamic? specialToDate, 
-      dynamic? isFeatured, 
+      double? specialPrice, 
+      String? specialFromDate, 
+      String? specialToDate, 
+      String? isFeatured, 
       String? status, 
       String? typeId, 
       String? attributeSetId, 
@@ -405,8 +334,8 @@ class DetailProduct {
       List<String>? supplierType, 
       List<Custom_attribute>? customAttribute, 
       Seller? seller, 
-      dynamic configurableOptions, 
-      dynamic configurableOptionsLink}){
+      List<dynamic>? configurableOptions, 
+      List<dynamic>? configurableOptionsLink}){
     _id = id;
     _name = name;
     _sku = sku;
@@ -433,9 +362,8 @@ class DetailProduct {
     _configurableOptionsLink = configurableOptionsLink;
 }
 
-  DetailProduct.fromJson(dynamic json) {
+  ProductData.fromJson(dynamic json) {
     _id = json['id'];
-    _configurableOptionsLink = json['configurable_options_link'];
     _name = json['name'];
     _sku = json['sku'];
     _price = json['price'];
@@ -466,6 +394,7 @@ class DetailProduct {
       });
     }
     _seller = json['seller'] != null ? Seller.fromJson(json['seller']) : null;
+
   }
 
   Map<String, dynamic> toJson() {

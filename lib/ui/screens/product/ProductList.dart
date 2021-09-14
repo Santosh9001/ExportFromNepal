@@ -133,9 +133,7 @@ class _ProductListState extends State<ProductList> {
                                   style: kTextStyleSmallPrimary),
                             )
                           : getWidgetValue(snapshot.data))
-                      : Center(
-                          child: CircularProgressIndicator(),
-                        ),
+                      : LinearProgressIndicator()
                 ],
               ),
             ),

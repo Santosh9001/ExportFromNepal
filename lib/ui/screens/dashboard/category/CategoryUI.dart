@@ -110,9 +110,7 @@ class _CategoryUIState extends State<CategoryUI> {
                                           style: kTextStyleSmallPrimary),
                                     )
                                   : getWidgetValue(snapshot.data))
-                              : Center(
-                                  child: CircularProgressIndicator(),
-                                ),
+                              : LinearProgressIndicator(),
                         ],
                       ),
                     );
