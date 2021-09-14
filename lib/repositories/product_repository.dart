@@ -8,7 +8,7 @@ import 'package:export_nepal/network_module/http_client.dart';
 class ProductRepository {
   Future<Either<Glitch, Product>> getCategoryProducts(String id) async {
     Either<Glitch, dynamic> response = await HttpClient.instance
-        .get(APIPathHelper.getValue(APIPath.categories) + "$id/products");
+        .get(APIPathHelper.getValue(APIPath.categories) + "/$id/products");
     try {
       Product products = Product.fromJson(response.right);
       if (response.isLeft) {

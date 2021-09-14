@@ -89,8 +89,9 @@ class ProductProvider extends ChangeNotifier {
         if (response.isLeft) {
           _productResponse = ApiResponse.error(response.left.message);
         } else if (response.isRight) {
-          _productResponse = ApiResponse.completed(response.right);
           print(_productResponse.data);
+          _productResponse = ApiResponse.completed(response.right);
+          
         }
       } else {
         _productResponse = ApiResponse.error("Internal Error");

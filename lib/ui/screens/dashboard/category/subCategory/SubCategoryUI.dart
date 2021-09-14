@@ -1,10 +1,13 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:export_nepal/model/core/categories/categories.dart';
 import 'package:export_nepal/network_module/api_response.dart';
 import 'package:export_nepal/provider/CategoryProvider.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/CategoryItemSmall.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/subCategory/SubCategoryItemSmall.dart';
 import 'package:export_nepal/ui/screens/dashboard/category/subCategory/SubCategoryList.dart';
+import 'package:export_nepal/ui/screens/product/ProductList.dart';
 import 'package:export_nepal/utils/constants.dart';
+import 'package:export_nepal/utils/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -65,6 +68,42 @@ class _SubCategoryUIState extends State<SubCategoryUI>
                 SizedBox(
                   height: 16.0,
                 ),
+                Padding(
+                  padding: EdgeInsets.only(left: 15, right: 15),
+                  child: DottedBorder(
+                    borderType: BorderType.RRect,
+                    radius: Radius.circular(10),
+                    dashPattern: [6, 6, 6, 6],
+                    padding: EdgeInsets.all(6),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: Container(
+                        height: 30,
+                        child: InkWell(
+                          onTap: () {
+                            item.productCount! > 0
+                                ? Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ProductList(item.name!, item.id!)))
+                                : showToast(
+                                    context, "Currently the list is empty");
+                          },
+                          child: Center(
+                            child: Text(
+                              "View ${item.name} products",
+                              style: kTextStyleBlueBold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
                 snapshot.connectionState == ConnectionState.done
                     ? (snapshot.hasError
                         ? Center(
@@ -106,6 +145,6 @@ class _SubCategoryUIState extends State<SubCategoryUI>
   Future<ApiResponse<dynamic>> invokeSubCategories(String id) async {
     provider = Provider.of<CategoryProvider>(context, listen: false);
     await provider!.invokeSubcategory(id);
-    return provider!.categoryResponse;
+    return provider!.subCategoryResponse;
   }
 }
